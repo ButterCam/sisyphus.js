@@ -1,0 +1,28 @@
+{
+  "name": "@sisyphus.js/cli",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "Kanro <higan@live.cn>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "bin": "bin/index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "dependencies": {
+    "@sisyphus.js/generator": "^0.0.0",
+    "commander": "^6.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^14.0.27"
+  }
+}

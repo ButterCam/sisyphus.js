@@ -1,0 +1,23 @@
+{
+  "name": "@incubator/api",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "Kanro <higan@live.cn>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "lib/incuabtor-web.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "dependencies": {
+    "@sisyphus.js/core": "^0.0.0",
+    "protobufjs": "^6.10.1"
+  }
+}
