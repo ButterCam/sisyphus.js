@@ -68,20 +68,9 @@ export class Status extends $sisyphus.Message<IStatus> implements IStatus {
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "code":
-                    result[key] = Number(properties[key])
-                    break
-                case "message":
-                    result[key] = String(properties[key])
-                    break
-                case "details":
-                    result[key] = $any.Any.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("code") && properties.code !== undefined) result.code = properties.code
+        if(properties.hasOwnProperty("message") && properties.message !== undefined) result.message = properties.message
+        if(properties.hasOwnProperty("details") && properties.details !== undefined) result.details = $any.Any.create(properties.details)
         return result
     }
 }

@@ -40,14 +40,7 @@ export class InvokeDictationCallbackRequest extends $sisyphus.Message<IInvokeDic
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "dictation":
-                    result[key] = $struct.Struct.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("dictation") && properties.dictation !== undefined) result.dictation = $struct.Struct.create(properties.dictation)
         return result
     }
 }

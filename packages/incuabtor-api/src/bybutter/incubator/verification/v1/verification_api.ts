@@ -61,23 +61,10 @@ export class SendVerificationCodeRequest extends $sisyphus.Message<ISendVerifica
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "phoneTextTarget":
-                    result[key] = $verification.PhoneTarget.create(properties[key])
-                    break
-                case "phoneSoundTarget":
-                    result[key] = $verification.PhoneTarget.create(properties[key])
-                    break
-                case "emailTarget":
-                    result[key] = $verification.EmailTarget.create(properties[key])
-                    break
-                case "context":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("phoneTextTarget") && properties.phoneTextTarget !== undefined) result.phoneTextTarget = $verification.PhoneTarget.create(properties.phoneTextTarget)
+        if(properties.hasOwnProperty("phoneSoundTarget") && properties.phoneSoundTarget !== undefined) result.phoneSoundTarget = $verification.PhoneTarget.create(properties.phoneSoundTarget)
+        if(properties.hasOwnProperty("emailTarget") && properties.emailTarget !== undefined) result.emailTarget = $verification.EmailTarget.create(properties.emailTarget)
+        if(properties.hasOwnProperty("context") && properties.context !== undefined) result.context = properties.context
         return result
     }
 }
@@ -118,11 +105,6 @@ export class SendVerificationCodeResponse extends $sisyphus.Message<ISendVerific
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-            }
-        }
         return result
     }
 }
@@ -191,26 +173,11 @@ export class VerifyVerificationCodeRequest extends $sisyphus.Message<IVerifyVeri
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "phoneTextTarget":
-                    result[key] = $verification.PhoneTarget.create(properties[key])
-                    break
-                case "phoneSoundTarget":
-                    result[key] = $verification.PhoneTarget.create(properties[key])
-                    break
-                case "emailTarget":
-                    result[key] = $verification.EmailTarget.create(properties[key])
-                    break
-                case "context":
-                    result[key] = String(properties[key])
-                    break
-                case "code":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("phoneTextTarget") && properties.phoneTextTarget !== undefined) result.phoneTextTarget = $verification.PhoneTarget.create(properties.phoneTextTarget)
+        if(properties.hasOwnProperty("phoneSoundTarget") && properties.phoneSoundTarget !== undefined) result.phoneSoundTarget = $verification.PhoneTarget.create(properties.phoneSoundTarget)
+        if(properties.hasOwnProperty("emailTarget") && properties.emailTarget !== undefined) result.emailTarget = $verification.EmailTarget.create(properties.emailTarget)
+        if(properties.hasOwnProperty("context") && properties.context !== undefined) result.context = properties.context
+        if(properties.hasOwnProperty("code") && properties.code !== undefined) result.code = properties.code
         return result
     }
 }
@@ -258,14 +225,7 @@ export class VerifyVerificationCodeResponse extends $sisyphus.Message<IVerifyVer
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "result":
-                    result[key] = Boolean(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("result") && properties.result !== undefined) result.result = properties.result
         return result
     }
 }
@@ -318,17 +278,8 @@ export class ListRegionCodeRequest extends $sisyphus.Message<IListRegionCodeRequ
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "pageSize":
-                    result[key] = Number(properties[key])
-                    break
-                case "pageToken":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("pageSize") && properties.pageSize !== undefined) result.pageSize = properties.pageSize
+        if(properties.hasOwnProperty("pageToken") && properties.pageToken !== undefined) result.pageToken = properties.pageToken
         return result
     }
 }
@@ -383,17 +334,8 @@ export class ListRegionCodeResponse extends $sisyphus.Message<IListRegionCodeRes
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "regionCodes":
-                    result[key] = $verification.RegionCode.create(properties[key])
-                    break
-                case "nextPageToken":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("regionCodes") && properties.regionCodes !== undefined) result.regionCodes = $verification.RegionCode.create(properties.regionCodes)
+        if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
         return result
     }
 }

@@ -46,17 +46,8 @@ export class UserMetadata extends $sisyphus.Message<IUserMetadata> implements IU
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "user":
-                    result[key] = String(properties[key])
-                    break
-                case "memberships":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("user") && properties.user !== undefined) result.user = properties.user
+        if(properties.hasOwnProperty("memberships") && properties.memberships !== undefined) result.memberships = properties.memberships
         return result
     }
 }

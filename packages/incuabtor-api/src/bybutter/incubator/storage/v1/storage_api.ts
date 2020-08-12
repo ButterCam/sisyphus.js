@@ -41,14 +41,7 @@ export class GenerateOssTokenRequest extends $sisyphus.Message<IGenerateOssToken
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "ossRole":
-                    result[key] = typeof properties[key] === "number" ? properties[key] : $storage.OssRole[properties[key]]
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("ossRole") && properties.ossRole !== undefined) result.ossRole = properties.ossRole
         return result
     }
 }
@@ -109,23 +102,10 @@ export class GenerateOssTokenResponse extends $sisyphus.Message<IGenerateOssToke
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "accessKeyId":
-                    result[key] = String(properties[key])
-                    break
-                case "accessKeySecret":
-                    result[key] = String(properties[key])
-                    break
-                case "securityToken":
-                    result[key] = String(properties[key])
-                    break
-                case "expirationTime":
-                    result[key] = $timestamp.Timestamp.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("accessKeyId") && properties.accessKeyId !== undefined) result.accessKeyId = properties.accessKeyId
+        if(properties.hasOwnProperty("accessKeySecret") && properties.accessKeySecret !== undefined) result.accessKeySecret = properties.accessKeySecret
+        if(properties.hasOwnProperty("securityToken") && properties.securityToken !== undefined) result.securityToken = properties.securityToken
+        if(properties.hasOwnProperty("expirationTime") && properties.expirationTime !== undefined) result.expirationTime = $timestamp.Timestamp.create(properties.expirationTime)
         return result
     }
 }

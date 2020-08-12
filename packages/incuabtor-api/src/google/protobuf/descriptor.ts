@@ -50,14 +50,7 @@ export class FileDescriptorSet extends $sisyphus.Message<IFileDescriptorSet> imp
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "file":
-                    result[key] = FileDescriptorProto.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("file") && properties.file !== undefined) result.file = FileDescriptorProto.create(properties.file)
         return result
     }
 }
@@ -179,47 +172,18 @@ export class FileDescriptorProto extends $sisyphus.Message<IFileDescriptorProto>
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "name":
-                    result[key] = String(properties[key])
-                    break
-                case "package":
-                    result[key] = String(properties[key])
-                    break
-                case "dependency":
-                    result[key] = String(properties[key])
-                    break
-                case "publicDependency":
-                    result[key] = Number(properties[key])
-                    break
-                case "weakDependency":
-                    result[key] = Number(properties[key])
-                    break
-                case "messageType":
-                    result[key] = DescriptorProto.create(properties[key])
-                    break
-                case "enumType":
-                    result[key] = EnumDescriptorProto.create(properties[key])
-                    break
-                case "service":
-                    result[key] = ServiceDescriptorProto.create(properties[key])
-                    break
-                case "extension":
-                    result[key] = FieldDescriptorProto.create(properties[key])
-                    break
-                case "options":
-                    result[key] = FileOptions.create(properties[key])
-                    break
-                case "sourceCodeInfo":
-                    result[key] = SourceCodeInfo.create(properties[key])
-                    break
-                case "syntax":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
+        if(properties.hasOwnProperty("package") && properties["package"] !== undefined) result["package"] = properties["package"]
+        if(properties.hasOwnProperty("dependency") && properties.dependency !== undefined) result.dependency = properties.dependency
+        if(properties.hasOwnProperty("publicDependency") && properties.publicDependency !== undefined) result.publicDependency = properties.publicDependency
+        if(properties.hasOwnProperty("weakDependency") && properties.weakDependency !== undefined) result.weakDependency = properties.weakDependency
+        if(properties.hasOwnProperty("messageType") && properties.messageType !== undefined) result.messageType = DescriptorProto.create(properties.messageType)
+        if(properties.hasOwnProperty("enumType") && properties.enumType !== undefined) result.enumType = EnumDescriptorProto.create(properties.enumType)
+        if(properties.hasOwnProperty("service") && properties.service !== undefined) result.service = ServiceDescriptorProto.create(properties.service)
+        if(properties.hasOwnProperty("extension") && properties.extension !== undefined) result.extension = FieldDescriptorProto.create(properties.extension)
+        if(properties.hasOwnProperty("options") && properties.options !== undefined) result.options = FileOptions.create(properties.options)
+        if(properties.hasOwnProperty("sourceCodeInfo") && properties.sourceCodeInfo !== undefined) result.sourceCodeInfo = SourceCodeInfo.create(properties.sourceCodeInfo)
+        if(properties.hasOwnProperty("syntax") && properties.syntax !== undefined) result.syntax = properties.syntax
         return result
     }
 }
@@ -329,41 +293,16 @@ export class DescriptorProto extends $sisyphus.Message<IDescriptorProto> impleme
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "name":
-                    result[key] = String(properties[key])
-                    break
-                case "field":
-                    result[key] = FieldDescriptorProto.create(properties[key])
-                    break
-                case "extension":
-                    result[key] = FieldDescriptorProto.create(properties[key])
-                    break
-                case "nestedType":
-                    result[key] = DescriptorProto.create(properties[key])
-                    break
-                case "enumType":
-                    result[key] = EnumDescriptorProto.create(properties[key])
-                    break
-                case "extensionRange":
-                    result[key] = DescriptorProto.ExtensionRange.create(properties[key])
-                    break
-                case "oneofDecl":
-                    result[key] = OneofDescriptorProto.create(properties[key])
-                    break
-                case "options":
-                    result[key] = MessageOptions.create(properties[key])
-                    break
-                case "reservedRange":
-                    result[key] = DescriptorProto.ReservedRange.create(properties[key])
-                    break
-                case "reservedName":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
+        if(properties.hasOwnProperty("field") && properties.field !== undefined) result.field = FieldDescriptorProto.create(properties.field)
+        if(properties.hasOwnProperty("extension") && properties.extension !== undefined) result.extension = FieldDescriptorProto.create(properties.extension)
+        if(properties.hasOwnProperty("nestedType") && properties.nestedType !== undefined) result.nestedType = DescriptorProto.create(properties.nestedType)
+        if(properties.hasOwnProperty("enumType") && properties.enumType !== undefined) result.enumType = EnumDescriptorProto.create(properties.enumType)
+        if(properties.hasOwnProperty("extensionRange") && properties.extensionRange !== undefined) result.extensionRange = DescriptorProto.ExtensionRange.create(properties.extensionRange)
+        if(properties.hasOwnProperty("oneofDecl") && properties.oneofDecl !== undefined) result.oneofDecl = OneofDescriptorProto.create(properties.oneofDecl)
+        if(properties.hasOwnProperty("options") && properties.options !== undefined) result.options = MessageOptions.create(properties.options)
+        if(properties.hasOwnProperty("reservedRange") && properties.reservedRange !== undefined) result.reservedRange = DescriptorProto.ReservedRange.create(properties.reservedRange)
+        if(properties.hasOwnProperty("reservedName") && properties.reservedName !== undefined) result.reservedName = properties.reservedName
         return result
     }
 }
@@ -426,20 +365,9 @@ export namespace DescriptorProto {
             if(properties instanceof this) return properties
             const result = new this()
             if (!properties) return result
-            for (const key in properties) {
-                if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-                switch(key) {
-                    case "start":
-                        result[key] = Number(properties[key])
-                        break
-                    case "end":
-                        result[key] = Number(properties[key])
-                        break
-                    case "options":
-                        result[key] = ExtensionRangeOptions.create(properties[key])
-                        break
-                }
-            }
+            if(properties.hasOwnProperty("start") && properties.start !== undefined) result.start = properties.start
+            if(properties.hasOwnProperty("end") && properties.end !== undefined) result.end = properties.end
+            if(properties.hasOwnProperty("options") && properties.options !== undefined) result.options = ExtensionRangeOptions.create(properties.options)
             return result
         }
     }
@@ -494,17 +422,8 @@ export namespace DescriptorProto {
             if(properties instanceof this) return properties
             const result = new this()
             if (!properties) return result
-            for (const key in properties) {
-                if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-                switch(key) {
-                    case "start":
-                        result[key] = Number(properties[key])
-                        break
-                    case "end":
-                        result[key] = Number(properties[key])
-                        break
-                }
-            }
+            if(properties.hasOwnProperty("start") && properties.start !== undefined) result.start = properties.start
+            if(properties.hasOwnProperty("end") && properties.end !== undefined) result.end = properties.end
             return result
         }
     }
@@ -548,14 +467,7 @@ export class ExtensionRangeOptions extends $sisyphus.Message<IExtensionRangeOpti
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "uninterpretedOption":
-                    result[key] = UninterpretedOption.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("uninterpretedOption") && properties.uninterpretedOption !== undefined) result.uninterpretedOption = UninterpretedOption.create(properties.uninterpretedOption)
         return result
     }
 }
@@ -702,44 +614,17 @@ export class FieldDescriptorProto extends $sisyphus.Message<IFieldDescriptorProt
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "name":
-                    result[key] = String(properties[key])
-                    break
-                case "number":
-                    result[key] = Number(properties[key])
-                    break
-                case "label":
-                    result[key] = typeof properties[key] === "number" ? properties[key] : FieldDescriptorProto.Label[properties[key]]
-                    break
-                case "type":
-                    result[key] = typeof properties[key] === "number" ? properties[key] : FieldDescriptorProto.Type[properties[key]]
-                    break
-                case "typeName":
-                    result[key] = String(properties[key])
-                    break
-                case "extendee":
-                    result[key] = String(properties[key])
-                    break
-                case "defaultValue":
-                    result[key] = String(properties[key])
-                    break
-                case "oneofIndex":
-                    result[key] = Number(properties[key])
-                    break
-                case "jsonName":
-                    result[key] = String(properties[key])
-                    break
-                case "options":
-                    result[key] = FieldOptions.create(properties[key])
-                    break
-                case "proto3Optional":
-                    result[key] = Boolean(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
+        if(properties.hasOwnProperty("number") && properties.number !== undefined) result.number = properties.number
+        if(properties.hasOwnProperty("label") && properties.label !== undefined) result.label = properties.label
+        if(properties.hasOwnProperty("type") && properties.type !== undefined) result.type = properties.type
+        if(properties.hasOwnProperty("typeName") && properties.typeName !== undefined) result.typeName = properties.typeName
+        if(properties.hasOwnProperty("extendee") && properties.extendee !== undefined) result.extendee = properties.extendee
+        if(properties.hasOwnProperty("defaultValue") && properties.defaultValue !== undefined) result.defaultValue = properties.defaultValue
+        if(properties.hasOwnProperty("oneofIndex") && properties.oneofIndex !== undefined) result.oneofIndex = properties.oneofIndex
+        if(properties.hasOwnProperty("jsonName") && properties.jsonName !== undefined) result.jsonName = properties.jsonName
+        if(properties.hasOwnProperty("options") && properties.options !== undefined) result.options = FieldOptions.create(properties.options)
+        if(properties.hasOwnProperty("proto3Optional") && properties.proto3Optional !== undefined) result.proto3Optional = properties.proto3Optional
         return result
     }
 }
@@ -855,17 +740,8 @@ export class OneofDescriptorProto extends $sisyphus.Message<IOneofDescriptorProt
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "name":
-                    result[key] = String(properties[key])
-                    break
-                case "options":
-                    result[key] = OneofOptions.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
+        if(properties.hasOwnProperty("options") && properties.options !== undefined) result.options = OneofOptions.create(properties.options)
         return result
     }
 }
@@ -940,26 +816,11 @@ export class EnumDescriptorProto extends $sisyphus.Message<IEnumDescriptorProto>
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "name":
-                    result[key] = String(properties[key])
-                    break
-                case "value":
-                    result[key] = EnumValueDescriptorProto.create(properties[key])
-                    break
-                case "options":
-                    result[key] = EnumOptions.create(properties[key])
-                    break
-                case "reservedRange":
-                    result[key] = EnumDescriptorProto.EnumReservedRange.create(properties[key])
-                    break
-                case "reservedName":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
+        if(properties.hasOwnProperty("value") && properties.value !== undefined) result.value = EnumValueDescriptorProto.create(properties.value)
+        if(properties.hasOwnProperty("options") && properties.options !== undefined) result.options = EnumOptions.create(properties.options)
+        if(properties.hasOwnProperty("reservedRange") && properties.reservedRange !== undefined) result.reservedRange = EnumDescriptorProto.EnumReservedRange.create(properties.reservedRange)
+        if(properties.hasOwnProperty("reservedName") && properties.reservedName !== undefined) result.reservedName = properties.reservedName
         return result
     }
 }
@@ -1020,17 +881,8 @@ export namespace EnumDescriptorProto {
             if(properties instanceof this) return properties
             const result = new this()
             if (!properties) return result
-            for (const key in properties) {
-                if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-                switch(key) {
-                    case "start":
-                        result[key] = Number(properties[key])
-                        break
-                    case "end":
-                        result[key] = Number(properties[key])
-                        break
-                }
-            }
+            if(properties.hasOwnProperty("start") && properties.start !== undefined) result.start = properties.start
+            if(properties.hasOwnProperty("end") && properties.end !== undefined) result.end = properties.end
             return result
         }
     }
@@ -1083,20 +935,9 @@ export class EnumValueDescriptorProto extends $sisyphus.Message<IEnumValueDescri
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "name":
-                    result[key] = String(properties[key])
-                    break
-                case "number":
-                    result[key] = Number(properties[key])
-                    break
-                case "options":
-                    result[key] = EnumValueOptions.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
+        if(properties.hasOwnProperty("number") && properties.number !== undefined) result.number = properties.number
+        if(properties.hasOwnProperty("options") && properties.options !== undefined) result.options = EnumValueOptions.create(properties.options)
         return result
     }
 }
@@ -1151,20 +992,9 @@ export class ServiceDescriptorProto extends $sisyphus.Message<IServiceDescriptor
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "name":
-                    result[key] = String(properties[key])
-                    break
-                case "method":
-                    result[key] = MethodDescriptorProto.create(properties[key])
-                    break
-                case "options":
-                    result[key] = ServiceOptions.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
+        if(properties.hasOwnProperty("method") && properties.method !== undefined) result.method = MethodDescriptorProto.create(properties.method)
+        if(properties.hasOwnProperty("options") && properties.options !== undefined) result.options = ServiceOptions.create(properties.options)
         return result
     }
 }
@@ -1239,29 +1069,12 @@ export class MethodDescriptorProto extends $sisyphus.Message<IMethodDescriptorPr
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "name":
-                    result[key] = String(properties[key])
-                    break
-                case "inputType":
-                    result[key] = String(properties[key])
-                    break
-                case "outputType":
-                    result[key] = String(properties[key])
-                    break
-                case "options":
-                    result[key] = MethodOptions.create(properties[key])
-                    break
-                case "clientStreaming":
-                    result[key] = Boolean(properties[key])
-                    break
-                case "serverStreaming":
-                    result[key] = Boolean(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
+        if(properties.hasOwnProperty("inputType") && properties.inputType !== undefined) result.inputType = properties.inputType
+        if(properties.hasOwnProperty("outputType") && properties.outputType !== undefined) result.outputType = properties.outputType
+        if(properties.hasOwnProperty("options") && properties.options !== undefined) result.options = MethodOptions.create(properties.options)
+        if(properties.hasOwnProperty("clientStreaming") && properties.clientStreaming !== undefined) result.clientStreaming = properties.clientStreaming
+        if(properties.hasOwnProperty("serverStreaming") && properties.serverStreaming !== undefined) result.serverStreaming = properties.serverStreaming
         return result
     }
 }
@@ -1507,77 +1320,28 @@ export class FileOptions extends $sisyphus.Message<IFileOptions> implements IFil
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "javaPackage":
-                    result[key] = String(properties[key])
-                    break
-                case "javaOuterClassname":
-                    result[key] = String(properties[key])
-                    break
-                case "javaMultipleFiles":
-                    result[key] = Boolean(properties[key])
-                    break
-                case "javaGenerateEqualsAndHash":
-                    result[key] = Boolean(properties[key])
-                    break
-                case "javaStringCheckUtf8":
-                    result[key] = Boolean(properties[key])
-                    break
-                case "optimizeFor":
-                    result[key] = typeof properties[key] === "number" ? properties[key] : FileOptions.OptimizeMode[properties[key]]
-                    break
-                case "goPackage":
-                    result[key] = String(properties[key])
-                    break
-                case "ccGenericServices":
-                    result[key] = Boolean(properties[key])
-                    break
-                case "javaGenericServices":
-                    result[key] = Boolean(properties[key])
-                    break
-                case "pyGenericServices":
-                    result[key] = Boolean(properties[key])
-                    break
-                case "phpGenericServices":
-                    result[key] = Boolean(properties[key])
-                    break
-                case "deprecated":
-                    result[key] = Boolean(properties[key])
-                    break
-                case "ccEnableArenas":
-                    result[key] = Boolean(properties[key])
-                    break
-                case "objcClassPrefix":
-                    result[key] = String(properties[key])
-                    break
-                case "csharpNamespace":
-                    result[key] = String(properties[key])
-                    break
-                case "swiftPrefix":
-                    result[key] = String(properties[key])
-                    break
-                case "phpClassPrefix":
-                    result[key] = String(properties[key])
-                    break
-                case "phpNamespace":
-                    result[key] = String(properties[key])
-                    break
-                case "phpMetadataNamespace":
-                    result[key] = String(properties[key])
-                    break
-                case "rubyPackage":
-                    result[key] = String(properties[key])
-                    break
-                case "uninterpretedOption":
-                    result[key] = UninterpretedOption.create(properties[key])
-                    break
-                case ".google.api.resourceDefinition":
-                    result[key] = $resource.ResourceDescriptor.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("javaPackage") && properties.javaPackage !== undefined) result.javaPackage = properties.javaPackage
+        if(properties.hasOwnProperty("javaOuterClassname") && properties.javaOuterClassname !== undefined) result.javaOuterClassname = properties.javaOuterClassname
+        if(properties.hasOwnProperty("javaMultipleFiles") && properties.javaMultipleFiles !== undefined) result.javaMultipleFiles = properties.javaMultipleFiles
+        if(properties.hasOwnProperty("javaGenerateEqualsAndHash") && properties.javaGenerateEqualsAndHash !== undefined) result.javaGenerateEqualsAndHash = properties.javaGenerateEqualsAndHash
+        if(properties.hasOwnProperty("javaStringCheckUtf8") && properties.javaStringCheckUtf8 !== undefined) result.javaStringCheckUtf8 = properties.javaStringCheckUtf8
+        if(properties.hasOwnProperty("optimizeFor") && properties.optimizeFor !== undefined) result.optimizeFor = properties.optimizeFor
+        if(properties.hasOwnProperty("goPackage") && properties.goPackage !== undefined) result.goPackage = properties.goPackage
+        if(properties.hasOwnProperty("ccGenericServices") && properties.ccGenericServices !== undefined) result.ccGenericServices = properties.ccGenericServices
+        if(properties.hasOwnProperty("javaGenericServices") && properties.javaGenericServices !== undefined) result.javaGenericServices = properties.javaGenericServices
+        if(properties.hasOwnProperty("pyGenericServices") && properties.pyGenericServices !== undefined) result.pyGenericServices = properties.pyGenericServices
+        if(properties.hasOwnProperty("phpGenericServices") && properties.phpGenericServices !== undefined) result.phpGenericServices = properties.phpGenericServices
+        if(properties.hasOwnProperty("deprecated") && properties.deprecated !== undefined) result.deprecated = properties.deprecated
+        if(properties.hasOwnProperty("ccEnableArenas") && properties.ccEnableArenas !== undefined) result.ccEnableArenas = properties.ccEnableArenas
+        if(properties.hasOwnProperty("objcClassPrefix") && properties.objcClassPrefix !== undefined) result.objcClassPrefix = properties.objcClassPrefix
+        if(properties.hasOwnProperty("csharpNamespace") && properties.csharpNamespace !== undefined) result.csharpNamespace = properties.csharpNamespace
+        if(properties.hasOwnProperty("swiftPrefix") && properties.swiftPrefix !== undefined) result.swiftPrefix = properties.swiftPrefix
+        if(properties.hasOwnProperty("phpClassPrefix") && properties.phpClassPrefix !== undefined) result.phpClassPrefix = properties.phpClassPrefix
+        if(properties.hasOwnProperty("phpNamespace") && properties.phpNamespace !== undefined) result.phpNamespace = properties.phpNamespace
+        if(properties.hasOwnProperty("phpMetadataNamespace") && properties.phpMetadataNamespace !== undefined) result.phpMetadataNamespace = properties.phpMetadataNamespace
+        if(properties.hasOwnProperty("rubyPackage") && properties.rubyPackage !== undefined) result.rubyPackage = properties.rubyPackage
+        if(properties.hasOwnProperty("uninterpretedOption") && properties.uninterpretedOption !== undefined) result.uninterpretedOption = UninterpretedOption.create(properties.uninterpretedOption)
+        if(properties.hasOwnProperty(".google.api.resourceDefinition") && properties[".google.api.resourceDefinition"] !== undefined) result[".google.api.resourceDefinition"] = $resource.ResourceDescriptor.create(properties[".google.api.resourceDefinition"])
         return result
     }
 }
@@ -1739,29 +1503,12 @@ export class MessageOptions extends $sisyphus.Message<IMessageOptions> implement
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "messageSetWireFormat":
-                    result[key] = Boolean(properties[key])
-                    break
-                case "noStandardDescriptorAccessor":
-                    result[key] = Boolean(properties[key])
-                    break
-                case "deprecated":
-                    result[key] = Boolean(properties[key])
-                    break
-                case "mapEntry":
-                    result[key] = Boolean(properties[key])
-                    break
-                case "uninterpretedOption":
-                    result[key] = UninterpretedOption.create(properties[key])
-                    break
-                case ".google.api.resource":
-                    result[key] = $resource.ResourceDescriptor.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("messageSetWireFormat") && properties.messageSetWireFormat !== undefined) result.messageSetWireFormat = properties.messageSetWireFormat
+        if(properties.hasOwnProperty("noStandardDescriptorAccessor") && properties.noStandardDescriptorAccessor !== undefined) result.noStandardDescriptorAccessor = properties.noStandardDescriptorAccessor
+        if(properties.hasOwnProperty("deprecated") && properties.deprecated !== undefined) result.deprecated = properties.deprecated
+        if(properties.hasOwnProperty("mapEntry") && properties.mapEntry !== undefined) result.mapEntry = properties.mapEntry
+        if(properties.hasOwnProperty("uninterpretedOption") && properties.uninterpretedOption !== undefined) result.uninterpretedOption = UninterpretedOption.create(properties.uninterpretedOption)
+        if(properties.hasOwnProperty(".google.api.resource") && properties[".google.api.resource"] !== undefined) result[".google.api.resource"] = $resource.ResourceDescriptor.create(properties[".google.api.resource"])
         return result
     }
 }
@@ -1913,38 +1660,15 @@ export class FieldOptions extends $sisyphus.Message<IFieldOptions> implements IF
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "ctype":
-                    result[key] = typeof properties[key] === "number" ? properties[key] : FieldOptions.CType[properties[key]]
-                    break
-                case "packed":
-                    result[key] = Boolean(properties[key])
-                    break
-                case "jstype":
-                    result[key] = typeof properties[key] === "number" ? properties[key] : FieldOptions.JSType[properties[key]]
-                    break
-                case "lazy":
-                    result[key] = Boolean(properties[key])
-                    break
-                case "deprecated":
-                    result[key] = Boolean(properties[key])
-                    break
-                case "weak":
-                    result[key] = Boolean(properties[key])
-                    break
-                case "uninterpretedOption":
-                    result[key] = UninterpretedOption.create(properties[key])
-                    break
-                case ".google.api.resourceReference":
-                    result[key] = $resource.ResourceReference.create(properties[key])
-                    break
-                case ".google.api.fieldBehavior":
-                    result[key] = typeof properties[key] === "number" ? properties[key] : $fieldBehavior.FieldBehavior[properties[key]]
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("ctype") && properties.ctype !== undefined) result.ctype = properties.ctype
+        if(properties.hasOwnProperty("packed") && properties.packed !== undefined) result.packed = properties.packed
+        if(properties.hasOwnProperty("jstype") && properties.jstype !== undefined) result.jstype = properties.jstype
+        if(properties.hasOwnProperty("lazy") && properties.lazy !== undefined) result.lazy = properties.lazy
+        if(properties.hasOwnProperty("deprecated") && properties.deprecated !== undefined) result.deprecated = properties.deprecated
+        if(properties.hasOwnProperty("weak") && properties.weak !== undefined) result.weak = properties.weak
+        if(properties.hasOwnProperty("uninterpretedOption") && properties.uninterpretedOption !== undefined) result.uninterpretedOption = UninterpretedOption.create(properties.uninterpretedOption)
+        if(properties.hasOwnProperty(".google.api.resourceReference") && properties[".google.api.resourceReference"] !== undefined) result[".google.api.resourceReference"] = $resource.ResourceReference.create(properties[".google.api.resourceReference"])
+        if(properties.hasOwnProperty(".google.api.fieldBehavior") && properties[".google.api.fieldBehavior"] !== undefined) result[".google.api.fieldBehavior"] = properties[".google.api.fieldBehavior"]
         return result
     }
 }
@@ -2021,14 +1745,7 @@ export class OneofOptions extends $sisyphus.Message<IOneofOptions> implements IO
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "uninterpretedOption":
-                    result[key] = UninterpretedOption.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("uninterpretedOption") && properties.uninterpretedOption !== undefined) result.uninterpretedOption = UninterpretedOption.create(properties.uninterpretedOption)
         return result
     }
 }
@@ -2091,20 +1808,9 @@ export class EnumOptions extends $sisyphus.Message<IEnumOptions> implements IEnu
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "allowAlias":
-                    result[key] = Boolean(properties[key])
-                    break
-                case "deprecated":
-                    result[key] = Boolean(properties[key])
-                    break
-                case "uninterpretedOption":
-                    result[key] = UninterpretedOption.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("allowAlias") && properties.allowAlias !== undefined) result.allowAlias = properties.allowAlias
+        if(properties.hasOwnProperty("deprecated") && properties.deprecated !== undefined) result.deprecated = properties.deprecated
+        if(properties.hasOwnProperty("uninterpretedOption") && properties.uninterpretedOption !== undefined) result.uninterpretedOption = UninterpretedOption.create(properties.uninterpretedOption)
         return result
     }
 }
@@ -2165,20 +1871,9 @@ export class EnumValueOptions extends $sisyphus.Message<IEnumValueOptions> imple
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "deprecated":
-                    result[key] = Boolean(properties[key])
-                    break
-                case "uninterpretedOption":
-                    result[key] = UninterpretedOption.create(properties[key])
-                    break
-                case ".sisyphus.protobuf.string":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("deprecated") && properties.deprecated !== undefined) result.deprecated = properties.deprecated
+        if(properties.hasOwnProperty("uninterpretedOption") && properties.uninterpretedOption !== undefined) result.uninterpretedOption = UninterpretedOption.create(properties.uninterpretedOption)
+        if(properties.hasOwnProperty(".sisyphus.protobuf.string") && properties[".sisyphus.protobuf.string"] !== undefined) result[".sisyphus.protobuf.string"] = properties[".sisyphus.protobuf.string"]
         return result
     }
 }
@@ -2249,26 +1944,11 @@ export class ServiceOptions extends $sisyphus.Message<IServiceOptions> implement
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "deprecated":
-                    result[key] = Boolean(properties[key])
-                    break
-                case "uninterpretedOption":
-                    result[key] = UninterpretedOption.create(properties[key])
-                    break
-                case ".google.api.defaultHost":
-                    result[key] = String(properties[key])
-                    break
-                case ".google.api.oauthScopes":
-                    result[key] = String(properties[key])
-                    break
-                case ".sisyphus.api.metadata":
-                    result[key] = $serviceMeta.ServiceMetadata.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("deprecated") && properties.deprecated !== undefined) result.deprecated = properties.deprecated
+        if(properties.hasOwnProperty("uninterpretedOption") && properties.uninterpretedOption !== undefined) result.uninterpretedOption = UninterpretedOption.create(properties.uninterpretedOption)
+        if(properties.hasOwnProperty(".google.api.defaultHost") && properties[".google.api.defaultHost"] !== undefined) result[".google.api.defaultHost"] = properties[".google.api.defaultHost"]
+        if(properties.hasOwnProperty(".google.api.oauthScopes") && properties[".google.api.oauthScopes"] !== undefined) result[".google.api.oauthScopes"] = properties[".google.api.oauthScopes"]
+        if(properties.hasOwnProperty(".sisyphus.api.metadata") && properties[".sisyphus.api.metadata"] !== undefined) result[".sisyphus.api.metadata"] = $serviceMeta.ServiceMetadata.create(properties[".sisyphus.api.metadata"])
         return result
     }
 }
@@ -2352,32 +2032,13 @@ export class MethodOptions extends $sisyphus.Message<IMethodOptions> implements 
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "deprecated":
-                    result[key] = Boolean(properties[key])
-                    break
-                case "idempotencyLevel":
-                    result[key] = typeof properties[key] === "number" ? properties[key] : MethodOptions.IdempotencyLevel[properties[key]]
-                    break
-                case "uninterpretedOption":
-                    result[key] = UninterpretedOption.create(properties[key])
-                    break
-                case ".bybutter.incubator.common.v1.access":
-                    result[key] = $accessControl.AccessControl.create(properties[key])
-                    break
-                case ".google.api.http":
-                    result[key] = $http.HttpRule.create(properties[key])
-                    break
-                case ".google.api.methodSignature":
-                    result[key] = String(properties[key])
-                    break
-                case ".google.longrunning.operationInfo":
-                    result[key] = $operations.OperationInfo.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("deprecated") && properties.deprecated !== undefined) result.deprecated = properties.deprecated
+        if(properties.hasOwnProperty("idempotencyLevel") && properties.idempotencyLevel !== undefined) result.idempotencyLevel = properties.idempotencyLevel
+        if(properties.hasOwnProperty("uninterpretedOption") && properties.uninterpretedOption !== undefined) result.uninterpretedOption = UninterpretedOption.create(properties.uninterpretedOption)
+        if(properties.hasOwnProperty(".bybutter.incubator.common.v1.access") && properties[".bybutter.incubator.common.v1.access"] !== undefined) result[".bybutter.incubator.common.v1.access"] = $accessControl.AccessControl.create(properties[".bybutter.incubator.common.v1.access"])
+        if(properties.hasOwnProperty(".google.api.http") && properties[".google.api.http"] !== undefined) result[".google.api.http"] = $http.HttpRule.create(properties[".google.api.http"])
+        if(properties.hasOwnProperty(".google.api.methodSignature") && properties[".google.api.methodSignature"] !== undefined) result[".google.api.methodSignature"] = properties[".google.api.methodSignature"]
+        if(properties.hasOwnProperty(".google.longrunning.operationInfo") && properties[".google.longrunning.operationInfo"] !== undefined) result[".google.longrunning.operationInfo"] = $operations.OperationInfo.create(properties[".google.longrunning.operationInfo"])
         return result
     }
 }
@@ -2486,31 +2147,13 @@ export class UninterpretedOption extends $sisyphus.Message<IUninterpretedOption>
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "name":
-                    result[key] = UninterpretedOption.NamePart.create(properties[key])
-                    break
-                case "identifierValue":
-                    result[key] = String(properties[key])
-                    break
-                case "positiveIntValue":
-                    result[key] = $sisyphus.Long.fromValue(properties[key])
-                    break
-                case "negativeIntValue":
-                    result[key] = $sisyphus.Long.fromValue(properties[key])
-                    break
-                case "doubleValue":
-                    result[key] = Number(properties[key])
-                    break
-                case "stringValue":
-                    break
-                case "aggregateValue":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = UninterpretedOption.NamePart.create(properties.name)
+        if(properties.hasOwnProperty("identifierValue") && properties.identifierValue !== undefined) result.identifierValue = properties.identifierValue
+        if(properties.hasOwnProperty("positiveIntValue") && properties.positiveIntValue !== undefined) result.positiveIntValue = properties.positiveIntValue
+        if(properties.hasOwnProperty("negativeIntValue") && properties.negativeIntValue !== undefined) result.negativeIntValue = properties.negativeIntValue
+        if(properties.hasOwnProperty("doubleValue") && properties.doubleValue !== undefined) result.doubleValue = properties.doubleValue
+        if(properties.hasOwnProperty("stringValue") && properties.stringValue !== undefined) result.stringValue = properties.stringValue
+        if(properties.hasOwnProperty("aggregateValue") && properties.aggregateValue !== undefined) result.aggregateValue = properties.aggregateValue
         return result
     }
 }
@@ -2570,17 +2213,8 @@ export namespace UninterpretedOption {
             if(properties instanceof this) return properties
             const result = new this()
             if (!properties) return result
-            for (const key in properties) {
-                if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-                switch(key) {
-                    case "namePart":
-                        result[key] = String(properties[key])
-                        break
-                    case "isExtension":
-                        result[key] = Boolean(properties[key])
-                        break
-                }
-            }
+            if(properties.hasOwnProperty("namePart") && properties.namePart !== undefined) result.namePart = properties.namePart
+            if(properties.hasOwnProperty("isExtension") && properties.isExtension !== undefined) result.isExtension = properties.isExtension
             return result
         }
     }
@@ -2672,14 +2306,7 @@ export class SourceCodeInfo extends $sisyphus.Message<ISourceCodeInfo> implement
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "location":
-                    result[key] = SourceCodeInfo.Location.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("location") && properties.location !== undefined) result.location = SourceCodeInfo.Location.create(properties.location)
         return result
     }
 }
@@ -2825,26 +2452,11 @@ export namespace SourceCodeInfo {
             if(properties instanceof this) return properties
             const result = new this()
             if (!properties) return result
-            for (const key in properties) {
-                if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-                switch(key) {
-                    case "path":
-                        result[key] = Number(properties[key])
-                        break
-                    case "span":
-                        result[key] = Number(properties[key])
-                        break
-                    case "leadingComments":
-                        result[key] = String(properties[key])
-                        break
-                    case "trailingComments":
-                        result[key] = String(properties[key])
-                        break
-                    case "leadingDetachedComments":
-                        result[key] = String(properties[key])
-                        break
-                }
-            }
+            if(properties.hasOwnProperty("path") && properties.path !== undefined) result.path = properties.path
+            if(properties.hasOwnProperty("span") && properties.span !== undefined) result.span = properties.span
+            if(properties.hasOwnProperty("leadingComments") && properties.leadingComments !== undefined) result.leadingComments = properties.leadingComments
+            if(properties.hasOwnProperty("trailingComments") && properties.trailingComments !== undefined) result.trailingComments = properties.trailingComments
+            if(properties.hasOwnProperty("leadingDetachedComments") && properties.leadingDetachedComments !== undefined) result.leadingDetachedComments = properties.leadingDetachedComments
             return result
         }
     }
@@ -2899,14 +2511,7 @@ export class GeneratedCodeInfo extends $sisyphus.Message<IGeneratedCodeInfo> imp
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "annotation":
-                    result[key] = GeneratedCodeInfo.Annotation.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("annotation") && properties.annotation !== undefined) result.annotation = GeneratedCodeInfo.Annotation.create(properties.annotation)
         return result
     }
 }
@@ -2978,23 +2583,10 @@ export namespace GeneratedCodeInfo {
             if(properties instanceof this) return properties
             const result = new this()
             if (!properties) return result
-            for (const key in properties) {
-                if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-                switch(key) {
-                    case "path":
-                        result[key] = Number(properties[key])
-                        break
-                    case "sourceFile":
-                        result[key] = String(properties[key])
-                        break
-                    case "begin":
-                        result[key] = Number(properties[key])
-                        break
-                    case "end":
-                        result[key] = Number(properties[key])
-                        break
-                }
-            }
+            if(properties.hasOwnProperty("path") && properties.path !== undefined) result.path = properties.path
+            if(properties.hasOwnProperty("sourceFile") && properties.sourceFile !== undefined) result.sourceFile = properties.sourceFile
+            if(properties.hasOwnProperty("begin") && properties.begin !== undefined) result.begin = properties.begin
+            if(properties.hasOwnProperty("end") && properties.end !== undefined) result.end = properties.end
             return result
         }
     }

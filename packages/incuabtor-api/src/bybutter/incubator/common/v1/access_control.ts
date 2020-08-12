@@ -53,20 +53,9 @@ export class AccessControl extends $sisyphus.Message<IAccessControl> implements 
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "anonymous":
-                    result[key] = Boolean(properties[key])
-                    break
-                case "requiredPermissions":
-                    result[key] = String(properties[key])
-                    break
-                case "allowPermissions":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("anonymous") && properties.anonymous !== undefined) result.anonymous = properties.anonymous
+        if(properties.hasOwnProperty("requiredPermissions") && properties.requiredPermissions !== undefined) result.requiredPermissions = properties.requiredPermissions
+        if(properties.hasOwnProperty("allowPermissions") && properties.allowPermissions !== undefined) result.allowPermissions = properties.allowPermissions
         return result
     }
 }

@@ -4,6 +4,7 @@ import {Enum, Field, FieldBase, MapField, Type, util} from "protobufjs";
 import {normalizeComment} from "../utils";
 import {EnumSpec} from "./enum";
 import {CodeBuilder} from "../string";
+import safeProp = util.safeProp;
 
 export class TypeSpec implements GeneratorSpec {
     private readonly _parent: TypeSpec | FileSpec
@@ -249,56 +250,25 @@ export class TypeSpec implements GeneratorSpec {
         b.endBlock()
     }
 
-    private generateFromObject(b: CodeBuilder) {
+    private generateCreate(b: CodeBuilder) {
         b.beginBlock(`static create(properties?: I${this._reflection.name}): ${this._reflection.name}`)
         b.appendLn(`if(properties instanceof this) return properties`)
         b.appendLn(`const result = new this()`)
         b.appendLn(`if (!properties) return result`)
-        b.beginBlock(`for (const key in properties)`)
-        b.appendLn(`if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue`)
-        b.beginBlock("switch(key)")
         for (let field of this._reflection.fieldsArray) {
-            b.appendLn(`case "${field.name}":`).indent()
-            switch (field.type) {
-                case "string":
-                    b.appendLn(`result[key] = String(properties[key])`)
-                    break
-                case "bytes":
-                    break
-                case "bool":
-                    b.appendLn(`result[key] = Boolean(properties[key])`)
-                    break
-                case "double":
-                case "float":
-                case "int32":
-                case "uint32":
-                case "sint32":
-                case "fixed32":
-                case "sfixed32":
-                    b.appendLn(`result[key] = Number(properties[key])`)
-                    break
-                case "int64":
-                case "sint64":
-                case "sfixed64":
-                case "uint64":
-                case "fixed64":
-                    b.appendLn(`result[key] = $${this.file.importSisyphus()}.Long.fromValue(properties[key])`)
-                    break
-                default:
-                    if(field.resolvedType != null) {
-                        if (field.resolvedType instanceof Type) {
-                            b.appendLn(`result[key] = ${this.file.classname(field.resolvedType)}.create(properties[key])`)
-                        } else {
-                            b.appendLn(`result[key] = typeof properties[key] === "number" ? properties[key] : ${this.file.classname(field.resolvedType)}[properties[key]]`)
-                        }
-                    }
-                    break
+            if (field.resolvedType != null && field.resolvedType instanceof Type) {
+                b.appendLn(`if(properties.hasOwnProperty("${field.name}") && properties${safeProp(field.name)} !== undefined) result${safeProp(field.name)} = ${this.file.classname(field.resolvedType)}.create(properties${safeProp(field.name)})`)
+            } else {
+                b.appendLn(`if(properties.hasOwnProperty("${field.name}") && properties${safeProp(field.name)} !== undefined) result${safeProp(field.name)} = properties${safeProp(field.name)}`)
             }
-            b.appendLn("break").deindent()
         }
-        b.endBlock()
-        b.endBlock()
         b.appendLn(`return result`)
+        b.endBlock()
+    }
+
+    private generateFromJson(b: CodeBuilder) {
+        b.beginBlock(`static fromJson(json: any): ${this._reflection.name}`)
+
         b.endBlock()
     }
 }

@@ -67,23 +67,10 @@ export class Account extends $sisyphus.Message<IAccount> implements IAccount {
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "name":
-                    result[key] = String(properties[key])
-                    break
-                case "permissions":
-                    result[key] = $struct.Value.create(properties[key])
-                    break
-                case "metadata":
-                    result[key] = $any.Any.create(properties[key])
-                    break
-                case "createTime":
-                    result[key] = $timestamp.Timestamp.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
+        if(properties.hasOwnProperty("permissions") && properties.permissions !== undefined) result.permissions = $struct.Value.create(properties.permissions)
+        if(properties.hasOwnProperty("metadata") && properties.metadata !== undefined) result.metadata = $any.Any.create(properties.metadata)
+        if(properties.hasOwnProperty("createTime") && properties.createTime !== undefined) result.createTime = $timestamp.Timestamp.create(properties.createTime)
         return result
     }
 }

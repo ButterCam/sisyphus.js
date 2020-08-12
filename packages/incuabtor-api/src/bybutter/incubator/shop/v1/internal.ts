@@ -47,16 +47,8 @@ export class PaymentPayload extends $sisyphus.Message<IPaymentPayload> implement
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "product":
-                    result[key] = String(properties[key])
-                    break
-                case "planHash":
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("product") && properties.product !== undefined) result.product = properties.product
+        if(properties.hasOwnProperty("planHash") && properties.planHash !== undefined) result.planHash = properties.planHash
         return result
     }
 }
@@ -123,23 +115,10 @@ export class ResolvedOrderItem extends $sisyphus.Message<IResolvedOrderItem> imp
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "payment":
-                    result[key] = PaymentPayload.create(properties[key])
-                    break
-                case "product":
-                    result[key] = $product.Product.create(properties[key])
-                    break
-                case "plan":
-                    result[key] = $product.Plan.create(properties[key])
-                    break
-                case "metadata":
-                    result[key] = $any.Any.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("payment") && properties.payment !== undefined) result.payment = PaymentPayload.create(properties.payment)
+        if(properties.hasOwnProperty("product") && properties.product !== undefined) result.product = $product.Product.create(properties.product)
+        if(properties.hasOwnProperty("plan") && properties.plan !== undefined) result.plan = $product.Plan.create(properties.plan)
+        if(properties.hasOwnProperty("metadata") && properties.metadata !== undefined) result.metadata = $any.Any.create(properties.metadata)
         return result
     }
 }

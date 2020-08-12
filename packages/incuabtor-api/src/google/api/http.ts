@@ -61,17 +61,8 @@ export class Http extends $sisyphus.Message<IHttp> implements IHttp {
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "rules":
-                    result[key] = HttpRule.create(properties[key])
-                    break
-                case "fullyDecodeReservedExpansion":
-                    result[key] = Boolean(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("rules") && properties.rules !== undefined) result.rules = HttpRule.create(properties.rules)
+        if(properties.hasOwnProperty("fullyDecodeReservedExpansion") && properties.fullyDecodeReservedExpansion !== undefined) result.fullyDecodeReservedExpansion = properties.fullyDecodeReservedExpansion
         return result
     }
 }
@@ -478,41 +469,16 @@ export class HttpRule extends $sisyphus.Message<IHttpRule> implements IHttpRule 
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "selector":
-                    result[key] = String(properties[key])
-                    break
-                case "get":
-                    result[key] = String(properties[key])
-                    break
-                case "put":
-                    result[key] = String(properties[key])
-                    break
-                case "post":
-                    result[key] = String(properties[key])
-                    break
-                case "delete":
-                    result[key] = String(properties[key])
-                    break
-                case "patch":
-                    result[key] = String(properties[key])
-                    break
-                case "custom":
-                    result[key] = CustomHttpPattern.create(properties[key])
-                    break
-                case "body":
-                    result[key] = String(properties[key])
-                    break
-                case "responseBody":
-                    result[key] = String(properties[key])
-                    break
-                case "additionalBindings":
-                    result[key] = HttpRule.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("selector") && properties.selector !== undefined) result.selector = properties.selector
+        if(properties.hasOwnProperty("get") && properties.get !== undefined) result.get = properties.get
+        if(properties.hasOwnProperty("put") && properties.put !== undefined) result.put = properties.put
+        if(properties.hasOwnProperty("post") && properties.post !== undefined) result.post = properties.post
+        if(properties.hasOwnProperty("delete") && properties["delete"] !== undefined) result["delete"] = properties["delete"]
+        if(properties.hasOwnProperty("patch") && properties.patch !== undefined) result.patch = properties.patch
+        if(properties.hasOwnProperty("custom") && properties.custom !== undefined) result.custom = CustomHttpPattern.create(properties.custom)
+        if(properties.hasOwnProperty("body") && properties.body !== undefined) result.body = properties.body
+        if(properties.hasOwnProperty("responseBody") && properties.responseBody !== undefined) result.responseBody = properties.responseBody
+        if(properties.hasOwnProperty("additionalBindings") && properties.additionalBindings !== undefined) result.additionalBindings = HttpRule.create(properties.additionalBindings)
         return result
     }
 }
@@ -571,17 +537,8 @@ export class CustomHttpPattern extends $sisyphus.Message<ICustomHttpPattern> imp
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "kind":
-                    result[key] = String(properties[key])
-                    break
-                case "path":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("kind") && properties.kind !== undefined) result.kind = properties.kind
+        if(properties.hasOwnProperty("path") && properties.path !== undefined) result.path = properties.path
         return result
     }
 }

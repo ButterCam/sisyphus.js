@@ -115,17 +115,8 @@ export class Duration extends $sisyphus.Message<IDuration> implements IDuration 
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "seconds":
-                    result[key] = $sisyphus.Long.fromValue(properties[key])
-                    break
-                case "nanos":
-                    result[key] = Number(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("seconds") && properties.seconds !== undefined) result.seconds = properties.seconds
+        if(properties.hasOwnProperty("nanos") && properties.nanos !== undefined) result.nanos = properties.nanos
         return result
     }
 }

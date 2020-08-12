@@ -137,17 +137,8 @@ export class Timestamp extends $sisyphus.Message<ITimestamp> implements ITimesta
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "seconds":
-                    result[key] = $sisyphus.Long.fromValue(properties[key])
-                    break
-                case "nanos":
-                    result[key] = Number(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("seconds") && properties.seconds !== undefined) result.seconds = properties.seconds
+        if(properties.hasOwnProperty("nanos") && properties.nanos !== undefined) result.nanos = properties.nanos
         return result
     }
 }

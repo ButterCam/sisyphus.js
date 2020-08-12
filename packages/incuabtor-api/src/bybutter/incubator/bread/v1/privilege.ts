@@ -138,47 +138,18 @@ export class Filter extends $sisyphus.Message<IFilter> implements IFilter {
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "name":
-                    result[key] = String(properties[key])
-                    break
-                case "title":
-                    result[key] = String(properties[key])
-                    break
-                case "iconUri":
-                    result[key] = String(properties[key])
-                    break
-                case "uri":
-                    result[key] = String(properties[key])
-                    break
-                case "downloadUri":
-                    result[key] = String(properties[key])
-                    break
-                case "fileHash":
-                    result[key] = String(properties[key])
-                    break
-                case "remark":
-                    result[key] = String(properties[key])
-                    break
-                case "ownership":
-                    result[key] = typeof properties[key] === "number" ? properties[key] : $ownership.OwnershipType[properties[key]]
-                    break
-                case "usage":
-                    result[key] = typeof properties[key] === "number" ? properties[key] : $ownership.UsageType[properties[key]]
-                    break
-                case "startTime":
-                    result[key] = $timestamp.Timestamp.create(properties[key])
-                    break
-                case "endTime":
-                    result[key] = $timestamp.Timestamp.create(properties[key])
-                    break
-                case "defaultStrength":
-                    result[key] = Number(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
+        if(properties.hasOwnProperty("title") && properties.title !== undefined) result.title = properties.title
+        if(properties.hasOwnProperty("iconUri") && properties.iconUri !== undefined) result.iconUri = properties.iconUri
+        if(properties.hasOwnProperty("uri") && properties.uri !== undefined) result.uri = properties.uri
+        if(properties.hasOwnProperty("downloadUri") && properties.downloadUri !== undefined) result.downloadUri = properties.downloadUri
+        if(properties.hasOwnProperty("fileHash") && properties.fileHash !== undefined) result.fileHash = properties.fileHash
+        if(properties.hasOwnProperty("remark") && properties.remark !== undefined) result.remark = properties.remark
+        if(properties.hasOwnProperty("ownership") && properties.ownership !== undefined) result.ownership = properties.ownership
+        if(properties.hasOwnProperty("usage") && properties.usage !== undefined) result.usage = properties.usage
+        if(properties.hasOwnProperty("startTime") && properties.startTime !== undefined) result.startTime = $timestamp.Timestamp.create(properties.startTime)
+        if(properties.hasOwnProperty("endTime") && properties.endTime !== undefined) result.endTime = $timestamp.Timestamp.create(properties.endTime)
+        if(properties.hasOwnProperty("defaultStrength") && properties.defaultStrength !== undefined) result.defaultStrength = properties.defaultStrength
         return result
     }
 }
@@ -244,20 +215,9 @@ export class FilterGroup extends $sisyphus.Message<IFilterGroup> implements IFil
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "name":
-                    result[key] = String(properties[key])
-                    break
-                case "title":
-                    result[key] = String(properties[key])
-                    break
-                case "iconUri":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
+        if(properties.hasOwnProperty("title") && properties.title !== undefined) result.title = properties.title
+        if(properties.hasOwnProperty("iconUri") && properties.iconUri !== undefined) result.iconUri = properties.iconUri
         return result
     }
 }
@@ -368,47 +328,18 @@ export class Border extends $sisyphus.Message<IBorder> implements IBorder {
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "name":
-                    result[key] = String(properties[key])
-                    break
-                case "title":
-                    result[key] = String(properties[key])
-                    break
-                case "iconUri":
-                    result[key] = String(properties[key])
-                    break
-                case "uri":
-                    result[key] = String(properties[key])
-                    break
-                case "downloadUri":
-                    result[key] = String(properties[key])
-                    break
-                case "fileHash":
-                    result[key] = String(properties[key])
-                    break
-                case "remark":
-                    result[key] = String(properties[key])
-                    break
-                case "ownership":
-                    result[key] = typeof properties[key] === "number" ? properties[key] : $ownership.OwnershipType[properties[key]]
-                    break
-                case "usage":
-                    result[key] = typeof properties[key] === "number" ? properties[key] : $ownership.UsageType[properties[key]]
-                    break
-                case "startTime":
-                    result[key] = $timestamp.Timestamp.create(properties[key])
-                    break
-                case "endTime":
-                    result[key] = $timestamp.Timestamp.create(properties[key])
-                    break
-                case "defaultStrength":
-                    result[key] = Number(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
+        if(properties.hasOwnProperty("title") && properties.title !== undefined) result.title = properties.title
+        if(properties.hasOwnProperty("iconUri") && properties.iconUri !== undefined) result.iconUri = properties.iconUri
+        if(properties.hasOwnProperty("uri") && properties.uri !== undefined) result.uri = properties.uri
+        if(properties.hasOwnProperty("downloadUri") && properties.downloadUri !== undefined) result.downloadUri = properties.downloadUri
+        if(properties.hasOwnProperty("fileHash") && properties.fileHash !== undefined) result.fileHash = properties.fileHash
+        if(properties.hasOwnProperty("remark") && properties.remark !== undefined) result.remark = properties.remark
+        if(properties.hasOwnProperty("ownership") && properties.ownership !== undefined) result.ownership = properties.ownership
+        if(properties.hasOwnProperty("usage") && properties.usage !== undefined) result.usage = properties.usage
+        if(properties.hasOwnProperty("startTime") && properties.startTime !== undefined) result.startTime = $timestamp.Timestamp.create(properties.startTime)
+        if(properties.hasOwnProperty("endTime") && properties.endTime !== undefined) result.endTime = $timestamp.Timestamp.create(properties.endTime)
+        if(properties.hasOwnProperty("defaultStrength") && properties.defaultStrength !== undefined) result.defaultStrength = properties.defaultStrength
         return result
     }
 }
@@ -474,20 +405,9 @@ export class BorderGroup extends $sisyphus.Message<IBorderGroup> implements IBor
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "name":
-                    result[key] = String(properties[key])
-                    break
-                case "title":
-                    result[key] = String(properties[key])
-                    break
-                case "iconUri":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
+        if(properties.hasOwnProperty("title") && properties.title !== undefined) result.title = properties.title
+        if(properties.hasOwnProperty("iconUri") && properties.iconUri !== undefined) result.iconUri = properties.iconUri
         return result
     }
 }
@@ -598,47 +518,18 @@ export class Label extends $sisyphus.Message<ILabel> implements ILabel {
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "name":
-                    result[key] = String(properties[key])
-                    break
-                case "title":
-                    result[key] = String(properties[key])
-                    break
-                case "iconUri":
-                    result[key] = String(properties[key])
-                    break
-                case "uri":
-                    result[key] = String(properties[key])
-                    break
-                case "downloadUri":
-                    result[key] = String(properties[key])
-                    break
-                case "fileHash":
-                    result[key] = String(properties[key])
-                    break
-                case "remark":
-                    result[key] = String(properties[key])
-                    break
-                case "ownership":
-                    result[key] = typeof properties[key] === "number" ? properties[key] : $ownership.OwnershipType[properties[key]]
-                    break
-                case "usage":
-                    result[key] = typeof properties[key] === "number" ? properties[key] : $ownership.UsageType[properties[key]]
-                    break
-                case "startTime":
-                    result[key] = $timestamp.Timestamp.create(properties[key])
-                    break
-                case "endTime":
-                    result[key] = $timestamp.Timestamp.create(properties[key])
-                    break
-                case "style":
-                    result[key] = $struct.Struct.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
+        if(properties.hasOwnProperty("title") && properties.title !== undefined) result.title = properties.title
+        if(properties.hasOwnProperty("iconUri") && properties.iconUri !== undefined) result.iconUri = properties.iconUri
+        if(properties.hasOwnProperty("uri") && properties.uri !== undefined) result.uri = properties.uri
+        if(properties.hasOwnProperty("downloadUri") && properties.downloadUri !== undefined) result.downloadUri = properties.downloadUri
+        if(properties.hasOwnProperty("fileHash") && properties.fileHash !== undefined) result.fileHash = properties.fileHash
+        if(properties.hasOwnProperty("remark") && properties.remark !== undefined) result.remark = properties.remark
+        if(properties.hasOwnProperty("ownership") && properties.ownership !== undefined) result.ownership = properties.ownership
+        if(properties.hasOwnProperty("usage") && properties.usage !== undefined) result.usage = properties.usage
+        if(properties.hasOwnProperty("startTime") && properties.startTime !== undefined) result.startTime = $timestamp.Timestamp.create(properties.startTime)
+        if(properties.hasOwnProperty("endTime") && properties.endTime !== undefined) result.endTime = $timestamp.Timestamp.create(properties.endTime)
+        if(properties.hasOwnProperty("style") && properties.style !== undefined) result.style = $struct.Struct.create(properties.style)
         return result
     }
 }
@@ -704,20 +595,9 @@ export class LabelGroup extends $sisyphus.Message<ILabelGroup> implements ILabel
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "name":
-                    result[key] = String(properties[key])
-                    break
-                case "title":
-                    result[key] = String(properties[key])
-                    break
-                case "iconUri":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
+        if(properties.hasOwnProperty("title") && properties.title !== undefined) result.title = properties.title
+        if(properties.hasOwnProperty("iconUri") && properties.iconUri !== undefined) result.iconUri = properties.iconUri
         return result
     }
 }
@@ -846,56 +726,21 @@ export class Sticker extends $sisyphus.Message<ISticker> implements ISticker {
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "name":
-                    result[key] = String(properties[key])
-                    break
-                case "title":
-                    result[key] = String(properties[key])
-                    break
-                case "iconUri":
-                    result[key] = String(properties[key])
-                    break
-                case "uri":
-                    result[key] = String(properties[key])
-                    break
-                case "downloadUri":
-                    result[key] = String(properties[key])
-                    break
-                case "fileHash":
-                    result[key] = String(properties[key])
-                    break
-                case "remark":
-                    result[key] = String(properties[key])
-                    break
-                case "ownership":
-                    result[key] = typeof properties[key] === "number" ? properties[key] : $ownership.OwnershipType[properties[key]]
-                    break
-                case "usage":
-                    result[key] = typeof properties[key] === "number" ? properties[key] : $ownership.UsageType[properties[key]]
-                    break
-                case "startTime":
-                    result[key] = $timestamp.Timestamp.create(properties[key])
-                    break
-                case "endTime":
-                    result[key] = $timestamp.Timestamp.create(properties[key])
-                    break
-                case "paletteType":
-                    result[key] = typeof properties[key] === "number" ? properties[key] : PaletteType[properties[key]]
-                    break
-                case "fileType":
-                    result[key] = typeof properties[key] === "number" ? properties[key] : StickerType[properties[key]]
-                    break
-                case "width":
-                    result[key] = Number(properties[key])
-                    break
-                case "height":
-                    result[key] = Number(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
+        if(properties.hasOwnProperty("title") && properties.title !== undefined) result.title = properties.title
+        if(properties.hasOwnProperty("iconUri") && properties.iconUri !== undefined) result.iconUri = properties.iconUri
+        if(properties.hasOwnProperty("uri") && properties.uri !== undefined) result.uri = properties.uri
+        if(properties.hasOwnProperty("downloadUri") && properties.downloadUri !== undefined) result.downloadUri = properties.downloadUri
+        if(properties.hasOwnProperty("fileHash") && properties.fileHash !== undefined) result.fileHash = properties.fileHash
+        if(properties.hasOwnProperty("remark") && properties.remark !== undefined) result.remark = properties.remark
+        if(properties.hasOwnProperty("ownership") && properties.ownership !== undefined) result.ownership = properties.ownership
+        if(properties.hasOwnProperty("usage") && properties.usage !== undefined) result.usage = properties.usage
+        if(properties.hasOwnProperty("startTime") && properties.startTime !== undefined) result.startTime = $timestamp.Timestamp.create(properties.startTime)
+        if(properties.hasOwnProperty("endTime") && properties.endTime !== undefined) result.endTime = $timestamp.Timestamp.create(properties.endTime)
+        if(properties.hasOwnProperty("paletteType") && properties.paletteType !== undefined) result.paletteType = properties.paletteType
+        if(properties.hasOwnProperty("fileType") && properties.fileType !== undefined) result.fileType = properties.fileType
+        if(properties.hasOwnProperty("width") && properties.width !== undefined) result.width = properties.width
+        if(properties.hasOwnProperty("height") && properties.height !== undefined) result.height = properties.height
         return result
     }
 }
@@ -964,20 +809,9 @@ export class StickerGroup extends $sisyphus.Message<IStickerGroup> implements IS
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "name":
-                    result[key] = String(properties[key])
-                    break
-                case "title":
-                    result[key] = String(properties[key])
-                    break
-                case "iconUri":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
+        if(properties.hasOwnProperty("title") && properties.title !== undefined) result.title = properties.title
+        if(properties.hasOwnProperty("iconUri") && properties.iconUri !== undefined) result.iconUri = properties.iconUri
         return result
     }
 }
@@ -1088,47 +922,18 @@ export class Music extends $sisyphus.Message<IMusic> implements IMusic {
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "name":
-                    result[key] = String(properties[key])
-                    break
-                case "title":
-                    result[key] = String(properties[key])
-                    break
-                case "iconUri":
-                    result[key] = String(properties[key])
-                    break
-                case "uri":
-                    result[key] = String(properties[key])
-                    break
-                case "downloadUri":
-                    result[key] = String(properties[key])
-                    break
-                case "fileHash":
-                    result[key] = String(properties[key])
-                    break
-                case "remark":
-                    result[key] = String(properties[key])
-                    break
-                case "ownership":
-                    result[key] = typeof properties[key] === "number" ? properties[key] : $ownership.OwnershipType[properties[key]]
-                    break
-                case "usage":
-                    result[key] = typeof properties[key] === "number" ? properties[key] : $ownership.UsageType[properties[key]]
-                    break
-                case "startTime":
-                    result[key] = $timestamp.Timestamp.create(properties[key])
-                    break
-                case "endTime":
-                    result[key] = $timestamp.Timestamp.create(properties[key])
-                    break
-                case "author":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
+        if(properties.hasOwnProperty("title") && properties.title !== undefined) result.title = properties.title
+        if(properties.hasOwnProperty("iconUri") && properties.iconUri !== undefined) result.iconUri = properties.iconUri
+        if(properties.hasOwnProperty("uri") && properties.uri !== undefined) result.uri = properties.uri
+        if(properties.hasOwnProperty("downloadUri") && properties.downloadUri !== undefined) result.downloadUri = properties.downloadUri
+        if(properties.hasOwnProperty("fileHash") && properties.fileHash !== undefined) result.fileHash = properties.fileHash
+        if(properties.hasOwnProperty("remark") && properties.remark !== undefined) result.remark = properties.remark
+        if(properties.hasOwnProperty("ownership") && properties.ownership !== undefined) result.ownership = properties.ownership
+        if(properties.hasOwnProperty("usage") && properties.usage !== undefined) result.usage = properties.usage
+        if(properties.hasOwnProperty("startTime") && properties.startTime !== undefined) result.startTime = $timestamp.Timestamp.create(properties.startTime)
+        if(properties.hasOwnProperty("endTime") && properties.endTime !== undefined) result.endTime = $timestamp.Timestamp.create(properties.endTime)
+        if(properties.hasOwnProperty("author") && properties.author !== undefined) result.author = properties.author
         return result
     }
 }
@@ -1194,20 +999,9 @@ export class MusicGroup extends $sisyphus.Message<IMusicGroup> implements IMusic
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "name":
-                    result[key] = String(properties[key])
-                    break
-                case "title":
-                    result[key] = String(properties[key])
-                    break
-                case "iconUri":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
+        if(properties.hasOwnProperty("title") && properties.title !== undefined) result.title = properties.title
+        if(properties.hasOwnProperty("iconUri") && properties.iconUri !== undefined) result.iconUri = properties.iconUri
         return result
     }
 }
@@ -1312,44 +1106,17 @@ export class Sound extends $sisyphus.Message<ISound> implements ISound {
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "name":
-                    result[key] = String(properties[key])
-                    break
-                case "title":
-                    result[key] = String(properties[key])
-                    break
-                case "iconUri":
-                    result[key] = String(properties[key])
-                    break
-                case "uri":
-                    result[key] = String(properties[key])
-                    break
-                case "downloadUri":
-                    result[key] = String(properties[key])
-                    break
-                case "fileHash":
-                    result[key] = String(properties[key])
-                    break
-                case "remark":
-                    result[key] = String(properties[key])
-                    break
-                case "ownership":
-                    result[key] = typeof properties[key] === "number" ? properties[key] : $ownership.OwnershipType[properties[key]]
-                    break
-                case "usage":
-                    result[key] = typeof properties[key] === "number" ? properties[key] : $ownership.UsageType[properties[key]]
-                    break
-                case "startTime":
-                    result[key] = $timestamp.Timestamp.create(properties[key])
-                    break
-                case "endTime":
-                    result[key] = $timestamp.Timestamp.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
+        if(properties.hasOwnProperty("title") && properties.title !== undefined) result.title = properties.title
+        if(properties.hasOwnProperty("iconUri") && properties.iconUri !== undefined) result.iconUri = properties.iconUri
+        if(properties.hasOwnProperty("uri") && properties.uri !== undefined) result.uri = properties.uri
+        if(properties.hasOwnProperty("downloadUri") && properties.downloadUri !== undefined) result.downloadUri = properties.downloadUri
+        if(properties.hasOwnProperty("fileHash") && properties.fileHash !== undefined) result.fileHash = properties.fileHash
+        if(properties.hasOwnProperty("remark") && properties.remark !== undefined) result.remark = properties.remark
+        if(properties.hasOwnProperty("ownership") && properties.ownership !== undefined) result.ownership = properties.ownership
+        if(properties.hasOwnProperty("usage") && properties.usage !== undefined) result.usage = properties.usage
+        if(properties.hasOwnProperty("startTime") && properties.startTime !== undefined) result.startTime = $timestamp.Timestamp.create(properties.startTime)
+        if(properties.hasOwnProperty("endTime") && properties.endTime !== undefined) result.endTime = $timestamp.Timestamp.create(properties.endTime)
         return result
     }
 }
@@ -1414,20 +1181,9 @@ export class SoundGroup extends $sisyphus.Message<ISoundGroup> implements ISound
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "name":
-                    result[key] = String(properties[key])
-                    break
-                case "title":
-                    result[key] = String(properties[key])
-                    break
-                case "iconUri":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
+        if(properties.hasOwnProperty("title") && properties.title !== undefined) result.title = properties.title
+        if(properties.hasOwnProperty("iconUri") && properties.iconUri !== undefined) result.iconUri = properties.iconUri
         return result
     }
 }
@@ -1520,38 +1276,15 @@ export class Membership extends $sisyphus.Message<IMembership> implements IMembe
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "name":
-                    result[key] = String(properties[key])
-                    break
-                case "title":
-                    result[key] = String(properties[key])
-                    break
-                case "iconUri":
-                    result[key] = String(properties[key])
-                    break
-                case "uri":
-                    result[key] = String(properties[key])
-                    break
-                case "remark":
-                    result[key] = String(properties[key])
-                    break
-                case "ownership":
-                    result[key] = typeof properties[key] === "number" ? properties[key] : $ownership.OwnershipType[properties[key]]
-                    break
-                case "usage":
-                    result[key] = typeof properties[key] === "number" ? properties[key] : $ownership.UsageType[properties[key]]
-                    break
-                case "startTime":
-                    result[key] = $timestamp.Timestamp.create(properties[key])
-                    break
-                case "endTime":
-                    result[key] = $timestamp.Timestamp.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
+        if(properties.hasOwnProperty("title") && properties.title !== undefined) result.title = properties.title
+        if(properties.hasOwnProperty("iconUri") && properties.iconUri !== undefined) result.iconUri = properties.iconUri
+        if(properties.hasOwnProperty("uri") && properties.uri !== undefined) result.uri = properties.uri
+        if(properties.hasOwnProperty("remark") && properties.remark !== undefined) result.remark = properties.remark
+        if(properties.hasOwnProperty("ownership") && properties.ownership !== undefined) result.ownership = properties.ownership
+        if(properties.hasOwnProperty("usage") && properties.usage !== undefined) result.usage = properties.usage
+        if(properties.hasOwnProperty("startTime") && properties.startTime !== undefined) result.startTime = $timestamp.Timestamp.create(properties.startTime)
+        if(properties.hasOwnProperty("endTime") && properties.endTime !== undefined) result.endTime = $timestamp.Timestamp.create(properties.endTime)
         return result
     }
 }

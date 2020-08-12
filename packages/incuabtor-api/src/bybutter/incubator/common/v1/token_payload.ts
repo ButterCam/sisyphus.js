@@ -88,32 +88,13 @@ export class TokenPayload extends $sisyphus.Message<ITokenPayload> implements IT
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "account":
-                    result[key] = String(properties[key])
-                    break
-                case "generation":
-                    result[key] = $sisyphus.Long.fromValue(properties[key])
-                    break
-                case "createTime":
-                    result[key] = $timestamp.Timestamp.create(properties[key])
-                    break
-                case "resolved":
-                    result[key] = Boolean(properties[key])
-                    break
-                case "permissions":
-                    result[key] = $struct.Value.create(properties[key])
-                    break
-                case "client":
-                    result[key] = $clientInfo.ClientInfo.create(properties[key])
-                    break
-                case "metadata":
-                    result[key] = $any.Any.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("account") && properties.account !== undefined) result.account = properties.account
+        if(properties.hasOwnProperty("generation") && properties.generation !== undefined) result.generation = properties.generation
+        if(properties.hasOwnProperty("createTime") && properties.createTime !== undefined) result.createTime = $timestamp.Timestamp.create(properties.createTime)
+        if(properties.hasOwnProperty("resolved") && properties.resolved !== undefined) result.resolved = properties.resolved
+        if(properties.hasOwnProperty("permissions") && properties.permissions !== undefined) result.permissions = $struct.Value.create(properties.permissions)
+        if(properties.hasOwnProperty("client") && properties.client !== undefined) result.client = $clientInfo.ClientInfo.create(properties.client)
+        if(properties.hasOwnProperty("metadata") && properties.metadata !== undefined) result.metadata = $any.Any.create(properties.metadata)
         return result
     }
 }

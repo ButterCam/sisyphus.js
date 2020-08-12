@@ -153,16 +153,8 @@ export class Any extends $sisyphus.Message<IAny> implements IAny {
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "typeUrl":
-                    result[key] = String(properties[key])
-                    break
-                case "value":
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("typeUrl") && properties.typeUrl !== undefined) result.typeUrl = properties.typeUrl
+        if(properties.hasOwnProperty("value") && properties.value !== undefined) result.value = properties.value
         return result
     }
 }

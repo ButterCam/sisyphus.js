@@ -62,23 +62,10 @@ export class LoginRequest extends $sisyphus.Message<ILoginRequest> implements IL
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "identificationCredential":
-                    result[key] = $auth.IdentificationCredential.create(properties[key])
-                    break
-                case "mobileCredential":
-                    result[key] = $auth.MobileCredential.create(properties[key])
-                    break
-                case "signatureCredential":
-                    result[key] = $auth.SignatureCredential.create(properties[key])
-                    break
-                case "iapCredential":
-                    result[key] = $auth.IapCredential.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("identificationCredential") && properties.identificationCredential !== undefined) result.identificationCredential = $auth.IdentificationCredential.create(properties.identificationCredential)
+        if(properties.hasOwnProperty("mobileCredential") && properties.mobileCredential !== undefined) result.mobileCredential = $auth.MobileCredential.create(properties.mobileCredential)
+        if(properties.hasOwnProperty("signatureCredential") && properties.signatureCredential !== undefined) result.signatureCredential = $auth.SignatureCredential.create(properties.signatureCredential)
+        if(properties.hasOwnProperty("iapCredential") && properties.iapCredential !== undefined) result.iapCredential = $auth.IapCredential.create(properties.iapCredential)
         return result
     }
 }
@@ -147,23 +134,10 @@ export class LoginResponse extends $sisyphus.Message<ILoginResponse> implements 
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "token":
-                    result[key] = $auth.ApiToken.create(properties[key])
-                    break
-                case "identificationCredential":
-                    result[key] = $auth.IdentificationCredential.create(properties[key])
-                    break
-                case "mobileCredential":
-                    result[key] = $auth.MobileCredential.create(properties[key])
-                    break
-                case "iapCredential":
-                    result[key] = $auth.IapCredential.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("token") && properties.token !== undefined) result.token = $auth.ApiToken.create(properties.token)
+        if(properties.hasOwnProperty("identificationCredential") && properties.identificationCredential !== undefined) result.identificationCredential = $auth.IdentificationCredential.create(properties.identificationCredential)
+        if(properties.hasOwnProperty("mobileCredential") && properties.mobileCredential !== undefined) result.mobileCredential = $auth.MobileCredential.create(properties.mobileCredential)
+        if(properties.hasOwnProperty("iapCredential") && properties.iapCredential !== undefined) result.iapCredential = $auth.IapCredential.create(properties.iapCredential)
         return result
     }
 }
@@ -210,14 +184,7 @@ export class GetAccountRequest extends $sisyphus.Message<IGetAccountRequest> imp
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "name":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
         return result
     }
 }

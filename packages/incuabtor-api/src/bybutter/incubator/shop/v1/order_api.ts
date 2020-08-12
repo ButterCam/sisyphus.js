@@ -59,20 +59,9 @@ export class PlaceOrderRequest extends $sisyphus.Message<IPlaceOrderRequest> imp
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "order":
-                    result[key] = String(properties[key])
-                    break
-                case "items":
-                    result[key] = PlaceOrderRequest.Item.create(properties[key])
-                    break
-                case "metadata":
-                    result[key] = $any.Any.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("order") && properties.order !== undefined) result.order = properties.order
+        if(properties.hasOwnProperty("items") && properties.items !== undefined) result.items = PlaceOrderRequest.Item.create(properties.items)
+        if(properties.hasOwnProperty("metadata") && properties.metadata !== undefined) result.metadata = $any.Any.create(properties.metadata)
         return result
     }
 }
@@ -129,17 +118,8 @@ export namespace PlaceOrderRequest {
             if(properties instanceof this) return properties
             const result = new this()
             if (!properties) return result
-            for (const key in properties) {
-                if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-                switch(key) {
-                    case "payment":
-                        result[key] = String(properties[key])
-                        break
-                    case "metadata":
-                        result[key] = $any.Any.create(properties[key])
-                        break
-                }
-            }
+            if(properties.hasOwnProperty("payment") && properties.payment !== undefined) result.payment = properties.payment
+            if(properties.hasOwnProperty("metadata") && properties.metadata !== undefined) result.metadata = $any.Any.create(properties.metadata)
             return result
         }
     }
@@ -183,14 +163,7 @@ export class PlaceOrderResponse extends $sisyphus.Message<IPlaceOrderResponse> i
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "order":
-                    result[key] = $order.Order.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("order") && properties.order !== undefined) result.order = $order.Order.create(properties.order)
         return result
     }
 }
@@ -239,17 +212,8 @@ export class CheckoutOrderRequest extends $sisyphus.Message<ICheckoutOrderReques
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "name":
-                    result[key] = String(properties[key])
-                    break
-                case "paymentChannel":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
+        if(properties.hasOwnProperty("paymentChannel") && properties.paymentChannel !== undefined) result.paymentChannel = properties.paymentChannel
         return result
     }
 }
@@ -293,14 +257,7 @@ export class CheckoutOrderResponse extends $sisyphus.Message<ICheckoutOrderRespo
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "order":
-                    result[key] = $order.Order.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("order") && properties.order !== undefined) result.order = $order.Order.create(properties.order)
         return result
     }
 }
@@ -353,17 +310,8 @@ export class VerifyOrderRequest extends $sisyphus.Message<IVerifyOrderRequest> i
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "order":
-                    result[key] = String(properties[key])
-                    break
-                case "receipt":
-                    result[key] = $any.Any.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("order") && properties.order !== undefined) result.order = properties.order
+        if(properties.hasOwnProperty("receipt") && properties.receipt !== undefined) result.receipt = $any.Any.create(properties.receipt)
         return result
     }
 }
@@ -407,14 +355,7 @@ export class VerifyOrderResponse extends $sisyphus.Message<IVerifyOrderResponse>
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "order":
-                    result[key] = $order.Order.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("order") && properties.order !== undefined) result.order = $order.Order.create(properties.order)
         return result
     }
 }
@@ -467,17 +408,8 @@ export class RefundOrderRequest extends $sisyphus.Message<IRefundOrderRequest> i
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "order":
-                    result[key] = String(properties[key])
-                    break
-                case "refund":
-                    result[key] = $any.Any.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("order") && properties.order !== undefined) result.order = properties.order
+        if(properties.hasOwnProperty("refund") && properties.refund !== undefined) result.refund = $any.Any.create(properties.refund)
         return result
     }
 }
@@ -521,14 +453,7 @@ export class RefundOrderResponse extends $sisyphus.Message<IRefundOrderResponse>
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "order":
-                    result[key] = $order.Order.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("order") && properties.order !== undefined) result.order = $order.Order.create(properties.order)
         return result
     }
 }
@@ -571,14 +496,7 @@ export class GetOrderRequest extends $sisyphus.Message<IGetOrderRequest> impleme
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "name":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
         return result
     }
 }
@@ -649,26 +567,11 @@ export class ListOrdersRequest extends $sisyphus.Message<IListOrdersRequest> imp
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "parent":
-                    result[key] = String(properties[key])
-                    break
-                case "filter":
-                    result[key] = String(properties[key])
-                    break
-                case "pageSize":
-                    result[key] = Number(properties[key])
-                    break
-                case "pageToken":
-                    result[key] = String(properties[key])
-                    break
-                case "iapReceipt":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("parent") && properties.parent !== undefined) result.parent = properties.parent
+        if(properties.hasOwnProperty("filter") && properties.filter !== undefined) result.filter = properties.filter
+        if(properties.hasOwnProperty("pageSize") && properties.pageSize !== undefined) result.pageSize = properties.pageSize
+        if(properties.hasOwnProperty("pageToken") && properties.pageToken !== undefined) result.pageToken = properties.pageToken
+        if(properties.hasOwnProperty("iapReceipt") && properties.iapReceipt !== undefined) result.iapReceipt = properties.iapReceipt
         return result
     }
 }
@@ -722,17 +625,8 @@ export class ListOrdersResponse extends $sisyphus.Message<IListOrdersResponse> i
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "orders":
-                    result[key] = $order.Order.create(properties[key])
-                    break
-                case "nextPageToken":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("orders") && properties.orders !== undefined) result.orders = $order.Order.create(properties.orders)
+        if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
         return result
     }
 }
@@ -783,17 +677,8 @@ export class BatchGetOrdersRequest extends $sisyphus.Message<IBatchGetOrdersRequ
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "parent":
-                    result[key] = String(properties[key])
-                    break
-                case "names":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("parent") && properties.parent !== undefined) result.parent = properties.parent
+        if(properties.hasOwnProperty("names") && properties.names !== undefined) result.names = properties.names
         return result
     }
 }
@@ -838,14 +723,7 @@ export class BatchGetOrdersResponse extends $sisyphus.Message<IBatchGetOrdersRes
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "orders":
-                    result[key] = $order.Order.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("orders") && properties.orders !== undefined) result.orders = $order.Order.create(properties.orders)
         return result
     }
 }

@@ -46,17 +46,8 @@ export class CreateDictationTaskRequest extends $sisyphus.Message<ICreateDictati
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "parent":
-                    result[key] = String(properties[key])
-                    break
-                case "dictationTask":
-                    result[key] = $dictation.DictationTask.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("parent") && properties.parent !== undefined) result.parent = properties.parent
+        if(properties.hasOwnProperty("dictationTask") && properties.dictationTask !== undefined) result.dictationTask = $dictation.DictationTask.create(properties.dictationTask)
         return result
     }
 }

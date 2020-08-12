@@ -43,11 +43,6 @@ export class Empty extends $sisyphus.Message<IEmpty> implements IEmpty {
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-            }
-        }
         return result
     }
 }

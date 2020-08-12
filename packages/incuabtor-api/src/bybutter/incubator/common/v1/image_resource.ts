@@ -69,29 +69,12 @@ export class ImageResource extends $sisyphus.Message<IImageResource> implements 
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "originUri":
-                    result[key] = String(properties[key])
-                    break
-                case "standardUri":
-                    result[key] = String(properties[key])
-                    break
-                case "previewUri":
-                    result[key] = String(properties[key])
-                    break
-                case "thumbnailUri":
-                    result[key] = String(properties[key])
-                    break
-                case "width":
-                    result[key] = Number(properties[key])
-                    break
-                case "height":
-                    result[key] = Number(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("originUri") && properties.originUri !== undefined) result.originUri = properties.originUri
+        if(properties.hasOwnProperty("standardUri") && properties.standardUri !== undefined) result.standardUri = properties.standardUri
+        if(properties.hasOwnProperty("previewUri") && properties.previewUri !== undefined) result.previewUri = properties.previewUri
+        if(properties.hasOwnProperty("thumbnailUri") && properties.thumbnailUri !== undefined) result.thumbnailUri = properties.thumbnailUri
+        if(properties.hasOwnProperty("width") && properties.width !== undefined) result.width = properties.width
+        if(properties.hasOwnProperty("height") && properties.height !== undefined) result.height = properties.height
         return result
     }
 }

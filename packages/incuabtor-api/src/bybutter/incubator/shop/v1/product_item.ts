@@ -53,20 +53,9 @@ export class PrivilegeProductItem extends $sisyphus.Message<IPrivilegeProductIte
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "privilege":
-                    result[key] = String(properties[key])
-                    break
-                case "ownership":
-                    result[key] = typeof properties[key] === "number" ? properties[key] : $ownership.OwnershipType[properties[key]]
-                    break
-                case "duration":
-                    result[key] = $duration.Duration.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("privilege") && properties.privilege !== undefined) result.privilege = properties.privilege
+        if(properties.hasOwnProperty("ownership") && properties.ownership !== undefined) result.ownership = properties.ownership
+        if(properties.hasOwnProperty("duration") && properties.duration !== undefined) result.duration = $duration.Duration.create(properties.duration)
         return result
     }
 }
@@ -117,17 +106,8 @@ export class EntityProductItem extends $sisyphus.Message<IEntityProductItem> imp
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "entity":
-                    result[key] = String(properties[key])
-                    break
-                case "inventory":
-                    result[key] = Number(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("entity") && properties.entity !== undefined) result.entity = properties.entity
+        if(properties.hasOwnProperty("inventory") && properties.inventory !== undefined) result.inventory = properties.inventory
         return result
     }
 }

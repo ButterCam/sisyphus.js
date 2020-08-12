@@ -240,14 +240,7 @@ export class FieldMask extends $sisyphus.Message<IFieldMask> implements IFieldMa
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "paths":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("paths") && properties.paths !== undefined) result.paths = properties.paths
         return result
     }
 }

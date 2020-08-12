@@ -45,17 +45,8 @@ export class PhoneTarget extends $sisyphus.Message<IPhoneTarget> implements IPho
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "regionCode":
-                    result[key] = String(properties[key])
-                    break
-                case "phoneNumber":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("regionCode") && properties.regionCode !== undefined) result.regionCode = properties.regionCode
+        if(properties.hasOwnProperty("phoneNumber") && properties.phoneNumber !== undefined) result.phoneNumber = properties.phoneNumber
         return result
     }
 }
@@ -99,14 +90,7 @@ export class EmailTarget extends $sisyphus.Message<IEmailTarget> implements IEma
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "email":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("email") && properties.email !== undefined) result.email = properties.email
         return result
     }
 }
@@ -161,20 +145,9 @@ export class RegionCode extends $sisyphus.Message<IRegionCode> implements IRegio
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "regionCode":
-                    result[key] = String(properties[key])
-                    break
-                case "region":
-                    result[key] = String(properties[key])
-                    break
-                case "displayRegionCode":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("regionCode") && properties.regionCode !== undefined) result.regionCode = properties.regionCode
+        if(properties.hasOwnProperty("region") && properties.region !== undefined) result.region = properties.region
+        if(properties.hasOwnProperty("displayRegionCode") && properties.displayRegionCode !== undefined) result.displayRegionCode = properties.displayRegionCode
         return result
     }
 }

@@ -45,17 +45,8 @@ export class CommonTag extends $sisyphus.Message<ICommonTag> implements ICommonT
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "key":
-                    result[key] = String(properties[key])
-                    break
-                case "value":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("key") && properties.key !== undefined) result.key = properties.key
+        if(properties.hasOwnProperty("value") && properties.value !== undefined) result.value = properties.value
         return result
     }
 }
@@ -99,14 +90,7 @@ export class AppleIapProductIdTag extends $sisyphus.Message<IAppleIapProductIdTa
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "productId":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("productId") && properties.productId !== undefined) result.productId = properties.productId
         return result
     }
 }

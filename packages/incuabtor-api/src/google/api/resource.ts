@@ -238,29 +238,12 @@ export class ResourceDescriptor extends $sisyphus.Message<IResourceDescriptor> i
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "type":
-                    result[key] = String(properties[key])
-                    break
-                case "pattern":
-                    result[key] = String(properties[key])
-                    break
-                case "nameField":
-                    result[key] = String(properties[key])
-                    break
-                case "history":
-                    result[key] = typeof properties[key] === "number" ? properties[key] : ResourceDescriptor.History[properties[key]]
-                    break
-                case "plural":
-                    result[key] = String(properties[key])
-                    break
-                case "singular":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("type") && properties.type !== undefined) result.type = properties.type
+        if(properties.hasOwnProperty("pattern") && properties.pattern !== undefined) result.pattern = properties.pattern
+        if(properties.hasOwnProperty("nameField") && properties.nameField !== undefined) result.nameField = properties.nameField
+        if(properties.hasOwnProperty("history") && properties.history !== undefined) result.history = properties.history
+        if(properties.hasOwnProperty("plural") && properties.plural !== undefined) result.plural = properties.plural
+        if(properties.hasOwnProperty("singular") && properties.singular !== undefined) result.singular = properties.singular
         return result
     }
 }
@@ -365,17 +348,8 @@ export class ResourceReference extends $sisyphus.Message<IResourceReference> imp
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "type":
-                    result[key] = String(properties[key])
-                    break
-                case "childType":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("type") && properties.type !== undefined) result.type = properties.type
+        if(properties.hasOwnProperty("childType") && properties.childType !== undefined) result.childType = properties.childType
         return result
     }
 }

@@ -107,41 +107,16 @@ export class Product extends $sisyphus.Message<IProduct> implements IProduct {
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "name":
-                    result[key] = String(properties[key])
-                    break
-                case "type":
-                    result[key] = String(properties[key])
-                    break
-                case "title":
-                    result[key] = String(properties[key])
-                    break
-                case "picture":
-                    result[key] = $imageResource.ImageResource.create(properties[key])
-                    break
-                case "price":
-                    result[key] = $money.Money.create(properties[key])
-                    break
-                case "standardPrice":
-                    result[key] = $money.Money.create(properties[key])
-                    break
-                case "plans":
-                    result[key] = Plan.create(properties[key])
-                    break
-                case "details":
-                    result[key] = $any.Any.create(properties[key])
-                    break
-                case "tags":
-                    result[key] = $any.Any.create(properties[key])
-                    break
-                case "enable":
-                    result[key] = Boolean(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
+        if(properties.hasOwnProperty("type") && properties.type !== undefined) result.type = properties.type
+        if(properties.hasOwnProperty("title") && properties.title !== undefined) result.title = properties.title
+        if(properties.hasOwnProperty("picture") && properties.picture !== undefined) result.picture = $imageResource.ImageResource.create(properties.picture)
+        if(properties.hasOwnProperty("price") && properties.price !== undefined) result.price = $money.Money.create(properties.price)
+        if(properties.hasOwnProperty("standardPrice") && properties.standardPrice !== undefined) result.standardPrice = $money.Money.create(properties.standardPrice)
+        if(properties.hasOwnProperty("plans") && properties.plans !== undefined) result.plans = Plan.create(properties.plans)
+        if(properties.hasOwnProperty("details") && properties.details !== undefined) result.details = $any.Any.create(properties.details)
+        if(properties.hasOwnProperty("tags") && properties.tags !== undefined) result.tags = $any.Any.create(properties.tags)
+        if(properties.hasOwnProperty("enable") && properties.enable !== undefined) result.enable = properties.enable
         return result
     }
 }
@@ -277,50 +252,19 @@ export class Plan extends $sisyphus.Message<IPlan> implements IPlan {
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "price":
-                    result[key] = $money.Money.create(properties[key])
-                    break
-                case "standardPrice":
-                    result[key] = $money.Money.create(properties[key])
-                    break
-                case "payment":
-                    result[key] = String(properties[key])
-                    break
-                case "priceLabel":
-                    result[key] = PriceLabel.create(properties[key])
-                    break
-                case "items":
-                    result[key] = $any.Any.create(properties[key])
-                    break
-                case "tags":
-                    result[key] = $any.Any.create(properties[key])
-                    break
-                case "paymentChannels":
-                    result[key] = String(properties[key])
-                    break
-                case "group":
-                    result[key] = String(properties[key])
-                    break
-                case "weight":
-                    result[key] = $sisyphus.Long.fromValue(properties[key])
-                    break
-                case "enable":
-                    result[key] = Boolean(properties[key])
-                    break
-                case "startTime":
-                    result[key] = $timestamp.Timestamp.create(properties[key])
-                    break
-                case "endTime":
-                    result[key] = $timestamp.Timestamp.create(properties[key])
-                    break
-                case "appliedAttributes":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("price") && properties.price !== undefined) result.price = $money.Money.create(properties.price)
+        if(properties.hasOwnProperty("standardPrice") && properties.standardPrice !== undefined) result.standardPrice = $money.Money.create(properties.standardPrice)
+        if(properties.hasOwnProperty("payment") && properties.payment !== undefined) result.payment = properties.payment
+        if(properties.hasOwnProperty("priceLabel") && properties.priceLabel !== undefined) result.priceLabel = PriceLabel.create(properties.priceLabel)
+        if(properties.hasOwnProperty("items") && properties.items !== undefined) result.items = $any.Any.create(properties.items)
+        if(properties.hasOwnProperty("tags") && properties.tags !== undefined) result.tags = $any.Any.create(properties.tags)
+        if(properties.hasOwnProperty("paymentChannels") && properties.paymentChannels !== undefined) result.paymentChannels = properties.paymentChannels
+        if(properties.hasOwnProperty("group") && properties.group !== undefined) result.group = properties.group
+        if(properties.hasOwnProperty("weight") && properties.weight !== undefined) result.weight = properties.weight
+        if(properties.hasOwnProperty("enable") && properties.enable !== undefined) result.enable = properties.enable
+        if(properties.hasOwnProperty("startTime") && properties.startTime !== undefined) result.startTime = $timestamp.Timestamp.create(properties.startTime)
+        if(properties.hasOwnProperty("endTime") && properties.endTime !== undefined) result.endTime = $timestamp.Timestamp.create(properties.endTime)
+        if(properties.hasOwnProperty("appliedAttributes") && properties.appliedAttributes !== undefined) result.appliedAttributes = properties.appliedAttributes
         return result
     }
 }
@@ -393,23 +337,10 @@ export class PriceLabel extends $sisyphus.Message<IPriceLabel> implements IPrice
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "tag":
-                    result[key] = String(properties[key])
-                    break
-                case "label":
-                    result[key] = String(properties[key])
-                    break
-                case "checkout":
-                    result[key] = String(properties[key])
-                    break
-                case "style":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("tag") && properties.tag !== undefined) result.tag = properties.tag
+        if(properties.hasOwnProperty("label") && properties.label !== undefined) result.label = properties.label
+        if(properties.hasOwnProperty("checkout") && properties.checkout !== undefined) result.checkout = properties.checkout
+        if(properties.hasOwnProperty("style") && properties.style !== undefined) result.style = properties.style
         return result
     }
 }

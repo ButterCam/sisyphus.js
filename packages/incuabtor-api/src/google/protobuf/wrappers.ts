@@ -43,14 +43,7 @@ export class DoubleValue extends $sisyphus.Message<IDoubleValue> implements IDou
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "value":
-                    result[key] = Number(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("value") && properties.value !== undefined) result.value = properties.value
         return result
     }
 }
@@ -97,14 +90,7 @@ export class FloatValue extends $sisyphus.Message<IFloatValue> implements IFloat
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "value":
-                    result[key] = Number(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("value") && properties.value !== undefined) result.value = properties.value
         return result
     }
 }
@@ -151,14 +137,7 @@ export class Int64Value extends $sisyphus.Message<IInt64Value> implements IInt64
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "value":
-                    result[key] = $sisyphus.Long.fromValue(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("value") && properties.value !== undefined) result.value = properties.value
         return result
     }
 }
@@ -205,14 +184,7 @@ export class UInt64Value extends $sisyphus.Message<IUInt64Value> implements IUIn
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "value":
-                    result[key] = $sisyphus.Long.fromValue(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("value") && properties.value !== undefined) result.value = properties.value
         return result
     }
 }
@@ -259,14 +231,7 @@ export class Int32Value extends $sisyphus.Message<IInt32Value> implements IInt32
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "value":
-                    result[key] = Number(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("value") && properties.value !== undefined) result.value = properties.value
         return result
     }
 }
@@ -313,14 +278,7 @@ export class UInt32Value extends $sisyphus.Message<IUInt32Value> implements IUIn
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "value":
-                    result[key] = Number(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("value") && properties.value !== undefined) result.value = properties.value
         return result
     }
 }
@@ -367,14 +325,7 @@ export class BoolValue extends $sisyphus.Message<IBoolValue> implements IBoolVal
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "value":
-                    result[key] = Boolean(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("value") && properties.value !== undefined) result.value = properties.value
         return result
     }
 }
@@ -421,14 +372,7 @@ export class StringValue extends $sisyphus.Message<IStringValue> implements IStr
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "value":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("value") && properties.value !== undefined) result.value = properties.value
         return result
     }
 }
@@ -475,13 +419,7 @@ export class BytesValue extends $sisyphus.Message<IBytesValue> implements IBytes
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "value":
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("value") && properties.value !== undefined) result.value = properties.value
         return result
     }
 }

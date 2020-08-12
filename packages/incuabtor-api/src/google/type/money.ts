@@ -61,20 +61,9 @@ export class Money extends $sisyphus.Message<IMoney> implements IMoney {
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "currencyCode":
-                    result[key] = String(properties[key])
-                    break
-                case "units":
-                    result[key] = $sisyphus.Long.fromValue(properties[key])
-                    break
-                case "nanos":
-                    result[key] = Number(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("currencyCode") && properties.currencyCode !== undefined) result.currencyCode = properties.currencyCode
+        if(properties.hasOwnProperty("units") && properties.units !== undefined) result.units = properties.units
+        if(properties.hasOwnProperty("nanos") && properties.nanos !== undefined) result.nanos = properties.nanos
         return result
     }
 }

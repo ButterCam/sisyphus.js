@@ -8,7 +8,7 @@ import {EnumSpec} from "./enum";
 import {unixPath, writeToFile} from "../utils";
 import {CodeBuilder} from "../string";
 
-export class FileSpec implements GeneratorSpec {
+export class FileSpec extends TypescriptFile implements GeneratorSpec {
     private _elements: ReflectionObject[] = []
     private _root: Root
     private _importFiles: { [k: string]: string } = {}

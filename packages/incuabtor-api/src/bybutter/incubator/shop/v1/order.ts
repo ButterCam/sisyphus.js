@@ -84,32 +84,13 @@ export class Order extends $sisyphus.Message<IOrder> implements IOrder {
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "name":
-                    result[key] = String(properties[key])
-                    break
-                case "items":
-                    result[key] = Order.Item.create(properties[key])
-                    break
-                case "charge":
-                    result[key] = Order.Charge.create(properties[key])
-                    break
-                case "status":
-                    result[key] = typeof properties[key] === "number" ? properties[key] : Order.State[properties[key]]
-                    break
-                case "price":
-                    result[key] = $money.Money.create(properties[key])
-                    break
-                case "standardPrice":
-                    result[key] = $money.Money.create(properties[key])
-                    break
-                case "metadata":
-                    result[key] = $any.Any.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
+        if(properties.hasOwnProperty("items") && properties.items !== undefined) result.items = Order.Item.create(properties.items)
+        if(properties.hasOwnProperty("charge") && properties.charge !== undefined) result.charge = Order.Charge.create(properties.charge)
+        if(properties.hasOwnProperty("status") && properties.status !== undefined) result.status = properties.status
+        if(properties.hasOwnProperty("price") && properties.price !== undefined) result.price = $money.Money.create(properties.price)
+        if(properties.hasOwnProperty("standardPrice") && properties.standardPrice !== undefined) result.standardPrice = $money.Money.create(properties.standardPrice)
+        if(properties.hasOwnProperty("metadata") && properties.metadata !== undefined) result.metadata = $any.Any.create(properties.metadata)
         return result
     }
 }
@@ -202,23 +183,10 @@ export namespace Order {
             if(properties instanceof this) return properties
             const result = new this()
             if (!properties) return result
-            for (const key in properties) {
-                if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-                switch(key) {
-                    case "name":
-                        result[key] = String(properties[key])
-                        break
-                    case "payment":
-                        result[key] = String(properties[key])
-                        break
-                    case "product":
-                        result[key] = $product.Product.create(properties[key])
-                        break
-                    case "metadata":
-                        result[key] = $any.Any.create(properties[key])
-                        break
-                }
-            }
+            if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
+            if(properties.hasOwnProperty("payment") && properties.payment !== undefined) result.payment = properties.payment
+            if(properties.hasOwnProperty("product") && properties.product !== undefined) result.product = $product.Product.create(properties.product)
+            if(properties.hasOwnProperty("metadata") && properties.metadata !== undefined) result.metadata = $any.Any.create(properties.metadata)
             return result
         }
     }
@@ -276,20 +244,9 @@ export namespace Order {
             if(properties instanceof this) return properties
             const result = new this()
             if (!properties) return result
-            for (const key in properties) {
-                if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-                switch(key) {
-                    case "id":
-                        result[key] = String(properties[key])
-                        break
-                    case "data":
-                        result[key] = String(properties[key])
-                        break
-                    case "paymentChannel":
-                        result[key] = String(properties[key])
-                        break
-                }
-            }
+            if(properties.hasOwnProperty("id") && properties.id !== undefined) result.id = properties.id
+            if(properties.hasOwnProperty("data") && properties.data !== undefined) result.data = properties.data
+            if(properties.hasOwnProperty("paymentChannel") && properties.paymentChannel !== undefined) result.paymentChannel = properties.paymentChannel
             return result
         }
     }

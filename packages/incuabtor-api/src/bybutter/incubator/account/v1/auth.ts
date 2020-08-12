@@ -55,20 +55,9 @@ export class ApiToken extends $sisyphus.Message<IApiToken> implements IApiToken 
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "account":
-                    result[key] = String(properties[key])
-                    break
-                case "token":
-                    result[key] = String(properties[key])
-                    break
-                case "permissions":
-                    result[key] = $struct.Value.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("account") && properties.account !== undefined) result.account = properties.account
+        if(properties.hasOwnProperty("token") && properties.token !== undefined) result.token = properties.token
+        if(properties.hasOwnProperty("permissions") && properties.permissions !== undefined) result.permissions = $struct.Value.create(properties.permissions)
         return result
     }
 }
@@ -125,20 +114,9 @@ export class MobileCredential extends $sisyphus.Message<IMobileCredential> imple
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "regionCode":
-                    result[key] = String(properties[key])
-                    break
-                case "phoneNumber":
-                    result[key] = String(properties[key])
-                    break
-                case "code":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("regionCode") && properties.regionCode !== undefined) result.regionCode = properties.regionCode
+        if(properties.hasOwnProperty("phoneNumber") && properties.phoneNumber !== undefined) result.phoneNumber = properties.phoneNumber
+        if(properties.hasOwnProperty("code") && properties.code !== undefined) result.code = properties.code
         return result
     }
 }
@@ -183,14 +161,7 @@ export class IdentificationCredential extends $sisyphus.Message<IIdentificationC
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "identification":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("identification") && properties.identification !== undefined) result.identification = properties.identification
         return result
     }
 }
@@ -239,17 +210,8 @@ export class IapCredential extends $sisyphus.Message<IIapCredential> implements 
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "receipt":
-                    result[key] = String(properties[key])
-                    break
-                case "product":
-                    result[key] = typeof properties[key] === "number" ? properties[key] : $incubatorProduct.IncubatorProduct[properties[key]]
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("receipt") && properties.receipt !== undefined) result.receipt = properties.receipt
+        if(properties.hasOwnProperty("product") && properties.product !== undefined) result.product = properties.product
         return result
     }
 }
@@ -305,16 +267,8 @@ export class SignatureCredential extends $sisyphus.Message<ISignatureCredential>
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "signature":
-                    break
-                case "createTime":
-                    result[key] = $timestamp.Timestamp.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("signature") && properties.signature !== undefined) result.signature = properties.signature
+        if(properties.hasOwnProperty("createTime") && properties.createTime !== undefined) result.createTime = $timestamp.Timestamp.create(properties.createTime)
         return result
     }
 }

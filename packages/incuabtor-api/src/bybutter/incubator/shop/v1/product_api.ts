@@ -40,14 +40,7 @@ export class GetProductRequest extends $sisyphus.Message<IGetProductRequest> imp
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "name":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
         return result
     }
 }
@@ -95,14 +88,7 @@ export class BatchGetProductsRequest extends $sisyphus.Message<IBatchGetProducts
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "names":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("names") && properties.names !== undefined) result.names = properties.names
         return result
     }
 }
@@ -146,14 +132,7 @@ export class BatchGetProductsResponse extends $sisyphus.Message<IBatchGetProduct
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "products":
-                    result[key] = $product.Product.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("products") && properties.products !== undefined) result.products = $product.Product.create(properties.products)
         return result
     }
 }
@@ -218,23 +197,10 @@ export class ListProductsRequest extends $sisyphus.Message<IListProductsRequest>
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "filter":
-                    result[key] = String(properties[key])
-                    break
-                case "pageSize":
-                    result[key] = Number(properties[key])
-                    break
-                case "pageToken":
-                    result[key] = String(properties[key])
-                    break
-                case "orderBy":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("filter") && properties.filter !== undefined) result.filter = properties.filter
+        if(properties.hasOwnProperty("pageSize") && properties.pageSize !== undefined) result.pageSize = properties.pageSize
+        if(properties.hasOwnProperty("pageToken") && properties.pageToken !== undefined) result.pageToken = properties.pageToken
+        if(properties.hasOwnProperty("orderBy") && properties.orderBy !== undefined) result.orderBy = properties.orderBy
         return result
     }
 }
@@ -287,17 +253,8 @@ export class ListProductsResponse extends $sisyphus.Message<IListProductsRespons
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "products":
-                    result[key] = $product.Product.create(properties[key])
-                    break
-                case "nextPageToken":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("products") && properties.products !== undefined) result.products = $product.Product.create(properties.products)
+        if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
         return result
     }
 }

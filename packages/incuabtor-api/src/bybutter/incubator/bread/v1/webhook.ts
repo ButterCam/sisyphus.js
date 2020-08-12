@@ -39,14 +39,7 @@ export class InvokeWebhookRequest extends $sisyphus.Message<IInvokeWebhookReques
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "body":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("body") && properties.body !== undefined) result.body = properties.body
         return result
     }
 }
@@ -89,14 +82,7 @@ export class InvokeWebhookResponse extends $sisyphus.Message<IInvokeWebhookRespo
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "body":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("body") && properties.body !== undefined) result.body = properties.body
         return result
     }
 }

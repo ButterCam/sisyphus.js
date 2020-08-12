@@ -53,20 +53,9 @@ export class ListBindingsRequest extends $sisyphus.Message<IListBindingsRequest>
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "parent":
-                    result[key] = String(properties[key])
-                    break
-                case "pageSize":
-                    result[key] = Number(properties[key])
-                    break
-                case "pageToken":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("parent") && properties.parent !== undefined) result.parent = properties.parent
+        if(properties.hasOwnProperty("pageSize") && properties.pageSize !== undefined) result.pageSize = properties.pageSize
+        if(properties.hasOwnProperty("pageToken") && properties.pageToken !== undefined) result.pageToken = properties.pageToken
         return result
     }
 }
@@ -118,17 +107,8 @@ export class ListBindingsResponse extends $sisyphus.Message<IListBindingsRespons
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "bindings":
-                    result[key] = $binding.AccountBinding.create(properties[key])
-                    break
-                case "nextPageToken":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("bindings") && properties.bindings !== undefined) result.bindings = $binding.AccountBinding.create(properties.bindings)
+        if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
         return result
     }
 }
@@ -192,20 +172,9 @@ export class ChangeBindingRequest extends $sisyphus.Message<IChangeBindingReques
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "binding":
-                    result[key] = $binding.AccountBinding.create(properties[key])
-                    break
-                case "mobileAccountCredential":
-                    result[key] = $auth.MobileCredential.create(properties[key])
-                    break
-                case "mobileBindingCredential":
-                    result[key] = $auth.MobileCredential.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("binding") && properties.binding !== undefined) result.binding = $binding.AccountBinding.create(properties.binding)
+        if(properties.hasOwnProperty("mobileAccountCredential") && properties.mobileAccountCredential !== undefined) result.mobileAccountCredential = $auth.MobileCredential.create(properties.mobileAccountCredential)
+        if(properties.hasOwnProperty("mobileBindingCredential") && properties.mobileBindingCredential !== undefined) result.mobileBindingCredential = $auth.MobileCredential.create(properties.mobileBindingCredential)
         return result
     }
 }
@@ -252,14 +221,7 @@ export class ChangeBindingResponse extends $sisyphus.Message<IChangeBindingRespo
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "binding":
-                    result[key] = $binding.AccountBinding.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("binding") && properties.binding !== undefined) result.binding = $binding.AccountBinding.create(properties.binding)
         return result
     }
 }

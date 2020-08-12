@@ -99,26 +99,11 @@ export class Operation extends $sisyphus.Message<IOperation> implements IOperati
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "name":
-                    result[key] = String(properties[key])
-                    break
-                case "metadata":
-                    result[key] = $any.Any.create(properties[key])
-                    break
-                case "done":
-                    result[key] = Boolean(properties[key])
-                    break
-                case "error":
-                    result[key] = $status.Status.create(properties[key])
-                    break
-                case "response":
-                    result[key] = $any.Any.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
+        if(properties.hasOwnProperty("metadata") && properties.metadata !== undefined) result.metadata = $any.Any.create(properties.metadata)
+        if(properties.hasOwnProperty("done") && properties.done !== undefined) result.done = properties.done
+        if(properties.hasOwnProperty("error") && properties.error !== undefined) result.error = $status.Status.create(properties.error)
+        if(properties.hasOwnProperty("response") && properties.response !== undefined) result.response = $any.Any.create(properties.response)
         return result
     }
 }
@@ -166,14 +151,7 @@ export class GetOperationRequest extends $sisyphus.Message<IGetOperationRequest>
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "name":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
         return result
     }
 }
@@ -234,23 +212,10 @@ export class ListOperationsRequest extends $sisyphus.Message<IListOperationsRequ
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "name":
-                    result[key] = String(properties[key])
-                    break
-                case "filter":
-                    result[key] = String(properties[key])
-                    break
-                case "pageSize":
-                    result[key] = Number(properties[key])
-                    break
-                case "pageToken":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
+        if(properties.hasOwnProperty("filter") && properties.filter !== undefined) result.filter = properties.filter
+        if(properties.hasOwnProperty("pageSize") && properties.pageSize !== undefined) result.pageSize = properties.pageSize
+        if(properties.hasOwnProperty("pageToken") && properties.pageToken !== undefined) result.pageToken = properties.pageToken
         return result
     }
 }
@@ -303,17 +268,8 @@ export class ListOperationsResponse extends $sisyphus.Message<IListOperationsRes
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "operations":
-                    result[key] = Operation.create(properties[key])
-                    break
-                case "nextPageToken":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("operations") && properties.operations !== undefined) result.operations = Operation.create(properties.operations)
+        if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
         return result
     }
 }
@@ -357,14 +313,7 @@ export class CancelOperationRequest extends $sisyphus.Message<ICancelOperationRe
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "name":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
         return result
     }
 }
@@ -407,14 +356,7 @@ export class DeleteOperationRequest extends $sisyphus.Message<IDeleteOperationRe
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "name":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
         return result
     }
 }
@@ -467,17 +409,8 @@ export class WaitOperationRequest extends $sisyphus.Message<IWaitOperationReques
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "name":
-                    result[key] = String(properties[key])
-                    break
-                case "timeout":
-                    result[key] = $duration.Duration.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
+        if(properties.hasOwnProperty("timeout") && properties.timeout !== undefined) result.timeout = $duration.Duration.create(properties.timeout)
         return result
     }
 }
@@ -556,17 +489,8 @@ export class OperationInfo extends $sisyphus.Message<IOperationInfo> implements 
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "responseType":
-                    result[key] = String(properties[key])
-                    break
-                case "metadataType":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("responseType") && properties.responseType !== undefined) result.responseType = properties.responseType
+        if(properties.hasOwnProperty("metadataType") && properties.metadataType !== undefined) result.metadataType = properties.metadataType
         return result
     }
 }

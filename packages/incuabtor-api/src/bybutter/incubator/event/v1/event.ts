@@ -114,47 +114,18 @@ export class Event extends $sisyphus.Message<IEvent> implements IEvent {
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "uid":
-                    result[key] = String(properties[key])
-                    break
-                case "platform":
-                    result[key] = String(properties[key])
-                    break
-                case "sessionId":
-                    result[key] = String(properties[key])
-                    break
-                case "deviceId":
-                    result[key] = String(properties[key])
-                    break
-                case "channel":
-                    result[key] = String(properties[key])
-                    break
-                case "event":
-                    result[key] = String(properties[key])
-                    break
-                case "eventTimestampTime":
-                    result[key] = $timestamp.Timestamp.create(properties[key])
-                    break
-                case "payload":
-                    result[key] = String(properties[key])
-                    break
-                case "extra":
-                    result[key] = String(properties[key])
-                    break
-                case "eventTime":
-                    result[key] = $sisyphus.Long.fromValue(properties[key])
-                    break
-                case "partitionTime":
-                    result[key] = String(properties[key])
-                    break
-                case "sequenceNumber":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("uid") && properties.uid !== undefined) result.uid = properties.uid
+        if(properties.hasOwnProperty("platform") && properties.platform !== undefined) result.platform = properties.platform
+        if(properties.hasOwnProperty("sessionId") && properties.sessionId !== undefined) result.sessionId = properties.sessionId
+        if(properties.hasOwnProperty("deviceId") && properties.deviceId !== undefined) result.deviceId = properties.deviceId
+        if(properties.hasOwnProperty("channel") && properties.channel !== undefined) result.channel = properties.channel
+        if(properties.hasOwnProperty("event") && properties.event !== undefined) result.event = properties.event
+        if(properties.hasOwnProperty("eventTimestampTime") && properties.eventTimestampTime !== undefined) result.eventTimestampTime = $timestamp.Timestamp.create(properties.eventTimestampTime)
+        if(properties.hasOwnProperty("payload") && properties.payload !== undefined) result.payload = properties.payload
+        if(properties.hasOwnProperty("extra") && properties.extra !== undefined) result.extra = properties.extra
+        if(properties.hasOwnProperty("eventTime") && properties.eventTime !== undefined) result.eventTime = properties.eventTime
+        if(properties.hasOwnProperty("partitionTime") && properties.partitionTime !== undefined) result.partitionTime = properties.partitionTime
+        if(properties.hasOwnProperty("sequenceNumber") && properties.sequenceNumber !== undefined) result.sequenceNumber = properties.sequenceNumber
         return result
     }
 }

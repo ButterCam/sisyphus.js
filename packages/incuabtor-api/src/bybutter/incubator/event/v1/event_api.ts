@@ -39,14 +39,7 @@ export class RecordEventRequest extends $sisyphus.Message<IRecordEventRequest> i
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "encryptedEvents":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("encryptedEvents") && properties.encryptedEvents !== undefined) result.encryptedEvents = properties.encryptedEvents
         return result
     }
 }
@@ -83,11 +76,6 @@ export class RecordEventResponse extends $sisyphus.Message<IRecordEventResponse>
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-            }
-        }
         return result
     }
 }

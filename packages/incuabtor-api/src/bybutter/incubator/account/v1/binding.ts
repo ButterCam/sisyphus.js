@@ -54,20 +54,9 @@ export class AccountBinding extends $sisyphus.Message<IAccountBinding> implement
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "account":
-                    result[key] = String(properties[key])
-                    break
-                case "mobile":
-                    result[key] = AccountBinding.Mobile.create(properties[key])
-                    break
-                case "identification":
-                    result[key] = AccountBinding.Identification.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("account") && properties.account !== undefined) result.account = properties.account
+        if(properties.hasOwnProperty("mobile") && properties.mobile !== undefined) result.mobile = AccountBinding.Mobile.create(properties.mobile)
+        if(properties.hasOwnProperty("identification") && properties.identification !== undefined) result.identification = AccountBinding.Identification.create(properties.identification)
         return result
     }
 }
@@ -120,17 +109,8 @@ export namespace AccountBinding {
             if(properties instanceof this) return properties
             const result = new this()
             if (!properties) return result
-            for (const key in properties) {
-                if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-                switch(key) {
-                    case "regionCode":
-                        result[key] = String(properties[key])
-                        break
-                    case "phoneNumber":
-                        result[key] = String(properties[key])
-                        break
-                }
-            }
+            if(properties.hasOwnProperty("regionCode") && properties.regionCode !== undefined) result.regionCode = properties.regionCode
+            if(properties.hasOwnProperty("phoneNumber") && properties.phoneNumber !== undefined) result.phoneNumber = properties.phoneNumber
             return result
         }
     }
@@ -174,14 +154,7 @@ export namespace AccountBinding {
             if(properties instanceof this) return properties
             const result = new this()
             if (!properties) return result
-            for (const key in properties) {
-                if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-                switch(key) {
-                    case "identification":
-                        result[key] = String(properties[key])
-                        break
-                }
-            }
+            if(properties.hasOwnProperty("identification") && properties.identification !== undefined) result.identification = properties.identification
             return result
         }
     }

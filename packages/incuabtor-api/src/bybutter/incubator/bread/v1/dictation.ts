@@ -64,11 +64,6 @@ export class DictationOperationMetadata extends $sisyphus.Message<IDictationOper
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-            }
-        }
         return result
     }
 }
@@ -147,32 +142,13 @@ export class DictationTask extends $sisyphus.Message<IDictationTask> implements 
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "name":
-                    result[key] = String(properties[key])
-                    break
-                case "audioFileKey":
-                    result[key] = String(properties[key])
-                    break
-                case "audioFileUri":
-                    result[key] = String(properties[key])
-                    break
-                case "audioDuration":
-                    result[key] = $duration.Duration.create(properties[key])
-                    break
-                case "sentences":
-                    result[key] = DictationSentence.create(properties[key])
-                    break
-                case "state":
-                    result[key] = typeof properties[key] === "number" ? properties[key] : DictationState[properties[key]]
-                    break
-                case "vendor":
-                    result[key] = typeof properties[key] === "number" ? properties[key] : DictationVendor[properties[key]]
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
+        if(properties.hasOwnProperty("audioFileKey") && properties.audioFileKey !== undefined) result.audioFileKey = properties.audioFileKey
+        if(properties.hasOwnProperty("audioFileUri") && properties.audioFileUri !== undefined) result.audioFileUri = properties.audioFileUri
+        if(properties.hasOwnProperty("audioDuration") && properties.audioDuration !== undefined) result.audioDuration = $duration.Duration.create(properties.audioDuration)
+        if(properties.hasOwnProperty("sentences") && properties.sentences !== undefined) result.sentences = DictationSentence.create(properties.sentences)
+        if(properties.hasOwnProperty("state") && properties.state !== undefined) result.state = properties.state
+        if(properties.hasOwnProperty("vendor") && properties.vendor !== undefined) result.vendor = properties.vendor
         return result
     }
 }
@@ -240,23 +216,10 @@ export class DictationSentence extends $sisyphus.Message<IDictationSentence> imp
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "beginOffset":
-                    result[key] = $duration.Duration.create(properties[key])
-                    break
-                case "endOffset":
-                    result[key] = $duration.Duration.create(properties[key])
-                    break
-                case "content":
-                    result[key] = String(properties[key])
-                    break
-                case "words":
-                    result[key] = DictationWord.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("beginOffset") && properties.beginOffset !== undefined) result.beginOffset = $duration.Duration.create(properties.beginOffset)
+        if(properties.hasOwnProperty("endOffset") && properties.endOffset !== undefined) result.endOffset = $duration.Duration.create(properties.endOffset)
+        if(properties.hasOwnProperty("content") && properties.content !== undefined) result.content = properties.content
+        if(properties.hasOwnProperty("words") && properties.words !== undefined) result.words = DictationWord.create(properties.words)
         return result
     }
 }
@@ -320,23 +283,10 @@ export class DictationWord extends $sisyphus.Message<IDictationWord> implements 
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "beginOffset":
-                    result[key] = $duration.Duration.create(properties[key])
-                    break
-                case "endOffset":
-                    result[key] = $duration.Duration.create(properties[key])
-                    break
-                case "content":
-                    result[key] = String(properties[key])
-                    break
-                case "type":
-                    result[key] = typeof properties[key] === "number" ? properties[key] : DictationWord.Type[properties[key]]
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("beginOffset") && properties.beginOffset !== undefined) result.beginOffset = $duration.Duration.create(properties.beginOffset)
+        if(properties.hasOwnProperty("endOffset") && properties.endOffset !== undefined) result.endOffset = $duration.Duration.create(properties.endOffset)
+        if(properties.hasOwnProperty("content") && properties.content !== undefined) result.content = properties.content
+        if(properties.hasOwnProperty("type") && properties.type !== undefined) result.type = properties.type
         return result
     }
 }

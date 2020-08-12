@@ -40,14 +40,7 @@ export class GetFilterRequest extends $sisyphus.Message<IGetFilterRequest> imple
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "name":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
         return result
     }
 }
@@ -95,14 +88,7 @@ export class BatchGetFiltersRequest extends $sisyphus.Message<IBatchGetFiltersRe
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "names":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("names") && properties.names !== undefined) result.names = properties.names
         return result
     }
 }
@@ -146,14 +132,7 @@ export class BatchGetFiltersResponse extends $sisyphus.Message<IBatchGetFiltersR
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "filters":
-                    result[key] = $privilege.Filter.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("filters") && properties.filters !== undefined) result.filters = $privilege.Filter.create(properties.filters)
         return result
     }
 }
@@ -212,20 +191,9 @@ export class ListFiltersRequest extends $sisyphus.Message<IListFiltersRequest> i
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "pageSize":
-                    result[key] = Number(properties[key])
-                    break
-                case "pageToken":
-                    result[key] = String(properties[key])
-                    break
-                case "filter":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("pageSize") && properties.pageSize !== undefined) result.pageSize = properties.pageSize
+        if(properties.hasOwnProperty("pageToken") && properties.pageToken !== undefined) result.pageToken = properties.pageToken
+        if(properties.hasOwnProperty("filter") && properties.filter !== undefined) result.filter = properties.filter
         return result
     }
 }
@@ -277,17 +245,8 @@ export class ListFiltersResponse extends $sisyphus.Message<IListFiltersResponse>
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "filters":
-                    result[key] = $privilege.Filter.create(properties[key])
-                    break
-                case "nextPageToken":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("filters") && properties.filters !== undefined) result.filters = $privilege.Filter.create(properties.filters)
+        if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
         return result
     }
 }
@@ -347,20 +306,9 @@ export class ListFilterGroupsRequest extends $sisyphus.Message<IListFilterGroups
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "pageSize":
-                    result[key] = Number(properties[key])
-                    break
-                case "pageToken":
-                    result[key] = String(properties[key])
-                    break
-                case "filter":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("pageSize") && properties.pageSize !== undefined) result.pageSize = properties.pageSize
+        if(properties.hasOwnProperty("pageToken") && properties.pageToken !== undefined) result.pageToken = properties.pageToken
+        if(properties.hasOwnProperty("filter") && properties.filter !== undefined) result.filter = properties.filter
         return result
     }
 }
@@ -412,17 +360,8 @@ export class ListFilterGroupsResponse extends $sisyphus.Message<IListFilterGroup
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "filterGroups":
-                    result[key] = $privilege.FilterGroup.create(properties[key])
-                    break
-                case "nextPageToken":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("filterGroups") && properties.filterGroups !== undefined) result.filterGroups = $privilege.FilterGroup.create(properties.filterGroups)
+        if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
         return result
     }
 }
@@ -466,14 +405,7 @@ export class GetBorderRequest extends $sisyphus.Message<IGetBorderRequest> imple
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "name":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
         return result
     }
 }
@@ -521,14 +453,7 @@ export class BatchGetBordersRequest extends $sisyphus.Message<IBatchGetBordersRe
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "names":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("names") && properties.names !== undefined) result.names = properties.names
         return result
     }
 }
@@ -572,14 +497,7 @@ export class BatchGetBordersResponse extends $sisyphus.Message<IBatchGetBordersR
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "borders":
-                    result[key] = $privilege.Border.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("borders") && properties.borders !== undefined) result.borders = $privilege.Border.create(properties.borders)
         return result
     }
 }
@@ -638,20 +556,9 @@ export class ListBordersRequest extends $sisyphus.Message<IListBordersRequest> i
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "pageSize":
-                    result[key] = Number(properties[key])
-                    break
-                case "pageToken":
-                    result[key] = String(properties[key])
-                    break
-                case "filter":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("pageSize") && properties.pageSize !== undefined) result.pageSize = properties.pageSize
+        if(properties.hasOwnProperty("pageToken") && properties.pageToken !== undefined) result.pageToken = properties.pageToken
+        if(properties.hasOwnProperty("filter") && properties.filter !== undefined) result.filter = properties.filter
         return result
     }
 }
@@ -703,17 +610,8 @@ export class ListBordersResponse extends $sisyphus.Message<IListBordersResponse>
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "borders":
-                    result[key] = $privilege.Border.create(properties[key])
-                    break
-                case "nextPageToken":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("borders") && properties.borders !== undefined) result.borders = $privilege.Border.create(properties.borders)
+        if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
         return result
     }
 }
@@ -773,20 +671,9 @@ export class ListBorderGroupsRequest extends $sisyphus.Message<IListBorderGroups
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "pageSize":
-                    result[key] = Number(properties[key])
-                    break
-                case "pageToken":
-                    result[key] = String(properties[key])
-                    break
-                case "filter":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("pageSize") && properties.pageSize !== undefined) result.pageSize = properties.pageSize
+        if(properties.hasOwnProperty("pageToken") && properties.pageToken !== undefined) result.pageToken = properties.pageToken
+        if(properties.hasOwnProperty("filter") && properties.filter !== undefined) result.filter = properties.filter
         return result
     }
 }
@@ -838,17 +725,8 @@ export class ListBorderGroupsResponse extends $sisyphus.Message<IListBorderGroup
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "borderGroups":
-                    result[key] = $privilege.BorderGroup.create(properties[key])
-                    break
-                case "nextPageToken":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("borderGroups") && properties.borderGroups !== undefined) result.borderGroups = $privilege.BorderGroup.create(properties.borderGroups)
+        if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
         return result
     }
 }
@@ -892,14 +770,7 @@ export class GetLabelRequest extends $sisyphus.Message<IGetLabelRequest> impleme
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "name":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
         return result
     }
 }
@@ -947,14 +818,7 @@ export class BatchGetLabelsRequest extends $sisyphus.Message<IBatchGetLabelsRequ
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "names":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("names") && properties.names !== undefined) result.names = properties.names
         return result
     }
 }
@@ -998,14 +862,7 @@ export class BatchGetLabelsResponse extends $sisyphus.Message<IBatchGetLabelsRes
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "labels":
-                    result[key] = $privilege.Label.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("labels") && properties.labels !== undefined) result.labels = $privilege.Label.create(properties.labels)
         return result
     }
 }
@@ -1064,20 +921,9 @@ export class ListLabelsRequest extends $sisyphus.Message<IListLabelsRequest> imp
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "pageSize":
-                    result[key] = Number(properties[key])
-                    break
-                case "pageToken":
-                    result[key] = String(properties[key])
-                    break
-                case "filter":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("pageSize") && properties.pageSize !== undefined) result.pageSize = properties.pageSize
+        if(properties.hasOwnProperty("pageToken") && properties.pageToken !== undefined) result.pageToken = properties.pageToken
+        if(properties.hasOwnProperty("filter") && properties.filter !== undefined) result.filter = properties.filter
         return result
     }
 }
@@ -1129,17 +975,8 @@ export class ListLabelsResponse extends $sisyphus.Message<IListLabelsResponse> i
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "labels":
-                    result[key] = $privilege.Label.create(properties[key])
-                    break
-                case "nextPageToken":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("labels") && properties.labels !== undefined) result.labels = $privilege.Label.create(properties.labels)
+        if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
         return result
     }
 }
@@ -1199,20 +1036,9 @@ export class ListLabelGroupsRequest extends $sisyphus.Message<IListLabelGroupsRe
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "pageSize":
-                    result[key] = Number(properties[key])
-                    break
-                case "pageToken":
-                    result[key] = String(properties[key])
-                    break
-                case "filter":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("pageSize") && properties.pageSize !== undefined) result.pageSize = properties.pageSize
+        if(properties.hasOwnProperty("pageToken") && properties.pageToken !== undefined) result.pageToken = properties.pageToken
+        if(properties.hasOwnProperty("filter") && properties.filter !== undefined) result.filter = properties.filter
         return result
     }
 }
@@ -1264,17 +1090,8 @@ export class ListLabelGroupsResponse extends $sisyphus.Message<IListLabelGroupsR
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "labelGroups":
-                    result[key] = $privilege.LabelGroup.create(properties[key])
-                    break
-                case "nextPageToken":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("labelGroups") && properties.labelGroups !== undefined) result.labelGroups = $privilege.LabelGroup.create(properties.labelGroups)
+        if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
         return result
     }
 }
@@ -1318,14 +1135,7 @@ export class GetStickerRequest extends $sisyphus.Message<IGetStickerRequest> imp
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "name":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
         return result
     }
 }
@@ -1373,14 +1183,7 @@ export class BatchGetStickersRequest extends $sisyphus.Message<IBatchGetStickers
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "names":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("names") && properties.names !== undefined) result.names = properties.names
         return result
     }
 }
@@ -1424,14 +1227,7 @@ export class BatchGetStickersResponse extends $sisyphus.Message<IBatchGetSticker
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "stickers":
-                    result[key] = $privilege.Sticker.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("stickers") && properties.stickers !== undefined) result.stickers = $privilege.Sticker.create(properties.stickers)
         return result
     }
 }
@@ -1490,20 +1286,9 @@ export class ListStickersRequest extends $sisyphus.Message<IListStickersRequest>
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "pageSize":
-                    result[key] = Number(properties[key])
-                    break
-                case "pageToken":
-                    result[key] = String(properties[key])
-                    break
-                case "filter":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("pageSize") && properties.pageSize !== undefined) result.pageSize = properties.pageSize
+        if(properties.hasOwnProperty("pageToken") && properties.pageToken !== undefined) result.pageToken = properties.pageToken
+        if(properties.hasOwnProperty("filter") && properties.filter !== undefined) result.filter = properties.filter
         return result
     }
 }
@@ -1555,17 +1340,8 @@ export class ListStickersResponse extends $sisyphus.Message<IListStickersRespons
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "stickers":
-                    result[key] = $privilege.Sticker.create(properties[key])
-                    break
-                case "nextPageToken":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("stickers") && properties.stickers !== undefined) result.stickers = $privilege.Sticker.create(properties.stickers)
+        if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
         return result
     }
 }
@@ -1625,20 +1401,9 @@ export class ListStickerGroupsRequest extends $sisyphus.Message<IListStickerGrou
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "pageSize":
-                    result[key] = Number(properties[key])
-                    break
-                case "pageToken":
-                    result[key] = String(properties[key])
-                    break
-                case "filter":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("pageSize") && properties.pageSize !== undefined) result.pageSize = properties.pageSize
+        if(properties.hasOwnProperty("pageToken") && properties.pageToken !== undefined) result.pageToken = properties.pageToken
+        if(properties.hasOwnProperty("filter") && properties.filter !== undefined) result.filter = properties.filter
         return result
     }
 }
@@ -1690,17 +1455,8 @@ export class ListStickerGroupsResponse extends $sisyphus.Message<IListStickerGro
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "stickerGroups":
-                    result[key] = $privilege.StickerGroup.create(properties[key])
-                    break
-                case "nextPageToken":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("stickerGroups") && properties.stickerGroups !== undefined) result.stickerGroups = $privilege.StickerGroup.create(properties.stickerGroups)
+        if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
         return result
     }
 }
@@ -1744,14 +1500,7 @@ export class GetMusicRequest extends $sisyphus.Message<IGetMusicRequest> impleme
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "name":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
         return result
     }
 }
@@ -1799,14 +1548,7 @@ export class BatchGetMusicRequest extends $sisyphus.Message<IBatchGetMusicReques
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "names":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("names") && properties.names !== undefined) result.names = properties.names
         return result
     }
 }
@@ -1854,14 +1596,7 @@ export class BatchGetMusicResponse extends $sisyphus.Message<IBatchGetMusicRespo
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "music":
-                    result[key] = $privilege.Music.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("music") && properties.music !== undefined) result.music = $privilege.Music.create(properties.music)
         return result
     }
 }
@@ -1920,20 +1655,9 @@ export class ListMusicRequest extends $sisyphus.Message<IListMusicRequest> imple
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "pageSize":
-                    result[key] = Number(properties[key])
-                    break
-                case "pageToken":
-                    result[key] = String(properties[key])
-                    break
-                case "filter":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("pageSize") && properties.pageSize !== undefined) result.pageSize = properties.pageSize
+        if(properties.hasOwnProperty("pageToken") && properties.pageToken !== undefined) result.pageToken = properties.pageToken
+        if(properties.hasOwnProperty("filter") && properties.filter !== undefined) result.filter = properties.filter
         return result
     }
 }
@@ -1985,17 +1709,8 @@ export class ListMusicResponse extends $sisyphus.Message<IListMusicResponse> imp
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "music":
-                    result[key] = $privilege.Music.create(properties[key])
-                    break
-                case "nextPageToken":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("music") && properties.music !== undefined) result.music = $privilege.Music.create(properties.music)
+        if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
         return result
     }
 }
@@ -2055,20 +1770,9 @@ export class ListMusicGroupsRequest extends $sisyphus.Message<IListMusicGroupsRe
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "pageSize":
-                    result[key] = Number(properties[key])
-                    break
-                case "pageToken":
-                    result[key] = String(properties[key])
-                    break
-                case "filter":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("pageSize") && properties.pageSize !== undefined) result.pageSize = properties.pageSize
+        if(properties.hasOwnProperty("pageToken") && properties.pageToken !== undefined) result.pageToken = properties.pageToken
+        if(properties.hasOwnProperty("filter") && properties.filter !== undefined) result.filter = properties.filter
         return result
     }
 }
@@ -2120,17 +1824,8 @@ export class ListMusicGroupsResponse extends $sisyphus.Message<IListMusicGroupsR
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "musicGroups":
-                    result[key] = $privilege.MusicGroup.create(properties[key])
-                    break
-                case "nextPageToken":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("musicGroups") && properties.musicGroups !== undefined) result.musicGroups = $privilege.MusicGroup.create(properties.musicGroups)
+        if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
         return result
     }
 }
@@ -2174,14 +1869,7 @@ export class GetSoundRequest extends $sisyphus.Message<IGetSoundRequest> impleme
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "name":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
         return result
     }
 }
@@ -2229,14 +1917,7 @@ export class BatchGetSoundsRequest extends $sisyphus.Message<IBatchGetSoundsRequ
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "names":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("names") && properties.names !== undefined) result.names = properties.names
         return result
     }
 }
@@ -2280,14 +1961,7 @@ export class BatchGetSoundsResponse extends $sisyphus.Message<IBatchGetSoundsRes
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "sounds":
-                    result[key] = $privilege.Sound.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("sounds") && properties.sounds !== undefined) result.sounds = $privilege.Sound.create(properties.sounds)
         return result
     }
 }
@@ -2346,20 +2020,9 @@ export class ListSoundsRequest extends $sisyphus.Message<IListSoundsRequest> imp
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "pageSize":
-                    result[key] = Number(properties[key])
-                    break
-                case "pageToken":
-                    result[key] = String(properties[key])
-                    break
-                case "filter":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("pageSize") && properties.pageSize !== undefined) result.pageSize = properties.pageSize
+        if(properties.hasOwnProperty("pageToken") && properties.pageToken !== undefined) result.pageToken = properties.pageToken
+        if(properties.hasOwnProperty("filter") && properties.filter !== undefined) result.filter = properties.filter
         return result
     }
 }
@@ -2411,17 +2074,8 @@ export class ListSoundsResponse extends $sisyphus.Message<IListSoundsResponse> i
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "sounds":
-                    result[key] = $privilege.Sound.create(properties[key])
-                    break
-                case "nextPageToken":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("sounds") && properties.sounds !== undefined) result.sounds = $privilege.Sound.create(properties.sounds)
+        if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
         return result
     }
 }
@@ -2481,20 +2135,9 @@ export class ListSoundGroupsRequest extends $sisyphus.Message<IListSoundGroupsRe
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "pageSize":
-                    result[key] = Number(properties[key])
-                    break
-                case "pageToken":
-                    result[key] = String(properties[key])
-                    break
-                case "filter":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("pageSize") && properties.pageSize !== undefined) result.pageSize = properties.pageSize
+        if(properties.hasOwnProperty("pageToken") && properties.pageToken !== undefined) result.pageToken = properties.pageToken
+        if(properties.hasOwnProperty("filter") && properties.filter !== undefined) result.filter = properties.filter
         return result
     }
 }
@@ -2546,17 +2189,8 @@ export class ListSoundGroupsResponse extends $sisyphus.Message<IListSoundGroupsR
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "soundGroups":
-                    result[key] = $privilege.SoundGroup.create(properties[key])
-                    break
-                case "nextPageToken":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("soundGroups") && properties.soundGroups !== undefined) result.soundGroups = $privilege.SoundGroup.create(properties.soundGroups)
+        if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
         return result
     }
 }
@@ -2600,14 +2234,7 @@ export class GetMembershipRequest extends $sisyphus.Message<IGetMembershipReques
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "name":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
         return result
     }
 }
@@ -2655,14 +2282,7 @@ export class BatchGetMembershipsRequest extends $sisyphus.Message<IBatchGetMembe
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "names":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("names") && properties.names !== undefined) result.names = properties.names
         return result
     }
 }
@@ -2706,14 +2326,7 @@ export class BatchGetMembershipsResponse extends $sisyphus.Message<IBatchGetMemb
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "memberships":
-                    result[key] = $privilege.Membership.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("memberships") && properties.memberships !== undefined) result.memberships = $privilege.Membership.create(properties.memberships)
         return result
     }
 }
@@ -2772,20 +2385,9 @@ export class ListMembershipsRequest extends $sisyphus.Message<IListMembershipsRe
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "pageSize":
-                    result[key] = Number(properties[key])
-                    break
-                case "pageToken":
-                    result[key] = String(properties[key])
-                    break
-                case "filter":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("pageSize") && properties.pageSize !== undefined) result.pageSize = properties.pageSize
+        if(properties.hasOwnProperty("pageToken") && properties.pageToken !== undefined) result.pageToken = properties.pageToken
+        if(properties.hasOwnProperty("filter") && properties.filter !== undefined) result.filter = properties.filter
         return result
     }
 }
@@ -2837,17 +2439,8 @@ export class ListMembershipsResponse extends $sisyphus.Message<IListMembershipsR
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "memberships":
-                    result[key] = $privilege.Membership.create(properties[key])
-                    break
-                case "nextPageToken":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("memberships") && properties.memberships !== undefined) result.memberships = $privilege.Membership.create(properties.memberships)
+        if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
         return result
     }
 }

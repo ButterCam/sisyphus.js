@@ -65,14 +65,7 @@ export class Struct extends $sisyphus.Message<IStruct> implements IStruct {
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "fields":
-                    result[key] = Value.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("fields") && properties.fields !== undefined) result.fields = Value.create(properties.fields)
         return result
     }
 }
@@ -156,29 +149,12 @@ export class Value extends $sisyphus.Message<IValue> implements IValue {
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "nullValue":
-                    result[key] = typeof properties[key] === "number" ? properties[key] : NullValue[properties[key]]
-                    break
-                case "numberValue":
-                    result[key] = Number(properties[key])
-                    break
-                case "stringValue":
-                    result[key] = String(properties[key])
-                    break
-                case "boolValue":
-                    result[key] = Boolean(properties[key])
-                    break
-                case "structValue":
-                    result[key] = Struct.create(properties[key])
-                    break
-                case "listValue":
-                    result[key] = ListValue.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("nullValue") && properties.nullValue !== undefined) result.nullValue = properties.nullValue
+        if(properties.hasOwnProperty("numberValue") && properties.numberValue !== undefined) result.numberValue = properties.numberValue
+        if(properties.hasOwnProperty("stringValue") && properties.stringValue !== undefined) result.stringValue = properties.stringValue
+        if(properties.hasOwnProperty("boolValue") && properties.boolValue !== undefined) result.boolValue = properties.boolValue
+        if(properties.hasOwnProperty("structValue") && properties.structValue !== undefined) result.structValue = Struct.create(properties.structValue)
+        if(properties.hasOwnProperty("listValue") && properties.listValue !== undefined) result.listValue = ListValue.create(properties.listValue)
         return result
     }
 }
@@ -232,14 +208,7 @@ export class ListValue extends $sisyphus.Message<IListValue> implements IListVal
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "values":
-                    result[key] = Value.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("values") && properties.values !== undefined) result.values = Value.create(properties.values)
         return result
     }
 }

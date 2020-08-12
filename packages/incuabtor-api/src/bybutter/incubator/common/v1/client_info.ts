@@ -97,41 +97,16 @@ export class ClientInfo extends $sisyphus.Message<IClientInfo> implements IClien
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "version":
-                    result[key] = String(properties[key])
-                    break
-                case "channel":
-                    result[key] = String(properties[key])
-                    break
-                case "name":
-                    result[key] = String(properties[key])
-                    break
-                case "os":
-                    result[key] = String(properties[key])
-                    break
-                case "osVersion":
-                    result[key] = String(properties[key])
-                    break
-                case "vendor":
-                    result[key] = String(properties[key])
-                    break
-                case "resolution":
-                    result[key] = String(properties[key])
-                    break
-                case "languageTag":
-                    result[key] = String(properties[key])
-                    break
-                case "timeZone":
-                    result[key] = String(properties[key])
-                    break
-                case "ip":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("version") && properties.version !== undefined) result.version = properties.version
+        if(properties.hasOwnProperty("channel") && properties.channel !== undefined) result.channel = properties.channel
+        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
+        if(properties.hasOwnProperty("os") && properties.os !== undefined) result.os = properties.os
+        if(properties.hasOwnProperty("osVersion") && properties.osVersion !== undefined) result.osVersion = properties.osVersion
+        if(properties.hasOwnProperty("vendor") && properties.vendor !== undefined) result.vendor = properties.vendor
+        if(properties.hasOwnProperty("resolution") && properties.resolution !== undefined) result.resolution = properties.resolution
+        if(properties.hasOwnProperty("languageTag") && properties.languageTag !== undefined) result.languageTag = properties.languageTag
+        if(properties.hasOwnProperty("timeZone") && properties.timeZone !== undefined) result.timeZone = properties.timeZone
+        if(properties.hasOwnProperty("ip") && properties.ip !== undefined) result.ip = properties.ip
         return result
     }
 }

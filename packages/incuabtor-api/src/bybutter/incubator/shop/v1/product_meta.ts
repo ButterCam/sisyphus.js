@@ -87,35 +87,14 @@ export class ProductMeta extends $sisyphus.Message<IProductMeta> implements IPro
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "name":
-                    result[key] = String(properties[key])
-                    break
-                case "type":
-                    result[key] = String(properties[key])
-                    break
-                case "title":
-                    result[key] = String(properties[key])
-                    break
-                case "pictureUri":
-                    result[key] = String(properties[key])
-                    break
-                case "basePrice":
-                    result[key] = $sisyphus.Long.fromValue(properties[key])
-                    break
-                case "requirements":
-                    result[key] = String(properties[key])
-                    break
-                case "startTime":
-                    result[key] = $timestamp.Timestamp.create(properties[key])
-                    break
-                case "endTime":
-                    result[key] = $timestamp.Timestamp.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
+        if(properties.hasOwnProperty("type") && properties.type !== undefined) result.type = properties.type
+        if(properties.hasOwnProperty("title") && properties.title !== undefined) result.title = properties.title
+        if(properties.hasOwnProperty("pictureUri") && properties.pictureUri !== undefined) result.pictureUri = properties.pictureUri
+        if(properties.hasOwnProperty("basePrice") && properties.basePrice !== undefined) result.basePrice = properties.basePrice
+        if(properties.hasOwnProperty("requirements") && properties.requirements !== undefined) result.requirements = properties.requirements
+        if(properties.hasOwnProperty("startTime") && properties.startTime !== undefined) result.startTime = $timestamp.Timestamp.create(properties.startTime)
+        if(properties.hasOwnProperty("endTime") && properties.endTime !== undefined) result.endTime = $timestamp.Timestamp.create(properties.endTime)
         return result
     }
 }
@@ -208,35 +187,14 @@ export class ProductAttributeMeta extends $sisyphus.Message<IProductAttributeMet
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "name":
-                    result[key] = String(properties[key])
-                    break
-                case "type":
-                    result[key] = String(properties[key])
-                    break
-                case "parameter":
-                    result[key] = $struct.Value.create(properties[key])
-                    break
-                case "indexedParameter1":
-                    result[key] = String(properties[key])
-                    break
-                case "indexedParameter2":
-                    result[key] = String(properties[key])
-                    break
-                case "requirements":
-                    result[key] = String(properties[key])
-                    break
-                case "startTime":
-                    result[key] = $timestamp.Timestamp.create(properties[key])
-                    break
-                case "endTime":
-                    result[key] = $timestamp.Timestamp.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
+        if(properties.hasOwnProperty("type") && properties.type !== undefined) result.type = properties.type
+        if(properties.hasOwnProperty("parameter") && properties.parameter !== undefined) result.parameter = $struct.Value.create(properties.parameter)
+        if(properties.hasOwnProperty("indexedParameter1") && properties.indexedParameter1 !== undefined) result.indexedParameter1 = properties.indexedParameter1
+        if(properties.hasOwnProperty("indexedParameter2") && properties.indexedParameter2 !== undefined) result.indexedParameter2 = properties.indexedParameter2
+        if(properties.hasOwnProperty("requirements") && properties.requirements !== undefined) result.requirements = properties.requirements
+        if(properties.hasOwnProperty("startTime") && properties.startTime !== undefined) result.startTime = $timestamp.Timestamp.create(properties.startTime)
+        if(properties.hasOwnProperty("endTime") && properties.endTime !== undefined) result.endTime = $timestamp.Timestamp.create(properties.endTime)
         return result
     }
 }

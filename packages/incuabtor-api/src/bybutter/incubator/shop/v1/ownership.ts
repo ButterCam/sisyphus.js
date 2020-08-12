@@ -121,35 +121,14 @@ export class Ownership extends $sisyphus.Message<IOwnership> implements IOwnersh
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "privilege":
-                    result[key] = String(properties[key])
-                    break
-                case "ownership":
-                    result[key] = typeof properties[key] === "number" ? properties[key] : OwnershipType[properties[key]]
-                    break
-                case "requirements":
-                    result[key] = String(properties[key])
-                    break
-                case "startTime":
-                    result[key] = $timestamp.Timestamp.create(properties[key])
-                    break
-                case "endTime":
-                    result[key] = $timestamp.Timestamp.create(properties[key])
-                    break
-                case "overrideTitle":
-                    result[key] = String(properties[key])
-                    break
-                case "overrideIconUri":
-                    result[key] = String(properties[key])
-                    break
-                case "overrideUri":
-                    result[key] = String(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("privilege") && properties.privilege !== undefined) result.privilege = properties.privilege
+        if(properties.hasOwnProperty("ownership") && properties.ownership !== undefined) result.ownership = properties.ownership
+        if(properties.hasOwnProperty("requirements") && properties.requirements !== undefined) result.requirements = properties.requirements
+        if(properties.hasOwnProperty("startTime") && properties.startTime !== undefined) result.startTime = $timestamp.Timestamp.create(properties.startTime)
+        if(properties.hasOwnProperty("endTime") && properties.endTime !== undefined) result.endTime = $timestamp.Timestamp.create(properties.endTime)
+        if(properties.hasOwnProperty("overrideTitle") && properties.overrideTitle !== undefined) result.overrideTitle = properties.overrideTitle
+        if(properties.hasOwnProperty("overrideIconUri") && properties.overrideIconUri !== undefined) result.overrideIconUri = properties.overrideIconUri
+        if(properties.hasOwnProperty("overrideUri") && properties.overrideUri !== undefined) result.overrideUri = properties.overrideUri
         return result
     }
 }

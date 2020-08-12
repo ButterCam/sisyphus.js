@@ -40,14 +40,7 @@ export class TransparentProductDetail extends $sisyphus.Message<ITransparentProd
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        for (const key in properties) {
-            if(!properties.hasOwnProperty(key) || !this.prototype.hasOwnProperty(key)) continue
-            switch(key) {
-                case "detail":
-                    result[key] = $struct.Value.create(properties[key])
-                    break
-            }
-        }
+        if(properties.hasOwnProperty("detail") && properties.detail !== undefined) result.detail = $struct.Value.create(properties.detail)
         return result
     }
 }
