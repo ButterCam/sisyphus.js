@@ -60,7 +60,7 @@ import {Root} from "protobufjs"
 export let root = Root.fromJSON(reflectionJson)
 root.resolveAll()\n`)
 
-        await writeToFile(outDir, "index.ts", this.generateIndex())
+        await this.generateIndex(outDir)
 
         for (let key in this._protos) {
             if (this._protos.hasOwnProperty(key)) {
@@ -69,10 +69,51 @@ root.resolveAll()\n`)
         }
     }
 
-    private generateIndex(): string {
-        const b = new CodeBuilder()
-        b.appendLn("export ")
-        return b.build()
+    private async generateIndex(dir: string, obj: ReflectionObject = this._root) {
+        switch (true) {
+            case obj instanceof Type:
+            case obj instanceof Service:
+            case obj instanceof Enum:
+            case obj instanceof Field:
+                break
+            case obj instanceof Root:
+            case obj instanceof Namespace:
+                const fileName = obj.fullName.replace(/\./g, "/").substring(1) + "/index.ts"
+                const b = new CodeBuilder()
+                const modules: string[] = []
+
+                for (let reflectionObject of (<Namespace>obj).nestedArray) {
+                    switch (true) {
+                        case reflectionObject instanceof Type:
+                        case reflectionObject instanceof Service:
+                        case reflectionObject instanceof Enum:
+                            if(reflectionObject.filename != null){
+                                const moduleName = pathModule.basename(reflectionObject.filename, pathModule.extname(reflectionObject.filename))
+                                if(modules.indexOf(moduleName) < 0) {
+                                    b.appendLn(`export * from "./${moduleName}"`)
+                                    modules.push(moduleName)
+                                }
+                            }
+                            break
+                        case reflectionObject instanceof Root:
+                        case reflectionObject instanceof Namespace:
+                            await this.generateIndex(dir, reflectionObject)
+                            const moduleName = reflectionObject.name
+                            if(modules.indexOf(moduleName) < 0) {
+                                b.appendLn(`export * as ${moduleName} from "./${moduleName}"`)
+                                modules.push(moduleName)
+                            }
+                            break
+                        default:
+                            break
+                    }
+                }
+
+                await writeToFile(dir, fileName, b.build())
+                break
+            default:
+                break
+        }
     }
 
     private register(obj: ReflectionObject) {

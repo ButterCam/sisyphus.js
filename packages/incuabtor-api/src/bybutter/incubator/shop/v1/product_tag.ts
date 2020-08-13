@@ -1,6 +1,6 @@
 import * as $sisyphus from "@sisyphus.js/core"
-import * as $protobuf from "protobufjs"
 import * as $reflection from "../../../../_reflection"
+import * as $protobuf from "protobufjs"
 
 
 /** 附加在商品或者 Plan 上的通用 Tag 信息。 */

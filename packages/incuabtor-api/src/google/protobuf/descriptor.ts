@@ -1,6 +1,7 @@
+import * as $descriptor from "./descriptor"
 import * as $sisyphus from "@sisyphus.js/core"
-import * as $protobuf from "protobufjs"
 import * as $reflection from "../../_reflection"
+import * as $protobuf from "protobufjs"
 import * as $privilege from "../../bybutter/incubator/bread/v1/privilege"
 import * as $dictation from "../../bybutter/incubator/bread/v1/dictation"
 import * as $resource from "../api/resource"
@@ -16,11 +17,11 @@ import * as $operations from "../longrunning/operations"
  * files it parses.
  */
 export interface IFileDescriptorSet {
-    file?: (IFileDescriptorProto[] | null)
+    file?: ($descriptor.IFileDescriptorProto[] | null)
 }
 
 export class FileDescriptorSet extends $sisyphus.Message<IFileDescriptorSet> implements IFileDescriptorSet {
-    file!: (IFileDescriptorProto[] | null)
+    file!: ($descriptor.IFileDescriptorProto[] | null)
     get $reflection() {
         return FileDescriptorSet.reflection
     }
@@ -35,7 +36,7 @@ export class FileDescriptorSet extends $sisyphus.Message<IFileDescriptorSet> imp
             switch(tag>>>3) {
                 case 1:
                     if (!result.file) result.file = []
-                    result.file.push(FileDescriptorProto.decodeDelimited(reader))
+                    result.file.push($descriptor.FileDescriptorProto.decodeDelimited(reader))
                     break
             }
         }
@@ -50,7 +51,7 @@ export class FileDescriptorSet extends $sisyphus.Message<IFileDescriptorSet> imp
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("file") && properties.file !== undefined) result.file = FileDescriptorProto.create(properties.file)
+        if(properties.hasOwnProperty("file") && properties.file !== undefined) result.file = $descriptor.FileDescriptorProto.create(properties.file)
         return result
     }
 }
@@ -72,18 +73,18 @@ export interface IFileDescriptorProto {
      */
     weakDependency?: (number[] | null)
     /** All top-level definitions in this file. */
-    messageType?: (IDescriptorProto[] | null)
-    enumType?: (IEnumDescriptorProto[] | null)
-    service?: (IServiceDescriptorProto[] | null)
-    extension?: (IFieldDescriptorProto[] | null)
-    options?: (IFileOptions | null)
+    messageType?: ($descriptor.IDescriptorProto[] | null)
+    enumType?: ($descriptor.IEnumDescriptorProto[] | null)
+    service?: ($descriptor.IServiceDescriptorProto[] | null)
+    extension?: ($descriptor.IFieldDescriptorProto[] | null)
+    options?: ($descriptor.IFileOptions | null)
     /**
      * This field contains optional information about the original source code.
      * You may safely remove this entire field without harming runtime
      * functionality of the descriptors -- the information is needed only by
      * development tools.
      */
-    sourceCodeInfo?: (ISourceCodeInfo | null)
+    sourceCodeInfo?: ($descriptor.ISourceCodeInfo | null)
     /**
      * The syntax of the proto file.
      * The supported values are "proto2" and "proto3".
@@ -97,12 +98,12 @@ export class FileDescriptorProto extends $sisyphus.Message<IFileDescriptorProto>
     dependency!: (string[] | null)
     publicDependency!: (number[] | null)
     weakDependency!: (number[] | null)
-    messageType!: (IDescriptorProto[] | null)
-    enumType!: (IEnumDescriptorProto[] | null)
-    service!: (IServiceDescriptorProto[] | null)
-    extension!: (IFieldDescriptorProto[] | null)
-    options!: (IFileOptions | null)
-    sourceCodeInfo!: (ISourceCodeInfo | null)
+    messageType!: ($descriptor.IDescriptorProto[] | null)
+    enumType!: ($descriptor.IEnumDescriptorProto[] | null)
+    service!: ($descriptor.IServiceDescriptorProto[] | null)
+    extension!: ($descriptor.IFieldDescriptorProto[] | null)
+    options!: ($descriptor.IFileOptions | null)
+    sourceCodeInfo!: ($descriptor.ISourceCodeInfo | null)
     syntax!: string
     get $reflection() {
         return FileDescriptorProto.reflection
@@ -136,25 +137,25 @@ export class FileDescriptorProto extends $sisyphus.Message<IFileDescriptorProto>
                     break
                 case 4:
                     if (!result.messageType) result.messageType = []
-                    result.messageType.push(DescriptorProto.decodeDelimited(reader))
+                    result.messageType.push($descriptor.DescriptorProto.decodeDelimited(reader))
                     break
                 case 5:
                     if (!result.enumType) result.enumType = []
-                    result.enumType.push(EnumDescriptorProto.decodeDelimited(reader))
+                    result.enumType.push($descriptor.EnumDescriptorProto.decodeDelimited(reader))
                     break
                 case 6:
                     if (!result.service) result.service = []
-                    result.service.push(ServiceDescriptorProto.decodeDelimited(reader))
+                    result.service.push($descriptor.ServiceDescriptorProto.decodeDelimited(reader))
                     break
                 case 7:
                     if (!result.extension) result.extension = []
-                    result.extension.push(FieldDescriptorProto.decodeDelimited(reader))
+                    result.extension.push($descriptor.FieldDescriptorProto.decodeDelimited(reader))
                     break
                 case 8:
-                    result.options = FileOptions.decodeDelimited(reader)
+                    result.options = $descriptor.FileOptions.decodeDelimited(reader)
                     break
                 case 9:
-                    result.sourceCodeInfo = SourceCodeInfo.decodeDelimited(reader)
+                    result.sourceCodeInfo = $descriptor.SourceCodeInfo.decodeDelimited(reader)
                     break
                 case 12:
                     result.syntax = reader.string()
@@ -177,12 +178,12 @@ export class FileDescriptorProto extends $sisyphus.Message<IFileDescriptorProto>
         if(properties.hasOwnProperty("dependency") && properties.dependency !== undefined) result.dependency = properties.dependency
         if(properties.hasOwnProperty("publicDependency") && properties.publicDependency !== undefined) result.publicDependency = properties.publicDependency
         if(properties.hasOwnProperty("weakDependency") && properties.weakDependency !== undefined) result.weakDependency = properties.weakDependency
-        if(properties.hasOwnProperty("messageType") && properties.messageType !== undefined) result.messageType = DescriptorProto.create(properties.messageType)
-        if(properties.hasOwnProperty("enumType") && properties.enumType !== undefined) result.enumType = EnumDescriptorProto.create(properties.enumType)
-        if(properties.hasOwnProperty("service") && properties.service !== undefined) result.service = ServiceDescriptorProto.create(properties.service)
-        if(properties.hasOwnProperty("extension") && properties.extension !== undefined) result.extension = FieldDescriptorProto.create(properties.extension)
-        if(properties.hasOwnProperty("options") && properties.options !== undefined) result.options = FileOptions.create(properties.options)
-        if(properties.hasOwnProperty("sourceCodeInfo") && properties.sourceCodeInfo !== undefined) result.sourceCodeInfo = SourceCodeInfo.create(properties.sourceCodeInfo)
+        if(properties.hasOwnProperty("messageType") && properties.messageType !== undefined) result.messageType = $descriptor.DescriptorProto.create(properties.messageType)
+        if(properties.hasOwnProperty("enumType") && properties.enumType !== undefined) result.enumType = $descriptor.EnumDescriptorProto.create(properties.enumType)
+        if(properties.hasOwnProperty("service") && properties.service !== undefined) result.service = $descriptor.ServiceDescriptorProto.create(properties.service)
+        if(properties.hasOwnProperty("extension") && properties.extension !== undefined) result.extension = $descriptor.FieldDescriptorProto.create(properties.extension)
+        if(properties.hasOwnProperty("options") && properties.options !== undefined) result.options = $descriptor.FileOptions.create(properties.options)
+        if(properties.hasOwnProperty("sourceCodeInfo") && properties.sourceCodeInfo !== undefined) result.sourceCodeInfo = $descriptor.SourceCodeInfo.create(properties.sourceCodeInfo)
         if(properties.hasOwnProperty("syntax") && properties.syntax !== undefined) result.syntax = properties.syntax
         return result
     }
@@ -204,14 +205,14 @@ FileDescriptorProto.prototype.syntax = ""
 /** Describes a message type. */
 export interface IDescriptorProto {
     name?: string
-    field?: (IFieldDescriptorProto[] | null)
-    extension?: (IFieldDescriptorProto[] | null)
-    nestedType?: (IDescriptorProto[] | null)
-    enumType?: (IEnumDescriptorProto[] | null)
-    extensionRange?: (DescriptorProto.IExtensionRange[] | null)
-    oneofDecl?: (IOneofDescriptorProto[] | null)
-    options?: (IMessageOptions | null)
-    reservedRange?: (DescriptorProto.IReservedRange[] | null)
+    field?: ($descriptor.IFieldDescriptorProto[] | null)
+    extension?: ($descriptor.IFieldDescriptorProto[] | null)
+    nestedType?: ($descriptor.IDescriptorProto[] | null)
+    enumType?: ($descriptor.IEnumDescriptorProto[] | null)
+    extensionRange?: ($descriptor.DescriptorProto.IExtensionRange[] | null)
+    oneofDecl?: ($descriptor.IOneofDescriptorProto[] | null)
+    options?: ($descriptor.IMessageOptions | null)
+    reservedRange?: ($descriptor.DescriptorProto.IReservedRange[] | null)
     /**
      * Reserved field names, which may not be used by fields in the same message.
      * A given name may only be reserved once.
@@ -221,14 +222,14 @@ export interface IDescriptorProto {
 
 export class DescriptorProto extends $sisyphus.Message<IDescriptorProto> implements IDescriptorProto {
     name!: string
-    field!: (IFieldDescriptorProto[] | null)
-    extension!: (IFieldDescriptorProto[] | null)
-    nestedType!: (IDescriptorProto[] | null)
-    enumType!: (IEnumDescriptorProto[] | null)
-    extensionRange!: (DescriptorProto.IExtensionRange[] | null)
-    oneofDecl!: (IOneofDescriptorProto[] | null)
-    options!: (IMessageOptions | null)
-    reservedRange!: (DescriptorProto.IReservedRange[] | null)
+    field!: ($descriptor.IFieldDescriptorProto[] | null)
+    extension!: ($descriptor.IFieldDescriptorProto[] | null)
+    nestedType!: ($descriptor.IDescriptorProto[] | null)
+    enumType!: ($descriptor.IEnumDescriptorProto[] | null)
+    extensionRange!: ($descriptor.DescriptorProto.IExtensionRange[] | null)
+    oneofDecl!: ($descriptor.IOneofDescriptorProto[] | null)
+    options!: ($descriptor.IMessageOptions | null)
+    reservedRange!: ($descriptor.DescriptorProto.IReservedRange[] | null)
     reservedName!: (string[] | null)
     get $reflection() {
         return DescriptorProto.reflection
@@ -247,34 +248,34 @@ export class DescriptorProto extends $sisyphus.Message<IDescriptorProto> impleme
                     break
                 case 2:
                     if (!result.field) result.field = []
-                    result.field.push(FieldDescriptorProto.decodeDelimited(reader))
+                    result.field.push($descriptor.FieldDescriptorProto.decodeDelimited(reader))
                     break
                 case 6:
                     if (!result.extension) result.extension = []
-                    result.extension.push(FieldDescriptorProto.decodeDelimited(reader))
+                    result.extension.push($descriptor.FieldDescriptorProto.decodeDelimited(reader))
                     break
                 case 3:
                     if (!result.nestedType) result.nestedType = []
-                    result.nestedType.push(DescriptorProto.decodeDelimited(reader))
+                    result.nestedType.push($descriptor.DescriptorProto.decodeDelimited(reader))
                     break
                 case 4:
                     if (!result.enumType) result.enumType = []
-                    result.enumType.push(EnumDescriptorProto.decodeDelimited(reader))
+                    result.enumType.push($descriptor.EnumDescriptorProto.decodeDelimited(reader))
                     break
                 case 5:
                     if (!result.extensionRange) result.extensionRange = []
-                    result.extensionRange.push(DescriptorProto.ExtensionRange.decodeDelimited(reader))
+                    result.extensionRange.push($descriptor.DescriptorProto.ExtensionRange.decodeDelimited(reader))
                     break
                 case 8:
                     if (!result.oneofDecl) result.oneofDecl = []
-                    result.oneofDecl.push(OneofDescriptorProto.decodeDelimited(reader))
+                    result.oneofDecl.push($descriptor.OneofDescriptorProto.decodeDelimited(reader))
                     break
                 case 7:
-                    result.options = MessageOptions.decodeDelimited(reader)
+                    result.options = $descriptor.MessageOptions.decodeDelimited(reader)
                     break
                 case 9:
                     if (!result.reservedRange) result.reservedRange = []
-                    result.reservedRange.push(DescriptorProto.ReservedRange.decodeDelimited(reader))
+                    result.reservedRange.push($descriptor.DescriptorProto.ReservedRange.decodeDelimited(reader))
                     break
                 case 10:
                     if (!result.reservedName) result.reservedName = []
@@ -294,14 +295,14 @@ export class DescriptorProto extends $sisyphus.Message<IDescriptorProto> impleme
         const result = new this()
         if (!properties) return result
         if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        if(properties.hasOwnProperty("field") && properties.field !== undefined) result.field = FieldDescriptorProto.create(properties.field)
-        if(properties.hasOwnProperty("extension") && properties.extension !== undefined) result.extension = FieldDescriptorProto.create(properties.extension)
-        if(properties.hasOwnProperty("nestedType") && properties.nestedType !== undefined) result.nestedType = DescriptorProto.create(properties.nestedType)
-        if(properties.hasOwnProperty("enumType") && properties.enumType !== undefined) result.enumType = EnumDescriptorProto.create(properties.enumType)
-        if(properties.hasOwnProperty("extensionRange") && properties.extensionRange !== undefined) result.extensionRange = DescriptorProto.ExtensionRange.create(properties.extensionRange)
-        if(properties.hasOwnProperty("oneofDecl") && properties.oneofDecl !== undefined) result.oneofDecl = OneofDescriptorProto.create(properties.oneofDecl)
-        if(properties.hasOwnProperty("options") && properties.options !== undefined) result.options = MessageOptions.create(properties.options)
-        if(properties.hasOwnProperty("reservedRange") && properties.reservedRange !== undefined) result.reservedRange = DescriptorProto.ReservedRange.create(properties.reservedRange)
+        if(properties.hasOwnProperty("field") && properties.field !== undefined) result.field = $descriptor.FieldDescriptorProto.create(properties.field)
+        if(properties.hasOwnProperty("extension") && properties.extension !== undefined) result.extension = $descriptor.FieldDescriptorProto.create(properties.extension)
+        if(properties.hasOwnProperty("nestedType") && properties.nestedType !== undefined) result.nestedType = $descriptor.DescriptorProto.create(properties.nestedType)
+        if(properties.hasOwnProperty("enumType") && properties.enumType !== undefined) result.enumType = $descriptor.EnumDescriptorProto.create(properties.enumType)
+        if(properties.hasOwnProperty("extensionRange") && properties.extensionRange !== undefined) result.extensionRange = $descriptor.DescriptorProto.ExtensionRange.create(properties.extensionRange)
+        if(properties.hasOwnProperty("oneofDecl") && properties.oneofDecl !== undefined) result.oneofDecl = $descriptor.OneofDescriptorProto.create(properties.oneofDecl)
+        if(properties.hasOwnProperty("options") && properties.options !== undefined) result.options = $descriptor.MessageOptions.create(properties.options)
+        if(properties.hasOwnProperty("reservedRange") && properties.reservedRange !== undefined) result.reservedRange = $descriptor.DescriptorProto.ReservedRange.create(properties.reservedRange)
         if(properties.hasOwnProperty("reservedName") && properties.reservedName !== undefined) result.reservedName = properties.reservedName
         return result
     }
@@ -324,13 +325,13 @@ export namespace DescriptorProto {
         start?: number
         /** Exclusive. */
         end?: number
-        options?: (IExtensionRangeOptions | null)
+        options?: ($descriptor.IExtensionRangeOptions | null)
     }
 
     export class ExtensionRange extends $sisyphus.Message<IExtensionRange> implements IExtensionRange {
         start!: number
         end!: number
-        options!: (IExtensionRangeOptions | null)
+        options!: ($descriptor.IExtensionRangeOptions | null)
         get $reflection() {
             return ExtensionRange.reflection
         }
@@ -350,7 +351,7 @@ export namespace DescriptorProto {
                         result.end = reader.int32()
                         break
                     case 3:
-                        result.options = ExtensionRangeOptions.decodeDelimited(reader)
+                        result.options = $descriptor.ExtensionRangeOptions.decodeDelimited(reader)
                         break
                 }
             }
@@ -367,7 +368,7 @@ export namespace DescriptorProto {
             if (!properties) return result
             if(properties.hasOwnProperty("start") && properties.start !== undefined) result.start = properties.start
             if(properties.hasOwnProperty("end") && properties.end !== undefined) result.end = properties.end
-            if(properties.hasOwnProperty("options") && properties.options !== undefined) result.options = ExtensionRangeOptions.create(properties.options)
+            if(properties.hasOwnProperty("options") && properties.options !== undefined) result.options = $descriptor.ExtensionRangeOptions.create(properties.options)
             return result
         }
     }
@@ -433,11 +434,11 @@ export namespace DescriptorProto {
 
 export interface IExtensionRangeOptions {
     /** The parser stores options it doesn't recognize here. See above. */
-    uninterpretedOption?: (IUninterpretedOption[] | null)
+    uninterpretedOption?: ($descriptor.IUninterpretedOption[] | null)
 }
 
 export class ExtensionRangeOptions extends $sisyphus.Message<IExtensionRangeOptions> implements IExtensionRangeOptions {
-    uninterpretedOption!: (IUninterpretedOption[] | null)
+    uninterpretedOption!: ($descriptor.IUninterpretedOption[] | null)
     get $reflection() {
         return ExtensionRangeOptions.reflection
     }
@@ -452,7 +453,7 @@ export class ExtensionRangeOptions extends $sisyphus.Message<IExtensionRangeOpti
             switch(tag>>>3) {
                 case 999:
                     if (!result.uninterpretedOption) result.uninterpretedOption = []
-                    result.uninterpretedOption.push(UninterpretedOption.decodeDelimited(reader))
+                    result.uninterpretedOption.push($descriptor.UninterpretedOption.decodeDelimited(reader))
                     break
             }
         }
@@ -467,7 +468,7 @@ export class ExtensionRangeOptions extends $sisyphus.Message<IExtensionRangeOpti
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("uninterpretedOption") && properties.uninterpretedOption !== undefined) result.uninterpretedOption = UninterpretedOption.create(properties.uninterpretedOption)
+        if(properties.hasOwnProperty("uninterpretedOption") && properties.uninterpretedOption !== undefined) result.uninterpretedOption = $descriptor.UninterpretedOption.create(properties.uninterpretedOption)
         return result
     }
 }
@@ -517,7 +518,7 @@ export interface IFieldDescriptorProto {
      * it to camelCase.
      */
     jsonName?: string
-    options?: (IFieldOptions | null)
+    options?: ($descriptor.IFieldOptions | null)
     /**
      * If true, this is a proto3 "optional". When a proto3 field is optional, it
      * tracks presence regardless of field type.
@@ -554,7 +555,7 @@ export class FieldDescriptorProto extends $sisyphus.Message<IFieldDescriptorProt
     defaultValue!: string
     oneofIndex!: number
     jsonName!: string
-    options!: (IFieldOptions | null)
+    options!: ($descriptor.IFieldOptions | null)
     proto3Optional!: boolean
     get $reflection() {
         return FieldDescriptorProto.reflection
@@ -596,7 +597,7 @@ export class FieldDescriptorProto extends $sisyphus.Message<IFieldDescriptorProt
                     result.jsonName = reader.string()
                     break
                 case 8:
-                    result.options = FieldOptions.decodeDelimited(reader)
+                    result.options = $descriptor.FieldOptions.decodeDelimited(reader)
                     break
                 case 17:
                     result.proto3Optional = reader.bool()
@@ -623,7 +624,7 @@ export class FieldDescriptorProto extends $sisyphus.Message<IFieldDescriptorProt
         if(properties.hasOwnProperty("defaultValue") && properties.defaultValue !== undefined) result.defaultValue = properties.defaultValue
         if(properties.hasOwnProperty("oneofIndex") && properties.oneofIndex !== undefined) result.oneofIndex = properties.oneofIndex
         if(properties.hasOwnProperty("jsonName") && properties.jsonName !== undefined) result.jsonName = properties.jsonName
-        if(properties.hasOwnProperty("options") && properties.options !== undefined) result.options = FieldOptions.create(properties.options)
+        if(properties.hasOwnProperty("options") && properties.options !== undefined) result.options = $descriptor.FieldOptions.create(properties.options)
         if(properties.hasOwnProperty("proto3Optional") && properties.proto3Optional !== undefined) result.proto3Optional = properties.proto3Optional
         return result
     }
@@ -703,12 +704,12 @@ export namespace FieldDescriptorProto {
 /** Describes a oneof. */
 export interface IOneofDescriptorProto {
     name?: string
-    options?: (IOneofOptions | null)
+    options?: ($descriptor.IOneofOptions | null)
 }
 
 export class OneofDescriptorProto extends $sisyphus.Message<IOneofDescriptorProto> implements IOneofDescriptorProto {
     name!: string
-    options!: (IOneofOptions | null)
+    options!: ($descriptor.IOneofOptions | null)
     get $reflection() {
         return OneofDescriptorProto.reflection
     }
@@ -725,7 +726,7 @@ export class OneofDescriptorProto extends $sisyphus.Message<IOneofDescriptorProt
                     result.name = reader.string()
                     break
                 case 2:
-                    result.options = OneofOptions.decodeDelimited(reader)
+                    result.options = $descriptor.OneofOptions.decodeDelimited(reader)
                     break
             }
         }
@@ -741,7 +742,7 @@ export class OneofDescriptorProto extends $sisyphus.Message<IOneofDescriptorProt
         const result = new this()
         if (!properties) return result
         if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        if(properties.hasOwnProperty("options") && properties.options !== undefined) result.options = OneofOptions.create(properties.options)
+        if(properties.hasOwnProperty("options") && properties.options !== undefined) result.options = $descriptor.OneofOptions.create(properties.options)
         return result
     }
 }
@@ -752,14 +753,14 @@ OneofDescriptorProto.prototype.options = null
 /** Describes an enum type. */
 export interface IEnumDescriptorProto {
     name?: string
-    value?: (IEnumValueDescriptorProto[] | null)
-    options?: (IEnumOptions | null)
+    value?: ($descriptor.IEnumValueDescriptorProto[] | null)
+    options?: ($descriptor.IEnumOptions | null)
     /**
      * Range of reserved numeric values. Reserved numeric values may not be used
      * by enum values in the same enum declaration. Reserved ranges may not
      * overlap.
      */
-    reservedRange?: (EnumDescriptorProto.IEnumReservedRange[] | null)
+    reservedRange?: ($descriptor.EnumDescriptorProto.IEnumReservedRange[] | null)
     /**
      * Reserved enum value names, which may not be reused. A given name may only
      * be reserved once.
@@ -769,9 +770,9 @@ export interface IEnumDescriptorProto {
 
 export class EnumDescriptorProto extends $sisyphus.Message<IEnumDescriptorProto> implements IEnumDescriptorProto {
     name!: string
-    value!: (IEnumValueDescriptorProto[] | null)
-    options!: (IEnumOptions | null)
-    reservedRange!: (EnumDescriptorProto.IEnumReservedRange[] | null)
+    value!: ($descriptor.IEnumValueDescriptorProto[] | null)
+    options!: ($descriptor.IEnumOptions | null)
+    reservedRange!: ($descriptor.EnumDescriptorProto.IEnumReservedRange[] | null)
     reservedName!: (string[] | null)
     get $reflection() {
         return EnumDescriptorProto.reflection
@@ -790,14 +791,14 @@ export class EnumDescriptorProto extends $sisyphus.Message<IEnumDescriptorProto>
                     break
                 case 2:
                     if (!result.value) result.value = []
-                    result.value.push(EnumValueDescriptorProto.decodeDelimited(reader))
+                    result.value.push($descriptor.EnumValueDescriptorProto.decodeDelimited(reader))
                     break
                 case 3:
-                    result.options = EnumOptions.decodeDelimited(reader)
+                    result.options = $descriptor.EnumOptions.decodeDelimited(reader)
                     break
                 case 4:
                     if (!result.reservedRange) result.reservedRange = []
-                    result.reservedRange.push(EnumDescriptorProto.EnumReservedRange.decodeDelimited(reader))
+                    result.reservedRange.push($descriptor.EnumDescriptorProto.EnumReservedRange.decodeDelimited(reader))
                     break
                 case 5:
                     if (!result.reservedName) result.reservedName = []
@@ -817,9 +818,9 @@ export class EnumDescriptorProto extends $sisyphus.Message<IEnumDescriptorProto>
         const result = new this()
         if (!properties) return result
         if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        if(properties.hasOwnProperty("value") && properties.value !== undefined) result.value = EnumValueDescriptorProto.create(properties.value)
-        if(properties.hasOwnProperty("options") && properties.options !== undefined) result.options = EnumOptions.create(properties.options)
-        if(properties.hasOwnProperty("reservedRange") && properties.reservedRange !== undefined) result.reservedRange = EnumDescriptorProto.EnumReservedRange.create(properties.reservedRange)
+        if(properties.hasOwnProperty("value") && properties.value !== undefined) result.value = $descriptor.EnumValueDescriptorProto.create(properties.value)
+        if(properties.hasOwnProperty("options") && properties.options !== undefined) result.options = $descriptor.EnumOptions.create(properties.options)
+        if(properties.hasOwnProperty("reservedRange") && properties.reservedRange !== undefined) result.reservedRange = $descriptor.EnumDescriptorProto.EnumReservedRange.create(properties.reservedRange)
         if(properties.hasOwnProperty("reservedName") && properties.reservedName !== undefined) result.reservedName = properties.reservedName
         return result
     }
@@ -894,13 +895,13 @@ export namespace EnumDescriptorProto {
 export interface IEnumValueDescriptorProto {
     name?: string
     number?: number
-    options?: (IEnumValueOptions | null)
+    options?: ($descriptor.IEnumValueOptions | null)
 }
 
 export class EnumValueDescriptorProto extends $sisyphus.Message<IEnumValueDescriptorProto> implements IEnumValueDescriptorProto {
     name!: string
     number!: number
-    options!: (IEnumValueOptions | null)
+    options!: ($descriptor.IEnumValueOptions | null)
     get $reflection() {
         return EnumValueDescriptorProto.reflection
     }
@@ -920,7 +921,7 @@ export class EnumValueDescriptorProto extends $sisyphus.Message<IEnumValueDescri
                     result.number = reader.int32()
                     break
                 case 3:
-                    result.options = EnumValueOptions.decodeDelimited(reader)
+                    result.options = $descriptor.EnumValueOptions.decodeDelimited(reader)
                     break
             }
         }
@@ -937,7 +938,7 @@ export class EnumValueDescriptorProto extends $sisyphus.Message<IEnumValueDescri
         if (!properties) return result
         if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
         if(properties.hasOwnProperty("number") && properties.number !== undefined) result.number = properties.number
-        if(properties.hasOwnProperty("options") && properties.options !== undefined) result.options = EnumValueOptions.create(properties.options)
+        if(properties.hasOwnProperty("options") && properties.options !== undefined) result.options = $descriptor.EnumValueOptions.create(properties.options)
         return result
     }
 }
@@ -949,14 +950,14 @@ EnumValueDescriptorProto.prototype.options = null
 /** Describes a service. */
 export interface IServiceDescriptorProto {
     name?: string
-    method?: (IMethodDescriptorProto[] | null)
-    options?: (IServiceOptions | null)
+    method?: ($descriptor.IMethodDescriptorProto[] | null)
+    options?: ($descriptor.IServiceOptions | null)
 }
 
 export class ServiceDescriptorProto extends $sisyphus.Message<IServiceDescriptorProto> implements IServiceDescriptorProto {
     name!: string
-    method!: (IMethodDescriptorProto[] | null)
-    options!: (IServiceOptions | null)
+    method!: ($descriptor.IMethodDescriptorProto[] | null)
+    options!: ($descriptor.IServiceOptions | null)
     get $reflection() {
         return ServiceDescriptorProto.reflection
     }
@@ -974,10 +975,10 @@ export class ServiceDescriptorProto extends $sisyphus.Message<IServiceDescriptor
                     break
                 case 2:
                     if (!result.method) result.method = []
-                    result.method.push(MethodDescriptorProto.decodeDelimited(reader))
+                    result.method.push($descriptor.MethodDescriptorProto.decodeDelimited(reader))
                     break
                 case 3:
-                    result.options = ServiceOptions.decodeDelimited(reader)
+                    result.options = $descriptor.ServiceOptions.decodeDelimited(reader)
                     break
             }
         }
@@ -993,8 +994,8 @@ export class ServiceDescriptorProto extends $sisyphus.Message<IServiceDescriptor
         const result = new this()
         if (!properties) return result
         if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        if(properties.hasOwnProperty("method") && properties.method !== undefined) result.method = MethodDescriptorProto.create(properties.method)
-        if(properties.hasOwnProperty("options") && properties.options !== undefined) result.options = ServiceOptions.create(properties.options)
+        if(properties.hasOwnProperty("method") && properties.method !== undefined) result.method = $descriptor.MethodDescriptorProto.create(properties.method)
+        if(properties.hasOwnProperty("options") && properties.options !== undefined) result.options = $descriptor.ServiceOptions.create(properties.options)
         return result
     }
 }
@@ -1012,7 +1013,7 @@ export interface IMethodDescriptorProto {
      */
     inputType?: string
     outputType?: string
-    options?: (IMethodOptions | null)
+    options?: ($descriptor.IMethodOptions | null)
     /** Identifies if client streams multiple client messages */
     clientStreaming?: boolean
     /** Identifies if server streams multiple server messages */
@@ -1023,7 +1024,7 @@ export class MethodDescriptorProto extends $sisyphus.Message<IMethodDescriptorPr
     name!: string
     inputType!: string
     outputType!: string
-    options!: (IMethodOptions | null)
+    options!: ($descriptor.IMethodOptions | null)
     clientStreaming!: boolean
     serverStreaming!: boolean
     get $reflection() {
@@ -1048,7 +1049,7 @@ export class MethodDescriptorProto extends $sisyphus.Message<IMethodDescriptorPr
                     result.outputType = reader.string()
                     break
                 case 4:
-                    result.options = MethodOptions.decodeDelimited(reader)
+                    result.options = $descriptor.MethodOptions.decodeDelimited(reader)
                     break
                 case 5:
                     result.clientStreaming = reader.bool()
@@ -1072,7 +1073,7 @@ export class MethodDescriptorProto extends $sisyphus.Message<IMethodDescriptorPr
         if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
         if(properties.hasOwnProperty("inputType") && properties.inputType !== undefined) result.inputType = properties.inputType
         if(properties.hasOwnProperty("outputType") && properties.outputType !== undefined) result.outputType = properties.outputType
-        if(properties.hasOwnProperty("options") && properties.options !== undefined) result.options = MethodOptions.create(properties.options)
+        if(properties.hasOwnProperty("options") && properties.options !== undefined) result.options = $descriptor.MethodOptions.create(properties.options)
         if(properties.hasOwnProperty("clientStreaming") && properties.clientStreaming !== undefined) result.clientStreaming = properties.clientStreaming
         if(properties.hasOwnProperty("serverStreaming") && properties.serverStreaming !== undefined) result.serverStreaming = properties.serverStreaming
         return result
@@ -1122,7 +1123,7 @@ export interface IFileOptions {
      * This option has no effect on when used with the lite runtime.
      */
     javaStringCheckUtf8?: boolean
-    optimizeFor?: FileOptions.OptimizeMode
+    optimizeFor?: $descriptor.FileOptions.OptimizeMode
     /**
      * Sets the Go package where structs generated from this .proto will be
      * placed. If omitted, the Go package will be derived from the following:
@@ -1200,7 +1201,7 @@ export interface IFileOptions {
      * The parser stores options it doesn't recognize here.
      * See the documentation for the "Options" section above.
      */
-    uninterpretedOption?: (IUninterpretedOption[] | null)
+    uninterpretedOption?: ($descriptor.IUninterpretedOption[] | null)
     ".google.api.resourceDefinition"?: ($resource.IResourceDescriptor[] | null)
 }
 
@@ -1210,7 +1211,7 @@ export class FileOptions extends $sisyphus.Message<IFileOptions> implements IFil
     javaMultipleFiles!: boolean
     javaGenerateEqualsAndHash!: boolean
     javaStringCheckUtf8!: boolean
-    optimizeFor!: FileOptions.OptimizeMode
+    optimizeFor!: $descriptor.FileOptions.OptimizeMode
     goPackage!: string
     ccGenericServices!: boolean
     javaGenericServices!: boolean
@@ -1225,7 +1226,7 @@ export class FileOptions extends $sisyphus.Message<IFileOptions> implements IFil
     phpNamespace!: string
     phpMetadataNamespace!: string
     rubyPackage!: string
-    uninterpretedOption!: (IUninterpretedOption[] | null)
+    uninterpretedOption!: ($descriptor.IUninterpretedOption[] | null)
     ".google.api.resourceDefinition"!: ($resource.IResourceDescriptor[] | null)
     get $reflection() {
         return FileOptions.reflection
@@ -1301,7 +1302,7 @@ export class FileOptions extends $sisyphus.Message<IFileOptions> implements IFil
                     break
                 case 999:
                     if (!result.uninterpretedOption) result.uninterpretedOption = []
-                    result.uninterpretedOption.push(UninterpretedOption.decodeDelimited(reader))
+                    result.uninterpretedOption.push($descriptor.UninterpretedOption.decodeDelimited(reader))
                     break
                 case 1053:
                     if (!result[".google.api.resourceDefinition"]) result[".google.api.resourceDefinition"] = []
@@ -1340,7 +1341,7 @@ export class FileOptions extends $sisyphus.Message<IFileOptions> implements IFil
         if(properties.hasOwnProperty("phpNamespace") && properties.phpNamespace !== undefined) result.phpNamespace = properties.phpNamespace
         if(properties.hasOwnProperty("phpMetadataNamespace") && properties.phpMetadataNamespace !== undefined) result.phpMetadataNamespace = properties.phpMetadataNamespace
         if(properties.hasOwnProperty("rubyPackage") && properties.rubyPackage !== undefined) result.rubyPackage = properties.rubyPackage
-        if(properties.hasOwnProperty("uninterpretedOption") && properties.uninterpretedOption !== undefined) result.uninterpretedOption = UninterpretedOption.create(properties.uninterpretedOption)
+        if(properties.hasOwnProperty("uninterpretedOption") && properties.uninterpretedOption !== undefined) result.uninterpretedOption = $descriptor.UninterpretedOption.create(properties.uninterpretedOption)
         if(properties.hasOwnProperty(".google.api.resourceDefinition") && properties[".google.api.resourceDefinition"] !== undefined) result[".google.api.resourceDefinition"] = $resource.ResourceDescriptor.create(properties[".google.api.resourceDefinition"])
         return result
     }
@@ -1448,7 +1449,7 @@ export interface IMessageOptions {
      */
     mapEntry?: boolean
     /** The parser stores options it doesn't recognize here. See above. */
-    uninterpretedOption?: (IUninterpretedOption[] | null)
+    uninterpretedOption?: ($descriptor.IUninterpretedOption[] | null)
     ".google.api.resource"?: ($resource.IResourceDescriptor | null)
 }
 
@@ -1457,7 +1458,7 @@ export class MessageOptions extends $sisyphus.Message<IMessageOptions> implement
     noStandardDescriptorAccessor!: boolean
     deprecated!: boolean
     mapEntry!: boolean
-    uninterpretedOption!: (IUninterpretedOption[] | null)
+    uninterpretedOption!: ($descriptor.IUninterpretedOption[] | null)
     ".google.api.resource"!: ($resource.IResourceDescriptor | null)
     get $reflection() {
         return MessageOptions.reflection
@@ -1485,7 +1486,7 @@ export class MessageOptions extends $sisyphus.Message<IMessageOptions> implement
                     break
                 case 999:
                     if (!result.uninterpretedOption) result.uninterpretedOption = []
-                    result.uninterpretedOption.push(UninterpretedOption.decodeDelimited(reader))
+                    result.uninterpretedOption.push($descriptor.UninterpretedOption.decodeDelimited(reader))
                     break
                 case 1053:
                     result[".google.api.resource"] = $resource.ResourceDescriptor.decodeDelimited(reader)
@@ -1507,7 +1508,7 @@ export class MessageOptions extends $sisyphus.Message<IMessageOptions> implement
         if(properties.hasOwnProperty("noStandardDescriptorAccessor") && properties.noStandardDescriptorAccessor !== undefined) result.noStandardDescriptorAccessor = properties.noStandardDescriptorAccessor
         if(properties.hasOwnProperty("deprecated") && properties.deprecated !== undefined) result.deprecated = properties.deprecated
         if(properties.hasOwnProperty("mapEntry") && properties.mapEntry !== undefined) result.mapEntry = properties.mapEntry
-        if(properties.hasOwnProperty("uninterpretedOption") && properties.uninterpretedOption !== undefined) result.uninterpretedOption = UninterpretedOption.create(properties.uninterpretedOption)
+        if(properties.hasOwnProperty("uninterpretedOption") && properties.uninterpretedOption !== undefined) result.uninterpretedOption = $descriptor.UninterpretedOption.create(properties.uninterpretedOption)
         if(properties.hasOwnProperty(".google.api.resource") && properties[".google.api.resource"] !== undefined) result[".google.api.resource"] = $resource.ResourceDescriptor.create(properties[".google.api.resource"])
         return result
     }
@@ -1527,7 +1528,7 @@ export interface IFieldOptions {
      * options below.  This option is not yet implemented in the open source
      * release -- sorry, we'll try to include it in a future version!
      */
-    ctype?: FieldOptions.CType
+    ctype?: $descriptor.FieldOptions.CType
     /**
      * The packed option can be enabled for repeated primitive fields to enable
      * a more efficient representation on the wire. Rather than repeatedly
@@ -1549,7 +1550,7 @@ export interface IFieldOptions {
      * This option is an enum to permit additional types to be added, e.g.
      * goog.math.Integer.
      */
-    jstype?: FieldOptions.JSType
+    jstype?: $descriptor.FieldOptions.JSType
     /**
      * Should this field be parsed lazily?  Lazy applies only to message-type
      * fields.  It means that when the outer message is initially parsed, the
@@ -1591,19 +1592,19 @@ export interface IFieldOptions {
     /** For Google-internal migration only. Do not use. */
     weak?: boolean
     /** The parser stores options it doesn't recognize here. See above. */
-    uninterpretedOption?: (IUninterpretedOption[] | null)
+    uninterpretedOption?: ($descriptor.IUninterpretedOption[] | null)
     ".google.api.resourceReference"?: ($resource.IResourceReference | null)
     ".google.api.fieldBehavior"?: ($fieldBehavior.FieldBehavior[] | null)
 }
 
 export class FieldOptions extends $sisyphus.Message<IFieldOptions> implements IFieldOptions {
-    ctype!: FieldOptions.CType
+    ctype!: $descriptor.FieldOptions.CType
     packed!: boolean
-    jstype!: FieldOptions.JSType
+    jstype!: $descriptor.FieldOptions.JSType
     lazy!: boolean
     deprecated!: boolean
     weak!: boolean
-    uninterpretedOption!: (IUninterpretedOption[] | null)
+    uninterpretedOption!: ($descriptor.IUninterpretedOption[] | null)
     ".google.api.resourceReference"!: ($resource.IResourceReference | null)
     ".google.api.fieldBehavior"!: ($fieldBehavior.FieldBehavior[] | null)
     get $reflection() {
@@ -1638,7 +1639,7 @@ export class FieldOptions extends $sisyphus.Message<IFieldOptions> implements IF
                     break
                 case 999:
                     if (!result.uninterpretedOption) result.uninterpretedOption = []
-                    result.uninterpretedOption.push(UninterpretedOption.decodeDelimited(reader))
+                    result.uninterpretedOption.push($descriptor.UninterpretedOption.decodeDelimited(reader))
                     break
                 case 1055:
                     result[".google.api.resourceReference"] = $resource.ResourceReference.decodeDelimited(reader)
@@ -1666,15 +1667,15 @@ export class FieldOptions extends $sisyphus.Message<IFieldOptions> implements IF
         if(properties.hasOwnProperty("lazy") && properties.lazy !== undefined) result.lazy = properties.lazy
         if(properties.hasOwnProperty("deprecated") && properties.deprecated !== undefined) result.deprecated = properties.deprecated
         if(properties.hasOwnProperty("weak") && properties.weak !== undefined) result.weak = properties.weak
-        if(properties.hasOwnProperty("uninterpretedOption") && properties.uninterpretedOption !== undefined) result.uninterpretedOption = UninterpretedOption.create(properties.uninterpretedOption)
+        if(properties.hasOwnProperty("uninterpretedOption") && properties.uninterpretedOption !== undefined) result.uninterpretedOption = $descriptor.UninterpretedOption.create(properties.uninterpretedOption)
         if(properties.hasOwnProperty(".google.api.resourceReference") && properties[".google.api.resourceReference"] !== undefined) result[".google.api.resourceReference"] = $resource.ResourceReference.create(properties[".google.api.resourceReference"])
         if(properties.hasOwnProperty(".google.api.fieldBehavior") && properties[".google.api.fieldBehavior"] !== undefined) result[".google.api.fieldBehavior"] = properties[".google.api.fieldBehavior"]
         return result
     }
 }
-FieldOptions.prototype.ctype = FieldOptions.CType.STRING
+FieldOptions.prototype.ctype = $descriptor.FieldOptions.CType.STRING
 FieldOptions.prototype.packed = false
-FieldOptions.prototype.jstype = FieldOptions.JSType.JS_NORMAL
+FieldOptions.prototype.jstype = $descriptor.FieldOptions.JSType.JS_NORMAL
 FieldOptions.prototype.lazy = false
 FieldOptions.prototype.deprecated = false
 FieldOptions.prototype.weak = false
@@ -1711,11 +1712,11 @@ export namespace FieldOptions {
 
 export interface IOneofOptions {
     /** The parser stores options it doesn't recognize here. See above. */
-    uninterpretedOption?: (IUninterpretedOption[] | null)
+    uninterpretedOption?: ($descriptor.IUninterpretedOption[] | null)
 }
 
 export class OneofOptions extends $sisyphus.Message<IOneofOptions> implements IOneofOptions {
-    uninterpretedOption!: (IUninterpretedOption[] | null)
+    uninterpretedOption!: ($descriptor.IUninterpretedOption[] | null)
     get $reflection() {
         return OneofOptions.reflection
     }
@@ -1730,7 +1731,7 @@ export class OneofOptions extends $sisyphus.Message<IOneofOptions> implements IO
             switch(tag>>>3) {
                 case 999:
                     if (!result.uninterpretedOption) result.uninterpretedOption = []
-                    result.uninterpretedOption.push(UninterpretedOption.decodeDelimited(reader))
+                    result.uninterpretedOption.push($descriptor.UninterpretedOption.decodeDelimited(reader))
                     break
             }
         }
@@ -1745,7 +1746,7 @@ export class OneofOptions extends $sisyphus.Message<IOneofOptions> implements IO
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("uninterpretedOption") && properties.uninterpretedOption !== undefined) result.uninterpretedOption = UninterpretedOption.create(properties.uninterpretedOption)
+        if(properties.hasOwnProperty("uninterpretedOption") && properties.uninterpretedOption !== undefined) result.uninterpretedOption = $descriptor.UninterpretedOption.create(properties.uninterpretedOption)
         return result
     }
 }
@@ -1766,13 +1767,13 @@ export interface IEnumOptions {
      */
     deprecated?: boolean
     /** The parser stores options it doesn't recognize here. See above. */
-    uninterpretedOption?: (IUninterpretedOption[] | null)
+    uninterpretedOption?: ($descriptor.IUninterpretedOption[] | null)
 }
 
 export class EnumOptions extends $sisyphus.Message<IEnumOptions> implements IEnumOptions {
     allowAlias!: boolean
     deprecated!: boolean
-    uninterpretedOption!: (IUninterpretedOption[] | null)
+    uninterpretedOption!: ($descriptor.IUninterpretedOption[] | null)
     get $reflection() {
         return EnumOptions.reflection
     }
@@ -1793,7 +1794,7 @@ export class EnumOptions extends $sisyphus.Message<IEnumOptions> implements IEnu
                     break
                 case 999:
                     if (!result.uninterpretedOption) result.uninterpretedOption = []
-                    result.uninterpretedOption.push(UninterpretedOption.decodeDelimited(reader))
+                    result.uninterpretedOption.push($descriptor.UninterpretedOption.decodeDelimited(reader))
                     break
             }
         }
@@ -1810,7 +1811,7 @@ export class EnumOptions extends $sisyphus.Message<IEnumOptions> implements IEnu
         if (!properties) return result
         if(properties.hasOwnProperty("allowAlias") && properties.allowAlias !== undefined) result.allowAlias = properties.allowAlias
         if(properties.hasOwnProperty("deprecated") && properties.deprecated !== undefined) result.deprecated = properties.deprecated
-        if(properties.hasOwnProperty("uninterpretedOption") && properties.uninterpretedOption !== undefined) result.uninterpretedOption = UninterpretedOption.create(properties.uninterpretedOption)
+        if(properties.hasOwnProperty("uninterpretedOption") && properties.uninterpretedOption !== undefined) result.uninterpretedOption = $descriptor.UninterpretedOption.create(properties.uninterpretedOption)
         return result
     }
 }
@@ -1828,13 +1829,13 @@ export interface IEnumValueOptions {
      */
     deprecated?: boolean
     /** The parser stores options it doesn't recognize here. See above. */
-    uninterpretedOption?: (IUninterpretedOption[] | null)
+    uninterpretedOption?: ($descriptor.IUninterpretedOption[] | null)
     ".sisyphus.protobuf.string"?: string
 }
 
 export class EnumValueOptions extends $sisyphus.Message<IEnumValueOptions> implements IEnumValueOptions {
     deprecated!: boolean
-    uninterpretedOption!: (IUninterpretedOption[] | null)
+    uninterpretedOption!: ($descriptor.IUninterpretedOption[] | null)
     ".sisyphus.protobuf.string"!: string
     get $reflection() {
         return EnumValueOptions.reflection
@@ -1853,7 +1854,7 @@ export class EnumValueOptions extends $sisyphus.Message<IEnumValueOptions> imple
                     break
                 case 999:
                     if (!result.uninterpretedOption) result.uninterpretedOption = []
-                    result.uninterpretedOption.push(UninterpretedOption.decodeDelimited(reader))
+                    result.uninterpretedOption.push($descriptor.UninterpretedOption.decodeDelimited(reader))
                     break
                 case 26051:
                     result[".sisyphus.protobuf.string"] = reader.string()
@@ -1872,7 +1873,7 @@ export class EnumValueOptions extends $sisyphus.Message<IEnumValueOptions> imple
         const result = new this()
         if (!properties) return result
         if(properties.hasOwnProperty("deprecated") && properties.deprecated !== undefined) result.deprecated = properties.deprecated
-        if(properties.hasOwnProperty("uninterpretedOption") && properties.uninterpretedOption !== undefined) result.uninterpretedOption = UninterpretedOption.create(properties.uninterpretedOption)
+        if(properties.hasOwnProperty("uninterpretedOption") && properties.uninterpretedOption !== undefined) result.uninterpretedOption = $descriptor.UninterpretedOption.create(properties.uninterpretedOption)
         if(properties.hasOwnProperty(".sisyphus.protobuf.string") && properties[".sisyphus.protobuf.string"] !== undefined) result[".sisyphus.protobuf.string"] = properties[".sisyphus.protobuf.string"]
         return result
     }
@@ -1891,18 +1892,18 @@ export interface IServiceOptions {
      */
     deprecated?: boolean
     /** The parser stores options it doesn't recognize here. See above. */
-    uninterpretedOption?: (IUninterpretedOption[] | null)
+    uninterpretedOption?: ($descriptor.IUninterpretedOption[] | null)
+    ".sisyphus.api.metadata"?: ($serviceMeta.IServiceMetadata | null)
     ".google.api.defaultHost"?: string
     ".google.api.oauthScopes"?: string
-    ".sisyphus.api.metadata"?: ($serviceMeta.IServiceMetadata | null)
 }
 
 export class ServiceOptions extends $sisyphus.Message<IServiceOptions> implements IServiceOptions {
     deprecated!: boolean
-    uninterpretedOption!: (IUninterpretedOption[] | null)
+    uninterpretedOption!: ($descriptor.IUninterpretedOption[] | null)
+    ".sisyphus.api.metadata"!: ($serviceMeta.IServiceMetadata | null)
     ".google.api.defaultHost"!: string
     ".google.api.oauthScopes"!: string
-    ".sisyphus.api.metadata"!: ($serviceMeta.IServiceMetadata | null)
     get $reflection() {
         return ServiceOptions.reflection
     }
@@ -1920,16 +1921,16 @@ export class ServiceOptions extends $sisyphus.Message<IServiceOptions> implement
                     break
                 case 999:
                     if (!result.uninterpretedOption) result.uninterpretedOption = []
-                    result.uninterpretedOption.push(UninterpretedOption.decodeDelimited(reader))
+                    result.uninterpretedOption.push($descriptor.UninterpretedOption.decodeDelimited(reader))
+                    break
+                case 26051:
+                    result[".sisyphus.api.metadata"] = $serviceMeta.ServiceMetadata.decodeDelimited(reader)
                     break
                 case 1049:
                     result[".google.api.defaultHost"] = reader.string()
                     break
                 case 1050:
                     result[".google.api.oauthScopes"] = reader.string()
-                    break
-                case 26051:
-                    result[".sisyphus.api.metadata"] = $serviceMeta.ServiceMetadata.decodeDelimited(reader)
                     break
             }
         }
@@ -1945,18 +1946,18 @@ export class ServiceOptions extends $sisyphus.Message<IServiceOptions> implement
         const result = new this()
         if (!properties) return result
         if(properties.hasOwnProperty("deprecated") && properties.deprecated !== undefined) result.deprecated = properties.deprecated
-        if(properties.hasOwnProperty("uninterpretedOption") && properties.uninterpretedOption !== undefined) result.uninterpretedOption = UninterpretedOption.create(properties.uninterpretedOption)
+        if(properties.hasOwnProperty("uninterpretedOption") && properties.uninterpretedOption !== undefined) result.uninterpretedOption = $descriptor.UninterpretedOption.create(properties.uninterpretedOption)
+        if(properties.hasOwnProperty(".sisyphus.api.metadata") && properties[".sisyphus.api.metadata"] !== undefined) result[".sisyphus.api.metadata"] = $serviceMeta.ServiceMetadata.create(properties[".sisyphus.api.metadata"])
         if(properties.hasOwnProperty(".google.api.defaultHost") && properties[".google.api.defaultHost"] !== undefined) result[".google.api.defaultHost"] = properties[".google.api.defaultHost"]
         if(properties.hasOwnProperty(".google.api.oauthScopes") && properties[".google.api.oauthScopes"] !== undefined) result[".google.api.oauthScopes"] = properties[".google.api.oauthScopes"]
-        if(properties.hasOwnProperty(".sisyphus.api.metadata") && properties[".sisyphus.api.metadata"] !== undefined) result[".sisyphus.api.metadata"] = $serviceMeta.ServiceMetadata.create(properties[".sisyphus.api.metadata"])
         return result
     }
 }
 ServiceOptions.prototype.deprecated = false
 ServiceOptions.prototype.uninterpretedOption = null
+ServiceOptions.prototype[".sisyphus.api.metadata"] = null
 ServiceOptions.prototype[".google.api.defaultHost"] = ""
 ServiceOptions.prototype[".google.api.oauthScopes"] = ""
-ServiceOptions.prototype[".sisyphus.api.metadata"] = null
 
 
 export interface IMethodOptions {
@@ -1967,23 +1968,23 @@ export interface IMethodOptions {
      * this is a formalization for deprecating methods.
      */
     deprecated?: boolean
-    idempotencyLevel?: MethodOptions.IdempotencyLevel
+    idempotencyLevel?: $descriptor.MethodOptions.IdempotencyLevel
     /** The parser stores options it doesn't recognize here. See above. */
-    uninterpretedOption?: (IUninterpretedOption[] | null)
+    uninterpretedOption?: ($descriptor.IUninterpretedOption[] | null)
     ".bybutter.incubator.common.v1.access"?: ($accessControl.IAccessControl | null)
     ".google.api.http"?: ($http.IHttpRule | null)
-    ".google.api.methodSignature"?: (string[] | null)
     ".google.longrunning.operationInfo"?: ($operations.IOperationInfo | null)
+    ".google.api.methodSignature"?: (string[] | null)
 }
 
 export class MethodOptions extends $sisyphus.Message<IMethodOptions> implements IMethodOptions {
     deprecated!: boolean
-    idempotencyLevel!: MethodOptions.IdempotencyLevel
-    uninterpretedOption!: (IUninterpretedOption[] | null)
+    idempotencyLevel!: $descriptor.MethodOptions.IdempotencyLevel
+    uninterpretedOption!: ($descriptor.IUninterpretedOption[] | null)
     ".bybutter.incubator.common.v1.access"!: ($accessControl.IAccessControl | null)
     ".google.api.http"!: ($http.IHttpRule | null)
-    ".google.api.methodSignature"!: (string[] | null)
     ".google.longrunning.operationInfo"!: ($operations.IOperationInfo | null)
+    ".google.api.methodSignature"!: (string[] | null)
     get $reflection() {
         return MethodOptions.reflection
     }
@@ -2004,7 +2005,7 @@ export class MethodOptions extends $sisyphus.Message<IMethodOptions> implements 
                     break
                 case 999:
                     if (!result.uninterpretedOption) result.uninterpretedOption = []
-                    result.uninterpretedOption.push(UninterpretedOption.decodeDelimited(reader))
+                    result.uninterpretedOption.push($descriptor.UninterpretedOption.decodeDelimited(reader))
                     break
                 case 26051:
                     result[".bybutter.incubator.common.v1.access"] = $accessControl.AccessControl.decodeDelimited(reader)
@@ -2012,12 +2013,12 @@ export class MethodOptions extends $sisyphus.Message<IMethodOptions> implements 
                 case 72295728:
                     result[".google.api.http"] = $http.HttpRule.decodeDelimited(reader)
                     break
+                case 1049:
+                    result[".google.longrunning.operationInfo"] = $operations.OperationInfo.decodeDelimited(reader)
+                    break
                 case 1051:
                     if (!result[".google.api.methodSignature"]) result[".google.api.methodSignature"] = []
                     result[".google.api.methodSignature"].push(reader.string())
-                    break
-                case 1049:
-                    result[".google.longrunning.operationInfo"] = $operations.OperationInfo.decodeDelimited(reader)
                     break
             }
         }
@@ -2034,21 +2035,21 @@ export class MethodOptions extends $sisyphus.Message<IMethodOptions> implements 
         if (!properties) return result
         if(properties.hasOwnProperty("deprecated") && properties.deprecated !== undefined) result.deprecated = properties.deprecated
         if(properties.hasOwnProperty("idempotencyLevel") && properties.idempotencyLevel !== undefined) result.idempotencyLevel = properties.idempotencyLevel
-        if(properties.hasOwnProperty("uninterpretedOption") && properties.uninterpretedOption !== undefined) result.uninterpretedOption = UninterpretedOption.create(properties.uninterpretedOption)
+        if(properties.hasOwnProperty("uninterpretedOption") && properties.uninterpretedOption !== undefined) result.uninterpretedOption = $descriptor.UninterpretedOption.create(properties.uninterpretedOption)
         if(properties.hasOwnProperty(".bybutter.incubator.common.v1.access") && properties[".bybutter.incubator.common.v1.access"] !== undefined) result[".bybutter.incubator.common.v1.access"] = $accessControl.AccessControl.create(properties[".bybutter.incubator.common.v1.access"])
         if(properties.hasOwnProperty(".google.api.http") && properties[".google.api.http"] !== undefined) result[".google.api.http"] = $http.HttpRule.create(properties[".google.api.http"])
-        if(properties.hasOwnProperty(".google.api.methodSignature") && properties[".google.api.methodSignature"] !== undefined) result[".google.api.methodSignature"] = properties[".google.api.methodSignature"]
         if(properties.hasOwnProperty(".google.longrunning.operationInfo") && properties[".google.longrunning.operationInfo"] !== undefined) result[".google.longrunning.operationInfo"] = $operations.OperationInfo.create(properties[".google.longrunning.operationInfo"])
+        if(properties.hasOwnProperty(".google.api.methodSignature") && properties[".google.api.methodSignature"] !== undefined) result[".google.api.methodSignature"] = properties[".google.api.methodSignature"]
         return result
     }
 }
 MethodOptions.prototype.deprecated = false
-MethodOptions.prototype.idempotencyLevel = MethodOptions.IdempotencyLevel.IDEMPOTENCY_UNKNOWN
+MethodOptions.prototype.idempotencyLevel = $descriptor.MethodOptions.IdempotencyLevel.IDEMPOTENCY_UNKNOWN
 MethodOptions.prototype.uninterpretedOption = null
 MethodOptions.prototype[".bybutter.incubator.common.v1.access"] = null
 MethodOptions.prototype[".google.api.http"] = null
-MethodOptions.prototype[".google.api.methodSignature"] = null
 MethodOptions.prototype[".google.longrunning.operationInfo"] = null
+MethodOptions.prototype[".google.api.methodSignature"] = null
 
 export namespace MethodOptions {
 
@@ -2079,7 +2080,7 @@ export namespace MethodOptions {
  * in them.
  */
 export interface IUninterpretedOption {
-    name?: (UninterpretedOption.INamePart[] | null)
+    name?: ($descriptor.UninterpretedOption.INamePart[] | null)
     /**
      * The value of the uninterpreted option, in whatever type the tokenizer
      * identified it as during parsing. Exactly one of these should be set.
@@ -2093,7 +2094,7 @@ export interface IUninterpretedOption {
 }
 
 export class UninterpretedOption extends $sisyphus.Message<IUninterpretedOption> implements IUninterpretedOption {
-    name!: (UninterpretedOption.INamePart[] | null)
+    name!: ($descriptor.UninterpretedOption.INamePart[] | null)
     identifierValue!: string
     positiveIntValue!: $protobuf.Long
     negativeIntValue!: $protobuf.Long
@@ -2114,7 +2115,7 @@ export class UninterpretedOption extends $sisyphus.Message<IUninterpretedOption>
             switch(tag>>>3) {
                 case 2:
                     if (!result.name) result.name = []
-                    result.name.push(UninterpretedOption.NamePart.decodeDelimited(reader))
+                    result.name.push($descriptor.UninterpretedOption.NamePart.decodeDelimited(reader))
                     break
                 case 3:
                     result.identifierValue = reader.string()
@@ -2147,7 +2148,7 @@ export class UninterpretedOption extends $sisyphus.Message<IUninterpretedOption>
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = UninterpretedOption.NamePart.create(properties.name)
+        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = $descriptor.UninterpretedOption.NamePart.create(properties.name)
         if(properties.hasOwnProperty("identifierValue") && properties.identifierValue !== undefined) result.identifierValue = properties.identifierValue
         if(properties.hasOwnProperty("positiveIntValue") && properties.positiveIntValue !== undefined) result.positiveIntValue = properties.positiveIntValue
         if(properties.hasOwnProperty("negativeIntValue") && properties.negativeIntValue !== undefined) result.negativeIntValue = properties.negativeIntValue
@@ -2272,11 +2273,11 @@ export interface ISourceCodeInfo {
      * ignore those that it doesn't understand, as more types of locations could
      * be recorded in the future.
      */
-    location?: (SourceCodeInfo.ILocation[] | null)
+    location?: ($descriptor.SourceCodeInfo.ILocation[] | null)
 }
 
 export class SourceCodeInfo extends $sisyphus.Message<ISourceCodeInfo> implements ISourceCodeInfo {
-    location!: (SourceCodeInfo.ILocation[] | null)
+    location!: ($descriptor.SourceCodeInfo.ILocation[] | null)
     get $reflection() {
         return SourceCodeInfo.reflection
     }
@@ -2291,7 +2292,7 @@ export class SourceCodeInfo extends $sisyphus.Message<ISourceCodeInfo> implement
             switch(tag>>>3) {
                 case 1:
                     if (!result.location) result.location = []
-                    result.location.push(SourceCodeInfo.Location.decodeDelimited(reader))
+                    result.location.push($descriptor.SourceCodeInfo.Location.decodeDelimited(reader))
                     break
             }
         }
@@ -2306,7 +2307,7 @@ export class SourceCodeInfo extends $sisyphus.Message<ISourceCodeInfo> implement
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("location") && properties.location !== undefined) result.location = SourceCodeInfo.Location.create(properties.location)
+        if(properties.hasOwnProperty("location") && properties.location !== undefined) result.location = $descriptor.SourceCodeInfo.Location.create(properties.location)
         return result
     }
 }
@@ -2477,11 +2478,11 @@ export interface IGeneratedCodeInfo {
      * An Annotation connects some span of text in generated code to an element
      * of its generating .proto file.
      */
-    annotation?: (GeneratedCodeInfo.IAnnotation[] | null)
+    annotation?: ($descriptor.GeneratedCodeInfo.IAnnotation[] | null)
 }
 
 export class GeneratedCodeInfo extends $sisyphus.Message<IGeneratedCodeInfo> implements IGeneratedCodeInfo {
-    annotation!: (GeneratedCodeInfo.IAnnotation[] | null)
+    annotation!: ($descriptor.GeneratedCodeInfo.IAnnotation[] | null)
     get $reflection() {
         return GeneratedCodeInfo.reflection
     }
@@ -2496,7 +2497,7 @@ export class GeneratedCodeInfo extends $sisyphus.Message<IGeneratedCodeInfo> imp
             switch(tag>>>3) {
                 case 1:
                     if (!result.annotation) result.annotation = []
-                    result.annotation.push(GeneratedCodeInfo.Annotation.decodeDelimited(reader))
+                    result.annotation.push($descriptor.GeneratedCodeInfo.Annotation.decodeDelimited(reader))
                     break
             }
         }
@@ -2511,7 +2512,7 @@ export class GeneratedCodeInfo extends $sisyphus.Message<IGeneratedCodeInfo> imp
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("annotation") && properties.annotation !== undefined) result.annotation = GeneratedCodeInfo.Annotation.create(properties.annotation)
+        if(properties.hasOwnProperty("annotation") && properties.annotation !== undefined) result.annotation = $descriptor.GeneratedCodeInfo.Annotation.create(properties.annotation)
         return result
     }
 }

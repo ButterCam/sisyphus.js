@@ -162,7 +162,7 @@ export class TypeSpec implements GeneratorSpec {
         b.ln()
         b.appendLn(`static readonly reflection = $${this.file.importReflection()}.root.lookupType("${this._reflection.fullName}")`)
         this.generateDecoder(b)
-        this.generateFromObject(b)
+        this.generateCreate(b)
         b.endBlock()
 
         for (let oneOf of this._reflection.oneofsArray) {

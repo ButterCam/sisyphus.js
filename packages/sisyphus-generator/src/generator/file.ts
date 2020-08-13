@@ -2,18 +2,15 @@ import {Enum, ReflectionObject, Root, Service, Type} from "protobufjs"
 import pathModule from "path"
 import {TypeSpec} from "./type";
 import {GeneratorSpec} from "./generator";
-import {camelCase} from "change-case"
 import {ServiceSpec} from "./service";
 import {EnumSpec} from "./enum";
-import {unixPath, writeToFile} from "../utils";
+import {writeToFile} from "../utils";
 import {CodeBuilder} from "../string";
+import {TypescriptFile} from "./typescript";
 
 export class FileSpec extends TypescriptFile implements GeneratorSpec {
     private _elements: ReflectionObject[] = []
     private _root: Root
-    private _importFiles: { [k: string]: string } = {}
-    private _importLibs: { [k: string]: string } = {}
-    private _imports: string[] = []
 
     get parent(): undefined {
         return undefined
@@ -24,12 +21,13 @@ export class FileSpec extends TypescriptFile implements GeneratorSpec {
     }
 
     constructor(root: Root) {
+        super()
         this._root = root
     }
 
-    get filename(): string | null {
+    get filename(): string {
         const protoFile = this.protoname
-        if (!protoFile) return null
+        if (!protoFile) return ""
         return pathModule.join(pathModule.dirname(protoFile), pathModule.basename(protoFile, pathModule.extname(protoFile)) + '.ts')
     }
 
@@ -42,40 +40,6 @@ export class FileSpec extends TypescriptFile implements GeneratorSpec {
         this._elements.push(...obj)
     }
 
-    import(file: string | null): string {
-        if (file == null) return ""
-        if (file == this.protoname) return ""
-
-        if (this._importFiles.hasOwnProperty(file)) {
-            return this._importFiles[file]
-        }
-        let importName = pathModule.basename(file, pathModule.extname(file))
-        importName = camelCase(importName)
-        let id = 0
-        while (this._imports.indexOf(importName) >= 0) {
-            id++
-        }
-        importName = id == 0 ? importName : importName + id
-        this._importFiles[file] = importName
-        this._imports.push(importName)
-        return importName
-    }
-
-    importLib(lib: string, name: string): string {
-        if (this._importLibs.hasOwnProperty(lib)) {
-            return this._importLibs[lib]
-        }
-        let importName = name
-        let id = 0
-        while (this._imports.indexOf(importName) >= 0) {
-            id++
-        }
-        importName = id == 0 ? importName : importName + id
-        this._importLibs[lib] = importName
-        this._imports.push(importName)
-        return importName
-    }
-
     importProtobuf(): string {
         return this.importLib("protobufjs", "protobuf")
     }
@@ -85,11 +49,11 @@ export class FileSpec extends TypescriptFile implements GeneratorSpec {
     }
 
     importReflection(): string {
-        return this.import("_reflection.ts")
+        return this.importFile("_reflection.ts", "reflection")
     }
 
     typename(type: Type | Enum): string {
-        const importName = this.import(type.filename)
+        const importName = this.importFile(type.filename)
         let typename: string
         if (type instanceof Enum) {
             typename = type.name
@@ -111,7 +75,7 @@ export class FileSpec extends TypescriptFile implements GeneratorSpec {
     }
 
     classname(type: Type | Enum): string {
-        const importName = this.import(type.filename)
+        const importName = this.importFile(type.filename)
         let typename = type.name
 
         let parent = type.parent
@@ -154,16 +118,7 @@ export class FileSpec extends TypescriptFile implements GeneratorSpec {
             }
         }
 
-        for (let key in this._importLibs) {
-            if (this._importLibs.hasOwnProperty(key)) {
-                importBuilder.appendLn(`import * as $${this._importLibs[key]} from "${key}"`)
-            }
-        }
-        for (let key in this._importFiles) {
-            if (this._importFiles.hasOwnProperty(key)) {
-                importBuilder.appendLn(`import * as $${this._importFiles[key]} from "${this.importPath(this.filename, key)}"`)
-            }
-        }
+        this.generateImport(importBuilder)
 
         let result = ""
         if (importBuilder.build().length > 0) {
@@ -174,16 +129,8 @@ export class FileSpec extends TypescriptFile implements GeneratorSpec {
         result += codeBuilder.build()
         await writeToFile(out, this.filename, result)
     }
+}
 
-    private importPath(current: string, proto: string): string {
-        const importTs = pathModule.join(pathModule.dirname(proto), pathModule.basename(proto, pathModule.extname(proto)))
-        const currentDir = pathModule.dirname(unixPath(current))
-
-        const result = pathModule.posix.relative(`/${unixPath(currentDir)}`, `/${unixPath(importTs)}`)
-        if (result.startsWith(".")) {
-            return result
-        } else {
-            return `./${result}`
-        }
-    }
+export class IndexFileSpec extends TypescriptFile {
+    readonly filename: string = "index.ts"
 }

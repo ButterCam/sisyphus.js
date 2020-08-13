@@ -1,9 +1,9 @@
 import * as $protobuf from "protobufjs"
-import * as $sisyphus from "@sisyphus.js/core"
 import * as $timestamp from "../../../../google/protobuf/timestamp"
 import * as $struct from "../../../../google/protobuf/struct"
 import * as $clientInfo from "./client_info"
 import * as $any from "../../../../google/protobuf/any"
+import * as $sisyphus from "@sisyphus.js/core"
 import * as $reflection from "../../../../_reflection"
 
 

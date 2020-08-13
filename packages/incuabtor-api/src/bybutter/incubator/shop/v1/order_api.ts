@@ -1,8 +1,9 @@
-import * as $sisyphus from "@sisyphus.js/core"
-import * as $protobuf from "protobufjs"
 import * as $order from "./order"
 import * as $any from "../../../../google/protobuf/any"
+import * as $sisyphus from "@sisyphus.js/core"
 import * as $reflection from "../../../../_reflection"
+import * as $protobuf from "protobufjs"
+import * as $orderApi from "./order_api"
 
 
 /** 创建订单或者向订单内追加新的商品的 API 请求 */
@@ -40,7 +41,7 @@ export class PlaceOrderRequest extends $sisyphus.Message<IPlaceOrderRequest> imp
                     break
                 case 2:
                     if (!result.items) result.items = []
-                    result.items.push(PlaceOrderRequest.Item.decodeDelimited(reader))
+                    result.items.push($orderApi.PlaceOrderRequest.Item.decodeDelimited(reader))
                     break
                 case 3:
                     if (!result.metadata) result.metadata = []
@@ -60,7 +61,7 @@ export class PlaceOrderRequest extends $sisyphus.Message<IPlaceOrderRequest> imp
         const result = new this()
         if (!properties) return result
         if(properties.hasOwnProperty("order") && properties.order !== undefined) result.order = properties.order
-        if(properties.hasOwnProperty("items") && properties.items !== undefined) result.items = PlaceOrderRequest.Item.create(properties.items)
+        if(properties.hasOwnProperty("items") && properties.items !== undefined) result.items = $orderApi.PlaceOrderRequest.Item.create(properties.items)
         if(properties.hasOwnProperty("metadata") && properties.metadata !== undefined) result.metadata = $any.Any.create(properties.metadata)
         return result
     }

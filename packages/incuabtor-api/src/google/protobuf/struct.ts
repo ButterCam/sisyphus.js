@@ -1,6 +1,7 @@
+import * as $reflection from "../../_reflection"
+import * as $struct from "./struct"
 import * as $sisyphus from "@sisyphus.js/core"
 import * as $protobuf from "protobufjs"
-import * as $reflection from "../../_reflection"
 
 
 /**
@@ -30,11 +31,11 @@ export namespace NullValue {
  */
 export interface IStruct {
     /** Unordered map of dynamically typed values. */
-    fields?: ({ [k: string]: IValue } | null)
+    fields?: ({ [k: string]: $struct.IValue } | null)
 }
 
 export class Struct extends $sisyphus.Message<IStruct> implements IStruct {
-    fields!: ({ [k: string]: IValue } | null)
+    fields!: ({ [k: string]: $struct.IValue } | null)
     get $reflection() {
         return Struct.reflection
     }
@@ -49,7 +50,7 @@ export class Struct extends $sisyphus.Message<IStruct> implements IStruct {
             switch(tag>>>3) {
                 case 1:
                     if (!result.fields) result.fields = {}
-                    const [key, value] = sisyphus.readMapEntry(this.reflection.fields["fields"], reader, Value)
+                    const [key, value] = sisyphus.readMapEntry(this.reflection.fields["fields"], reader, $struct.Value)
                     result.fields[key] = value
                     break
             }
@@ -65,7 +66,7 @@ export class Struct extends $sisyphus.Message<IStruct> implements IStruct {
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("fields") && properties.fields !== undefined) result.fields = Value.create(properties.fields)
+        if(properties.hasOwnProperty("fields") && properties.fields !== undefined) result.fields = $struct.Value.create(properties.fields)
         return result
     }
 }
@@ -82,7 +83,7 @@ Struct.prototype.fields = null
  */
 export interface IValue {
     /** Represents a null value. */
-    nullValue?: NullValue
+    nullValue?: $struct.NullValue
     /** Represents a double value. */
     numberValue?: number
     /** Represents a string value. */
@@ -90,20 +91,20 @@ export interface IValue {
     /** Represents a boolean value. */
     boolValue?: boolean
     /** Represents a structured value. */
-    structValue?: (IStruct | null)
+    structValue?: ($struct.IStruct | null)
     /** Represents a repeated `Value`. */
-    listValue?: (IListValue | null)
+    listValue?: ($struct.IListValue | null)
     /** The kind of value. */
     kind?: string
 }
 
 export class Value extends $sisyphus.Message<IValue> implements IValue {
-    nullValue!: NullValue
+    nullValue!: $struct.NullValue
     numberValue!: number
     stringValue!: string
     boolValue!: boolean
-    structValue!: (IStruct | null)
-    listValue!: (IListValue | null)
+    structValue!: ($struct.IStruct | null)
+    listValue!: ($struct.IListValue | null)
     kind?: string
 
     get $reflection() {
@@ -131,10 +132,10 @@ export class Value extends $sisyphus.Message<IValue> implements IValue {
                     result.boolValue = reader.bool()
                     break
                 case 5:
-                    result.structValue = Struct.decodeDelimited(reader)
+                    result.structValue = $struct.Struct.decodeDelimited(reader)
                     break
                 case 6:
-                    result.listValue = ListValue.decodeDelimited(reader)
+                    result.listValue = $struct.ListValue.decodeDelimited(reader)
                     break
             }
         }
@@ -153,13 +154,13 @@ export class Value extends $sisyphus.Message<IValue> implements IValue {
         if(properties.hasOwnProperty("numberValue") && properties.numberValue !== undefined) result.numberValue = properties.numberValue
         if(properties.hasOwnProperty("stringValue") && properties.stringValue !== undefined) result.stringValue = properties.stringValue
         if(properties.hasOwnProperty("boolValue") && properties.boolValue !== undefined) result.boolValue = properties.boolValue
-        if(properties.hasOwnProperty("structValue") && properties.structValue !== undefined) result.structValue = Struct.create(properties.structValue)
-        if(properties.hasOwnProperty("listValue") && properties.listValue !== undefined) result.listValue = ListValue.create(properties.listValue)
+        if(properties.hasOwnProperty("structValue") && properties.structValue !== undefined) result.structValue = $struct.Struct.create(properties.structValue)
+        if(properties.hasOwnProperty("listValue") && properties.listValue !== undefined) result.listValue = $struct.ListValue.create(properties.listValue)
         return result
     }
 }
 Object.defineProperty(Value.prototype, "kind", $sisyphus.oneOfProperty("nullValue", "numberValue", "stringValue", "boolValue", "structValue", "listValue"))
-Value.prototype.nullValue = NullValue.NULL_VALUE
+Value.prototype.nullValue = $struct.NullValue.NULL_VALUE
 Value.prototype.numberValue = 0
 Value.prototype.stringValue = ""
 Value.prototype.boolValue = false
@@ -174,11 +175,11 @@ Value.prototype.listValue = null
  */
 export interface IListValue {
     /** Repeated field of dynamically typed values. */
-    values?: (IValue[] | null)
+    values?: ($struct.IValue[] | null)
 }
 
 export class ListValue extends $sisyphus.Message<IListValue> implements IListValue {
-    values!: (IValue[] | null)
+    values!: ($struct.IValue[] | null)
     get $reflection() {
         return ListValue.reflection
     }
@@ -193,7 +194,7 @@ export class ListValue extends $sisyphus.Message<IListValue> implements IListVal
             switch(tag>>>3) {
                 case 1:
                     if (!result.values) result.values = []
-                    result.values.push(Value.decodeDelimited(reader))
+                    result.values.push($struct.Value.decodeDelimited(reader))
                     break
             }
         }
@@ -208,7 +209,7 @@ export class ListValue extends $sisyphus.Message<IListValue> implements IListVal
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("values") && properties.values !== undefined) result.values = Value.create(properties.values)
+        if(properties.hasOwnProperty("values") && properties.values !== undefined) result.values = $struct.Value.create(properties.values)
         return result
     }
 }

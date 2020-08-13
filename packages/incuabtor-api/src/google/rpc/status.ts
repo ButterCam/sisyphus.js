@@ -1,7 +1,7 @@
-import * as $sisyphus from "@sisyphus.js/core"
-import * as $protobuf from "protobufjs"
 import * as $any from "../protobuf/any"
+import * as $sisyphus from "@sisyphus.js/core"
 import * as $reflection from "../../_reflection"
+import * as $protobuf from "protobufjs"
 
 
 /**

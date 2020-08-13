@@ -1,18 +1,15 @@
 import * as $sisyphus from "@sisyphus.js/core"
-import * as $protobuf from "protobufjs"
 import * as $reflection from "../../../../_reflection"
+import * as $protobuf from "protobufjs"
 
 
-/** 获取用户在 Bread 产品中的元信息，主要包含会员之类的和产品相关的信息。 */
 export interface IUserMetadata {
-    /** 用户资源名称 */
-    user?: string
-    /** 用户在 Bread 产品中的会员信息，包含了所有用户现在有效的会员资源名称 */
+    name?: string
     memberships?: (string[] | null)
 }
 
 export class UserMetadata extends $sisyphus.Message<IUserMetadata> implements IUserMetadata {
-    user!: string
+    name!: string
     memberships!: (string[] | null)
     get $reflection() {
         return UserMetadata.reflection
@@ -27,7 +24,7 @@ export class UserMetadata extends $sisyphus.Message<IUserMetadata> implements IU
             let tag = reader.uint32()
             switch(tag>>>3) {
                 case 1:
-                    result.user = reader.string()
+                    result.name = reader.string()
                     break
                 case 2:
                     if (!result.memberships) result.memberships = []
@@ -46,10 +43,10 @@ export class UserMetadata extends $sisyphus.Message<IUserMetadata> implements IU
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("user") && properties.user !== undefined) result.user = properties.user
+        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
         if(properties.hasOwnProperty("memberships") && properties.memberships !== undefined) result.memberships = properties.memberships
         return result
     }
 }
-UserMetadata.prototype.user = ""
+UserMetadata.prototype.name = ""
 UserMetadata.prototype.memberships = null

@@ -1,6 +1,7 @@
+import * as $http from "./http"
 import * as $sisyphus from "@sisyphus.js/core"
-import * as $protobuf from "protobufjs"
 import * as $reflection from "../../_reflection"
+import * as $protobuf from "protobufjs"
 
 
 /**
@@ -14,7 +15,7 @@ export interface IHttp {
      * 
      * **NOTE:** All service configuration rules follow "last one wins" order.
      */
-    rules?: (IHttpRule[] | null)
+    rules?: ($http.IHttpRule[] | null)
     /**
      * When set to true, URL path parameters will be fully URI-decoded except in
      * cases of single segment matches in reserved expansion, where "%2F" will be
@@ -27,7 +28,7 @@ export interface IHttp {
 }
 
 export class Http extends $sisyphus.Message<IHttp> implements IHttp {
-    rules!: (IHttpRule[] | null)
+    rules!: ($http.IHttpRule[] | null)
     fullyDecodeReservedExpansion!: boolean
     get $reflection() {
         return Http.reflection
@@ -43,7 +44,7 @@ export class Http extends $sisyphus.Message<IHttp> implements IHttp {
             switch(tag>>>3) {
                 case 1:
                     if (!result.rules) result.rules = []
-                    result.rules.push(HttpRule.decodeDelimited(reader))
+                    result.rules.push($http.HttpRule.decodeDelimited(reader))
                     break
                 case 2:
                     result.fullyDecodeReservedExpansion = reader.bool()
@@ -61,7 +62,7 @@ export class Http extends $sisyphus.Message<IHttp> implements IHttp {
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("rules") && properties.rules !== undefined) result.rules = HttpRule.create(properties.rules)
+        if(properties.hasOwnProperty("rules") && properties.rules !== undefined) result.rules = $http.HttpRule.create(properties.rules)
         if(properties.hasOwnProperty("fullyDecodeReservedExpansion") && properties.fullyDecodeReservedExpansion !== undefined) result.fullyDecodeReservedExpansion = properties.fullyDecodeReservedExpansion
         return result
     }
@@ -367,7 +368,7 @@ export interface IHttpRule {
      * HTTP method unspecified for this rule. The wild-card rule is useful
      * for services that provide content to Web (HTML) clients.
      */
-    custom?: (ICustomHttpPattern | null)
+    custom?: ($http.ICustomHttpPattern | null)
     /**
      * The name of the request field whose value is mapped to the HTTP request
      * body, or `*` for mapping all request fields not captured by the path
@@ -391,7 +392,7 @@ export interface IHttpRule {
      * not contain an `additional_bindings` field themselves (that is,
      * the nesting may only be one level deep).
      */
-    additionalBindings?: (IHttpRule[] | null)
+    additionalBindings?: ($http.IHttpRule[] | null)
     /**
      * Determines the URL pattern is matched by this rules. This pattern can be
      * used with any of the {get|put|post|delete|patch} methods. A custom method
@@ -407,10 +408,10 @@ export class HttpRule extends $sisyphus.Message<IHttpRule> implements IHttpRule 
     post!: string
     delete!: string
     patch!: string
-    custom!: (ICustomHttpPattern | null)
+    custom!: ($http.ICustomHttpPattern | null)
     body!: string
     responseBody!: string
-    additionalBindings!: (IHttpRule[] | null)
+    additionalBindings!: ($http.IHttpRule[] | null)
     pattern?: string
 
     get $reflection() {
@@ -444,7 +445,7 @@ export class HttpRule extends $sisyphus.Message<IHttpRule> implements IHttpRule 
                     result.patch = reader.string()
                     break
                 case 8:
-                    result.custom = CustomHttpPattern.decodeDelimited(reader)
+                    result.custom = $http.CustomHttpPattern.decodeDelimited(reader)
                     break
                 case 7:
                     result.body = reader.string()
@@ -454,7 +455,7 @@ export class HttpRule extends $sisyphus.Message<IHttpRule> implements IHttpRule 
                     break
                 case 11:
                     if (!result.additionalBindings) result.additionalBindings = []
-                    result.additionalBindings.push(HttpRule.decodeDelimited(reader))
+                    result.additionalBindings.push($http.HttpRule.decodeDelimited(reader))
                     break
             }
         }
@@ -475,10 +476,10 @@ export class HttpRule extends $sisyphus.Message<IHttpRule> implements IHttpRule 
         if(properties.hasOwnProperty("post") && properties.post !== undefined) result.post = properties.post
         if(properties.hasOwnProperty("delete") && properties["delete"] !== undefined) result["delete"] = properties["delete"]
         if(properties.hasOwnProperty("patch") && properties.patch !== undefined) result.patch = properties.patch
-        if(properties.hasOwnProperty("custom") && properties.custom !== undefined) result.custom = CustomHttpPattern.create(properties.custom)
+        if(properties.hasOwnProperty("custom") && properties.custom !== undefined) result.custom = $http.CustomHttpPattern.create(properties.custom)
         if(properties.hasOwnProperty("body") && properties.body !== undefined) result.body = properties.body
         if(properties.hasOwnProperty("responseBody") && properties.responseBody !== undefined) result.responseBody = properties.responseBody
-        if(properties.hasOwnProperty("additionalBindings") && properties.additionalBindings !== undefined) result.additionalBindings = HttpRule.create(properties.additionalBindings)
+        if(properties.hasOwnProperty("additionalBindings") && properties.additionalBindings !== undefined) result.additionalBindings = $http.HttpRule.create(properties.additionalBindings)
         return result
     }
 }

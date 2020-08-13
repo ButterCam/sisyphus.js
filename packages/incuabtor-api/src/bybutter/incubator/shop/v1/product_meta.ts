@@ -1,6 +1,6 @@
 import * as $protobuf from "protobufjs"
-import * as $sisyphus from "@sisyphus.js/core"
 import * as $timestamp from "../../../../google/protobuf/timestamp"
+import * as $sisyphus from "@sisyphus.js/core"
 import * as $reflection from "../../../../_reflection"
 import * as $struct from "../../../../google/protobuf/struct"
 

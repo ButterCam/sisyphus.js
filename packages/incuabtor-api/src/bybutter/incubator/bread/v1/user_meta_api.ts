@@ -1,15 +1,14 @@
 import * as $sisyphus from "@sisyphus.js/core"
-import * as $protobuf from "protobufjs"
 import * as $reflection from "../../../../_reflection"
+import * as $protobuf from "protobufjs"
 
 
-/** 获取用户元信息的 API 请求 */
 export interface IGetUserMetadataRequest {
-    name?: string
+    parent?: string
 }
 
 export class GetUserMetadataRequest extends $sisyphus.Message<IGetUserMetadataRequest> implements IGetUserMetadataRequest {
-    name!: string
+    parent!: string
     get $reflection() {
         return GetUserMetadataRequest.reflection
     }
@@ -23,7 +22,7 @@ export class GetUserMetadataRequest extends $sisyphus.Message<IGetUserMetadataRe
             let tag = reader.uint32()
             switch(tag>>>3) {
                 case 1:
-                    result.name = reader.string()
+                    result.parent = reader.string()
                     break
             }
         }
@@ -38,10 +37,10 @@ export class GetUserMetadataRequest extends $sisyphus.Message<IGetUserMetadataRe
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
+        if(properties.hasOwnProperty("parent") && properties.parent !== undefined) result.parent = properties.parent
         return result
     }
 }
-GetUserMetadataRequest.prototype.name = ""
+GetUserMetadataRequest.prototype.parent = ""
 
 //Service: .bybutter.incubator.bread.v1.UserMetadataApi

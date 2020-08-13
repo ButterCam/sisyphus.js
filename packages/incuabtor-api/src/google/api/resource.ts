@@ -1,6 +1,7 @@
+import * as $resource from "./resource"
 import * as $sisyphus from "@sisyphus.js/core"
-import * as $protobuf from "protobufjs"
 import * as $reflection from "../../_reflection"
+import * as $protobuf from "protobufjs"
 
 
 /**
@@ -171,7 +172,7 @@ export interface IResourceDescriptor {
      * };
      * }
      */
-    history?: ResourceDescriptor.History
+    history?: $resource.ResourceDescriptor.History
     /**
      * The plural name used in the resource name, such as 'projects' for
      * the name of 'projects/{project}'. It is the same concept of the `plural`
@@ -191,7 +192,7 @@ export class ResourceDescriptor extends $sisyphus.Message<IResourceDescriptor> i
     type!: string
     pattern!: (string[] | null)
     nameField!: string
-    history!: ResourceDescriptor.History
+    history!: $resource.ResourceDescriptor.History
     plural!: string
     singular!: string
     get $reflection() {
@@ -250,7 +251,7 @@ export class ResourceDescriptor extends $sisyphus.Message<IResourceDescriptor> i
 ResourceDescriptor.prototype.type = ""
 ResourceDescriptor.prototype.pattern = null
 ResourceDescriptor.prototype.nameField = ""
-ResourceDescriptor.prototype.history = ResourceDescriptor.History.HISTORY_UNSPECIFIED
+ResourceDescriptor.prototype.history = $resource.ResourceDescriptor.History.HISTORY_UNSPECIFIED
 ResourceDescriptor.prototype.plural = ""
 ResourceDescriptor.prototype.singular = ""
 

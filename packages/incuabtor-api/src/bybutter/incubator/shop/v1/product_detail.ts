@@ -1,7 +1,7 @@
-import * as $sisyphus from "@sisyphus.js/core"
-import * as $protobuf from "protobufjs"
 import * as $struct from "../../../../google/protobuf/struct"
+import * as $sisyphus from "@sisyphus.js/core"
 import * as $reflection from "../../../../_reflection"
+import * as $protobuf from "protobufjs"
 
 
 /** 由前端自解析的商品详情，结构对后端透明 */

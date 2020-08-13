@@ -1,9 +1,10 @@
-import * as $sisyphus from "@sisyphus.js/core"
-import * as $protobuf from "protobufjs"
 import * as $imageResource from "../../common/v1/image_resource"
 import * as $money from "../../../../google/type/money"
+import * as $product from "./product"
 import * as $any from "../../../../google/protobuf/any"
+import * as $sisyphus from "@sisyphus.js/core"
 import * as $reflection from "../../../../_reflection"
+import * as $protobuf from "protobufjs"
 import * as $timestamp from "../../../../google/protobuf/timestamp"
 
 
@@ -22,7 +23,7 @@ export interface IProduct {
     /** 计算用商品原价，必须以 STD 为单位，1 STD 为 1 人民币分 */
     standardPrice?: ($money.IMoney | null)
     /** 用户可见的 Plan */
-    plans?: (IPlan[] | null)
+    plans?: ($product.IPlan[] | null)
     /**
      * 商品的详情
      * (-- api-linter: core::0146::any=disabled
@@ -46,7 +47,7 @@ export class Product extends $sisyphus.Message<IProduct> implements IProduct {
     picture!: ($imageResource.IImageResource | null)
     price!: ($money.IMoney | null)
     standardPrice!: ($money.IMoney | null)
-    plans!: (IPlan[] | null)
+    plans!: ($product.IPlan[] | null)
     details!: ($any.IAny | null)
     tags!: ($any.IAny[] | null)
     enable!: boolean
@@ -82,7 +83,7 @@ export class Product extends $sisyphus.Message<IProduct> implements IProduct {
                     break
                 case 7:
                     if (!result.plans) result.plans = []
-                    result.plans.push(Plan.decodeDelimited(reader))
+                    result.plans.push($product.Plan.decodeDelimited(reader))
                     break
                 case 9:
                     result.details = $any.Any.decodeDelimited(reader)
@@ -113,7 +114,7 @@ export class Product extends $sisyphus.Message<IProduct> implements IProduct {
         if(properties.hasOwnProperty("picture") && properties.picture !== undefined) result.picture = $imageResource.ImageResource.create(properties.picture)
         if(properties.hasOwnProperty("price") && properties.price !== undefined) result.price = $money.Money.create(properties.price)
         if(properties.hasOwnProperty("standardPrice") && properties.standardPrice !== undefined) result.standardPrice = $money.Money.create(properties.standardPrice)
-        if(properties.hasOwnProperty("plans") && properties.plans !== undefined) result.plans = Plan.create(properties.plans)
+        if(properties.hasOwnProperty("plans") && properties.plans !== undefined) result.plans = $product.Plan.create(properties.plans)
         if(properties.hasOwnProperty("details") && properties.details !== undefined) result.details = $any.Any.create(properties.details)
         if(properties.hasOwnProperty("tags") && properties.tags !== undefined) result.tags = $any.Any.create(properties.tags)
         if(properties.hasOwnProperty("enable") && properties.enable !== undefined) result.enable = properties.enable
@@ -141,7 +142,7 @@ export interface IPlan {
     /** 用于结账的条形码数据 */
     payment?: string
     /** 价格标签，包含列表中价格标签，详情页标签，与支付按钮标签 */
-    priceLabel?: (IPriceLabel | null)
+    priceLabel?: ($product.IPriceLabel | null)
     /**
      * 本价格商品内包含物品
      * (-- api-linter: core::0146::any=disabled
@@ -174,7 +175,7 @@ export class Plan extends $sisyphus.Message<IPlan> implements IPlan {
     price!: ($money.IMoney | null)
     standardPrice!: ($money.IMoney | null)
     payment!: string
-    priceLabel!: (IPriceLabel | null)
+    priceLabel!: ($product.IPriceLabel | null)
     items!: ($any.IAny[] | null)
     tags!: ($any.IAny[] | null)
     paymentChannels!: (string[] | null)
@@ -206,7 +207,7 @@ export class Plan extends $sisyphus.Message<IPlan> implements IPlan {
                     result.payment = reader.string()
                     break
                 case 4:
-                    result.priceLabel = PriceLabel.decodeDelimited(reader)
+                    result.priceLabel = $product.PriceLabel.decodeDelimited(reader)
                     break
                 case 5:
                     if (!result.items) result.items = []
@@ -255,7 +256,7 @@ export class Plan extends $sisyphus.Message<IPlan> implements IPlan {
         if(properties.hasOwnProperty("price") && properties.price !== undefined) result.price = $money.Money.create(properties.price)
         if(properties.hasOwnProperty("standardPrice") && properties.standardPrice !== undefined) result.standardPrice = $money.Money.create(properties.standardPrice)
         if(properties.hasOwnProperty("payment") && properties.payment !== undefined) result.payment = properties.payment
-        if(properties.hasOwnProperty("priceLabel") && properties.priceLabel !== undefined) result.priceLabel = PriceLabel.create(properties.priceLabel)
+        if(properties.hasOwnProperty("priceLabel") && properties.priceLabel !== undefined) result.priceLabel = $product.PriceLabel.create(properties.priceLabel)
         if(properties.hasOwnProperty("items") && properties.items !== undefined) result.items = $any.Any.create(properties.items)
         if(properties.hasOwnProperty("tags") && properties.tags !== undefined) result.tags = $any.Any.create(properties.tags)
         if(properties.hasOwnProperty("paymentChannels") && properties.paymentChannels !== undefined) result.paymentChannels = properties.paymentChannels

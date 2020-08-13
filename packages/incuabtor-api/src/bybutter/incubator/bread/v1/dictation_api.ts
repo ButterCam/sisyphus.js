@@ -1,7 +1,7 @@
-import * as $sisyphus from "@sisyphus.js/core"
-import * as $protobuf from "protobufjs"
 import * as $dictation from "./dictation"
+import * as $sisyphus from "@sisyphus.js/core"
 import * as $reflection from "../../../../_reflection"
+import * as $protobuf from "protobufjs"
 
 
 /** 创建语音识别任务请求 */

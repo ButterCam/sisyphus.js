@@ -1,8 +1,9 @@
-import * as $sisyphus from "@sisyphus.js/core"
-import * as $protobuf from "protobufjs"
 import * as $any from "../protobuf/any"
 import * as $status from "../rpc/status"
+import * as $sisyphus from "@sisyphus.js/core"
 import * as $reflection from "../../_reflection"
+import * as $protobuf from "protobufjs"
+import * as $operations from "./operations"
 import * as $duration from "../protobuf/duration"
 
 
@@ -228,13 +229,13 @@ ListOperationsRequest.prototype.pageToken = ""
 /** The response message for [Operations.ListOperations][google.longrunning.Operations.ListOperations]. */
 export interface IListOperationsResponse {
     /** A list of operations that matches the specified filter in the request. */
-    operations?: (IOperation[] | null)
+    operations?: ($operations.IOperation[] | null)
     /** The standard List next-page token. */
     nextPageToken?: string
 }
 
 export class ListOperationsResponse extends $sisyphus.Message<IListOperationsResponse> implements IListOperationsResponse {
-    operations!: (IOperation[] | null)
+    operations!: ($operations.IOperation[] | null)
     nextPageToken!: string
     get $reflection() {
         return ListOperationsResponse.reflection
@@ -250,7 +251,7 @@ export class ListOperationsResponse extends $sisyphus.Message<IListOperationsRes
             switch(tag>>>3) {
                 case 1:
                     if (!result.operations) result.operations = []
-                    result.operations.push(Operation.decodeDelimited(reader))
+                    result.operations.push($operations.Operation.decodeDelimited(reader))
                     break
                 case 2:
                     result.nextPageToken = reader.string()
@@ -268,7 +269,7 @@ export class ListOperationsResponse extends $sisyphus.Message<IListOperationsRes
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("operations") && properties.operations !== undefined) result.operations = Operation.create(properties.operations)
+        if(properties.hasOwnProperty("operations") && properties.operations !== undefined) result.operations = $operations.Operation.create(properties.operations)
         if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
         return result
     }

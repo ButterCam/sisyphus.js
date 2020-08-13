@@ -1,7 +1,7 @@
-import * as $sisyphus from "@sisyphus.js/core"
-import * as $protobuf from "protobufjs"
 import * as $struct from "../../../../google/protobuf/struct"
+import * as $sisyphus from "@sisyphus.js/core"
 import * as $reflection from "../../../../_reflection"
+import * as $protobuf from "protobufjs"
 import * as $incubatorProduct from "../../common/v1/incubator_product"
 import * as $timestamp from "../../../../google/protobuf/timestamp"
 

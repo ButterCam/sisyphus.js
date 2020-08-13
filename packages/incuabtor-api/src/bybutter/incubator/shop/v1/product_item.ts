@@ -1,8 +1,8 @@
-import * as $sisyphus from "@sisyphus.js/core"
-import * as $protobuf from "protobufjs"
 import * as $ownership from "./ownership"
 import * as $duration from "../../../../google/protobuf/duration"
+import * as $sisyphus from "@sisyphus.js/core"
 import * as $reflection from "../../../../_reflection"
+import * as $protobuf from "protobufjs"
 
 
 /** Privilege 商品内容 */

@@ -1,6 +1,6 @@
 import * as $sisyphus from "@sisyphus.js/core"
-import * as $protobuf from "protobufjs"
 import * as $reflection from "../../../../_reflection"
+import * as $protobuf from "protobufjs"
 
 
 /** 用于设置 API 访问控制的拓展信息。 */

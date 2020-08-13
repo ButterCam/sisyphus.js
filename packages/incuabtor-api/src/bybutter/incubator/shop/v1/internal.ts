@@ -1,6 +1,7 @@
 import * as $sisyphus from "@sisyphus.js/core"
-import * as $protobuf from "protobufjs"
 import * as $reflection from "../../../../_reflection"
+import * as $protobuf from "protobufjs"
+import * as $internal from "./internal"
 import * as $product from "./product"
 import * as $any from "../../../../google/protobuf/any"
 
@@ -59,7 +60,7 @@ PaymentPayload.prototype.planHash = $sisyphus.emptyBytes
 /** 解析完成的订单商品 */
 export interface IResolvedOrderItem {
     /** 订单内容的 Payment 信息 */
-    payment?: (IPaymentPayload | null)
+    payment?: ($internal.IPaymentPayload | null)
     /** 商品接哦古 */
     product?: ($product.IProduct | null)
     /** 所选择的规格 */
@@ -73,7 +74,7 @@ export interface IResolvedOrderItem {
 }
 
 export class ResolvedOrderItem extends $sisyphus.Message<IResolvedOrderItem> implements IResolvedOrderItem {
-    payment!: (IPaymentPayload | null)
+    payment!: ($internal.IPaymentPayload | null)
     product!: ($product.IProduct | null)
     plan!: ($product.IPlan | null)
     metadata!: ($any.IAny[] | null)
@@ -90,7 +91,7 @@ export class ResolvedOrderItem extends $sisyphus.Message<IResolvedOrderItem> imp
             let tag = reader.uint32()
             switch(tag>>>3) {
                 case 1:
-                    result.payment = PaymentPayload.decodeDelimited(reader)
+                    result.payment = $internal.PaymentPayload.decodeDelimited(reader)
                     break
                 case 2:
                     result.product = $product.Product.decodeDelimited(reader)
@@ -115,7 +116,7 @@ export class ResolvedOrderItem extends $sisyphus.Message<IResolvedOrderItem> imp
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("payment") && properties.payment !== undefined) result.payment = PaymentPayload.create(properties.payment)
+        if(properties.hasOwnProperty("payment") && properties.payment !== undefined) result.payment = $internal.PaymentPayload.create(properties.payment)
         if(properties.hasOwnProperty("product") && properties.product !== undefined) result.product = $product.Product.create(properties.product)
         if(properties.hasOwnProperty("plan") && properties.plan !== undefined) result.plan = $product.Plan.create(properties.plan)
         if(properties.hasOwnProperty("metadata") && properties.metadata !== undefined) result.metadata = $any.Any.create(properties.metadata)

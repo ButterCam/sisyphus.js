@@ -1,6 +1,7 @@
+import * as $binding from "./binding"
 import * as $sisyphus from "@sisyphus.js/core"
-import * as $protobuf from "protobufjs"
 import * as $reflection from "../../../../_reflection"
+import * as $protobuf from "protobufjs"
 
 
 /** 账户绑定信息 */
@@ -8,16 +9,16 @@ export interface IAccountBinding {
     /** 绑定信息的账户资源名称 */
     account?: string
     /** 绑定的手机号 */
-    mobile?: (AccountBinding.IMobile | null)
+    mobile?: ($binding.AccountBinding.IMobile | null)
     /** 绑定的帐号码 */
-    identification?: (AccountBinding.IIdentification | null)
+    identification?: ($binding.AccountBinding.IIdentification | null)
     Target?: string
 }
 
 export class AccountBinding extends $sisyphus.Message<IAccountBinding> implements IAccountBinding {
     account!: string
-    mobile!: (AccountBinding.IMobile | null)
-    identification!: (AccountBinding.IIdentification | null)
+    mobile!: ($binding.AccountBinding.IMobile | null)
+    identification!: ($binding.AccountBinding.IIdentification | null)
     Target?: string
 
     get $reflection() {
@@ -36,10 +37,10 @@ export class AccountBinding extends $sisyphus.Message<IAccountBinding> implement
                     result.account = reader.string()
                     break
                 case 11:
-                    result.mobile = AccountBinding.Mobile.decodeDelimited(reader)
+                    result.mobile = $binding.AccountBinding.Mobile.decodeDelimited(reader)
                     break
                 case 12:
-                    result.identification = AccountBinding.Identification.decodeDelimited(reader)
+                    result.identification = $binding.AccountBinding.Identification.decodeDelimited(reader)
                     break
             }
         }
@@ -55,8 +56,8 @@ export class AccountBinding extends $sisyphus.Message<IAccountBinding> implement
         const result = new this()
         if (!properties) return result
         if(properties.hasOwnProperty("account") && properties.account !== undefined) result.account = properties.account
-        if(properties.hasOwnProperty("mobile") && properties.mobile !== undefined) result.mobile = AccountBinding.Mobile.create(properties.mobile)
-        if(properties.hasOwnProperty("identification") && properties.identification !== undefined) result.identification = AccountBinding.Identification.create(properties.identification)
+        if(properties.hasOwnProperty("mobile") && properties.mobile !== undefined) result.mobile = $binding.AccountBinding.Mobile.create(properties.mobile)
+        if(properties.hasOwnProperty("identification") && properties.identification !== undefined) result.identification = $binding.AccountBinding.Identification.create(properties.identification)
         return result
     }
 }

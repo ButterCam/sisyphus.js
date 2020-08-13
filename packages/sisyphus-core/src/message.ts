@@ -44,3 +44,7 @@ export abstract class Message<T extends object = object> {
         }
     }
 }
+
+export function message() {
+
+}

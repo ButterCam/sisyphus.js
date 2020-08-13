@@ -1,9 +1,10 @@
-import * as $sisyphus from "@sisyphus.js/core"
-import * as $protobuf from "protobufjs"
 import * as $reflection from "../../../../_reflection"
 import * as $ownership from "../../shop/v1/ownership"
 import * as $timestamp from "../../../../google/protobuf/timestamp"
+import * as $sisyphus from "@sisyphus.js/core"
+import * as $protobuf from "protobufjs"
 import * as $struct from "../../../../google/protobuf/struct"
+import * as $privilege from "./privilege"
 
 
 /** 贴纸的调色类型 */
@@ -631,9 +632,9 @@ export interface ISticker {
     /** 特权结束时间 */
     endTime?: ($timestamp.ITimestamp | null)
     /** 贴纸的调色类型 */
-    paletteType?: PaletteType
+    paletteType?: $privilege.PaletteType
     /** 贴纸的文件类型 */
-    fileType?: StickerType
+    fileType?: $privilege.StickerType
     /** 贴纸宽 */
     width?: number
     /** 贴纸高 */
@@ -652,8 +653,8 @@ export class Sticker extends $sisyphus.Message<ISticker> implements ISticker {
     usage!: $ownership.UsageType
     startTime!: ($timestamp.ITimestamp | null)
     endTime!: ($timestamp.ITimestamp | null)
-    paletteType!: PaletteType
-    fileType!: StickerType
+    paletteType!: $privilege.PaletteType
+    fileType!: $privilege.StickerType
     width!: number
     height!: number
     get $reflection() {
@@ -755,8 +756,8 @@ Sticker.prototype.ownership = $ownership.OwnershipType.OWNERSHIP_TYPE_UNSPECIFIE
 Sticker.prototype.usage = $ownership.UsageType.USAGE_TYPE_UNSPECIFIED
 Sticker.prototype.startTime = null
 Sticker.prototype.endTime = null
-Sticker.prototype.paletteType = PaletteType.PALETTE_TYPE_UNSPECIFIED
-Sticker.prototype.fileType = StickerType.STICKER_TYPE_UNSPECIFIED
+Sticker.prototype.paletteType = $privilege.PaletteType.PALETTE_TYPE_UNSPECIFIED
+Sticker.prototype.fileType = $privilege.StickerType.STICKER_TYPE_UNSPECIFIED
 Sticker.prototype.width = 0
 Sticker.prototype.height = 0
 

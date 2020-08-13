@@ -1,7 +1,8 @@
+import * as $reflection from "../../../../_reflection"
+import * as $ownership from "./ownership"
+import * as $timestamp from "../../../../google/protobuf/timestamp"
 import * as $sisyphus from "@sisyphus.js/core"
 import * as $protobuf from "protobufjs"
-import * as $reflection from "../../../../_reflection"
-import * as $timestamp from "../../../../google/protobuf/timestamp"
 
 
 /** Privilege 使用权限 */
@@ -47,7 +48,7 @@ export interface IOwnership {
     /** 该所有权的对应 Privilege 资源名 */
     privilege?: string
     /** 所有权 */
-    ownership?: OwnershipType
+    ownership?: $ownership.OwnershipType
     /** 所有权的可见范围 */
     requirements?: (string[] | null)
     /** 所有权的有效期开始时间 */
@@ -64,7 +65,7 @@ export interface IOwnership {
 
 export class Ownership extends $sisyphus.Message<IOwnership> implements IOwnership {
     privilege!: string
-    ownership!: OwnershipType
+    ownership!: $ownership.OwnershipType
     requirements!: (string[] | null)
     startTime!: ($timestamp.ITimestamp | null)
     endTime!: ($timestamp.ITimestamp | null)
@@ -133,7 +134,7 @@ export class Ownership extends $sisyphus.Message<IOwnership> implements IOwnersh
     }
 }
 Ownership.prototype.privilege = ""
-Ownership.prototype.ownership = OwnershipType.OWNERSHIP_TYPE_UNSPECIFIED
+Ownership.prototype.ownership = $ownership.OwnershipType.OWNERSHIP_TYPE_UNSPECIFIED
 Ownership.prototype.requirements = null
 Ownership.prototype.startTime = null
 Ownership.prototype.endTime = null

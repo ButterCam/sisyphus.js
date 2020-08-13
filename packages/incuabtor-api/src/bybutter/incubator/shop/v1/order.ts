@@ -1,8 +1,9 @@
-import * as $sisyphus from "@sisyphus.js/core"
-import * as $protobuf from "protobufjs"
+import * as $order from "./order"
 import * as $money from "../../../../google/type/money"
 import * as $any from "../../../../google/protobuf/any"
+import * as $sisyphus from "@sisyphus.js/core"
 import * as $reflection from "../../../../_reflection"
+import * as $protobuf from "protobufjs"
 import * as $product from "./product"
 
 
@@ -11,11 +12,11 @@ export interface IOrder {
     /** 订单的资源名称，形式为 ‘users/{user}/orders/{order}’ */
     name?: string
     /** 订单包含的物品 */
-    items?: (Order.IItem[] | null)
+    items?: ($order.Order.IItem[] | null)
     /** 订单的用于支付信息 */
-    charge?: (Order.ICharge | null)
+    charge?: ($order.Order.ICharge | null)
     /** 订单的状态 */
-    status?: Order.State
+    status?: $order.Order.State
     /** 展示用商品原价，一般以本地化价格展示 */
     price?: ($money.IMoney | null)
     /** 计算用商品原价，必须以 STD 为单位，1 STD 为 1 人民币分 */
@@ -30,9 +31,9 @@ export interface IOrder {
 
 export class Order extends $sisyphus.Message<IOrder> implements IOrder {
     name!: string
-    items!: (Order.IItem[] | null)
-    charge!: (Order.ICharge | null)
-    status!: Order.State
+    items!: ($order.Order.IItem[] | null)
+    charge!: ($order.Order.ICharge | null)
+    status!: $order.Order.State
     price!: ($money.IMoney | null)
     standardPrice!: ($money.IMoney | null)
     metadata!: ($any.IAny[] | null)
@@ -53,10 +54,10 @@ export class Order extends $sisyphus.Message<IOrder> implements IOrder {
                     break
                 case 2:
                     if (!result.items) result.items = []
-                    result.items.push(Order.Item.decodeDelimited(reader))
+                    result.items.push($order.Order.Item.decodeDelimited(reader))
                     break
                 case 3:
-                    result.charge = Order.Charge.decodeDelimited(reader)
+                    result.charge = $order.Order.Charge.decodeDelimited(reader)
                     break
                 case 4:
                     result.status = reader.uint32()
@@ -85,8 +86,8 @@ export class Order extends $sisyphus.Message<IOrder> implements IOrder {
         const result = new this()
         if (!properties) return result
         if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        if(properties.hasOwnProperty("items") && properties.items !== undefined) result.items = Order.Item.create(properties.items)
-        if(properties.hasOwnProperty("charge") && properties.charge !== undefined) result.charge = Order.Charge.create(properties.charge)
+        if(properties.hasOwnProperty("items") && properties.items !== undefined) result.items = $order.Order.Item.create(properties.items)
+        if(properties.hasOwnProperty("charge") && properties.charge !== undefined) result.charge = $order.Order.Charge.create(properties.charge)
         if(properties.hasOwnProperty("status") && properties.status !== undefined) result.status = properties.status
         if(properties.hasOwnProperty("price") && properties.price !== undefined) result.price = $money.Money.create(properties.price)
         if(properties.hasOwnProperty("standardPrice") && properties.standardPrice !== undefined) result.standardPrice = $money.Money.create(properties.standardPrice)
@@ -97,7 +98,7 @@ export class Order extends $sisyphus.Message<IOrder> implements IOrder {
 Order.prototype.name = ""
 Order.prototype.items = null
 Order.prototype.charge = null
-Order.prototype.status = Order.State.STATE_UNSPECIFIED
+Order.prototype.status = $order.Order.State.STATE_UNSPECIFIED
 Order.prototype.price = null
 Order.prototype.standardPrice = null
 Order.prototype.metadata = null
