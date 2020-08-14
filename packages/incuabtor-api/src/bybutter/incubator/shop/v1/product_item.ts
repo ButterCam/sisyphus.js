@@ -55,13 +55,13 @@ export class PrivilegeProductItem extends $sisyphus.Message<IPrivilegeProductIte
         if (!properties) return result
         if(properties.hasOwnProperty("privilege") && properties.privilege !== undefined) result.privilege = properties.privilege
         if(properties.hasOwnProperty("ownership") && properties.ownership !== undefined) result.ownership = properties.ownership
-        if(properties.hasOwnProperty("duration") && properties.duration !== undefined) result.duration = $duration.Duration.create(properties.duration)
+        if(properties.hasOwnProperty("duration") && properties.duration != null) result.duration = $duration.Duration.create(properties.duration)
         return result
     }
 }
-PrivilegeProductItem.prototype.privilege = ""
-PrivilegeProductItem.prototype.ownership = $ownership.OwnershipType.OWNERSHIP_TYPE_UNSPECIFIED
-PrivilegeProductItem.prototype.duration = null
+PrivilegeProductItem.prototype.privilege = PrivilegeProductItem.reflection.fieldsById[1].defaultValue
+PrivilegeProductItem.prototype.ownership = PrivilegeProductItem.reflection.fieldsById[3].defaultValue
+PrivilegeProductItem.prototype.duration = PrivilegeProductItem.reflection.fieldsById[4].defaultValue
 
 
 /** 实体商品内容 */
@@ -111,5 +111,5 @@ export class EntityProductItem extends $sisyphus.Message<IEntityProductItem> imp
         return result
     }
 }
-EntityProductItem.prototype.entity = ""
-EntityProductItem.prototype.inventory = 0
+EntityProductItem.prototype.entity = EntityProductItem.reflection.fieldsById[1].defaultValue
+EntityProductItem.prototype.inventory = EntityProductItem.reflection.fieldsById[10].defaultValue

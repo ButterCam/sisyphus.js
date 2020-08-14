@@ -18,6 +18,7 @@
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "protobufjs": "^6.10.1"
   }
 }

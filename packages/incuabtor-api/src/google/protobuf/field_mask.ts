@@ -204,7 +204,7 @@ import * as $protobuf from "protobufjs"
  * request should verify the included field paths, and return an
  * `INVALID_ARGUMENT` error if any path is unmappable.
  */
-export interface IFieldMask {
+export interface IFieldMask extends $sisyphus.IFieldMask {
     /** The set of field mask paths. */
     paths?: (string[] | null)
 }
@@ -244,4 +244,4 @@ export class FieldMask extends $sisyphus.Message<IFieldMask> implements IFieldMa
         return result
     }
 }
-FieldMask.prototype.paths = null
+FieldMask.prototype.paths = FieldMask.reflection.fieldsById[1].defaultValue

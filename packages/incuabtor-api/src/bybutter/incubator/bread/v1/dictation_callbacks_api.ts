@@ -40,10 +40,13 @@ export class InvokeDictationCallbackRequest extends $sisyphus.Message<IInvokeDic
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("dictation") && properties.dictation !== undefined) result.dictation = $struct.Struct.create(properties.dictation)
+        if(properties.hasOwnProperty("dictation") && properties.dictation != null) result.dictation = $struct.Struct.create(properties.dictation)
         return result
     }
 }
-InvokeDictationCallbackRequest.prototype.dictation = null
+InvokeDictationCallbackRequest.prototype.dictation = InvokeDictationCallbackRequest.reflection.fieldsById[1].defaultValue
 
 //Service: .bybutter.incubator.bread.v1.DictationCallbacksApi
+
+export class DictationCallbacksApi {
+}

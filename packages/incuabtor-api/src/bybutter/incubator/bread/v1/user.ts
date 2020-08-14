@@ -43,4 +43,4 @@ export class User extends $sisyphus.Message<IUser> implements IUser {
         return result
     }
 }
-User.prototype.name = ""
+User.prototype.name = User.reflection.fieldsById[1].defaultValue

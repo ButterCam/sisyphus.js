@@ -67,6 +67,6 @@ export class Money extends $sisyphus.Message<IMoney> implements IMoney {
         return result
     }
 }
-Money.prototype.currencyCode = ""
-Money.prototype.units = $sisyphus.Long.ZERO
-Money.prototype.nanos = 0
+Money.prototype.currencyCode = Money.reflection.fieldsById[1].defaultValue
+Money.prototype.units = Money.reflection.fieldsById[2].defaultValue
+Money.prototype.nanos = Money.reflection.fieldsById[3].defaultValue

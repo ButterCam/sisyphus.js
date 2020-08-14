@@ -78,9 +78,9 @@ export class ImageResource extends $sisyphus.Message<IImageResource> implements 
         return result
     }
 }
-ImageResource.prototype.originUri = ""
-ImageResource.prototype.standardUri = ""
-ImageResource.prototype.previewUri = ""
-ImageResource.prototype.thumbnailUri = ""
-ImageResource.prototype.width = 0
-ImageResource.prototype.height = 0
+ImageResource.prototype.originUri = ImageResource.reflection.fieldsById[1].defaultValue
+ImageResource.prototype.standardUri = ImageResource.reflection.fieldsById[2].defaultValue
+ImageResource.prototype.previewUri = ImageResource.reflection.fieldsById[3].defaultValue
+ImageResource.prototype.thumbnailUri = ImageResource.reflection.fieldsById[4].defaultValue
+ImageResource.prototype.width = ImageResource.reflection.fieldsById[11].defaultValue
+ImageResource.prototype.height = ImageResource.reflection.fieldsById[12].defaultValue

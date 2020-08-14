@@ -4,7 +4,6 @@ import * as $timestamp from "../../../../google/protobuf/timestamp"
 import * as $sisyphus from "@sisyphus.js/core"
 import * as $protobuf from "protobufjs"
 import * as $struct from "../../../../google/protobuf/struct"
-import * as $privilege from "./privilege"
 
 
 /** 贴纸的调色类型 */
@@ -148,24 +147,24 @@ export class Filter extends $sisyphus.Message<IFilter> implements IFilter {
         if(properties.hasOwnProperty("remark") && properties.remark !== undefined) result.remark = properties.remark
         if(properties.hasOwnProperty("ownership") && properties.ownership !== undefined) result.ownership = properties.ownership
         if(properties.hasOwnProperty("usage") && properties.usage !== undefined) result.usage = properties.usage
-        if(properties.hasOwnProperty("startTime") && properties.startTime !== undefined) result.startTime = $timestamp.Timestamp.create(properties.startTime)
-        if(properties.hasOwnProperty("endTime") && properties.endTime !== undefined) result.endTime = $timestamp.Timestamp.create(properties.endTime)
+        if(properties.hasOwnProperty("startTime") && properties.startTime != null) result.startTime = $timestamp.Timestamp.create(properties.startTime)
+        if(properties.hasOwnProperty("endTime") && properties.endTime != null) result.endTime = $timestamp.Timestamp.create(properties.endTime)
         if(properties.hasOwnProperty("defaultStrength") && properties.defaultStrength !== undefined) result.defaultStrength = properties.defaultStrength
         return result
     }
 }
-Filter.prototype.name = ""
-Filter.prototype.title = ""
-Filter.prototype.iconUri = ""
-Filter.prototype.uri = ""
-Filter.prototype.downloadUri = ""
-Filter.prototype.fileHash = ""
-Filter.prototype.remark = ""
-Filter.prototype.ownership = $ownership.OwnershipType.OWNERSHIP_TYPE_UNSPECIFIED
-Filter.prototype.usage = $ownership.UsageType.USAGE_TYPE_UNSPECIFIED
-Filter.prototype.startTime = null
-Filter.prototype.endTime = null
-Filter.prototype.defaultStrength = 0
+Filter.prototype.name = Filter.reflection.fieldsById[1].defaultValue
+Filter.prototype.title = Filter.reflection.fieldsById[2].defaultValue
+Filter.prototype.iconUri = Filter.reflection.fieldsById[3].defaultValue
+Filter.prototype.uri = Filter.reflection.fieldsById[4].defaultValue
+Filter.prototype.downloadUri = Filter.reflection.fieldsById[5].defaultValue
+Filter.prototype.fileHash = Filter.reflection.fieldsById[6].defaultValue
+Filter.prototype.remark = Filter.reflection.fieldsById[7].defaultValue
+Filter.prototype.ownership = Filter.reflection.fieldsById[8].defaultValue
+Filter.prototype.usage = Filter.reflection.fieldsById[9].defaultValue
+Filter.prototype.startTime = Filter.reflection.fieldsById[10].defaultValue
+Filter.prototype.endTime = Filter.reflection.fieldsById[11].defaultValue
+Filter.prototype.defaultStrength = Filter.reflection.fieldsById[20].defaultValue
 
 
 /** 滤镜组 */
@@ -222,9 +221,9 @@ export class FilterGroup extends $sisyphus.Message<IFilterGroup> implements IFil
         return result
     }
 }
-FilterGroup.prototype.name = ""
-FilterGroup.prototype.title = ""
-FilterGroup.prototype.iconUri = ""
+FilterGroup.prototype.name = FilterGroup.reflection.fieldsById[1].defaultValue
+FilterGroup.prototype.title = FilterGroup.reflection.fieldsById[2].defaultValue
+FilterGroup.prototype.iconUri = FilterGroup.reflection.fieldsById[3].defaultValue
 
 
 /** 边框特权资源 */
@@ -338,24 +337,24 @@ export class Border extends $sisyphus.Message<IBorder> implements IBorder {
         if(properties.hasOwnProperty("remark") && properties.remark !== undefined) result.remark = properties.remark
         if(properties.hasOwnProperty("ownership") && properties.ownership !== undefined) result.ownership = properties.ownership
         if(properties.hasOwnProperty("usage") && properties.usage !== undefined) result.usage = properties.usage
-        if(properties.hasOwnProperty("startTime") && properties.startTime !== undefined) result.startTime = $timestamp.Timestamp.create(properties.startTime)
-        if(properties.hasOwnProperty("endTime") && properties.endTime !== undefined) result.endTime = $timestamp.Timestamp.create(properties.endTime)
+        if(properties.hasOwnProperty("startTime") && properties.startTime != null) result.startTime = $timestamp.Timestamp.create(properties.startTime)
+        if(properties.hasOwnProperty("endTime") && properties.endTime != null) result.endTime = $timestamp.Timestamp.create(properties.endTime)
         if(properties.hasOwnProperty("defaultStrength") && properties.defaultStrength !== undefined) result.defaultStrength = properties.defaultStrength
         return result
     }
 }
-Border.prototype.name = ""
-Border.prototype.title = ""
-Border.prototype.iconUri = ""
-Border.prototype.uri = ""
-Border.prototype.downloadUri = ""
-Border.prototype.fileHash = ""
-Border.prototype.remark = ""
-Border.prototype.ownership = $ownership.OwnershipType.OWNERSHIP_TYPE_UNSPECIFIED
-Border.prototype.usage = $ownership.UsageType.USAGE_TYPE_UNSPECIFIED
-Border.prototype.startTime = null
-Border.prototype.endTime = null
-Border.prototype.defaultStrength = 0
+Border.prototype.name = Border.reflection.fieldsById[1].defaultValue
+Border.prototype.title = Border.reflection.fieldsById[2].defaultValue
+Border.prototype.iconUri = Border.reflection.fieldsById[3].defaultValue
+Border.prototype.uri = Border.reflection.fieldsById[4].defaultValue
+Border.prototype.downloadUri = Border.reflection.fieldsById[5].defaultValue
+Border.prototype.fileHash = Border.reflection.fieldsById[6].defaultValue
+Border.prototype.remark = Border.reflection.fieldsById[7].defaultValue
+Border.prototype.ownership = Border.reflection.fieldsById[8].defaultValue
+Border.prototype.usage = Border.reflection.fieldsById[9].defaultValue
+Border.prototype.startTime = Border.reflection.fieldsById[10].defaultValue
+Border.prototype.endTime = Border.reflection.fieldsById[11].defaultValue
+Border.prototype.defaultStrength = Border.reflection.fieldsById[20].defaultValue
 
 
 /** 边框特权组 */
@@ -412,9 +411,9 @@ export class BorderGroup extends $sisyphus.Message<IBorderGroup> implements IBor
         return result
     }
 }
-BorderGroup.prototype.name = ""
-BorderGroup.prototype.title = ""
-BorderGroup.prototype.iconUri = ""
+BorderGroup.prototype.name = BorderGroup.reflection.fieldsById[1].defaultValue
+BorderGroup.prototype.title = BorderGroup.reflection.fieldsById[2].defaultValue
+BorderGroup.prototype.iconUri = BorderGroup.reflection.fieldsById[3].defaultValue
 
 
 /** 标签资源 */
@@ -528,24 +527,24 @@ export class Label extends $sisyphus.Message<ILabel> implements ILabel {
         if(properties.hasOwnProperty("remark") && properties.remark !== undefined) result.remark = properties.remark
         if(properties.hasOwnProperty("ownership") && properties.ownership !== undefined) result.ownership = properties.ownership
         if(properties.hasOwnProperty("usage") && properties.usage !== undefined) result.usage = properties.usage
-        if(properties.hasOwnProperty("startTime") && properties.startTime !== undefined) result.startTime = $timestamp.Timestamp.create(properties.startTime)
-        if(properties.hasOwnProperty("endTime") && properties.endTime !== undefined) result.endTime = $timestamp.Timestamp.create(properties.endTime)
-        if(properties.hasOwnProperty("style") && properties.style !== undefined) result.style = $struct.Struct.create(properties.style)
+        if(properties.hasOwnProperty("startTime") && properties.startTime != null) result.startTime = $timestamp.Timestamp.create(properties.startTime)
+        if(properties.hasOwnProperty("endTime") && properties.endTime != null) result.endTime = $timestamp.Timestamp.create(properties.endTime)
+        if(properties.hasOwnProperty("style") && properties.style != null) result.style = $struct.Struct.create(properties.style)
         return result
     }
 }
-Label.prototype.name = ""
-Label.prototype.title = ""
-Label.prototype.iconUri = ""
-Label.prototype.uri = ""
-Label.prototype.downloadUri = ""
-Label.prototype.fileHash = ""
-Label.prototype.remark = ""
-Label.prototype.ownership = $ownership.OwnershipType.OWNERSHIP_TYPE_UNSPECIFIED
-Label.prototype.usage = $ownership.UsageType.USAGE_TYPE_UNSPECIFIED
-Label.prototype.startTime = null
-Label.prototype.endTime = null
-Label.prototype.style = null
+Label.prototype.name = Label.reflection.fieldsById[1].defaultValue
+Label.prototype.title = Label.reflection.fieldsById[2].defaultValue
+Label.prototype.iconUri = Label.reflection.fieldsById[3].defaultValue
+Label.prototype.uri = Label.reflection.fieldsById[4].defaultValue
+Label.prototype.downloadUri = Label.reflection.fieldsById[5].defaultValue
+Label.prototype.fileHash = Label.reflection.fieldsById[6].defaultValue
+Label.prototype.remark = Label.reflection.fieldsById[7].defaultValue
+Label.prototype.ownership = Label.reflection.fieldsById[8].defaultValue
+Label.prototype.usage = Label.reflection.fieldsById[9].defaultValue
+Label.prototype.startTime = Label.reflection.fieldsById[10].defaultValue
+Label.prototype.endTime = Label.reflection.fieldsById[11].defaultValue
+Label.prototype.style = Label.reflection.fieldsById[20].defaultValue
 
 
 /** 标签组资源 */
@@ -602,9 +601,9 @@ export class LabelGroup extends $sisyphus.Message<ILabelGroup> implements ILabel
         return result
     }
 }
-LabelGroup.prototype.name = ""
-LabelGroup.prototype.title = ""
-LabelGroup.prototype.iconUri = ""
+LabelGroup.prototype.name = LabelGroup.reflection.fieldsById[1].defaultValue
+LabelGroup.prototype.title = LabelGroup.reflection.fieldsById[2].defaultValue
+LabelGroup.prototype.iconUri = LabelGroup.reflection.fieldsById[3].defaultValue
 
 
 /** 贴纸资源 */
@@ -632,9 +631,9 @@ export interface ISticker {
     /** 特权结束时间 */
     endTime?: ($timestamp.ITimestamp | null)
     /** 贴纸的调色类型 */
-    paletteType?: $privilege.PaletteType
+    paletteType?: PaletteType
     /** 贴纸的文件类型 */
-    fileType?: $privilege.StickerType
+    fileType?: StickerType
     /** 贴纸宽 */
     width?: number
     /** 贴纸高 */
@@ -653,8 +652,8 @@ export class Sticker extends $sisyphus.Message<ISticker> implements ISticker {
     usage!: $ownership.UsageType
     startTime!: ($timestamp.ITimestamp | null)
     endTime!: ($timestamp.ITimestamp | null)
-    paletteType!: $privilege.PaletteType
-    fileType!: $privilege.StickerType
+    paletteType!: PaletteType
+    fileType!: StickerType
     width!: number
     height!: number
     get $reflection() {
@@ -736,8 +735,8 @@ export class Sticker extends $sisyphus.Message<ISticker> implements ISticker {
         if(properties.hasOwnProperty("remark") && properties.remark !== undefined) result.remark = properties.remark
         if(properties.hasOwnProperty("ownership") && properties.ownership !== undefined) result.ownership = properties.ownership
         if(properties.hasOwnProperty("usage") && properties.usage !== undefined) result.usage = properties.usage
-        if(properties.hasOwnProperty("startTime") && properties.startTime !== undefined) result.startTime = $timestamp.Timestamp.create(properties.startTime)
-        if(properties.hasOwnProperty("endTime") && properties.endTime !== undefined) result.endTime = $timestamp.Timestamp.create(properties.endTime)
+        if(properties.hasOwnProperty("startTime") && properties.startTime != null) result.startTime = $timestamp.Timestamp.create(properties.startTime)
+        if(properties.hasOwnProperty("endTime") && properties.endTime != null) result.endTime = $timestamp.Timestamp.create(properties.endTime)
         if(properties.hasOwnProperty("paletteType") && properties.paletteType !== undefined) result.paletteType = properties.paletteType
         if(properties.hasOwnProperty("fileType") && properties.fileType !== undefined) result.fileType = properties.fileType
         if(properties.hasOwnProperty("width") && properties.width !== undefined) result.width = properties.width
@@ -745,21 +744,21 @@ export class Sticker extends $sisyphus.Message<ISticker> implements ISticker {
         return result
     }
 }
-Sticker.prototype.name = ""
-Sticker.prototype.title = ""
-Sticker.prototype.iconUri = ""
-Sticker.prototype.uri = ""
-Sticker.prototype.downloadUri = ""
-Sticker.prototype.fileHash = ""
-Sticker.prototype.remark = ""
-Sticker.prototype.ownership = $ownership.OwnershipType.OWNERSHIP_TYPE_UNSPECIFIED
-Sticker.prototype.usage = $ownership.UsageType.USAGE_TYPE_UNSPECIFIED
-Sticker.prototype.startTime = null
-Sticker.prototype.endTime = null
-Sticker.prototype.paletteType = $privilege.PaletteType.PALETTE_TYPE_UNSPECIFIED
-Sticker.prototype.fileType = $privilege.StickerType.STICKER_TYPE_UNSPECIFIED
-Sticker.prototype.width = 0
-Sticker.prototype.height = 0
+Sticker.prototype.name = Sticker.reflection.fieldsById[1].defaultValue
+Sticker.prototype.title = Sticker.reflection.fieldsById[2].defaultValue
+Sticker.prototype.iconUri = Sticker.reflection.fieldsById[3].defaultValue
+Sticker.prototype.uri = Sticker.reflection.fieldsById[4].defaultValue
+Sticker.prototype.downloadUri = Sticker.reflection.fieldsById[5].defaultValue
+Sticker.prototype.fileHash = Sticker.reflection.fieldsById[6].defaultValue
+Sticker.prototype.remark = Sticker.reflection.fieldsById[7].defaultValue
+Sticker.prototype.ownership = Sticker.reflection.fieldsById[8].defaultValue
+Sticker.prototype.usage = Sticker.reflection.fieldsById[9].defaultValue
+Sticker.prototype.startTime = Sticker.reflection.fieldsById[10].defaultValue
+Sticker.prototype.endTime = Sticker.reflection.fieldsById[11].defaultValue
+Sticker.prototype.paletteType = Sticker.reflection.fieldsById[20].defaultValue
+Sticker.prototype.fileType = Sticker.reflection.fieldsById[21].defaultValue
+Sticker.prototype.width = Sticker.reflection.fieldsById[22].defaultValue
+Sticker.prototype.height = Sticker.reflection.fieldsById[23].defaultValue
 
 
 /** 贴纸组资源 */
@@ -816,9 +815,9 @@ export class StickerGroup extends $sisyphus.Message<IStickerGroup> implements IS
         return result
     }
 }
-StickerGroup.prototype.name = ""
-StickerGroup.prototype.title = ""
-StickerGroup.prototype.iconUri = ""
+StickerGroup.prototype.name = StickerGroup.reflection.fieldsById[1].defaultValue
+StickerGroup.prototype.title = StickerGroup.reflection.fieldsById[2].defaultValue
+StickerGroup.prototype.iconUri = StickerGroup.reflection.fieldsById[3].defaultValue
 
 
 /** 音乐资源 */
@@ -932,24 +931,24 @@ export class Music extends $sisyphus.Message<IMusic> implements IMusic {
         if(properties.hasOwnProperty("remark") && properties.remark !== undefined) result.remark = properties.remark
         if(properties.hasOwnProperty("ownership") && properties.ownership !== undefined) result.ownership = properties.ownership
         if(properties.hasOwnProperty("usage") && properties.usage !== undefined) result.usage = properties.usage
-        if(properties.hasOwnProperty("startTime") && properties.startTime !== undefined) result.startTime = $timestamp.Timestamp.create(properties.startTime)
-        if(properties.hasOwnProperty("endTime") && properties.endTime !== undefined) result.endTime = $timestamp.Timestamp.create(properties.endTime)
+        if(properties.hasOwnProperty("startTime") && properties.startTime != null) result.startTime = $timestamp.Timestamp.create(properties.startTime)
+        if(properties.hasOwnProperty("endTime") && properties.endTime != null) result.endTime = $timestamp.Timestamp.create(properties.endTime)
         if(properties.hasOwnProperty("author") && properties.author !== undefined) result.author = properties.author
         return result
     }
 }
-Music.prototype.name = ""
-Music.prototype.title = ""
-Music.prototype.iconUri = ""
-Music.prototype.uri = ""
-Music.prototype.downloadUri = ""
-Music.prototype.fileHash = ""
-Music.prototype.remark = ""
-Music.prototype.ownership = $ownership.OwnershipType.OWNERSHIP_TYPE_UNSPECIFIED
-Music.prototype.usage = $ownership.UsageType.USAGE_TYPE_UNSPECIFIED
-Music.prototype.startTime = null
-Music.prototype.endTime = null
-Music.prototype.author = ""
+Music.prototype.name = Music.reflection.fieldsById[1].defaultValue
+Music.prototype.title = Music.reflection.fieldsById[2].defaultValue
+Music.prototype.iconUri = Music.reflection.fieldsById[3].defaultValue
+Music.prototype.uri = Music.reflection.fieldsById[4].defaultValue
+Music.prototype.downloadUri = Music.reflection.fieldsById[5].defaultValue
+Music.prototype.fileHash = Music.reflection.fieldsById[6].defaultValue
+Music.prototype.remark = Music.reflection.fieldsById[7].defaultValue
+Music.prototype.ownership = Music.reflection.fieldsById[8].defaultValue
+Music.prototype.usage = Music.reflection.fieldsById[9].defaultValue
+Music.prototype.startTime = Music.reflection.fieldsById[10].defaultValue
+Music.prototype.endTime = Music.reflection.fieldsById[11].defaultValue
+Music.prototype.author = Music.reflection.fieldsById[21].defaultValue
 
 
 /** 音乐组资源 */
@@ -1006,9 +1005,9 @@ export class MusicGroup extends $sisyphus.Message<IMusicGroup> implements IMusic
         return result
     }
 }
-MusicGroup.prototype.name = ""
-MusicGroup.prototype.title = ""
-MusicGroup.prototype.iconUri = ""
+MusicGroup.prototype.name = MusicGroup.reflection.fieldsById[1].defaultValue
+MusicGroup.prototype.title = MusicGroup.reflection.fieldsById[2].defaultValue
+MusicGroup.prototype.iconUri = MusicGroup.reflection.fieldsById[3].defaultValue
 
 
 /** 音效资源 */
@@ -1116,22 +1115,22 @@ export class Sound extends $sisyphus.Message<ISound> implements ISound {
         if(properties.hasOwnProperty("remark") && properties.remark !== undefined) result.remark = properties.remark
         if(properties.hasOwnProperty("ownership") && properties.ownership !== undefined) result.ownership = properties.ownership
         if(properties.hasOwnProperty("usage") && properties.usage !== undefined) result.usage = properties.usage
-        if(properties.hasOwnProperty("startTime") && properties.startTime !== undefined) result.startTime = $timestamp.Timestamp.create(properties.startTime)
-        if(properties.hasOwnProperty("endTime") && properties.endTime !== undefined) result.endTime = $timestamp.Timestamp.create(properties.endTime)
+        if(properties.hasOwnProperty("startTime") && properties.startTime != null) result.startTime = $timestamp.Timestamp.create(properties.startTime)
+        if(properties.hasOwnProperty("endTime") && properties.endTime != null) result.endTime = $timestamp.Timestamp.create(properties.endTime)
         return result
     }
 }
-Sound.prototype.name = ""
-Sound.prototype.title = ""
-Sound.prototype.iconUri = ""
-Sound.prototype.uri = ""
-Sound.prototype.downloadUri = ""
-Sound.prototype.fileHash = ""
-Sound.prototype.remark = ""
-Sound.prototype.ownership = $ownership.OwnershipType.OWNERSHIP_TYPE_UNSPECIFIED
-Sound.prototype.usage = $ownership.UsageType.USAGE_TYPE_UNSPECIFIED
-Sound.prototype.startTime = null
-Sound.prototype.endTime = null
+Sound.prototype.name = Sound.reflection.fieldsById[1].defaultValue
+Sound.prototype.title = Sound.reflection.fieldsById[2].defaultValue
+Sound.prototype.iconUri = Sound.reflection.fieldsById[3].defaultValue
+Sound.prototype.uri = Sound.reflection.fieldsById[4].defaultValue
+Sound.prototype.downloadUri = Sound.reflection.fieldsById[5].defaultValue
+Sound.prototype.fileHash = Sound.reflection.fieldsById[6].defaultValue
+Sound.prototype.remark = Sound.reflection.fieldsById[7].defaultValue
+Sound.prototype.ownership = Sound.reflection.fieldsById[8].defaultValue
+Sound.prototype.usage = Sound.reflection.fieldsById[9].defaultValue
+Sound.prototype.startTime = Sound.reflection.fieldsById[10].defaultValue
+Sound.prototype.endTime = Sound.reflection.fieldsById[11].defaultValue
 
 
 /** 音效组资源 */
@@ -1188,9 +1187,9 @@ export class SoundGroup extends $sisyphus.Message<ISoundGroup> implements ISound
         return result
     }
 }
-SoundGroup.prototype.name = ""
-SoundGroup.prototype.title = ""
-SoundGroup.prototype.iconUri = ""
+SoundGroup.prototype.name = SoundGroup.reflection.fieldsById[1].defaultValue
+SoundGroup.prototype.title = SoundGroup.reflection.fieldsById[2].defaultValue
+SoundGroup.prototype.iconUri = SoundGroup.reflection.fieldsById[3].defaultValue
 
 
 /** 会员特权资源 */
@@ -1284,17 +1283,17 @@ export class Membership extends $sisyphus.Message<IMembership> implements IMembe
         if(properties.hasOwnProperty("remark") && properties.remark !== undefined) result.remark = properties.remark
         if(properties.hasOwnProperty("ownership") && properties.ownership !== undefined) result.ownership = properties.ownership
         if(properties.hasOwnProperty("usage") && properties.usage !== undefined) result.usage = properties.usage
-        if(properties.hasOwnProperty("startTime") && properties.startTime !== undefined) result.startTime = $timestamp.Timestamp.create(properties.startTime)
-        if(properties.hasOwnProperty("endTime") && properties.endTime !== undefined) result.endTime = $timestamp.Timestamp.create(properties.endTime)
+        if(properties.hasOwnProperty("startTime") && properties.startTime != null) result.startTime = $timestamp.Timestamp.create(properties.startTime)
+        if(properties.hasOwnProperty("endTime") && properties.endTime != null) result.endTime = $timestamp.Timestamp.create(properties.endTime)
         return result
     }
 }
-Membership.prototype.name = ""
-Membership.prototype.title = ""
-Membership.prototype.iconUri = ""
-Membership.prototype.uri = ""
-Membership.prototype.remark = ""
-Membership.prototype.ownership = $ownership.OwnershipType.OWNERSHIP_TYPE_UNSPECIFIED
-Membership.prototype.usage = $ownership.UsageType.USAGE_TYPE_UNSPECIFIED
-Membership.prototype.startTime = null
-Membership.prototype.endTime = null
+Membership.prototype.name = Membership.reflection.fieldsById[1].defaultValue
+Membership.prototype.title = Membership.reflection.fieldsById[2].defaultValue
+Membership.prototype.iconUri = Membership.reflection.fieldsById[3].defaultValue
+Membership.prototype.uri = Membership.reflection.fieldsById[4].defaultValue
+Membership.prototype.remark = Membership.reflection.fieldsById[7].defaultValue
+Membership.prototype.ownership = Membership.reflection.fieldsById[8].defaultValue
+Membership.prototype.usage = Membership.reflection.fieldsById[9].defaultValue
+Membership.prototype.startTime = Membership.reflection.fieldsById[10].defaultValue
+Membership.prototype.endTime = Membership.reflection.fieldsById[11].defaultValue

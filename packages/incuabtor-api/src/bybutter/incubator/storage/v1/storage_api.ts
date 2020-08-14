@@ -45,7 +45,7 @@ export class GenerateOssTokenRequest extends $sisyphus.Message<IGenerateOssToken
         return result
     }
 }
-GenerateOssTokenRequest.prototype.ossRole = $storage.OssRole.OSS_ROLE_UNSPECIFIED
+GenerateOssTokenRequest.prototype.ossRole = GenerateOssTokenRequest.reflection.fieldsById[1].defaultValue
 
 
 /** 获取Oss token 请求 */
@@ -105,13 +105,16 @@ export class GenerateOssTokenResponse extends $sisyphus.Message<IGenerateOssToke
         if(properties.hasOwnProperty("accessKeyId") && properties.accessKeyId !== undefined) result.accessKeyId = properties.accessKeyId
         if(properties.hasOwnProperty("accessKeySecret") && properties.accessKeySecret !== undefined) result.accessKeySecret = properties.accessKeySecret
         if(properties.hasOwnProperty("securityToken") && properties.securityToken !== undefined) result.securityToken = properties.securityToken
-        if(properties.hasOwnProperty("expirationTime") && properties.expirationTime !== undefined) result.expirationTime = $timestamp.Timestamp.create(properties.expirationTime)
+        if(properties.hasOwnProperty("expirationTime") && properties.expirationTime != null) result.expirationTime = $timestamp.Timestamp.create(properties.expirationTime)
         return result
     }
 }
-GenerateOssTokenResponse.prototype.accessKeyId = ""
-GenerateOssTokenResponse.prototype.accessKeySecret = ""
-GenerateOssTokenResponse.prototype.securityToken = ""
-GenerateOssTokenResponse.prototype.expirationTime = null
+GenerateOssTokenResponse.prototype.accessKeyId = GenerateOssTokenResponse.reflection.fieldsById[1].defaultValue
+GenerateOssTokenResponse.prototype.accessKeySecret = GenerateOssTokenResponse.reflection.fieldsById[2].defaultValue
+GenerateOssTokenResponse.prototype.securityToken = GenerateOssTokenResponse.reflection.fieldsById[3].defaultValue
+GenerateOssTokenResponse.prototype.expirationTime = GenerateOssTokenResponse.reflection.fieldsById[4].defaultValue
 
 //Service: .bybutter.incubator.storage.v1.StorageApi
+
+export class StorageApi {
+}

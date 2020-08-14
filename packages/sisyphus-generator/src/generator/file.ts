@@ -1,4 +1,4 @@
-import {Enum, ReflectionObject, Root, Service, Type} from "protobufjs"
+import {Enum, Field, FieldBase, ReflectionObject, Root, Service, Type} from "protobufjs"
 import pathModule from "path"
 import {TypeSpec} from "./type";
 import {GeneratorSpec} from "./generator";
@@ -26,14 +26,15 @@ export class FileSpec extends TypescriptFile implements GeneratorSpec {
     }
 
     get filename(): string {
-        const protoFile = this.protoname
-        if (!protoFile) return ""
-        return pathModule.join(pathModule.dirname(protoFile), pathModule.basename(protoFile, pathModule.extname(protoFile)) + '.ts')
+        if (this._elements.length == 0) return ""
+        const filename = this._elements[0].filename
+        return filename ? filename : ""
     }
 
-    get protoname(): string | null {
-        if (this._elements.length == 0) return null
-        return this._elements[0].filename
+    get output(): string {
+        const protoFile = this.filename
+        if (!protoFile) return ""
+        return pathModule.join(pathModule.dirname(protoFile), pathModule.basename(protoFile, pathModule.extname(protoFile)) + '.ts')
     }
 
     append(...obj: ReflectionObject[]) {
@@ -117,6 +118,11 @@ export class FileSpec extends TypescriptFile implements GeneratorSpec {
                 type.generate(codeBuilder)
             }
         }
+        for (let element of this._elements) {
+            if (element instanceof Field) {
+                codeBuilder.appendLn(`export let ${element.name} = $${this.importReflection()}.root.lookup("${element.fullName}")`).ln()
+            }
+        }
 
         this.generateImport(importBuilder)
 
@@ -127,7 +133,7 @@ export class FileSpec extends TypescriptFile implements GeneratorSpec {
         }
 
         result += codeBuilder.build()
-        await writeToFile(out, this.filename, result)
+        await writeToFile(out, this.output, result)
     }
 }
 

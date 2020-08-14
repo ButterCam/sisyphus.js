@@ -1,4 +1,3 @@
-import * as $binding from "./binding"
 import * as $sisyphus from "@sisyphus.js/core"
 import * as $reflection from "../../../../_reflection"
 import * as $protobuf from "protobufjs"
@@ -9,16 +8,16 @@ export interface IAccountBinding {
     /** 绑定信息的账户资源名称 */
     account?: string
     /** 绑定的手机号 */
-    mobile?: ($binding.AccountBinding.IMobile | null)
+    mobile?: (AccountBinding.IMobile | null)
     /** 绑定的帐号码 */
-    identification?: ($binding.AccountBinding.IIdentification | null)
+    identification?: (AccountBinding.IIdentification | null)
     Target?: string
 }
 
 export class AccountBinding extends $sisyphus.Message<IAccountBinding> implements IAccountBinding {
     account!: string
-    mobile!: ($binding.AccountBinding.IMobile | null)
-    identification!: ($binding.AccountBinding.IIdentification | null)
+    mobile!: (AccountBinding.IMobile | null)
+    identification!: (AccountBinding.IIdentification | null)
     Target?: string
 
     get $reflection() {
@@ -37,10 +36,10 @@ export class AccountBinding extends $sisyphus.Message<IAccountBinding> implement
                     result.account = reader.string()
                     break
                 case 11:
-                    result.mobile = $binding.AccountBinding.Mobile.decodeDelimited(reader)
+                    result.mobile = AccountBinding.Mobile.decodeDelimited(reader)
                     break
                 case 12:
-                    result.identification = $binding.AccountBinding.Identification.decodeDelimited(reader)
+                    result.identification = AccountBinding.Identification.decodeDelimited(reader)
                     break
             }
         }
@@ -56,15 +55,15 @@ export class AccountBinding extends $sisyphus.Message<IAccountBinding> implement
         const result = new this()
         if (!properties) return result
         if(properties.hasOwnProperty("account") && properties.account !== undefined) result.account = properties.account
-        if(properties.hasOwnProperty("mobile") && properties.mobile !== undefined) result.mobile = $binding.AccountBinding.Mobile.create(properties.mobile)
-        if(properties.hasOwnProperty("identification") && properties.identification !== undefined) result.identification = $binding.AccountBinding.Identification.create(properties.identification)
+        if(properties.hasOwnProperty("mobile") && properties.mobile != null) result.mobile = AccountBinding.Mobile.create(properties.mobile)
+        if(properties.hasOwnProperty("identification") && properties.identification != null) result.identification = AccountBinding.Identification.create(properties.identification)
         return result
     }
 }
 Object.defineProperty(AccountBinding.prototype, "Target", $sisyphus.oneOfProperty("mobile", "identification"))
-AccountBinding.prototype.account = ""
-AccountBinding.prototype.mobile = null
-AccountBinding.prototype.identification = null
+AccountBinding.prototype.account = AccountBinding.reflection.fieldsById[1].defaultValue
+AccountBinding.prototype.mobile = AccountBinding.reflection.fieldsById[11].defaultValue
+AccountBinding.prototype.identification = AccountBinding.reflection.fieldsById[12].defaultValue
 
 export namespace AccountBinding {
 
@@ -115,8 +114,8 @@ export namespace AccountBinding {
             return result
         }
     }
-    Mobile.prototype.regionCode = ""
-    Mobile.prototype.phoneNumber = ""
+    Mobile.prototype.regionCode = Mobile.reflection.fieldsById[1].defaultValue
+    Mobile.prototype.phoneNumber = Mobile.reflection.fieldsById[2].defaultValue
 
 
     /** 帐号码绑定信息 */
@@ -159,5 +158,5 @@ export namespace AccountBinding {
             return result
         }
     }
-    Identification.prototype.identification = ""
+    Identification.prototype.identification = Identification.reflection.fieldsById[1].defaultValue
 }

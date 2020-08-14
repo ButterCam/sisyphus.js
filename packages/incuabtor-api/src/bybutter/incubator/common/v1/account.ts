@@ -36,6 +36,7 @@ export class Account extends $sisyphus.Message<IAccount> implements IAccount {
         if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
         const end = length === undefined ? reader.len : reader.pos + length
         const result = new this()
+        let key: any, value: any
         while(reader.pos < end) {
             let tag = reader.uint32()
             switch(tag>>>3) {
@@ -47,8 +48,8 @@ export class Account extends $sisyphus.Message<IAccount> implements IAccount {
                     result.permissions.push($struct.Value.decodeDelimited(reader))
                     break
                 case 3:
-                    if (!result.metadata) result.metadata = {}
-                    const [key, value] = sisyphus.readMapEntry(this.reflection.fields["metadata"], reader, $any.Any)
+                    if (!result.metadata) result.metadata = {};
+                    [key, value] = $sisyphus.readMapEntry(this.reflection.fields["metadata"], reader, $any.Any)
                     result.metadata[key] = value
                     break
                 case 4:
@@ -68,13 +69,15 @@ export class Account extends $sisyphus.Message<IAccount> implements IAccount {
         const result = new this()
         if (!properties) return result
         if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        if(properties.hasOwnProperty("permissions") && properties.permissions !== undefined) result.permissions = $struct.Value.create(properties.permissions)
-        if(properties.hasOwnProperty("metadata") && properties.metadata !== undefined) result.metadata = $any.Any.create(properties.metadata)
-        if(properties.hasOwnProperty("createTime") && properties.createTime !== undefined) result.createTime = $timestamp.Timestamp.create(properties.createTime)
+        if(properties.hasOwnProperty("permissions") && properties.permissions != null) result.permissions = properties.permissions.map(it => $struct.Value.create(it))
+        if(properties.hasOwnProperty("metadata") && properties.metadata != null) {
+            result.metadata = {}
+            for (let key in properties.metadata) result.metadata[key] = $any.Any.create(properties.metadata[key])
+        }
         return result
     }
 }
-Account.prototype.name = ""
-Account.prototype.permissions = null
-Account.prototype.metadata = null
-Account.prototype.createTime = null
+Account.prototype.name = Account.reflection.fieldsById[1].defaultValue
+Account.prototype.permissions = Account.reflection.fieldsById[2].defaultValue
+Account.prototype.metadata = Account.reflection.fieldsById[3].defaultValue
+Account.prototype.createTime = Account.reflection.fieldsById[4].defaultValue

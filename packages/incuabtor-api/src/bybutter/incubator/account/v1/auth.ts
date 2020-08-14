@@ -57,13 +57,13 @@ export class ApiToken extends $sisyphus.Message<IApiToken> implements IApiToken 
         if (!properties) return result
         if(properties.hasOwnProperty("account") && properties.account !== undefined) result.account = properties.account
         if(properties.hasOwnProperty("token") && properties.token !== undefined) result.token = properties.token
-        if(properties.hasOwnProperty("permissions") && properties.permissions !== undefined) result.permissions = $struct.Value.create(properties.permissions)
+        if(properties.hasOwnProperty("permissions") && properties.permissions != null) result.permissions = properties.permissions.map(it => $struct.Value.create(it))
         return result
     }
 }
-ApiToken.prototype.account = ""
-ApiToken.prototype.token = ""
-ApiToken.prototype.permissions = null
+ApiToken.prototype.account = ApiToken.reflection.fieldsById[1].defaultValue
+ApiToken.prototype.token = ApiToken.reflection.fieldsById[2].defaultValue
+ApiToken.prototype.permissions = ApiToken.reflection.fieldsById[3].defaultValue
 
 
 /** 用于创建 API Token 的手机登陆凭据。 */
@@ -120,9 +120,9 @@ export class MobileCredential extends $sisyphus.Message<IMobileCredential> imple
         return result
     }
 }
-MobileCredential.prototype.regionCode = ""
-MobileCredential.prototype.phoneNumber = ""
-MobileCredential.prototype.code = ""
+MobileCredential.prototype.regionCode = MobileCredential.reflection.fieldsById[1].defaultValue
+MobileCredential.prototype.phoneNumber = MobileCredential.reflection.fieldsById[2].defaultValue
+MobileCredential.prototype.code = MobileCredential.reflection.fieldsById[3].defaultValue
 
 
 /** 用于创建 API Token 的基于静默登陆时创建的认证码的登陆凭据。 */
@@ -165,7 +165,7 @@ export class IdentificationCredential extends $sisyphus.Message<IIdentificationC
         return result
     }
 }
-IdentificationCredential.prototype.identification = ""
+IdentificationCredential.prototype.identification = IdentificationCredential.reflection.fieldsById[1].defaultValue
 
 
 /** 用于创建 API Token 的基于IAP登录凭证。 */
@@ -215,8 +215,8 @@ export class IapCredential extends $sisyphus.Message<IIapCredential> implements 
         return result
     }
 }
-IapCredential.prototype.receipt = ""
-IapCredential.prototype.product = $incubatorProduct.IncubatorProduct.INCUBATOR_PRODUCT_UNSPECIFIED
+IapCredential.prototype.receipt = IapCredential.reflection.fieldsById[1].defaultValue
+IapCredential.prototype.product = IapCredential.reflection.fieldsById[2].defaultValue
 
 
 /** 用于静默登陆时创建 API Token 的签名。 */
@@ -268,9 +268,9 @@ export class SignatureCredential extends $sisyphus.Message<ISignatureCredential>
         const result = new this()
         if (!properties) return result
         if(properties.hasOwnProperty("signature") && properties.signature !== undefined) result.signature = properties.signature
-        if(properties.hasOwnProperty("createTime") && properties.createTime !== undefined) result.createTime = $timestamp.Timestamp.create(properties.createTime)
+        if(properties.hasOwnProperty("createTime") && properties.createTime != null) result.createTime = $timestamp.Timestamp.create(properties.createTime)
         return result
     }
 }
-SignatureCredential.prototype.signature = $sisyphus.emptyBytes
-SignatureCredential.prototype.createTime = null
+SignatureCredential.prototype.signature = SignatureCredential.reflection.fieldsById[1].defaultValue
+SignatureCredential.prototype.createTime = SignatureCredential.reflection.fieldsById[2].defaultValue

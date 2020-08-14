@@ -93,19 +93,19 @@ export class ProductMeta extends $sisyphus.Message<IProductMeta> implements IPro
         if(properties.hasOwnProperty("pictureUri") && properties.pictureUri !== undefined) result.pictureUri = properties.pictureUri
         if(properties.hasOwnProperty("basePrice") && properties.basePrice !== undefined) result.basePrice = properties.basePrice
         if(properties.hasOwnProperty("requirements") && properties.requirements !== undefined) result.requirements = properties.requirements
-        if(properties.hasOwnProperty("startTime") && properties.startTime !== undefined) result.startTime = $timestamp.Timestamp.create(properties.startTime)
-        if(properties.hasOwnProperty("endTime") && properties.endTime !== undefined) result.endTime = $timestamp.Timestamp.create(properties.endTime)
+        if(properties.hasOwnProperty("startTime") && properties.startTime != null) result.startTime = $timestamp.Timestamp.create(properties.startTime)
+        if(properties.hasOwnProperty("endTime") && properties.endTime != null) result.endTime = $timestamp.Timestamp.create(properties.endTime)
         return result
     }
 }
-ProductMeta.prototype.name = ""
-ProductMeta.prototype.type = ""
-ProductMeta.prototype.title = ""
-ProductMeta.prototype.pictureUri = ""
-ProductMeta.prototype.basePrice = $sisyphus.Long.ZERO
-ProductMeta.prototype.requirements = null
-ProductMeta.prototype.startTime = null
-ProductMeta.prototype.endTime = null
+ProductMeta.prototype.name = ProductMeta.reflection.fieldsById[1].defaultValue
+ProductMeta.prototype.type = ProductMeta.reflection.fieldsById[2].defaultValue
+ProductMeta.prototype.title = ProductMeta.reflection.fieldsById[3].defaultValue
+ProductMeta.prototype.pictureUri = ProductMeta.reflection.fieldsById[4].defaultValue
+ProductMeta.prototype.basePrice = ProductMeta.reflection.fieldsById[5].defaultValue
+ProductMeta.prototype.requirements = ProductMeta.reflection.fieldsById[6].defaultValue
+ProductMeta.prototype.startTime = ProductMeta.reflection.fieldsById[7].defaultValue
+ProductMeta.prototype.endTime = ProductMeta.reflection.fieldsById[8].defaultValue
 
 
 /** 商品特性的元数据，仅包含数据库中的数据，用于后端内部使用。 */
@@ -189,20 +189,20 @@ export class ProductAttributeMeta extends $sisyphus.Message<IProductAttributeMet
         if (!properties) return result
         if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
         if(properties.hasOwnProperty("type") && properties.type !== undefined) result.type = properties.type
-        if(properties.hasOwnProperty("parameter") && properties.parameter !== undefined) result.parameter = $struct.Value.create(properties.parameter)
+        if(properties.hasOwnProperty("parameter") && properties.parameter != null) result.parameter = $struct.Value.create(properties.parameter)
         if(properties.hasOwnProperty("indexedParameter1") && properties.indexedParameter1 !== undefined) result.indexedParameter1 = properties.indexedParameter1
         if(properties.hasOwnProperty("indexedParameter2") && properties.indexedParameter2 !== undefined) result.indexedParameter2 = properties.indexedParameter2
         if(properties.hasOwnProperty("requirements") && properties.requirements !== undefined) result.requirements = properties.requirements
-        if(properties.hasOwnProperty("startTime") && properties.startTime !== undefined) result.startTime = $timestamp.Timestamp.create(properties.startTime)
-        if(properties.hasOwnProperty("endTime") && properties.endTime !== undefined) result.endTime = $timestamp.Timestamp.create(properties.endTime)
+        if(properties.hasOwnProperty("startTime") && properties.startTime != null) result.startTime = $timestamp.Timestamp.create(properties.startTime)
+        if(properties.hasOwnProperty("endTime") && properties.endTime != null) result.endTime = $timestamp.Timestamp.create(properties.endTime)
         return result
     }
 }
-ProductAttributeMeta.prototype.name = ""
-ProductAttributeMeta.prototype.type = ""
-ProductAttributeMeta.prototype.parameter = null
-ProductAttributeMeta.prototype.indexedParameter1 = ""
-ProductAttributeMeta.prototype.indexedParameter2 = ""
-ProductAttributeMeta.prototype.requirements = null
-ProductAttributeMeta.prototype.startTime = null
-ProductAttributeMeta.prototype.endTime = null
+ProductAttributeMeta.prototype.name = ProductAttributeMeta.reflection.fieldsById[1].defaultValue
+ProductAttributeMeta.prototype.type = ProductAttributeMeta.reflection.fieldsById[2].defaultValue
+ProductAttributeMeta.prototype.parameter = ProductAttributeMeta.reflection.fieldsById[3].defaultValue
+ProductAttributeMeta.prototype.indexedParameter1 = ProductAttributeMeta.reflection.fieldsById[4].defaultValue
+ProductAttributeMeta.prototype.indexedParameter2 = ProductAttributeMeta.reflection.fieldsById[5].defaultValue
+ProductAttributeMeta.prototype.requirements = ProductAttributeMeta.reflection.fieldsById[6].defaultValue
+ProductAttributeMeta.prototype.startTime = ProductAttributeMeta.reflection.fieldsById[7].defaultValue
+ProductAttributeMeta.prototype.endTime = ProductAttributeMeta.reflection.fieldsById[8].defaultValue

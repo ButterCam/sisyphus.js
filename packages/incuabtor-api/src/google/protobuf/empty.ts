@@ -14,7 +14,7 @@ import * as $protobuf from "protobufjs"
  * 
  * The JSON representation for `Empty` is empty JSON object `{}`.
  */
-export interface IEmpty {
+export interface IEmpty extends $sisyphus.IEmpty {
 }
 
 export class Empty extends $sisyphus.Message<IEmpty> implements IEmpty {

@@ -44,7 +44,7 @@ export class GetProductRequest extends $sisyphus.Message<IGetProductRequest> imp
         return result
     }
 }
-GetProductRequest.prototype.name = ""
+GetProductRequest.prototype.name = GetProductRequest.reflection.fieldsById[1].defaultValue
 
 
 /**
@@ -92,7 +92,7 @@ export class BatchGetProductsRequest extends $sisyphus.Message<IBatchGetProducts
         return result
     }
 }
-BatchGetProductsRequest.prototype.names = null
+BatchGetProductsRequest.prototype.names = BatchGetProductsRequest.reflection.fieldsById[1].defaultValue
 
 
 /** 批量获取商品资源的 API 响应 */
@@ -132,11 +132,11 @@ export class BatchGetProductsResponse extends $sisyphus.Message<IBatchGetProduct
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("products") && properties.products !== undefined) result.products = $product.Product.create(properties.products)
+        if(properties.hasOwnProperty("products") && properties.products != null) result.products = properties.products.map(it => $product.Product.create(it))
         return result
     }
 }
-BatchGetProductsResponse.prototype.products = null
+BatchGetProductsResponse.prototype.products = BatchGetProductsResponse.reflection.fieldsById[1].defaultValue
 
 
 /**
@@ -204,10 +204,10 @@ export class ListProductsRequest extends $sisyphus.Message<IListProductsRequest>
         return result
     }
 }
-ListProductsRequest.prototype.filter = ""
-ListProductsRequest.prototype.pageSize = 0
-ListProductsRequest.prototype.pageToken = ""
-ListProductsRequest.prototype.orderBy = ""
+ListProductsRequest.prototype.filter = ListProductsRequest.reflection.fieldsById[1].defaultValue
+ListProductsRequest.prototype.pageSize = ListProductsRequest.reflection.fieldsById[2].defaultValue
+ListProductsRequest.prototype.pageToken = ListProductsRequest.reflection.fieldsById[3].defaultValue
+ListProductsRequest.prototype.orderBy = ListProductsRequest.reflection.fieldsById[4].defaultValue
 
 
 /** 列举商品资源的 API 响应 */
@@ -253,10 +253,10 @@ export class ListProductsResponse extends $sisyphus.Message<IListProductsRespons
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("products") && properties.products !== undefined) result.products = $product.Product.create(properties.products)
+        if(properties.hasOwnProperty("products") && properties.products != null) result.products = properties.products.map(it => $product.Product.create(it))
         if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
         return result
     }
 }
-ListProductsResponse.prototype.products = null
-ListProductsResponse.prototype.nextPageToken = ""
+ListProductsResponse.prototype.products = ListProductsResponse.reflection.fieldsById[1].defaultValue
+ListProductsResponse.prototype.nextPageToken = ListProductsResponse.reflection.fieldsById[2].defaultValue

@@ -47,11 +47,14 @@ export class CreateDictationTaskRequest extends $sisyphus.Message<ICreateDictati
         const result = new this()
         if (!properties) return result
         if(properties.hasOwnProperty("parent") && properties.parent !== undefined) result.parent = properties.parent
-        if(properties.hasOwnProperty("dictationTask") && properties.dictationTask !== undefined) result.dictationTask = $dictation.DictationTask.create(properties.dictationTask)
+        if(properties.hasOwnProperty("dictationTask") && properties.dictationTask != null) result.dictationTask = $dictation.DictationTask.create(properties.dictationTask)
         return result
     }
 }
-CreateDictationTaskRequest.prototype.parent = ""
-CreateDictationTaskRequest.prototype.dictationTask = null
+CreateDictationTaskRequest.prototype.parent = CreateDictationTaskRequest.reflection.fieldsById[1].defaultValue
+CreateDictationTaskRequest.prototype.dictationTask = CreateDictationTaskRequest.reflection.fieldsById[2].defaultValue
 
 //Service: .bybutter.incubator.bread.v1.DictationApi
+
+export class DictationApi {
+}

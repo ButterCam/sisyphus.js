@@ -1,7 +1,6 @@
 import * as $sisyphus from "@sisyphus.js/core"
 import * as $reflection from "../../../../_reflection"
 import * as $protobuf from "protobufjs"
-import * as $internal from "./internal"
 import * as $product from "./product"
 import * as $any from "../../../../google/protobuf/any"
 
@@ -53,14 +52,14 @@ export class PaymentPayload extends $sisyphus.Message<IPaymentPayload> implement
         return result
     }
 }
-PaymentPayload.prototype.product = ""
-PaymentPayload.prototype.planHash = $sisyphus.emptyBytes
+PaymentPayload.prototype.product = PaymentPayload.reflection.fieldsById[1].defaultValue
+PaymentPayload.prototype.planHash = PaymentPayload.reflection.fieldsById[2].defaultValue
 
 
 /** 解析完成的订单商品 */
 export interface IResolvedOrderItem {
     /** 订单内容的 Payment 信息 */
-    payment?: ($internal.IPaymentPayload | null)
+    payment?: (IPaymentPayload | null)
     /** 商品接哦古 */
     product?: ($product.IProduct | null)
     /** 所选择的规格 */
@@ -74,7 +73,7 @@ export interface IResolvedOrderItem {
 }
 
 export class ResolvedOrderItem extends $sisyphus.Message<IResolvedOrderItem> implements IResolvedOrderItem {
-    payment!: ($internal.IPaymentPayload | null)
+    payment!: (IPaymentPayload | null)
     product!: ($product.IProduct | null)
     plan!: ($product.IPlan | null)
     metadata!: ($any.IAny[] | null)
@@ -91,7 +90,7 @@ export class ResolvedOrderItem extends $sisyphus.Message<IResolvedOrderItem> imp
             let tag = reader.uint32()
             switch(tag>>>3) {
                 case 1:
-                    result.payment = $internal.PaymentPayload.decodeDelimited(reader)
+                    result.payment = PaymentPayload.decodeDelimited(reader)
                     break
                 case 2:
                     result.product = $product.Product.decodeDelimited(reader)
@@ -116,14 +115,14 @@ export class ResolvedOrderItem extends $sisyphus.Message<IResolvedOrderItem> imp
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("payment") && properties.payment !== undefined) result.payment = $internal.PaymentPayload.create(properties.payment)
-        if(properties.hasOwnProperty("product") && properties.product !== undefined) result.product = $product.Product.create(properties.product)
-        if(properties.hasOwnProperty("plan") && properties.plan !== undefined) result.plan = $product.Plan.create(properties.plan)
-        if(properties.hasOwnProperty("metadata") && properties.metadata !== undefined) result.metadata = $any.Any.create(properties.metadata)
+        if(properties.hasOwnProperty("payment") && properties.payment != null) result.payment = PaymentPayload.create(properties.payment)
+        if(properties.hasOwnProperty("product") && properties.product != null) result.product = $product.Product.create(properties.product)
+        if(properties.hasOwnProperty("plan") && properties.plan != null) result.plan = $product.Plan.create(properties.plan)
+        if(properties.hasOwnProperty("metadata") && properties.metadata != null) result.metadata = properties.metadata.map(it => $any.Any.create(it))
         return result
     }
 }
-ResolvedOrderItem.prototype.payment = null
-ResolvedOrderItem.prototype.product = null
-ResolvedOrderItem.prototype.plan = null
-ResolvedOrderItem.prototype.metadata = null
+ResolvedOrderItem.prototype.payment = ResolvedOrderItem.reflection.fieldsById[1].defaultValue
+ResolvedOrderItem.prototype.product = ResolvedOrderItem.reflection.fieldsById[2].defaultValue
+ResolvedOrderItem.prototype.plan = ResolvedOrderItem.reflection.fieldsById[3].defaultValue
+ResolvedOrderItem.prototype.metadata = ResolvedOrderItem.reflection.fieldsById[4].defaultValue

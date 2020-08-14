@@ -8,7 +8,7 @@ import * as $protobuf from "protobufjs"
  * 
  * The JSON representation for `DoubleValue` is JSON number.
  */
-export interface IDoubleValue {
+export interface IDoubleValue extends $sisyphus.IDoubleValue {
     /** The double value. */
     value?: number
 }
@@ -47,7 +47,7 @@ export class DoubleValue extends $sisyphus.Message<IDoubleValue> implements IDou
         return result
     }
 }
-DoubleValue.prototype.value = 0
+DoubleValue.prototype.value = DoubleValue.reflection.fieldsById[1].defaultValue
 
 
 /**
@@ -55,7 +55,7 @@ DoubleValue.prototype.value = 0
  * 
  * The JSON representation for `FloatValue` is JSON number.
  */
-export interface IFloatValue {
+export interface IFloatValue extends $sisyphus.IFloatValue {
     /** The float value. */
     value?: number
 }
@@ -94,7 +94,7 @@ export class FloatValue extends $sisyphus.Message<IFloatValue> implements IFloat
         return result
     }
 }
-FloatValue.prototype.value = 0
+FloatValue.prototype.value = FloatValue.reflection.fieldsById[1].defaultValue
 
 
 /**
@@ -102,7 +102,7 @@ FloatValue.prototype.value = 0
  * 
  * The JSON representation for `Int64Value` is JSON string.
  */
-export interface IInt64Value {
+export interface IInt64Value extends $sisyphus.IInt64Value {
     /** The int64 value. */
     value?: $protobuf.Long
 }
@@ -141,7 +141,7 @@ export class Int64Value extends $sisyphus.Message<IInt64Value> implements IInt64
         return result
     }
 }
-Int64Value.prototype.value = $sisyphus.Long.ZERO
+Int64Value.prototype.value = Int64Value.reflection.fieldsById[1].defaultValue
 
 
 /**
@@ -149,7 +149,7 @@ Int64Value.prototype.value = $sisyphus.Long.ZERO
  * 
  * The JSON representation for `UInt64Value` is JSON string.
  */
-export interface IUInt64Value {
+export interface IUInt64Value extends $sisyphus.IUInt64Value {
     /** The uint64 value. */
     value?: $protobuf.Long
 }
@@ -188,7 +188,7 @@ export class UInt64Value extends $sisyphus.Message<IUInt64Value> implements IUIn
         return result
     }
 }
-UInt64Value.prototype.value = $sisyphus.Long.UZERO
+UInt64Value.prototype.value = UInt64Value.reflection.fieldsById[1].defaultValue
 
 
 /**
@@ -196,7 +196,7 @@ UInt64Value.prototype.value = $sisyphus.Long.UZERO
  * 
  * The JSON representation for `Int32Value` is JSON number.
  */
-export interface IInt32Value {
+export interface IInt32Value extends $sisyphus.IInt32Value {
     /** The int32 value. */
     value?: number
 }
@@ -235,7 +235,7 @@ export class Int32Value extends $sisyphus.Message<IInt32Value> implements IInt32
         return result
     }
 }
-Int32Value.prototype.value = 0
+Int32Value.prototype.value = Int32Value.reflection.fieldsById[1].defaultValue
 
 
 /**
@@ -243,7 +243,7 @@ Int32Value.prototype.value = 0
  * 
  * The JSON representation for `UInt32Value` is JSON number.
  */
-export interface IUInt32Value {
+export interface IUInt32Value extends $sisyphus.IUInt32Value {
     /** The uint32 value. */
     value?: number
 }
@@ -282,7 +282,7 @@ export class UInt32Value extends $sisyphus.Message<IUInt32Value> implements IUIn
         return result
     }
 }
-UInt32Value.prototype.value = 0
+UInt32Value.prototype.value = UInt32Value.reflection.fieldsById[1].defaultValue
 
 
 /**
@@ -290,7 +290,7 @@ UInt32Value.prototype.value = 0
  * 
  * The JSON representation for `BoolValue` is JSON `true` and `false`.
  */
-export interface IBoolValue {
+export interface IBoolValue extends $sisyphus.IIBoolValue {
     /** The bool value. */
     value?: boolean
 }
@@ -329,7 +329,7 @@ export class BoolValue extends $sisyphus.Message<IBoolValue> implements IBoolVal
         return result
     }
 }
-BoolValue.prototype.value = false
+BoolValue.prototype.value = BoolValue.reflection.fieldsById[1].defaultValue
 
 
 /**
@@ -337,7 +337,7 @@ BoolValue.prototype.value = false
  * 
  * The JSON representation for `StringValue` is JSON string.
  */
-export interface IStringValue {
+export interface IStringValue extends $sisyphus.IStringValue {
     /** The string value. */
     value?: string
 }
@@ -376,7 +376,7 @@ export class StringValue extends $sisyphus.Message<IStringValue> implements IStr
         return result
     }
 }
-StringValue.prototype.value = ""
+StringValue.prototype.value = StringValue.reflection.fieldsById[1].defaultValue
 
 
 /**
@@ -384,7 +384,7 @@ StringValue.prototype.value = ""
  * 
  * The JSON representation for `BytesValue` is JSON string.
  */
-export interface IBytesValue {
+export interface IBytesValue extends $sisyphus.IBytesValue {
     /** The bytes value. */
     value?: Uint8Array
 }
@@ -423,4 +423,4 @@ export class BytesValue extends $sisyphus.Message<IBytesValue> implements IBytes
         return result
     }
 }
-BytesValue.prototype.value = $sisyphus.emptyBytes
+BytesValue.prototype.value = BytesValue.reflection.fieldsById[1].defaultValue

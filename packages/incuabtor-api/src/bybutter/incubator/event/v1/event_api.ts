@@ -43,7 +43,7 @@ export class RecordEventRequest extends $sisyphus.Message<IRecordEventRequest> i
         return result
     }
 }
-RecordEventRequest.prototype.encryptedEvents = ""
+RecordEventRequest.prototype.encryptedEvents = RecordEventRequest.reflection.fieldsById[1].defaultValue
 
 
 /** 记录事件响应 */
@@ -81,3 +81,6 @@ export class RecordEventResponse extends $sisyphus.Message<IRecordEventResponse>
 }
 
 //Service: .bybutter.incubator.event.v1.EventApi
+
+export class EventApi {
+}

@@ -59,6 +59,8 @@ export class AccessControl extends $sisyphus.Message<IAccessControl> implements 
         return result
     }
 }
-AccessControl.prototype.anonymous = false
-AccessControl.prototype.requiredPermissions = null
-AccessControl.prototype.allowPermissions = null
+AccessControl.prototype.anonymous = AccessControl.reflection.fieldsById[1].defaultValue
+AccessControl.prototype.requiredPermissions = AccessControl.reflection.fieldsById[2].defaultValue
+AccessControl.prototype.allowPermissions = AccessControl.reflection.fieldsById[3].defaultValue
+
+export let access = $reflection.root.lookup(".bybutter.incubator.common.v1.access")

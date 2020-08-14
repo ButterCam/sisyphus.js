@@ -1,6 +1,5 @@
 import * as $imageResource from "../../common/v1/image_resource"
 import * as $money from "../../../../google/type/money"
-import * as $product from "./product"
 import * as $any from "../../../../google/protobuf/any"
 import * as $sisyphus from "@sisyphus.js/core"
 import * as $reflection from "../../../../_reflection"
@@ -23,7 +22,7 @@ export interface IProduct {
     /** 计算用商品原价，必须以 STD 为单位，1 STD 为 1 人民币分 */
     standardPrice?: ($money.IMoney | null)
     /** 用户可见的 Plan */
-    plans?: ($product.IPlan[] | null)
+    plans?: (IPlan[] | null)
     /**
      * 商品的详情
      * (-- api-linter: core::0146::any=disabled
@@ -47,7 +46,7 @@ export class Product extends $sisyphus.Message<IProduct> implements IProduct {
     picture!: ($imageResource.IImageResource | null)
     price!: ($money.IMoney | null)
     standardPrice!: ($money.IMoney | null)
-    plans!: ($product.IPlan[] | null)
+    plans!: (IPlan[] | null)
     details!: ($any.IAny | null)
     tags!: ($any.IAny[] | null)
     enable!: boolean
@@ -83,7 +82,7 @@ export class Product extends $sisyphus.Message<IProduct> implements IProduct {
                     break
                 case 7:
                     if (!result.plans) result.plans = []
-                    result.plans.push($product.Plan.decodeDelimited(reader))
+                    result.plans.push(Plan.decodeDelimited(reader))
                     break
                 case 9:
                     result.details = $any.Any.decodeDelimited(reader)
@@ -111,26 +110,26 @@ export class Product extends $sisyphus.Message<IProduct> implements IProduct {
         if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
         if(properties.hasOwnProperty("type") && properties.type !== undefined) result.type = properties.type
         if(properties.hasOwnProperty("title") && properties.title !== undefined) result.title = properties.title
-        if(properties.hasOwnProperty("picture") && properties.picture !== undefined) result.picture = $imageResource.ImageResource.create(properties.picture)
-        if(properties.hasOwnProperty("price") && properties.price !== undefined) result.price = $money.Money.create(properties.price)
-        if(properties.hasOwnProperty("standardPrice") && properties.standardPrice !== undefined) result.standardPrice = $money.Money.create(properties.standardPrice)
-        if(properties.hasOwnProperty("plans") && properties.plans !== undefined) result.plans = $product.Plan.create(properties.plans)
-        if(properties.hasOwnProperty("details") && properties.details !== undefined) result.details = $any.Any.create(properties.details)
-        if(properties.hasOwnProperty("tags") && properties.tags !== undefined) result.tags = $any.Any.create(properties.tags)
+        if(properties.hasOwnProperty("picture") && properties.picture != null) result.picture = $imageResource.ImageResource.create(properties.picture)
+        if(properties.hasOwnProperty("price") && properties.price != null) result.price = $money.Money.create(properties.price)
+        if(properties.hasOwnProperty("standardPrice") && properties.standardPrice != null) result.standardPrice = $money.Money.create(properties.standardPrice)
+        if(properties.hasOwnProperty("plans") && properties.plans != null) result.plans = properties.plans.map(it => Plan.create(it))
+        if(properties.hasOwnProperty("details") && properties.details != null) result.details = $any.Any.create(properties.details)
+        if(properties.hasOwnProperty("tags") && properties.tags != null) result.tags = properties.tags.map(it => $any.Any.create(it))
         if(properties.hasOwnProperty("enable") && properties.enable !== undefined) result.enable = properties.enable
         return result
     }
 }
-Product.prototype.name = ""
-Product.prototype.type = ""
-Product.prototype.title = ""
-Product.prototype.picture = null
-Product.prototype.price = null
-Product.prototype.standardPrice = null
-Product.prototype.plans = null
-Product.prototype.details = null
-Product.prototype.tags = null
-Product.prototype.enable = false
+Product.prototype.name = Product.reflection.fieldsById[1].defaultValue
+Product.prototype.type = Product.reflection.fieldsById[2].defaultValue
+Product.prototype.title = Product.reflection.fieldsById[3].defaultValue
+Product.prototype.picture = Product.reflection.fieldsById[4].defaultValue
+Product.prototype.price = Product.reflection.fieldsById[5].defaultValue
+Product.prototype.standardPrice = Product.reflection.fieldsById[6].defaultValue
+Product.prototype.plans = Product.reflection.fieldsById[7].defaultValue
+Product.prototype.details = Product.reflection.fieldsById[9].defaultValue
+Product.prototype.tags = Product.reflection.fieldsById[11].defaultValue
+Product.prototype.enable = Product.reflection.fieldsById[12].defaultValue
 
 
 /** 购买计划，确定购买商品的某个具体的计划 */
@@ -142,7 +141,7 @@ export interface IPlan {
     /** 用于结账的条形码数据 */
     payment?: string
     /** 价格标签，包含列表中价格标签，详情页标签，与支付按钮标签 */
-    priceLabel?: ($product.IPriceLabel | null)
+    priceLabel?: (IPriceLabel | null)
     /**
      * 本价格商品内包含物品
      * (-- api-linter: core::0146::any=disabled
@@ -175,7 +174,7 @@ export class Plan extends $sisyphus.Message<IPlan> implements IPlan {
     price!: ($money.IMoney | null)
     standardPrice!: ($money.IMoney | null)
     payment!: string
-    priceLabel!: ($product.IPriceLabel | null)
+    priceLabel!: (IPriceLabel | null)
     items!: ($any.IAny[] | null)
     tags!: ($any.IAny[] | null)
     paymentChannels!: (string[] | null)
@@ -207,7 +206,7 @@ export class Plan extends $sisyphus.Message<IPlan> implements IPlan {
                     result.payment = reader.string()
                     break
                 case 4:
-                    result.priceLabel = $product.PriceLabel.decodeDelimited(reader)
+                    result.priceLabel = PriceLabel.decodeDelimited(reader)
                     break
                 case 5:
                     if (!result.items) result.items = []
@@ -253,35 +252,35 @@ export class Plan extends $sisyphus.Message<IPlan> implements IPlan {
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("price") && properties.price !== undefined) result.price = $money.Money.create(properties.price)
-        if(properties.hasOwnProperty("standardPrice") && properties.standardPrice !== undefined) result.standardPrice = $money.Money.create(properties.standardPrice)
+        if(properties.hasOwnProperty("price") && properties.price != null) result.price = $money.Money.create(properties.price)
+        if(properties.hasOwnProperty("standardPrice") && properties.standardPrice != null) result.standardPrice = $money.Money.create(properties.standardPrice)
         if(properties.hasOwnProperty("payment") && properties.payment !== undefined) result.payment = properties.payment
-        if(properties.hasOwnProperty("priceLabel") && properties.priceLabel !== undefined) result.priceLabel = $product.PriceLabel.create(properties.priceLabel)
-        if(properties.hasOwnProperty("items") && properties.items !== undefined) result.items = $any.Any.create(properties.items)
-        if(properties.hasOwnProperty("tags") && properties.tags !== undefined) result.tags = $any.Any.create(properties.tags)
+        if(properties.hasOwnProperty("priceLabel") && properties.priceLabel != null) result.priceLabel = PriceLabel.create(properties.priceLabel)
+        if(properties.hasOwnProperty("items") && properties.items != null) result.items = properties.items.map(it => $any.Any.create(it))
+        if(properties.hasOwnProperty("tags") && properties.tags != null) result.tags = properties.tags.map(it => $any.Any.create(it))
         if(properties.hasOwnProperty("paymentChannels") && properties.paymentChannels !== undefined) result.paymentChannels = properties.paymentChannels
         if(properties.hasOwnProperty("group") && properties.group !== undefined) result.group = properties.group
         if(properties.hasOwnProperty("weight") && properties.weight !== undefined) result.weight = properties.weight
         if(properties.hasOwnProperty("enable") && properties.enable !== undefined) result.enable = properties.enable
-        if(properties.hasOwnProperty("startTime") && properties.startTime !== undefined) result.startTime = $timestamp.Timestamp.create(properties.startTime)
-        if(properties.hasOwnProperty("endTime") && properties.endTime !== undefined) result.endTime = $timestamp.Timestamp.create(properties.endTime)
+        if(properties.hasOwnProperty("startTime") && properties.startTime != null) result.startTime = $timestamp.Timestamp.create(properties.startTime)
+        if(properties.hasOwnProperty("endTime") && properties.endTime != null) result.endTime = $timestamp.Timestamp.create(properties.endTime)
         if(properties.hasOwnProperty("appliedAttributes") && properties.appliedAttributes !== undefined) result.appliedAttributes = properties.appliedAttributes
         return result
     }
 }
-Plan.prototype.price = null
-Plan.prototype.standardPrice = null
-Plan.prototype.payment = ""
-Plan.prototype.priceLabel = null
-Plan.prototype.items = null
-Plan.prototype.tags = null
-Plan.prototype.paymentChannels = null
-Plan.prototype.group = ""
-Plan.prototype.weight = $sisyphus.Long.ZERO
-Plan.prototype.enable = false
-Plan.prototype.startTime = null
-Plan.prototype.endTime = null
-Plan.prototype.appliedAttributes = null
+Plan.prototype.price = Plan.reflection.fieldsById[1].defaultValue
+Plan.prototype.standardPrice = Plan.reflection.fieldsById[2].defaultValue
+Plan.prototype.payment = Plan.reflection.fieldsById[3].defaultValue
+Plan.prototype.priceLabel = Plan.reflection.fieldsById[4].defaultValue
+Plan.prototype.items = Plan.reflection.fieldsById[5].defaultValue
+Plan.prototype.tags = Plan.reflection.fieldsById[6].defaultValue
+Plan.prototype.paymentChannels = Plan.reflection.fieldsById[7].defaultValue
+Plan.prototype.group = Plan.reflection.fieldsById[8].defaultValue
+Plan.prototype.weight = Plan.reflection.fieldsById[9].defaultValue
+Plan.prototype.enable = Plan.reflection.fieldsById[10].defaultValue
+Plan.prototype.startTime = Plan.reflection.fieldsById[11].defaultValue
+Plan.prototype.endTime = Plan.reflection.fieldsById[12].defaultValue
+Plan.prototype.appliedAttributes = Plan.reflection.fieldsById[1000].defaultValue
 
 
 /** 价格标签 */
@@ -345,7 +344,7 @@ export class PriceLabel extends $sisyphus.Message<IPriceLabel> implements IPrice
         return result
     }
 }
-PriceLabel.prototype.tag = ""
-PriceLabel.prototype.label = ""
-PriceLabel.prototype.checkout = ""
-PriceLabel.prototype.style = ""
+PriceLabel.prototype.tag = PriceLabel.reflection.fieldsById[1].defaultValue
+PriceLabel.prototype.label = PriceLabel.reflection.fieldsById[2].defaultValue
+PriceLabel.prototype.checkout = PriceLabel.reflection.fieldsById[3].defaultValue
+PriceLabel.prototype.style = PriceLabel.reflection.fieldsById[4].defaultValue

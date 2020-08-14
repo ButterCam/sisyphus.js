@@ -43,7 +43,7 @@ export class InvokeWebhookRequest extends $sisyphus.Message<IInvokeWebhookReques
         return result
     }
 }
-InvokeWebhookRequest.prototype.body = ""
+InvokeWebhookRequest.prototype.body = InvokeWebhookRequest.reflection.fieldsById[1].defaultValue
 
 
 /** Pingpp 回调返回值 */
@@ -86,6 +86,9 @@ export class InvokeWebhookResponse extends $sisyphus.Message<IInvokeWebhookRespo
         return result
     }
 }
-InvokeWebhookResponse.prototype.body = ""
+InvokeWebhookResponse.prototype.body = InvokeWebhookResponse.reflection.fieldsById[1].defaultValue
 
 //Service: .bybutter.incubator.bread.v1.Webhook
+
+export class Webhook {
+}

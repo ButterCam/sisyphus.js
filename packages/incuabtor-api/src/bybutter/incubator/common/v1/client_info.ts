@@ -110,13 +110,13 @@ export class ClientInfo extends $sisyphus.Message<IClientInfo> implements IClien
         return result
     }
 }
-ClientInfo.prototype.version = ""
-ClientInfo.prototype.channel = ""
-ClientInfo.prototype.name = ""
-ClientInfo.prototype.os = ""
-ClientInfo.prototype.osVersion = ""
-ClientInfo.prototype.vendor = ""
-ClientInfo.prototype.resolution = ""
-ClientInfo.prototype.languageTag = ""
-ClientInfo.prototype.timeZone = ""
-ClientInfo.prototype.ip = ""
+ClientInfo.prototype.version = ClientInfo.reflection.fieldsById[1].defaultValue
+ClientInfo.prototype.channel = ClientInfo.reflection.fieldsById[2].defaultValue
+ClientInfo.prototype.name = ClientInfo.reflection.fieldsById[3].defaultValue
+ClientInfo.prototype.os = ClientInfo.reflection.fieldsById[4].defaultValue
+ClientInfo.prototype.osVersion = ClientInfo.reflection.fieldsById[5].defaultValue
+ClientInfo.prototype.vendor = ClientInfo.reflection.fieldsById[6].defaultValue
+ClientInfo.prototype.resolution = ClientInfo.reflection.fieldsById[7].defaultValue
+ClientInfo.prototype.languageTag = ClientInfo.reflection.fieldsById[8].defaultValue
+ClientInfo.prototype.timeZone = ClientInfo.reflection.fieldsById[9].defaultValue
+ClientInfo.prototype.ip = ClientInfo.reflection.fieldsById[10].defaultValue

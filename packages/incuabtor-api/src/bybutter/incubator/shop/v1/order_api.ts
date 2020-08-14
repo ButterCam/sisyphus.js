@@ -1,9 +1,8 @@
-import * as $order from "./order"
 import * as $any from "../../../../google/protobuf/any"
 import * as $sisyphus from "@sisyphus.js/core"
 import * as $reflection from "../../../../_reflection"
 import * as $protobuf from "protobufjs"
-import * as $orderApi from "./order_api"
+import * as $order from "./order"
 
 
 /** 创建订单或者向订单内追加新的商品的 API 请求 */
@@ -11,7 +10,7 @@ export interface IPlaceOrderRequest {
     /** 订单 ID，留空用于创建一个订单，如果非空将会将商品加入指定的订单 */
     order?: string
     /** 需要购买的物品 */
-    items?: ($order.Order.IItem[] | null)
+    items?: (PlaceOrderRequest.IItem[] | null)
     /**
      * 创建订单所提供的订单 Meta 信息，例如收货信息，物流信息。Meta 会追加到之前的 Meta 信息中
      * (-- api-linter: core::0146::any=disabled
@@ -22,7 +21,7 @@ export interface IPlaceOrderRequest {
 
 export class PlaceOrderRequest extends $sisyphus.Message<IPlaceOrderRequest> implements IPlaceOrderRequest {
     order!: string
-    items!: ($order.Order.IItem[] | null)
+    items!: (PlaceOrderRequest.IItem[] | null)
     metadata!: ($any.IAny[] | null)
     get $reflection() {
         return PlaceOrderRequest.reflection
@@ -41,7 +40,7 @@ export class PlaceOrderRequest extends $sisyphus.Message<IPlaceOrderRequest> imp
                     break
                 case 2:
                     if (!result.items) result.items = []
-                    result.items.push($orderApi.PlaceOrderRequest.Item.decodeDelimited(reader))
+                    result.items.push(PlaceOrderRequest.Item.decodeDelimited(reader))
                     break
                 case 3:
                     if (!result.metadata) result.metadata = []
@@ -61,14 +60,14 @@ export class PlaceOrderRequest extends $sisyphus.Message<IPlaceOrderRequest> imp
         const result = new this()
         if (!properties) return result
         if(properties.hasOwnProperty("order") && properties.order !== undefined) result.order = properties.order
-        if(properties.hasOwnProperty("items") && properties.items !== undefined) result.items = $orderApi.PlaceOrderRequest.Item.create(properties.items)
-        if(properties.hasOwnProperty("metadata") && properties.metadata !== undefined) result.metadata = $any.Any.create(properties.metadata)
+        if(properties.hasOwnProperty("items") && properties.items != null) result.items = properties.items.map(it => PlaceOrderRequest.Item.create(it))
+        if(properties.hasOwnProperty("metadata") && properties.metadata != null) result.metadata = properties.metadata.map(it => $any.Any.create(it))
         return result
     }
 }
-PlaceOrderRequest.prototype.order = ""
-PlaceOrderRequest.prototype.items = null
-PlaceOrderRequest.prototype.metadata = null
+PlaceOrderRequest.prototype.order = PlaceOrderRequest.reflection.fieldsById[1].defaultValue
+PlaceOrderRequest.prototype.items = PlaceOrderRequest.reflection.fieldsById[2].defaultValue
+PlaceOrderRequest.prototype.metadata = PlaceOrderRequest.reflection.fieldsById[3].defaultValue
 
 export namespace PlaceOrderRequest {
 
@@ -120,12 +119,12 @@ export namespace PlaceOrderRequest {
             const result = new this()
             if (!properties) return result
             if(properties.hasOwnProperty("payment") && properties.payment !== undefined) result.payment = properties.payment
-            if(properties.hasOwnProperty("metadata") && properties.metadata !== undefined) result.metadata = $any.Any.create(properties.metadata)
+            if(properties.hasOwnProperty("metadata") && properties.metadata != null) result.metadata = properties.metadata.map(it => $any.Any.create(it))
             return result
         }
     }
-    Item.prototype.payment = ""
-    Item.prototype.metadata = null
+    Item.prototype.payment = Item.reflection.fieldsById[1].defaultValue
+    Item.prototype.metadata = Item.reflection.fieldsById[2].defaultValue
 }
 
 /** 创建订单 API 的响应 */
@@ -164,11 +163,11 @@ export class PlaceOrderResponse extends $sisyphus.Message<IPlaceOrderResponse> i
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("order") && properties.order !== undefined) result.order = $order.Order.create(properties.order)
+        if(properties.hasOwnProperty("order") && properties.order != null) result.order = $order.Order.create(properties.order)
         return result
     }
 }
-PlaceOrderResponse.prototype.order = null
+PlaceOrderResponse.prototype.order = PlaceOrderResponse.reflection.fieldsById[1].defaultValue
 
 
 /** 将订单进行结算。 */
@@ -218,8 +217,8 @@ export class CheckoutOrderRequest extends $sisyphus.Message<ICheckoutOrderReques
         return result
     }
 }
-CheckoutOrderRequest.prototype.name = ""
-CheckoutOrderRequest.prototype.paymentChannel = ""
+CheckoutOrderRequest.prototype.name = CheckoutOrderRequest.reflection.fieldsById[1].defaultValue
+CheckoutOrderRequest.prototype.paymentChannel = CheckoutOrderRequest.reflection.fieldsById[2].defaultValue
 
 
 /** 订单结算 API 的响应 */
@@ -258,11 +257,11 @@ export class CheckoutOrderResponse extends $sisyphus.Message<ICheckoutOrderRespo
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("order") && properties.order !== undefined) result.order = $order.Order.create(properties.order)
+        if(properties.hasOwnProperty("order") && properties.order != null) result.order = $order.Order.create(properties.order)
         return result
     }
 }
-CheckoutOrderResponse.prototype.order = null
+CheckoutOrderResponse.prototype.order = CheckoutOrderResponse.reflection.fieldsById[1].defaultValue
 
 
 /** 为订单校验收据 */
@@ -312,12 +311,12 @@ export class VerifyOrderRequest extends $sisyphus.Message<IVerifyOrderRequest> i
         const result = new this()
         if (!properties) return result
         if(properties.hasOwnProperty("order") && properties.order !== undefined) result.order = properties.order
-        if(properties.hasOwnProperty("receipt") && properties.receipt !== undefined) result.receipt = $any.Any.create(properties.receipt)
+        if(properties.hasOwnProperty("receipt") && properties.receipt != null) result.receipt = $any.Any.create(properties.receipt)
         return result
     }
 }
-VerifyOrderRequest.prototype.order = ""
-VerifyOrderRequest.prototype.receipt = null
+VerifyOrderRequest.prototype.order = VerifyOrderRequest.reflection.fieldsById[1].defaultValue
+VerifyOrderRequest.prototype.receipt = VerifyOrderRequest.reflection.fieldsById[2].defaultValue
 
 
 /** 校验收据 API 的响应 */
@@ -356,11 +355,11 @@ export class VerifyOrderResponse extends $sisyphus.Message<IVerifyOrderResponse>
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("order") && properties.order !== undefined) result.order = $order.Order.create(properties.order)
+        if(properties.hasOwnProperty("order") && properties.order != null) result.order = $order.Order.create(properties.order)
         return result
     }
 }
-VerifyOrderResponse.prototype.order = null
+VerifyOrderResponse.prototype.order = VerifyOrderResponse.reflection.fieldsById[1].defaultValue
 
 
 /** 订单退款 */
@@ -410,12 +409,12 @@ export class RefundOrderRequest extends $sisyphus.Message<IRefundOrderRequest> i
         const result = new this()
         if (!properties) return result
         if(properties.hasOwnProperty("order") && properties.order !== undefined) result.order = properties.order
-        if(properties.hasOwnProperty("refund") && properties.refund !== undefined) result.refund = $any.Any.create(properties.refund)
+        if(properties.hasOwnProperty("refund") && properties.refund != null) result.refund = $any.Any.create(properties.refund)
         return result
     }
 }
-RefundOrderRequest.prototype.order = ""
-RefundOrderRequest.prototype.refund = null
+RefundOrderRequest.prototype.order = RefundOrderRequest.reflection.fieldsById[1].defaultValue
+RefundOrderRequest.prototype.refund = RefundOrderRequest.reflection.fieldsById[2].defaultValue
 
 
 /** 退款订单的响应 */
@@ -454,11 +453,11 @@ export class RefundOrderResponse extends $sisyphus.Message<IRefundOrderResponse>
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("order") && properties.order !== undefined) result.order = $order.Order.create(properties.order)
+        if(properties.hasOwnProperty("order") && properties.order != null) result.order = $order.Order.create(properties.order)
         return result
     }
 }
-RefundOrderResponse.prototype.order = null
+RefundOrderResponse.prototype.order = RefundOrderResponse.reflection.fieldsById[1].defaultValue
 
 
 /** 获取订单的 API 请求 */
@@ -501,7 +500,7 @@ export class GetOrderRequest extends $sisyphus.Message<IGetOrderRequest> impleme
         return result
     }
 }
-GetOrderRequest.prototype.name = ""
+GetOrderRequest.prototype.name = GetOrderRequest.reflection.fieldsById[1].defaultValue
 
 
 /** 列举订单的 API 请求 */
@@ -576,11 +575,11 @@ export class ListOrdersRequest extends $sisyphus.Message<IListOrdersRequest> imp
         return result
     }
 }
-ListOrdersRequest.prototype.parent = ""
-ListOrdersRequest.prototype.filter = ""
-ListOrdersRequest.prototype.pageSize = 0
-ListOrdersRequest.prototype.pageToken = ""
-ListOrdersRequest.prototype.iapReceipt = ""
+ListOrdersRequest.prototype.parent = ListOrdersRequest.reflection.fieldsById[1].defaultValue
+ListOrdersRequest.prototype.filter = ListOrdersRequest.reflection.fieldsById[2].defaultValue
+ListOrdersRequest.prototype.pageSize = ListOrdersRequest.reflection.fieldsById[3].defaultValue
+ListOrdersRequest.prototype.pageToken = ListOrdersRequest.reflection.fieldsById[4].defaultValue
+ListOrdersRequest.prototype.iapReceipt = ListOrdersRequest.reflection.fieldsById[5].defaultValue
 
 
 /** 列举订单的 API 响应 */
@@ -626,13 +625,13 @@ export class ListOrdersResponse extends $sisyphus.Message<IListOrdersResponse> i
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("orders") && properties.orders !== undefined) result.orders = $order.Order.create(properties.orders)
+        if(properties.hasOwnProperty("orders") && properties.orders != null) result.orders = properties.orders.map(it => $order.Order.create(it))
         if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
         return result
     }
 }
-ListOrdersResponse.prototype.orders = null
-ListOrdersResponse.prototype.nextPageToken = ""
+ListOrdersResponse.prototype.orders = ListOrdersResponse.reflection.fieldsById[1].defaultValue
+ListOrdersResponse.prototype.nextPageToken = ListOrdersResponse.reflection.fieldsById[2].defaultValue
 
 
 /** 批量获取订单的请求 */
@@ -683,8 +682,8 @@ export class BatchGetOrdersRequest extends $sisyphus.Message<IBatchGetOrdersRequ
         return result
     }
 }
-BatchGetOrdersRequest.prototype.parent = ""
-BatchGetOrdersRequest.prototype.names = null
+BatchGetOrdersRequest.prototype.parent = BatchGetOrdersRequest.reflection.fieldsById[1].defaultValue
+BatchGetOrdersRequest.prototype.names = BatchGetOrdersRequest.reflection.fieldsById[2].defaultValue
 
 
 /** 批量获取订单的 API 响应 */
@@ -724,8 +723,8 @@ export class BatchGetOrdersResponse extends $sisyphus.Message<IBatchGetOrdersRes
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("orders") && properties.orders !== undefined) result.orders = $order.Order.create(properties.orders)
+        if(properties.hasOwnProperty("orders") && properties.orders != null) result.orders = properties.orders.map(it => $order.Order.create(it))
         return result
     }
 }
-BatchGetOrdersResponse.prototype.orders = null
+BatchGetOrdersResponse.prototype.orders = BatchGetOrdersResponse.reflection.fieldsById[1].defaultValue

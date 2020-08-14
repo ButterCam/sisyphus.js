@@ -59,9 +59,9 @@ export class ListBindingsRequest extends $sisyphus.Message<IListBindingsRequest>
         return result
     }
 }
-ListBindingsRequest.prototype.parent = ""
-ListBindingsRequest.prototype.pageSize = 0
-ListBindingsRequest.prototype.pageToken = ""
+ListBindingsRequest.prototype.parent = ListBindingsRequest.reflection.fieldsById[1].defaultValue
+ListBindingsRequest.prototype.pageSize = ListBindingsRequest.reflection.fieldsById[2].defaultValue
+ListBindingsRequest.prototype.pageToken = ListBindingsRequest.reflection.fieldsById[3].defaultValue
 
 
 /** 获取账户的所有绑定信息的 API 响应 */
@@ -107,13 +107,13 @@ export class ListBindingsResponse extends $sisyphus.Message<IListBindingsRespons
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("bindings") && properties.bindings !== undefined) result.bindings = $binding.AccountBinding.create(properties.bindings)
+        if(properties.hasOwnProperty("bindings") && properties.bindings != null) result.bindings = properties.bindings.map(it => $binding.AccountBinding.create(it))
         if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
         return result
     }
 }
-ListBindingsResponse.prototype.bindings = null
-ListBindingsResponse.prototype.nextPageToken = ""
+ListBindingsResponse.prototype.bindings = ListBindingsResponse.reflection.fieldsById[1].defaultValue
+ListBindingsResponse.prototype.nextPageToken = ListBindingsResponse.reflection.fieldsById[2].defaultValue
 
 
 /** 修改用户绑定信息的 API 请求 */
@@ -172,17 +172,17 @@ export class ChangeBindingRequest extends $sisyphus.Message<IChangeBindingReques
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("binding") && properties.binding !== undefined) result.binding = $binding.AccountBinding.create(properties.binding)
-        if(properties.hasOwnProperty("mobileAccountCredential") && properties.mobileAccountCredential !== undefined) result.mobileAccountCredential = $auth.MobileCredential.create(properties.mobileAccountCredential)
-        if(properties.hasOwnProperty("mobileBindingCredential") && properties.mobileBindingCredential !== undefined) result.mobileBindingCredential = $auth.MobileCredential.create(properties.mobileBindingCredential)
+        if(properties.hasOwnProperty("binding") && properties.binding != null) result.binding = $binding.AccountBinding.create(properties.binding)
+        if(properties.hasOwnProperty("mobileAccountCredential") && properties.mobileAccountCredential != null) result.mobileAccountCredential = $auth.MobileCredential.create(properties.mobileAccountCredential)
+        if(properties.hasOwnProperty("mobileBindingCredential") && properties.mobileBindingCredential != null) result.mobileBindingCredential = $auth.MobileCredential.create(properties.mobileBindingCredential)
         return result
     }
 }
 Object.defineProperty(ChangeBindingRequest.prototype, "AccountCredential", $sisyphus.oneOfProperty("mobileAccountCredential"))
 Object.defineProperty(ChangeBindingRequest.prototype, "BindingCredential", $sisyphus.oneOfProperty("mobileBindingCredential"))
-ChangeBindingRequest.prototype.binding = null
-ChangeBindingRequest.prototype.mobileAccountCredential = null
-ChangeBindingRequest.prototype.mobileBindingCredential = null
+ChangeBindingRequest.prototype.binding = ChangeBindingRequest.reflection.fieldsById[1].defaultValue
+ChangeBindingRequest.prototype.mobileAccountCredential = ChangeBindingRequest.reflection.fieldsById[11].defaultValue
+ChangeBindingRequest.prototype.mobileBindingCredential = ChangeBindingRequest.reflection.fieldsById[21].defaultValue
 
 
 /** 修改用户绑定信息的 API 响应 */
@@ -221,10 +221,13 @@ export class ChangeBindingResponse extends $sisyphus.Message<IChangeBindingRespo
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("binding") && properties.binding !== undefined) result.binding = $binding.AccountBinding.create(properties.binding)
+        if(properties.hasOwnProperty("binding") && properties.binding != null) result.binding = $binding.AccountBinding.create(properties.binding)
         return result
     }
 }
-ChangeBindingResponse.prototype.binding = null
+ChangeBindingResponse.prototype.binding = ChangeBindingResponse.reflection.fieldsById[1].defaultValue
 
 //Service: .bybutter.incubator.account.v1.BindingApi
+
+export class BindingApi {
+}

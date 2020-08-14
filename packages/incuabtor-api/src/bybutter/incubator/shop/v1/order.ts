@@ -1,4 +1,3 @@
-import * as $order from "./order"
 import * as $money from "../../../../google/type/money"
 import * as $any from "../../../../google/protobuf/any"
 import * as $sisyphus from "@sisyphus.js/core"
@@ -12,11 +11,11 @@ export interface IOrder {
     /** 订单的资源名称，形式为 ‘users/{user}/orders/{order}’ */
     name?: string
     /** 订单包含的物品 */
-    items?: ($order.Order.IItem[] | null)
+    items?: (Order.IItem[] | null)
     /** 订单的用于支付信息 */
-    charge?: ($order.Order.ICharge | null)
+    charge?: (Order.ICharge | null)
     /** 订单的状态 */
-    status?: $order.Order.State
+    status?: Order.State
     /** 展示用商品原价，一般以本地化价格展示 */
     price?: ($money.IMoney | null)
     /** 计算用商品原价，必须以 STD 为单位，1 STD 为 1 人民币分 */
@@ -31,9 +30,9 @@ export interface IOrder {
 
 export class Order extends $sisyphus.Message<IOrder> implements IOrder {
     name!: string
-    items!: ($order.Order.IItem[] | null)
-    charge!: ($order.Order.ICharge | null)
-    status!: $order.Order.State
+    items!: (Order.IItem[] | null)
+    charge!: (Order.ICharge | null)
+    status!: Order.State
     price!: ($money.IMoney | null)
     standardPrice!: ($money.IMoney | null)
     metadata!: ($any.IAny[] | null)
@@ -54,10 +53,10 @@ export class Order extends $sisyphus.Message<IOrder> implements IOrder {
                     break
                 case 2:
                     if (!result.items) result.items = []
-                    result.items.push($order.Order.Item.decodeDelimited(reader))
+                    result.items.push(Order.Item.decodeDelimited(reader))
                     break
                 case 3:
-                    result.charge = $order.Order.Charge.decodeDelimited(reader)
+                    result.charge = Order.Charge.decodeDelimited(reader)
                     break
                 case 4:
                     result.status = reader.uint32()
@@ -86,22 +85,22 @@ export class Order extends $sisyphus.Message<IOrder> implements IOrder {
         const result = new this()
         if (!properties) return result
         if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        if(properties.hasOwnProperty("items") && properties.items !== undefined) result.items = $order.Order.Item.create(properties.items)
-        if(properties.hasOwnProperty("charge") && properties.charge !== undefined) result.charge = $order.Order.Charge.create(properties.charge)
+        if(properties.hasOwnProperty("items") && properties.items != null) result.items = properties.items.map(it => Order.Item.create(it))
+        if(properties.hasOwnProperty("charge") && properties.charge != null) result.charge = Order.Charge.create(properties.charge)
         if(properties.hasOwnProperty("status") && properties.status !== undefined) result.status = properties.status
-        if(properties.hasOwnProperty("price") && properties.price !== undefined) result.price = $money.Money.create(properties.price)
-        if(properties.hasOwnProperty("standardPrice") && properties.standardPrice !== undefined) result.standardPrice = $money.Money.create(properties.standardPrice)
-        if(properties.hasOwnProperty("metadata") && properties.metadata !== undefined) result.metadata = $any.Any.create(properties.metadata)
+        if(properties.hasOwnProperty("price") && properties.price != null) result.price = $money.Money.create(properties.price)
+        if(properties.hasOwnProperty("standardPrice") && properties.standardPrice != null) result.standardPrice = $money.Money.create(properties.standardPrice)
+        if(properties.hasOwnProperty("metadata") && properties.metadata != null) result.metadata = properties.metadata.map(it => $any.Any.create(it))
         return result
     }
 }
-Order.prototype.name = ""
-Order.prototype.items = null
-Order.prototype.charge = null
-Order.prototype.status = $order.Order.State.STATE_UNSPECIFIED
-Order.prototype.price = null
-Order.prototype.standardPrice = null
-Order.prototype.metadata = null
+Order.prototype.name = Order.reflection.fieldsById[1].defaultValue
+Order.prototype.items = Order.reflection.fieldsById[2].defaultValue
+Order.prototype.charge = Order.reflection.fieldsById[3].defaultValue
+Order.prototype.status = Order.reflection.fieldsById[4].defaultValue
+Order.prototype.price = Order.reflection.fieldsById[5].defaultValue
+Order.prototype.standardPrice = Order.reflection.fieldsById[6].defaultValue
+Order.prototype.metadata = Order.reflection.fieldsById[7].defaultValue
 
 export namespace Order {
 
@@ -186,15 +185,15 @@ export namespace Order {
             if (!properties) return result
             if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
             if(properties.hasOwnProperty("payment") && properties.payment !== undefined) result.payment = properties.payment
-            if(properties.hasOwnProperty("product") && properties.product !== undefined) result.product = $product.Product.create(properties.product)
-            if(properties.hasOwnProperty("metadata") && properties.metadata !== undefined) result.metadata = $any.Any.create(properties.metadata)
+            if(properties.hasOwnProperty("product") && properties.product != null) result.product = $product.Product.create(properties.product)
+            if(properties.hasOwnProperty("metadata") && properties.metadata != null) result.metadata = properties.metadata.map(it => $any.Any.create(it))
             return result
         }
     }
-    Item.prototype.name = ""
-    Item.prototype.payment = ""
-    Item.prototype.product = null
-    Item.prototype.metadata = null
+    Item.prototype.name = Item.reflection.fieldsById[1].defaultValue
+    Item.prototype.payment = Item.reflection.fieldsById[2].defaultValue
+    Item.prototype.product = Item.reflection.fieldsById[3].defaultValue
+    Item.prototype.metadata = Item.reflection.fieldsById[4].defaultValue
 
 
     /** 订单的支付相关信息 */
@@ -251,7 +250,7 @@ export namespace Order {
             return result
         }
     }
-    Charge.prototype.id = ""
-    Charge.prototype.data = ""
-    Charge.prototype.paymentChannel = ""
+    Charge.prototype.id = Charge.reflection.fieldsById[1].defaultValue
+    Charge.prototype.data = Charge.reflection.fieldsById[2].defaultValue
+    Charge.prototype.paymentChannel = Charge.reflection.fieldsById[3].defaultValue
 }

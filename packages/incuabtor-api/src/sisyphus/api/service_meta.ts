@@ -41,4 +41,6 @@ export class ServiceMetadata extends $sisyphus.Message<IServiceMetadata> impleme
         return result
     }
 }
-ServiceMetadata.prototype.name = ""
+ServiceMetadata.prototype.name = ServiceMetadata.reflection.fieldsById[1].defaultValue
+
+export let metadata = $reflection.root.lookup(".sisyphus.api.metadata")

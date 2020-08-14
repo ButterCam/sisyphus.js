@@ -2,7 +2,6 @@ import * as $reflection from "../../../../_reflection"
 import * as $sisyphus from "@sisyphus.js/core"
 import * as $protobuf from "protobufjs"
 import * as $duration from "../../../../google/protobuf/duration"
-import * as $dictation from "./dictation"
 
 
 /** 语音识别厂商 */
@@ -81,11 +80,11 @@ export interface IDictationTask {
     /** 时长 */
     audioDuration?: ($duration.IDuration | null)
     /** 语音识别的句子相关 */
-    sentences?: ($dictation.IDictationSentence[] | null)
+    sentences?: (IDictationSentence[] | null)
     /** 语音识别任务状态 */
-    state?: $dictation.DictationState
+    state?: DictationState
     /** 语音识别任务厂商 */
-    vendor?: $dictation.DictationVendor
+    vendor?: DictationVendor
 }
 
 export class DictationTask extends $sisyphus.Message<IDictationTask> implements IDictationTask {
@@ -93,9 +92,9 @@ export class DictationTask extends $sisyphus.Message<IDictationTask> implements 
     audioFileKey!: string
     audioFileUri!: string
     audioDuration!: ($duration.IDuration | null)
-    sentences!: ($dictation.IDictationSentence[] | null)
-    state!: $dictation.DictationState
-    vendor!: $dictation.DictationVendor
+    sentences!: (IDictationSentence[] | null)
+    state!: DictationState
+    vendor!: DictationVendor
     get $reflection() {
         return DictationTask.reflection
     }
@@ -122,7 +121,7 @@ export class DictationTask extends $sisyphus.Message<IDictationTask> implements 
                     break
                 case 5:
                     if (!result.sentences) result.sentences = []
-                    result.sentences.push($dictation.DictationSentence.decodeDelimited(reader))
+                    result.sentences.push(DictationSentence.decodeDelimited(reader))
                     break
                 case 6:
                     result.state = reader.uint32()
@@ -146,20 +145,20 @@ export class DictationTask extends $sisyphus.Message<IDictationTask> implements 
         if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
         if(properties.hasOwnProperty("audioFileKey") && properties.audioFileKey !== undefined) result.audioFileKey = properties.audioFileKey
         if(properties.hasOwnProperty("audioFileUri") && properties.audioFileUri !== undefined) result.audioFileUri = properties.audioFileUri
-        if(properties.hasOwnProperty("audioDuration") && properties.audioDuration !== undefined) result.audioDuration = $duration.Duration.create(properties.audioDuration)
-        if(properties.hasOwnProperty("sentences") && properties.sentences !== undefined) result.sentences = $dictation.DictationSentence.create(properties.sentences)
+        if(properties.hasOwnProperty("audioDuration") && properties.audioDuration != null) result.audioDuration = $duration.Duration.create(properties.audioDuration)
+        if(properties.hasOwnProperty("sentences") && properties.sentences != null) result.sentences = properties.sentences.map(it => DictationSentence.create(it))
         if(properties.hasOwnProperty("state") && properties.state !== undefined) result.state = properties.state
         if(properties.hasOwnProperty("vendor") && properties.vendor !== undefined) result.vendor = properties.vendor
         return result
     }
 }
-DictationTask.prototype.name = ""
-DictationTask.prototype.audioFileKey = ""
-DictationTask.prototype.audioFileUri = ""
-DictationTask.prototype.audioDuration = null
-DictationTask.prototype.sentences = null
-DictationTask.prototype.state = $dictation.DictationState.DICTATION_STATE_UNSPECIFIED
-DictationTask.prototype.vendor = $dictation.DictationVendor.DICTATION_VENDOR_UNSPECIFIED
+DictationTask.prototype.name = DictationTask.reflection.fieldsById[1].defaultValue
+DictationTask.prototype.audioFileKey = DictationTask.reflection.fieldsById[2].defaultValue
+DictationTask.prototype.audioFileUri = DictationTask.reflection.fieldsById[3].defaultValue
+DictationTask.prototype.audioDuration = DictationTask.reflection.fieldsById[4].defaultValue
+DictationTask.prototype.sentences = DictationTask.reflection.fieldsById[5].defaultValue
+DictationTask.prototype.state = DictationTask.reflection.fieldsById[6].defaultValue
+DictationTask.prototype.vendor = DictationTask.reflection.fieldsById[7].defaultValue
 
 
 /** 语音识别出的句子 */
@@ -171,14 +170,14 @@ export interface IDictationSentence {
     /** 内容 */
     content?: string
     /** 所有的词 */
-    words?: ($dictation.IDictationWord[] | null)
+    words?: (IDictationWord[] | null)
 }
 
 export class DictationSentence extends $sisyphus.Message<IDictationSentence> implements IDictationSentence {
     beginOffset!: ($duration.IDuration | null)
     endOffset!: ($duration.IDuration | null)
     content!: string
-    words!: ($dictation.IDictationWord[] | null)
+    words!: (IDictationWord[] | null)
     get $reflection() {
         return DictationSentence.reflection
     }
@@ -202,7 +201,7 @@ export class DictationSentence extends $sisyphus.Message<IDictationSentence> imp
                     break
                 case 4:
                     if (!result.words) result.words = []
-                    result.words.push($dictation.DictationWord.decodeDelimited(reader))
+                    result.words.push(DictationWord.decodeDelimited(reader))
                     break
             }
         }
@@ -217,17 +216,17 @@ export class DictationSentence extends $sisyphus.Message<IDictationSentence> imp
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("beginOffset") && properties.beginOffset !== undefined) result.beginOffset = $duration.Duration.create(properties.beginOffset)
-        if(properties.hasOwnProperty("endOffset") && properties.endOffset !== undefined) result.endOffset = $duration.Duration.create(properties.endOffset)
+        if(properties.hasOwnProperty("beginOffset") && properties.beginOffset != null) result.beginOffset = $duration.Duration.create(properties.beginOffset)
+        if(properties.hasOwnProperty("endOffset") && properties.endOffset != null) result.endOffset = $duration.Duration.create(properties.endOffset)
         if(properties.hasOwnProperty("content") && properties.content !== undefined) result.content = properties.content
-        if(properties.hasOwnProperty("words") && properties.words !== undefined) result.words = $dictation.DictationWord.create(properties.words)
+        if(properties.hasOwnProperty("words") && properties.words != null) result.words = properties.words.map(it => DictationWord.create(it))
         return result
     }
 }
-DictationSentence.prototype.beginOffset = null
-DictationSentence.prototype.endOffset = null
-DictationSentence.prototype.content = ""
-DictationSentence.prototype.words = null
+DictationSentence.prototype.beginOffset = DictationSentence.reflection.fieldsById[1].defaultValue
+DictationSentence.prototype.endOffset = DictationSentence.reflection.fieldsById[2].defaultValue
+DictationSentence.prototype.content = DictationSentence.reflection.fieldsById[3].defaultValue
+DictationSentence.prototype.words = DictationSentence.reflection.fieldsById[4].defaultValue
 
 
 /** 语音识别的词 */
@@ -239,14 +238,14 @@ export interface IDictationWord {
     /** 内容 */
     content?: string
     /** 类型 */
-    type?: $dictation.DictationWord.Type
+    type?: DictationWord.Type
 }
 
 export class DictationWord extends $sisyphus.Message<IDictationWord> implements IDictationWord {
     beginOffset!: ($duration.IDuration | null)
     endOffset!: ($duration.IDuration | null)
     content!: string
-    type!: $dictation.DictationWord.Type
+    type!: DictationWord.Type
     get $reflection() {
         return DictationWord.reflection
     }
@@ -284,17 +283,17 @@ export class DictationWord extends $sisyphus.Message<IDictationWord> implements 
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("beginOffset") && properties.beginOffset !== undefined) result.beginOffset = $duration.Duration.create(properties.beginOffset)
-        if(properties.hasOwnProperty("endOffset") && properties.endOffset !== undefined) result.endOffset = $duration.Duration.create(properties.endOffset)
+        if(properties.hasOwnProperty("beginOffset") && properties.beginOffset != null) result.beginOffset = $duration.Duration.create(properties.beginOffset)
+        if(properties.hasOwnProperty("endOffset") && properties.endOffset != null) result.endOffset = $duration.Duration.create(properties.endOffset)
         if(properties.hasOwnProperty("content") && properties.content !== undefined) result.content = properties.content
         if(properties.hasOwnProperty("type") && properties.type !== undefined) result.type = properties.type
         return result
     }
 }
-DictationWord.prototype.beginOffset = null
-DictationWord.prototype.endOffset = null
-DictationWord.prototype.content = ""
-DictationWord.prototype.type = $dictation.DictationWord.Type.TYPE_UNSPECIFIED
+DictationWord.prototype.beginOffset = DictationWord.reflection.fieldsById[1].defaultValue
+DictationWord.prototype.endOffset = DictationWord.reflection.fieldsById[2].defaultValue
+DictationWord.prototype.content = DictationWord.reflection.fieldsById[3].defaultValue
+DictationWord.prototype.type = DictationWord.reflection.fieldsById[4].defaultValue
 
 export namespace DictationWord {
 

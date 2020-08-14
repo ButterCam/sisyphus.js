@@ -70,10 +70,10 @@ export class Status extends $sisyphus.Message<IStatus> implements IStatus {
         if (!properties) return result
         if(properties.hasOwnProperty("code") && properties.code !== undefined) result.code = properties.code
         if(properties.hasOwnProperty("message") && properties.message !== undefined) result.message = properties.message
-        if(properties.hasOwnProperty("details") && properties.details !== undefined) result.details = $any.Any.create(properties.details)
+        if(properties.hasOwnProperty("details") && properties.details != null) result.details = properties.details.map(it => $any.Any.create(it))
         return result
     }
 }
-Status.prototype.code = 0
-Status.prototype.message = ""
-Status.prototype.details = null
+Status.prototype.code = Status.reflection.fieldsById[1].defaultValue
+Status.prototype.message = Status.reflection.fieldsById[2].defaultValue
+Status.prototype.details = Status.reflection.fieldsById[3].defaultValue

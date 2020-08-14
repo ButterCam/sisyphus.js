@@ -1,5 +1,5 @@
-import * as $protobuf from "protobufjs"
 import * as $sisyphus from "@sisyphus.js/core"
+import * as $protobuf from "protobufjs"
 import * as $reflection from "../../_reflection"
 
 
@@ -63,7 +63,7 @@ import * as $reflection from "../../_reflection"
  * be expressed in JSON format as "3.000000001s", and 3 seconds and 1
  * microsecond should be expressed in JSON format as "3.000001s".
  */
-export interface IDuration {
+export interface IDuration extends $sisyphus.IDuration {
     /**
      * Signed seconds of the span of time. Must be from -315,576,000,000
      * to +315,576,000,000 inclusive. Note: these bounds are computed from:
@@ -120,5 +120,5 @@ export class Duration extends $sisyphus.Message<IDuration> implements IDuration 
         return result
     }
 }
-Duration.prototype.seconds = $sisyphus.Long.ZERO
-Duration.prototype.nanos = 0
+Duration.prototype.seconds = Duration.reflection.fieldsById[1].defaultValue
+Duration.prototype.nanos = Duration.reflection.fieldsById[2].defaultValue

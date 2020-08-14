@@ -61,18 +61,18 @@ export class SendVerificationCodeRequest extends $sisyphus.Message<ISendVerifica
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("phoneTextTarget") && properties.phoneTextTarget !== undefined) result.phoneTextTarget = $verification.PhoneTarget.create(properties.phoneTextTarget)
-        if(properties.hasOwnProperty("phoneSoundTarget") && properties.phoneSoundTarget !== undefined) result.phoneSoundTarget = $verification.PhoneTarget.create(properties.phoneSoundTarget)
-        if(properties.hasOwnProperty("emailTarget") && properties.emailTarget !== undefined) result.emailTarget = $verification.EmailTarget.create(properties.emailTarget)
+        if(properties.hasOwnProperty("phoneTextTarget") && properties.phoneTextTarget != null) result.phoneTextTarget = $verification.PhoneTarget.create(properties.phoneTextTarget)
+        if(properties.hasOwnProperty("phoneSoundTarget") && properties.phoneSoundTarget != null) result.phoneSoundTarget = $verification.PhoneTarget.create(properties.phoneSoundTarget)
+        if(properties.hasOwnProperty("emailTarget") && properties.emailTarget != null) result.emailTarget = $verification.EmailTarget.create(properties.emailTarget)
         if(properties.hasOwnProperty("context") && properties.context !== undefined) result.context = properties.context
         return result
     }
 }
 Object.defineProperty(SendVerificationCodeRequest.prototype, "target", $sisyphus.oneOfProperty("phoneTextTarget", "phoneSoundTarget", "emailTarget"))
-SendVerificationCodeRequest.prototype.phoneTextTarget = null
-SendVerificationCodeRequest.prototype.phoneSoundTarget = null
-SendVerificationCodeRequest.prototype.emailTarget = null
-SendVerificationCodeRequest.prototype.context = ""
+SendVerificationCodeRequest.prototype.phoneTextTarget = SendVerificationCodeRequest.reflection.fieldsById[1].defaultValue
+SendVerificationCodeRequest.prototype.phoneSoundTarget = SendVerificationCodeRequest.reflection.fieldsById[2].defaultValue
+SendVerificationCodeRequest.prototype.emailTarget = SendVerificationCodeRequest.reflection.fieldsById[3].defaultValue
+SendVerificationCodeRequest.prototype.context = SendVerificationCodeRequest.reflection.fieldsById[11].defaultValue
 
 
 /** 发送验证码响应 */
@@ -173,20 +173,20 @@ export class VerifyVerificationCodeRequest extends $sisyphus.Message<IVerifyVeri
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("phoneTextTarget") && properties.phoneTextTarget !== undefined) result.phoneTextTarget = $verification.PhoneTarget.create(properties.phoneTextTarget)
-        if(properties.hasOwnProperty("phoneSoundTarget") && properties.phoneSoundTarget !== undefined) result.phoneSoundTarget = $verification.PhoneTarget.create(properties.phoneSoundTarget)
-        if(properties.hasOwnProperty("emailTarget") && properties.emailTarget !== undefined) result.emailTarget = $verification.EmailTarget.create(properties.emailTarget)
+        if(properties.hasOwnProperty("phoneTextTarget") && properties.phoneTextTarget != null) result.phoneTextTarget = $verification.PhoneTarget.create(properties.phoneTextTarget)
+        if(properties.hasOwnProperty("phoneSoundTarget") && properties.phoneSoundTarget != null) result.phoneSoundTarget = $verification.PhoneTarget.create(properties.phoneSoundTarget)
+        if(properties.hasOwnProperty("emailTarget") && properties.emailTarget != null) result.emailTarget = $verification.EmailTarget.create(properties.emailTarget)
         if(properties.hasOwnProperty("context") && properties.context !== undefined) result.context = properties.context
         if(properties.hasOwnProperty("code") && properties.code !== undefined) result.code = properties.code
         return result
     }
 }
 Object.defineProperty(VerifyVerificationCodeRequest.prototype, "target", $sisyphus.oneOfProperty("phoneTextTarget", "phoneSoundTarget", "emailTarget"))
-VerifyVerificationCodeRequest.prototype.phoneTextTarget = null
-VerifyVerificationCodeRequest.prototype.phoneSoundTarget = null
-VerifyVerificationCodeRequest.prototype.emailTarget = null
-VerifyVerificationCodeRequest.prototype.context = ""
-VerifyVerificationCodeRequest.prototype.code = ""
+VerifyVerificationCodeRequest.prototype.phoneTextTarget = VerifyVerificationCodeRequest.reflection.fieldsById[1].defaultValue
+VerifyVerificationCodeRequest.prototype.phoneSoundTarget = VerifyVerificationCodeRequest.reflection.fieldsById[2].defaultValue
+VerifyVerificationCodeRequest.prototype.emailTarget = VerifyVerificationCodeRequest.reflection.fieldsById[3].defaultValue
+VerifyVerificationCodeRequest.prototype.context = VerifyVerificationCodeRequest.reflection.fieldsById[11].defaultValue
+VerifyVerificationCodeRequest.prototype.code = VerifyVerificationCodeRequest.reflection.fieldsById[12].defaultValue
 
 
 /** 验证验证码响应 */
@@ -229,7 +229,7 @@ export class VerifyVerificationCodeResponse extends $sisyphus.Message<IVerifyVer
         return result
     }
 }
-VerifyVerificationCodeResponse.prototype.result = false
+VerifyVerificationCodeResponse.prototype.result = VerifyVerificationCodeResponse.reflection.fieldsById[1].defaultValue
 
 
 /**
@@ -283,8 +283,8 @@ export class ListRegionCodeRequest extends $sisyphus.Message<IListRegionCodeRequ
         return result
     }
 }
-ListRegionCodeRequest.prototype.pageSize = 0
-ListRegionCodeRequest.prototype.pageToken = ""
+ListRegionCodeRequest.prototype.pageSize = ListRegionCodeRequest.reflection.fieldsById[1].defaultValue
+ListRegionCodeRequest.prototype.pageToken = ListRegionCodeRequest.reflection.fieldsById[2].defaultValue
 
 
 /** 批量获取地区代码响应 */
@@ -334,12 +334,15 @@ export class ListRegionCodeResponse extends $sisyphus.Message<IListRegionCodeRes
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("regionCodes") && properties.regionCodes !== undefined) result.regionCodes = $verification.RegionCode.create(properties.regionCodes)
+        if(properties.hasOwnProperty("regionCodes") && properties.regionCodes != null) result.regionCodes = properties.regionCodes.map(it => $verification.RegionCode.create(it))
         if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
         return result
     }
 }
-ListRegionCodeResponse.prototype.regionCodes = null
-ListRegionCodeResponse.prototype.nextPageToken = ""
+ListRegionCodeResponse.prototype.regionCodes = ListRegionCodeResponse.reflection.fieldsById[1].defaultValue
+ListRegionCodeResponse.prototype.nextPageToken = ListRegionCodeResponse.reflection.fieldsById[2].defaultValue
 
 //Service: .bybutter.incubator.verification.v1.VerificationApi
+
+export class VerificationApi {
+}

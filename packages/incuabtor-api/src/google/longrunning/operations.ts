@@ -3,7 +3,6 @@ import * as $status from "../rpc/status"
 import * as $sisyphus from "@sisyphus.js/core"
 import * as $reflection from "../../_reflection"
 import * as $protobuf from "protobufjs"
-import * as $operations from "./operations"
 import * as $duration from "../protobuf/duration"
 
 
@@ -101,19 +100,19 @@ export class Operation extends $sisyphus.Message<IOperation> implements IOperati
         const result = new this()
         if (!properties) return result
         if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        if(properties.hasOwnProperty("metadata") && properties.metadata !== undefined) result.metadata = $any.Any.create(properties.metadata)
+        if(properties.hasOwnProperty("metadata") && properties.metadata != null) result.metadata = $any.Any.create(properties.metadata)
         if(properties.hasOwnProperty("done") && properties.done !== undefined) result.done = properties.done
-        if(properties.hasOwnProperty("error") && properties.error !== undefined) result.error = $status.Status.create(properties.error)
-        if(properties.hasOwnProperty("response") && properties.response !== undefined) result.response = $any.Any.create(properties.response)
+        if(properties.hasOwnProperty("error") && properties.error != null) result.error = $status.Status.create(properties.error)
+        if(properties.hasOwnProperty("response") && properties.response != null) result.response = $any.Any.create(properties.response)
         return result
     }
 }
 Object.defineProperty(Operation.prototype, "result", $sisyphus.oneOfProperty("error", "response"))
-Operation.prototype.name = ""
-Operation.prototype.metadata = null
-Operation.prototype.done = false
-Operation.prototype.error = null
-Operation.prototype.response = null
+Operation.prototype.name = Operation.reflection.fieldsById[1].defaultValue
+Operation.prototype.metadata = Operation.reflection.fieldsById[2].defaultValue
+Operation.prototype.done = Operation.reflection.fieldsById[3].defaultValue
+Operation.prototype.error = Operation.reflection.fieldsById[4].defaultValue
+Operation.prototype.response = Operation.reflection.fieldsById[5].defaultValue
 
 
 /** The request message for [Operations.GetOperation][google.longrunning.Operations.GetOperation]. */
@@ -156,7 +155,7 @@ export class GetOperationRequest extends $sisyphus.Message<IGetOperationRequest>
         return result
     }
 }
-GetOperationRequest.prototype.name = ""
+GetOperationRequest.prototype.name = GetOperationRequest.reflection.fieldsById[1].defaultValue
 
 
 /** The request message for [Operations.ListOperations][google.longrunning.Operations.ListOperations]. */
@@ -220,22 +219,22 @@ export class ListOperationsRequest extends $sisyphus.Message<IListOperationsRequ
         return result
     }
 }
-ListOperationsRequest.prototype.name = ""
-ListOperationsRequest.prototype.filter = ""
-ListOperationsRequest.prototype.pageSize = 0
-ListOperationsRequest.prototype.pageToken = ""
+ListOperationsRequest.prototype.name = ListOperationsRequest.reflection.fieldsById[4].defaultValue
+ListOperationsRequest.prototype.filter = ListOperationsRequest.reflection.fieldsById[1].defaultValue
+ListOperationsRequest.prototype.pageSize = ListOperationsRequest.reflection.fieldsById[2].defaultValue
+ListOperationsRequest.prototype.pageToken = ListOperationsRequest.reflection.fieldsById[3].defaultValue
 
 
 /** The response message for [Operations.ListOperations][google.longrunning.Operations.ListOperations]. */
 export interface IListOperationsResponse {
     /** A list of operations that matches the specified filter in the request. */
-    operations?: ($operations.IOperation[] | null)
+    operations?: (IOperation[] | null)
     /** The standard List next-page token. */
     nextPageToken?: string
 }
 
 export class ListOperationsResponse extends $sisyphus.Message<IListOperationsResponse> implements IListOperationsResponse {
-    operations!: ($operations.IOperation[] | null)
+    operations!: (IOperation[] | null)
     nextPageToken!: string
     get $reflection() {
         return ListOperationsResponse.reflection
@@ -251,7 +250,7 @@ export class ListOperationsResponse extends $sisyphus.Message<IListOperationsRes
             switch(tag>>>3) {
                 case 1:
                     if (!result.operations) result.operations = []
-                    result.operations.push($operations.Operation.decodeDelimited(reader))
+                    result.operations.push(Operation.decodeDelimited(reader))
                     break
                 case 2:
                     result.nextPageToken = reader.string()
@@ -269,13 +268,13 @@ export class ListOperationsResponse extends $sisyphus.Message<IListOperationsRes
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("operations") && properties.operations !== undefined) result.operations = $operations.Operation.create(properties.operations)
+        if(properties.hasOwnProperty("operations") && properties.operations != null) result.operations = properties.operations.map(it => Operation.create(it))
         if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
         return result
     }
 }
-ListOperationsResponse.prototype.operations = null
-ListOperationsResponse.prototype.nextPageToken = ""
+ListOperationsResponse.prototype.operations = ListOperationsResponse.reflection.fieldsById[1].defaultValue
+ListOperationsResponse.prototype.nextPageToken = ListOperationsResponse.reflection.fieldsById[2].defaultValue
 
 
 /** The request message for [Operations.CancelOperation][google.longrunning.Operations.CancelOperation]. */
@@ -318,7 +317,7 @@ export class CancelOperationRequest extends $sisyphus.Message<ICancelOperationRe
         return result
     }
 }
-CancelOperationRequest.prototype.name = ""
+CancelOperationRequest.prototype.name = CancelOperationRequest.reflection.fieldsById[1].defaultValue
 
 
 /** The request message for [Operations.DeleteOperation][google.longrunning.Operations.DeleteOperation]. */
@@ -361,7 +360,7 @@ export class DeleteOperationRequest extends $sisyphus.Message<IDeleteOperationRe
         return result
     }
 }
-DeleteOperationRequest.prototype.name = ""
+DeleteOperationRequest.prototype.name = DeleteOperationRequest.reflection.fieldsById[1].defaultValue
 
 
 /** The request message for [Operations.WaitOperation][google.longrunning.Operations.WaitOperation]. */
@@ -411,12 +410,12 @@ export class WaitOperationRequest extends $sisyphus.Message<IWaitOperationReques
         const result = new this()
         if (!properties) return result
         if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        if(properties.hasOwnProperty("timeout") && properties.timeout !== undefined) result.timeout = $duration.Duration.create(properties.timeout)
+        if(properties.hasOwnProperty("timeout") && properties.timeout != null) result.timeout = $duration.Duration.create(properties.timeout)
         return result
     }
 }
-WaitOperationRequest.prototype.name = ""
-WaitOperationRequest.prototype.timeout = null
+WaitOperationRequest.prototype.name = WaitOperationRequest.reflection.fieldsById[1].defaultValue
+WaitOperationRequest.prototype.timeout = WaitOperationRequest.reflection.fieldsById[2].defaultValue
 
 
 /**
@@ -495,7 +494,11 @@ export class OperationInfo extends $sisyphus.Message<IOperationInfo> implements 
         return result
     }
 }
-OperationInfo.prototype.responseType = ""
-OperationInfo.prototype.metadataType = ""
+OperationInfo.prototype.responseType = OperationInfo.reflection.fieldsById[1].defaultValue
+OperationInfo.prototype.metadataType = OperationInfo.reflection.fieldsById[2].defaultValue
 
 //Service: .google.longrunning.Operations
+
+export class Operations {
+}
+export let operationInfo = $reflection.root.lookup(".google.longrunning.operationInfo")

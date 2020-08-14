@@ -1,5 +1,5 @@
-import * as $protobuf from "protobufjs"
 import * as $sisyphus from "@sisyphus.js/core"
+import * as $protobuf from "protobufjs"
 import * as $reflection from "../../_reflection"
 
 
@@ -87,7 +87,7 @@ import * as $reflection from "../../_reflection"
  * http://www.joda.org/joda-time/apidocs/org/joda/time/format/ISODateTimeFormat.html#dateTime%2D%2D
  * ) to obtain a formatter capable of generating timestamps in this format.
  */
-export interface ITimestamp {
+export interface ITimestamp extends $sisyphus.ITimestamp {
     /**
      * Represents seconds of UTC time since Unix epoch
      * 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to
@@ -142,5 +142,5 @@ export class Timestamp extends $sisyphus.Message<ITimestamp> implements ITimesta
         return result
     }
 }
-Timestamp.prototype.seconds = $sisyphus.Long.ZERO
-Timestamp.prototype.nanos = 0
+Timestamp.prototype.seconds = Timestamp.reflection.fieldsById[1].defaultValue
+Timestamp.prototype.nanos = Timestamp.reflection.fieldsById[2].defaultValue

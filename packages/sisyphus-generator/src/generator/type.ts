@@ -65,7 +65,7 @@ export class TypeSpec implements GeneratorSpec {
             return `{ [k: ${this.fieldType(field.keyType)}]: ${this.fieldType(field.type)} }`
         }
 
-        return this.fieldType(field.type)
+        return this.fieldType(field.resolvedType?.fullName ? field.resolvedType?.fullName : field.type)
     }
 
     private tsFieldType(field: FieldBase): string {
@@ -127,17 +127,64 @@ export class TypeSpec implements GeneratorSpec {
         return field.name
     }
 
+    private get wellknown(): string {
+        switch (this._reflection.fullName) {
+            case ".google.protobuf.Any":
+                return `$${this.file.importSisyphus()}.IAny`
+            case ".google.protobuf.Duration":
+                return `$${this.file.importSisyphus()}.IDuration`
+            case ".google.protobuf.Empty":
+                return `$${this.file.importSisyphus()}.IEmpty`
+            case ".google.protobuf.FieldMask":
+                return `$${this.file.importSisyphus()}.IFieldMask`
+            case ".google.protobuf.Struct":
+                return `$${this.file.importSisyphus()}.IStruct`
+            case ".google.protobuf.Value":
+                return `$${this.file.importSisyphus()}.IValue`
+            case ".google.protobuf.Timestamp":
+                return `$${this.file.importSisyphus()}.ITimestamp`
+            case ".google.protobuf.DoubleValue":
+                return `$${this.file.importSisyphus()}.IDoubleValue`
+            case ".google.protobuf.FloatValue":
+                return `$${this.file.importSisyphus()}.IFloatValue`
+            case ".google.protobuf.Int64Value":
+                return `$${this.file.importSisyphus()}.IInt64Value`
+            case ".google.protobuf.UInt64Value":
+                return `$${this.file.importSisyphus()}.IUInt64Value`
+            case ".google.protobuf.Int32Value":
+                return `$${this.file.importSisyphus()}.IInt32Value`
+            case ".google.protobuf.UInt32Value":
+                return `$${this.file.importSisyphus()}.IUInt32Value`
+            case ".google.protobuf.BoolValue":
+                return `$${this.file.importSisyphus()}.IIBoolValue`
+            case ".google.protobuf.StringValue":
+                return `$${this.file.importSisyphus()}.IStringValue`
+            case ".google.protobuf.BytesValue":
+                return `$${this.file.importSisyphus()}.IBytesValue`
+            default:
+                return ""
+        }
+    }
+
     private generateInterface(b: CodeBuilder) {
         if (this._reflection.comment != null) {
             b.appendLn(normalizeComment(this._reflection.comment))
         }
 
-        b.beginBlock(`export interface I${this._reflection.name}`)
+        if (this.wellknown.length > 0) {
+            b.beginBlock(`export interface I${this._reflection.name} extends ${this.wellknown}`)
+        } else {
+            b.beginBlock(`export interface I${this._reflection.name}`)
+        }
         for (let field of this._reflection.fieldsArray) {
             if (field.comment != null) {
                 b.appendLn(normalizeComment(field.comment))
             }
-            b.appendLn(`${this.fieldName(field)}?: ${this.tsFieldType(field)}`)
+            if (field.required) {
+                b.appendLn(`${this.fieldName(field)}: ${this.tsFieldType(field)}`)
+            } else {
+                b.appendLn(`${this.fieldName(field)}?: ${this.tsFieldType(field)}`)
+            }
         }
         for (let oneOf of this._reflection.oneofsArray) {
             if (oneOf.comment != null) {
@@ -170,11 +217,7 @@ export class TypeSpec implements GeneratorSpec {
             b.appendLn(`Object.defineProperty(${this._reflection.name}.prototype, "${oneOf.name}", $${this.file.importSisyphus()}.oneOfProperty(${fields}))`)
         }
         for (let field of this._reflection.fieldsArray) {
-            if (field.name.startsWith(".")) {
-                b.appendLn(`${this._reflection.name}.prototype[${this.fieldName(field)}] = ${this.fieldDefaultValue(field)}`)
-            } else {
-                b.appendLn(`${this._reflection.name}.prototype.${this.fieldName(field)} = ${this.fieldDefaultValue(field)}`)
-            }
+            b.appendLn(`${this._reflection.name}.prototype${safeProp(field.name)} = ${this._reflection.name}.reflection.fieldsById[${field.id}].defaultValue`)
         }
     }
 
@@ -202,19 +245,25 @@ export class TypeSpec implements GeneratorSpec {
         b.appendLn(`if(!(reader instanceof $${this.file.importProtobuf()}.Reader)) reader = $${this.file.importProtobuf()}.Reader.create(reader)`)
         b.appendLn(`const end = length === undefined ? reader.len : reader.pos + length`)
         b.appendLn(`const result = new this()`)
+        for (let field of this._reflection.fieldsArray) {
+            if (field.map) {
+                b.appendLn(`let key: any, value: any`)
+                break
+            }
+        }
         b.beginBlock("while(reader.pos < end)")
         b.appendLn("let tag = reader.uint32()")
         b.beginBlock(`switch(tag>>>3)`)
 
         for (let field of this._reflection.fieldsArray) {
-            b.appendLn(`case ${field.id}:`).indent()
             const fieldRef = `result${util.safeProp(field.name)}`
+            b.appendLn(`case ${field.id}:`).indent()
             if (field.map) {
-                b.appendLn(`if (!${fieldRef}) ${fieldRef} = {}`)
+                b.appendLn(`if (!${fieldRef}) ${fieldRef} = {};`)
                 if (field.resolvedType != null) {
-                    b.appendLn(`const [key, value] = ${this.file.importSisyphus()}.readMapEntry(this.reflection.fields["${field.name}"], reader, ${this.file.classname(field.resolvedType)})`)
+                    b.appendLn(`[key, value] = $${this.file.importSisyphus()}.readMapEntry(this.reflection.fields["${field.name}"], reader, ${this.file.classname(field.resolvedType)})`)
                 } else {
-                    b.appendLn(`const [key, value] = ${this.file.importSisyphus()}.readMapEntry(this.reflection.fields["${field.name}"], reader)`)
+                    b.appendLn(`[key, value] = $${this.file.importSisyphus()}.readMapEntry(this.reflection.fields["${field.name}"], reader)`)
                 }
                 b.appendLn(`${fieldRef}[key] = value`)
             } else if (field.repeated) {
@@ -256,8 +305,23 @@ export class TypeSpec implements GeneratorSpec {
         b.appendLn(`const result = new this()`)
         b.appendLn(`if (!properties) return result`)
         for (let field of this._reflection.fieldsArray) {
+            if (field.map) {
+                b.beginBlock(`if(properties.hasOwnProperty("${field.name}") && properties${safeProp(field.name)} != null)`)
+                b.appendLn(`result${safeProp(field.name)} = {}`)
+                if (field.resolvedType != null && field.resolvedType instanceof Type) {
+                    b.appendLn(`for (let key in properties${safeProp(field.name)}) result${safeProp(field.name)}[key] = ${this.file.classname(field.resolvedType)}.create(properties${safeProp(field.name)}[key])`)
+                } else {
+                    b.appendLn(`for (let key in properties${safeProp(field.name)}) result${safeProp(field.name)}[key] = properties${safeProp(field.name)}[key]`)
+                }
+                b.endBlock()
+                break
+            }
             if (field.resolvedType != null && field.resolvedType instanceof Type) {
-                b.appendLn(`if(properties.hasOwnProperty("${field.name}") && properties${safeProp(field.name)} !== undefined) result${safeProp(field.name)} = ${this.file.classname(field.resolvedType)}.create(properties${safeProp(field.name)})`)
+                if (field.repeated) {
+                    b.appendLn(`if(properties.hasOwnProperty("${field.name}") && properties${safeProp(field.name)} != null) result${safeProp(field.name)} = properties${safeProp(field.name)}.map(it => ${this.file.classname(field.resolvedType)}.create(it))`)
+                } else {
+                    b.appendLn(`if(properties.hasOwnProperty("${field.name}") && properties${safeProp(field.name)} != null) result${safeProp(field.name)} = ${this.file.classname(field.resolvedType)}.create(properties${safeProp(field.name)})`)
+                }
             } else {
                 b.appendLn(`if(properties.hasOwnProperty("${field.name}") && properties${safeProp(field.name)} !== undefined) result${safeProp(field.name)} = properties${safeProp(field.name)}`)
             }

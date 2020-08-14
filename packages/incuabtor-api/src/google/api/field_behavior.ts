@@ -48,3 +48,4 @@ export enum FieldBehavior {
 export namespace FieldBehavior {
     export const reflection = $reflection.root.lookupEnum(".google.api.FieldBehavior")
 }
+export let fieldBehavior = $reflection.root.lookup(".google.api.fieldBehavior")

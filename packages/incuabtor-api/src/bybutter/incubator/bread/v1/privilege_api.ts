@@ -44,7 +44,7 @@ export class GetFilterRequest extends $sisyphus.Message<IGetFilterRequest> imple
         return result
     }
 }
-GetFilterRequest.prototype.name = ""
+GetFilterRequest.prototype.name = GetFilterRequest.reflection.fieldsById[1].defaultValue
 
 
 /**
@@ -92,7 +92,7 @@ export class BatchGetFiltersRequest extends $sisyphus.Message<IBatchGetFiltersRe
         return result
     }
 }
-BatchGetFiltersRequest.prototype.names = null
+BatchGetFiltersRequest.prototype.names = BatchGetFiltersRequest.reflection.fieldsById[1].defaultValue
 
 
 /** 批量获取滤镜资源的 API 响应 */
@@ -132,11 +132,11 @@ export class BatchGetFiltersResponse extends $sisyphus.Message<IBatchGetFiltersR
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("filters") && properties.filters !== undefined) result.filters = $privilege.Filter.create(properties.filters)
+        if(properties.hasOwnProperty("filters") && properties.filters != null) result.filters = properties.filters.map(it => $privilege.Filter.create(it))
         return result
     }
 }
-BatchGetFiltersResponse.prototype.filters = null
+BatchGetFiltersResponse.prototype.filters = BatchGetFiltersResponse.reflection.fieldsById[1].defaultValue
 
 
 /**
@@ -197,9 +197,9 @@ export class ListFiltersRequest extends $sisyphus.Message<IListFiltersRequest> i
         return result
     }
 }
-ListFiltersRequest.prototype.pageSize = 0
-ListFiltersRequest.prototype.pageToken = ""
-ListFiltersRequest.prototype.filter = ""
+ListFiltersRequest.prototype.pageSize = ListFiltersRequest.reflection.fieldsById[1].defaultValue
+ListFiltersRequest.prototype.pageToken = ListFiltersRequest.reflection.fieldsById[2].defaultValue
+ListFiltersRequest.prototype.filter = ListFiltersRequest.reflection.fieldsById[3].defaultValue
 
 
 /** 列举滤镜资源的 API 响应 */
@@ -245,13 +245,13 @@ export class ListFiltersResponse extends $sisyphus.Message<IListFiltersResponse>
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("filters") && properties.filters !== undefined) result.filters = $privilege.Filter.create(properties.filters)
+        if(properties.hasOwnProperty("filters") && properties.filters != null) result.filters = properties.filters.map(it => $privilege.Filter.create(it))
         if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
         return result
     }
 }
-ListFiltersResponse.prototype.filters = null
-ListFiltersResponse.prototype.nextPageToken = ""
+ListFiltersResponse.prototype.filters = ListFiltersResponse.reflection.fieldsById[1].defaultValue
+ListFiltersResponse.prototype.nextPageToken = ListFiltersResponse.reflection.fieldsById[2].defaultValue
 
 
 /**
@@ -312,9 +312,9 @@ export class ListFilterGroupsRequest extends $sisyphus.Message<IListFilterGroups
         return result
     }
 }
-ListFilterGroupsRequest.prototype.pageSize = 0
-ListFilterGroupsRequest.prototype.pageToken = ""
-ListFilterGroupsRequest.prototype.filter = ""
+ListFilterGroupsRequest.prototype.pageSize = ListFilterGroupsRequest.reflection.fieldsById[1].defaultValue
+ListFilterGroupsRequest.prototype.pageToken = ListFilterGroupsRequest.reflection.fieldsById[2].defaultValue
+ListFilterGroupsRequest.prototype.filter = ListFilterGroupsRequest.reflection.fieldsById[3].defaultValue
 
 
 /** 列举滤镜资源组的 API 响应 */
@@ -360,13 +360,13 @@ export class ListFilterGroupsResponse extends $sisyphus.Message<IListFilterGroup
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("filterGroups") && properties.filterGroups !== undefined) result.filterGroups = $privilege.FilterGroup.create(properties.filterGroups)
+        if(properties.hasOwnProperty("filterGroups") && properties.filterGroups != null) result.filterGroups = properties.filterGroups.map(it => $privilege.FilterGroup.create(it))
         if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
         return result
     }
 }
-ListFilterGroupsResponse.prototype.filterGroups = null
-ListFilterGroupsResponse.prototype.nextPageToken = ""
+ListFilterGroupsResponse.prototype.filterGroups = ListFilterGroupsResponse.reflection.fieldsById[1].defaultValue
+ListFilterGroupsResponse.prototype.nextPageToken = ListFilterGroupsResponse.reflection.fieldsById[2].defaultValue
 
 
 /** 获取边框资源的 API 请求 */
@@ -409,7 +409,7 @@ export class GetBorderRequest extends $sisyphus.Message<IGetBorderRequest> imple
         return result
     }
 }
-GetBorderRequest.prototype.name = ""
+GetBorderRequest.prototype.name = GetBorderRequest.reflection.fieldsById[1].defaultValue
 
 
 /**
@@ -457,7 +457,7 @@ export class BatchGetBordersRequest extends $sisyphus.Message<IBatchGetBordersRe
         return result
     }
 }
-BatchGetBordersRequest.prototype.names = null
+BatchGetBordersRequest.prototype.names = BatchGetBordersRequest.reflection.fieldsById[1].defaultValue
 
 
 /** 批量获取边框资源的 API 响应 */
@@ -497,11 +497,11 @@ export class BatchGetBordersResponse extends $sisyphus.Message<IBatchGetBordersR
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("borders") && properties.borders !== undefined) result.borders = $privilege.Border.create(properties.borders)
+        if(properties.hasOwnProperty("borders") && properties.borders != null) result.borders = properties.borders.map(it => $privilege.Border.create(it))
         return result
     }
 }
-BatchGetBordersResponse.prototype.borders = null
+BatchGetBordersResponse.prototype.borders = BatchGetBordersResponse.reflection.fieldsById[1].defaultValue
 
 
 /**
@@ -562,9 +562,9 @@ export class ListBordersRequest extends $sisyphus.Message<IListBordersRequest> i
         return result
     }
 }
-ListBordersRequest.prototype.pageSize = 0
-ListBordersRequest.prototype.pageToken = ""
-ListBordersRequest.prototype.filter = ""
+ListBordersRequest.prototype.pageSize = ListBordersRequest.reflection.fieldsById[1].defaultValue
+ListBordersRequest.prototype.pageToken = ListBordersRequest.reflection.fieldsById[2].defaultValue
+ListBordersRequest.prototype.filter = ListBordersRequest.reflection.fieldsById[3].defaultValue
 
 
 /** 批量获取边框资源的 API 响应 */
@@ -610,13 +610,13 @@ export class ListBordersResponse extends $sisyphus.Message<IListBordersResponse>
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("borders") && properties.borders !== undefined) result.borders = $privilege.Border.create(properties.borders)
+        if(properties.hasOwnProperty("borders") && properties.borders != null) result.borders = properties.borders.map(it => $privilege.Border.create(it))
         if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
         return result
     }
 }
-ListBordersResponse.prototype.borders = null
-ListBordersResponse.prototype.nextPageToken = ""
+ListBordersResponse.prototype.borders = ListBordersResponse.reflection.fieldsById[1].defaultValue
+ListBordersResponse.prototype.nextPageToken = ListBordersResponse.reflection.fieldsById[2].defaultValue
 
 
 /**
@@ -677,9 +677,9 @@ export class ListBorderGroupsRequest extends $sisyphus.Message<IListBorderGroups
         return result
     }
 }
-ListBorderGroupsRequest.prototype.pageSize = 0
-ListBorderGroupsRequest.prototype.pageToken = ""
-ListBorderGroupsRequest.prototype.filter = ""
+ListBorderGroupsRequest.prototype.pageSize = ListBorderGroupsRequest.reflection.fieldsById[1].defaultValue
+ListBorderGroupsRequest.prototype.pageToken = ListBorderGroupsRequest.reflection.fieldsById[2].defaultValue
+ListBorderGroupsRequest.prototype.filter = ListBorderGroupsRequest.reflection.fieldsById[3].defaultValue
 
 
 /** 批量获取边框组资源的 API 响应 */
@@ -725,13 +725,13 @@ export class ListBorderGroupsResponse extends $sisyphus.Message<IListBorderGroup
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("borderGroups") && properties.borderGroups !== undefined) result.borderGroups = $privilege.BorderGroup.create(properties.borderGroups)
+        if(properties.hasOwnProperty("borderGroups") && properties.borderGroups != null) result.borderGroups = properties.borderGroups.map(it => $privilege.BorderGroup.create(it))
         if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
         return result
     }
 }
-ListBorderGroupsResponse.prototype.borderGroups = null
-ListBorderGroupsResponse.prototype.nextPageToken = ""
+ListBorderGroupsResponse.prototype.borderGroups = ListBorderGroupsResponse.reflection.fieldsById[1].defaultValue
+ListBorderGroupsResponse.prototype.nextPageToken = ListBorderGroupsResponse.reflection.fieldsById[2].defaultValue
 
 
 /** 获取标签资源的 API 响应 */
@@ -774,7 +774,7 @@ export class GetLabelRequest extends $sisyphus.Message<IGetLabelRequest> impleme
         return result
     }
 }
-GetLabelRequest.prototype.name = ""
+GetLabelRequest.prototype.name = GetLabelRequest.reflection.fieldsById[1].defaultValue
 
 
 /**
@@ -822,7 +822,7 @@ export class BatchGetLabelsRequest extends $sisyphus.Message<IBatchGetLabelsRequ
         return result
     }
 }
-BatchGetLabelsRequest.prototype.names = null
+BatchGetLabelsRequest.prototype.names = BatchGetLabelsRequest.reflection.fieldsById[1].defaultValue
 
 
 /** 批量获取标签资源的 API 响应 */
@@ -862,11 +862,11 @@ export class BatchGetLabelsResponse extends $sisyphus.Message<IBatchGetLabelsRes
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("labels") && properties.labels !== undefined) result.labels = $privilege.Label.create(properties.labels)
+        if(properties.hasOwnProperty("labels") && properties.labels != null) result.labels = properties.labels.map(it => $privilege.Label.create(it))
         return result
     }
 }
-BatchGetLabelsResponse.prototype.labels = null
+BatchGetLabelsResponse.prototype.labels = BatchGetLabelsResponse.reflection.fieldsById[1].defaultValue
 
 
 /**
@@ -927,9 +927,9 @@ export class ListLabelsRequest extends $sisyphus.Message<IListLabelsRequest> imp
         return result
     }
 }
-ListLabelsRequest.prototype.pageSize = 0
-ListLabelsRequest.prototype.pageToken = ""
-ListLabelsRequest.prototype.filter = ""
+ListLabelsRequest.prototype.pageSize = ListLabelsRequest.reflection.fieldsById[1].defaultValue
+ListLabelsRequest.prototype.pageToken = ListLabelsRequest.reflection.fieldsById[2].defaultValue
+ListLabelsRequest.prototype.filter = ListLabelsRequest.reflection.fieldsById[3].defaultValue
 
 
 /** 列举标签资源的 API 响应 */
@@ -975,13 +975,13 @@ export class ListLabelsResponse extends $sisyphus.Message<IListLabelsResponse> i
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("labels") && properties.labels !== undefined) result.labels = $privilege.Label.create(properties.labels)
+        if(properties.hasOwnProperty("labels") && properties.labels != null) result.labels = properties.labels.map(it => $privilege.Label.create(it))
         if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
         return result
     }
 }
-ListLabelsResponse.prototype.labels = null
-ListLabelsResponse.prototype.nextPageToken = ""
+ListLabelsResponse.prototype.labels = ListLabelsResponse.reflection.fieldsById[1].defaultValue
+ListLabelsResponse.prototype.nextPageToken = ListLabelsResponse.reflection.fieldsById[2].defaultValue
 
 
 /**
@@ -1042,9 +1042,9 @@ export class ListLabelGroupsRequest extends $sisyphus.Message<IListLabelGroupsRe
         return result
     }
 }
-ListLabelGroupsRequest.prototype.pageSize = 0
-ListLabelGroupsRequest.prototype.pageToken = ""
-ListLabelGroupsRequest.prototype.filter = ""
+ListLabelGroupsRequest.prototype.pageSize = ListLabelGroupsRequest.reflection.fieldsById[1].defaultValue
+ListLabelGroupsRequest.prototype.pageToken = ListLabelGroupsRequest.reflection.fieldsById[2].defaultValue
+ListLabelGroupsRequest.prototype.filter = ListLabelGroupsRequest.reflection.fieldsById[3].defaultValue
 
 
 /** 列举标签组资源的 API 响应 */
@@ -1090,13 +1090,13 @@ export class ListLabelGroupsResponse extends $sisyphus.Message<IListLabelGroupsR
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("labelGroups") && properties.labelGroups !== undefined) result.labelGroups = $privilege.LabelGroup.create(properties.labelGroups)
+        if(properties.hasOwnProperty("labelGroups") && properties.labelGroups != null) result.labelGroups = properties.labelGroups.map(it => $privilege.LabelGroup.create(it))
         if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
         return result
     }
 }
-ListLabelGroupsResponse.prototype.labelGroups = null
-ListLabelGroupsResponse.prototype.nextPageToken = ""
+ListLabelGroupsResponse.prototype.labelGroups = ListLabelGroupsResponse.reflection.fieldsById[1].defaultValue
+ListLabelGroupsResponse.prototype.nextPageToken = ListLabelGroupsResponse.reflection.fieldsById[2].defaultValue
 
 
 /** 获取贴纸资源的 API 请求 */
@@ -1139,7 +1139,7 @@ export class GetStickerRequest extends $sisyphus.Message<IGetStickerRequest> imp
         return result
     }
 }
-GetStickerRequest.prototype.name = ""
+GetStickerRequest.prototype.name = GetStickerRequest.reflection.fieldsById[1].defaultValue
 
 
 /**
@@ -1187,7 +1187,7 @@ export class BatchGetStickersRequest extends $sisyphus.Message<IBatchGetStickers
         return result
     }
 }
-BatchGetStickersRequest.prototype.names = null
+BatchGetStickersRequest.prototype.names = BatchGetStickersRequest.reflection.fieldsById[1].defaultValue
 
 
 /** 批量获取贴纸资源的 API 响应 */
@@ -1227,11 +1227,11 @@ export class BatchGetStickersResponse extends $sisyphus.Message<IBatchGetSticker
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("stickers") && properties.stickers !== undefined) result.stickers = $privilege.Sticker.create(properties.stickers)
+        if(properties.hasOwnProperty("stickers") && properties.stickers != null) result.stickers = properties.stickers.map(it => $privilege.Sticker.create(it))
         return result
     }
 }
-BatchGetStickersResponse.prototype.stickers = null
+BatchGetStickersResponse.prototype.stickers = BatchGetStickersResponse.reflection.fieldsById[1].defaultValue
 
 
 /**
@@ -1292,9 +1292,9 @@ export class ListStickersRequest extends $sisyphus.Message<IListStickersRequest>
         return result
     }
 }
-ListStickersRequest.prototype.pageSize = 0
-ListStickersRequest.prototype.pageToken = ""
-ListStickersRequest.prototype.filter = ""
+ListStickersRequest.prototype.pageSize = ListStickersRequest.reflection.fieldsById[1].defaultValue
+ListStickersRequest.prototype.pageToken = ListStickersRequest.reflection.fieldsById[2].defaultValue
+ListStickersRequest.prototype.filter = ListStickersRequest.reflection.fieldsById[3].defaultValue
 
 
 /** 列举贴纸资源的 API 响应 */
@@ -1340,13 +1340,13 @@ export class ListStickersResponse extends $sisyphus.Message<IListStickersRespons
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("stickers") && properties.stickers !== undefined) result.stickers = $privilege.Sticker.create(properties.stickers)
+        if(properties.hasOwnProperty("stickers") && properties.stickers != null) result.stickers = properties.stickers.map(it => $privilege.Sticker.create(it))
         if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
         return result
     }
 }
-ListStickersResponse.prototype.stickers = null
-ListStickersResponse.prototype.nextPageToken = ""
+ListStickersResponse.prototype.stickers = ListStickersResponse.reflection.fieldsById[1].defaultValue
+ListStickersResponse.prototype.nextPageToken = ListStickersResponse.reflection.fieldsById[2].defaultValue
 
 
 /**
@@ -1407,9 +1407,9 @@ export class ListStickerGroupsRequest extends $sisyphus.Message<IListStickerGrou
         return result
     }
 }
-ListStickerGroupsRequest.prototype.pageSize = 0
-ListStickerGroupsRequest.prototype.pageToken = ""
-ListStickerGroupsRequest.prototype.filter = ""
+ListStickerGroupsRequest.prototype.pageSize = ListStickerGroupsRequest.reflection.fieldsById[1].defaultValue
+ListStickerGroupsRequest.prototype.pageToken = ListStickerGroupsRequest.reflection.fieldsById[2].defaultValue
+ListStickerGroupsRequest.prototype.filter = ListStickerGroupsRequest.reflection.fieldsById[3].defaultValue
 
 
 /** 列举贴纸组资源的 API 响应 */
@@ -1455,13 +1455,13 @@ export class ListStickerGroupsResponse extends $sisyphus.Message<IListStickerGro
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("stickerGroups") && properties.stickerGroups !== undefined) result.stickerGroups = $privilege.StickerGroup.create(properties.stickerGroups)
+        if(properties.hasOwnProperty("stickerGroups") && properties.stickerGroups != null) result.stickerGroups = properties.stickerGroups.map(it => $privilege.StickerGroup.create(it))
         if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
         return result
     }
 }
-ListStickerGroupsResponse.prototype.stickerGroups = null
-ListStickerGroupsResponse.prototype.nextPageToken = ""
+ListStickerGroupsResponse.prototype.stickerGroups = ListStickerGroupsResponse.reflection.fieldsById[1].defaultValue
+ListStickerGroupsResponse.prototype.nextPageToken = ListStickerGroupsResponse.reflection.fieldsById[2].defaultValue
 
 
 /** 获取音乐资源的 API 请求 */
@@ -1504,7 +1504,7 @@ export class GetMusicRequest extends $sisyphus.Message<IGetMusicRequest> impleme
         return result
     }
 }
-GetMusicRequest.prototype.name = ""
+GetMusicRequest.prototype.name = GetMusicRequest.reflection.fieldsById[1].defaultValue
 
 
 /**
@@ -1552,7 +1552,7 @@ export class BatchGetMusicRequest extends $sisyphus.Message<IBatchGetMusicReques
         return result
     }
 }
-BatchGetMusicRequest.prototype.names = null
+BatchGetMusicRequest.prototype.names = BatchGetMusicRequest.reflection.fieldsById[1].defaultValue
 
 
 /**
@@ -1596,11 +1596,11 @@ export class BatchGetMusicResponse extends $sisyphus.Message<IBatchGetMusicRespo
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("music") && properties.music !== undefined) result.music = $privilege.Music.create(properties.music)
+        if(properties.hasOwnProperty("music") && properties.music != null) result.music = properties.music.map(it => $privilege.Music.create(it))
         return result
     }
 }
-BatchGetMusicResponse.prototype.music = null
+BatchGetMusicResponse.prototype.music = BatchGetMusicResponse.reflection.fieldsById[1].defaultValue
 
 
 /**
@@ -1661,9 +1661,9 @@ export class ListMusicRequest extends $sisyphus.Message<IListMusicRequest> imple
         return result
     }
 }
-ListMusicRequest.prototype.pageSize = 0
-ListMusicRequest.prototype.pageToken = ""
-ListMusicRequest.prototype.filter = ""
+ListMusicRequest.prototype.pageSize = ListMusicRequest.reflection.fieldsById[1].defaultValue
+ListMusicRequest.prototype.pageToken = ListMusicRequest.reflection.fieldsById[2].defaultValue
+ListMusicRequest.prototype.filter = ListMusicRequest.reflection.fieldsById[3].defaultValue
 
 
 /** 列举音乐资源的 API 响应 */
@@ -1709,13 +1709,13 @@ export class ListMusicResponse extends $sisyphus.Message<IListMusicResponse> imp
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("music") && properties.music !== undefined) result.music = $privilege.Music.create(properties.music)
+        if(properties.hasOwnProperty("music") && properties.music != null) result.music = properties.music.map(it => $privilege.Music.create(it))
         if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
         return result
     }
 }
-ListMusicResponse.prototype.music = null
-ListMusicResponse.prototype.nextPageToken = ""
+ListMusicResponse.prototype.music = ListMusicResponse.reflection.fieldsById[1].defaultValue
+ListMusicResponse.prototype.nextPageToken = ListMusicResponse.reflection.fieldsById[2].defaultValue
 
 
 /**
@@ -1776,9 +1776,9 @@ export class ListMusicGroupsRequest extends $sisyphus.Message<IListMusicGroupsRe
         return result
     }
 }
-ListMusicGroupsRequest.prototype.pageSize = 0
-ListMusicGroupsRequest.prototype.pageToken = ""
-ListMusicGroupsRequest.prototype.filter = ""
+ListMusicGroupsRequest.prototype.pageSize = ListMusicGroupsRequest.reflection.fieldsById[1].defaultValue
+ListMusicGroupsRequest.prototype.pageToken = ListMusicGroupsRequest.reflection.fieldsById[2].defaultValue
+ListMusicGroupsRequest.prototype.filter = ListMusicGroupsRequest.reflection.fieldsById[3].defaultValue
 
 
 /** 列举音乐组资源的 API 响应 */
@@ -1824,13 +1824,13 @@ export class ListMusicGroupsResponse extends $sisyphus.Message<IListMusicGroupsR
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("musicGroups") && properties.musicGroups !== undefined) result.musicGroups = $privilege.MusicGroup.create(properties.musicGroups)
+        if(properties.hasOwnProperty("musicGroups") && properties.musicGroups != null) result.musicGroups = properties.musicGroups.map(it => $privilege.MusicGroup.create(it))
         if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
         return result
     }
 }
-ListMusicGroupsResponse.prototype.musicGroups = null
-ListMusicGroupsResponse.prototype.nextPageToken = ""
+ListMusicGroupsResponse.prototype.musicGroups = ListMusicGroupsResponse.reflection.fieldsById[1].defaultValue
+ListMusicGroupsResponse.prototype.nextPageToken = ListMusicGroupsResponse.reflection.fieldsById[2].defaultValue
 
 
 /** 获取音效资源的 API 请求 */
@@ -1873,7 +1873,7 @@ export class GetSoundRequest extends $sisyphus.Message<IGetSoundRequest> impleme
         return result
     }
 }
-GetSoundRequest.prototype.name = ""
+GetSoundRequest.prototype.name = GetSoundRequest.reflection.fieldsById[1].defaultValue
 
 
 /**
@@ -1921,7 +1921,7 @@ export class BatchGetSoundsRequest extends $sisyphus.Message<IBatchGetSoundsRequ
         return result
     }
 }
-BatchGetSoundsRequest.prototype.names = null
+BatchGetSoundsRequest.prototype.names = BatchGetSoundsRequest.reflection.fieldsById[1].defaultValue
 
 
 /** 批量获取音效资源的 API 响应 */
@@ -1961,11 +1961,11 @@ export class BatchGetSoundsResponse extends $sisyphus.Message<IBatchGetSoundsRes
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("sounds") && properties.sounds !== undefined) result.sounds = $privilege.Sound.create(properties.sounds)
+        if(properties.hasOwnProperty("sounds") && properties.sounds != null) result.sounds = properties.sounds.map(it => $privilege.Sound.create(it))
         return result
     }
 }
-BatchGetSoundsResponse.prototype.sounds = null
+BatchGetSoundsResponse.prototype.sounds = BatchGetSoundsResponse.reflection.fieldsById[1].defaultValue
 
 
 /**
@@ -2026,9 +2026,9 @@ export class ListSoundsRequest extends $sisyphus.Message<IListSoundsRequest> imp
         return result
     }
 }
-ListSoundsRequest.prototype.pageSize = 0
-ListSoundsRequest.prototype.pageToken = ""
-ListSoundsRequest.prototype.filter = ""
+ListSoundsRequest.prototype.pageSize = ListSoundsRequest.reflection.fieldsById[1].defaultValue
+ListSoundsRequest.prototype.pageToken = ListSoundsRequest.reflection.fieldsById[2].defaultValue
+ListSoundsRequest.prototype.filter = ListSoundsRequest.reflection.fieldsById[3].defaultValue
 
 
 /** 列举音效资源的 API 响应 */
@@ -2074,13 +2074,13 @@ export class ListSoundsResponse extends $sisyphus.Message<IListSoundsResponse> i
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("sounds") && properties.sounds !== undefined) result.sounds = $privilege.Sound.create(properties.sounds)
+        if(properties.hasOwnProperty("sounds") && properties.sounds != null) result.sounds = properties.sounds.map(it => $privilege.Sound.create(it))
         if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
         return result
     }
 }
-ListSoundsResponse.prototype.sounds = null
-ListSoundsResponse.prototype.nextPageToken = ""
+ListSoundsResponse.prototype.sounds = ListSoundsResponse.reflection.fieldsById[1].defaultValue
+ListSoundsResponse.prototype.nextPageToken = ListSoundsResponse.reflection.fieldsById[2].defaultValue
 
 
 /**
@@ -2141,9 +2141,9 @@ export class ListSoundGroupsRequest extends $sisyphus.Message<IListSoundGroupsRe
         return result
     }
 }
-ListSoundGroupsRequest.prototype.pageSize = 0
-ListSoundGroupsRequest.prototype.pageToken = ""
-ListSoundGroupsRequest.prototype.filter = ""
+ListSoundGroupsRequest.prototype.pageSize = ListSoundGroupsRequest.reflection.fieldsById[1].defaultValue
+ListSoundGroupsRequest.prototype.pageToken = ListSoundGroupsRequest.reflection.fieldsById[2].defaultValue
+ListSoundGroupsRequest.prototype.filter = ListSoundGroupsRequest.reflection.fieldsById[3].defaultValue
 
 
 /** 列举音效组资源的 API 响应 */
@@ -2189,13 +2189,13 @@ export class ListSoundGroupsResponse extends $sisyphus.Message<IListSoundGroupsR
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("soundGroups") && properties.soundGroups !== undefined) result.soundGroups = $privilege.SoundGroup.create(properties.soundGroups)
+        if(properties.hasOwnProperty("soundGroups") && properties.soundGroups != null) result.soundGroups = properties.soundGroups.map(it => $privilege.SoundGroup.create(it))
         if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
         return result
     }
 }
-ListSoundGroupsResponse.prototype.soundGroups = null
-ListSoundGroupsResponse.prototype.nextPageToken = ""
+ListSoundGroupsResponse.prototype.soundGroups = ListSoundGroupsResponse.reflection.fieldsById[1].defaultValue
+ListSoundGroupsResponse.prototype.nextPageToken = ListSoundGroupsResponse.reflection.fieldsById[2].defaultValue
 
 
 /** 获取会员资源的请求 */
@@ -2238,7 +2238,7 @@ export class GetMembershipRequest extends $sisyphus.Message<IGetMembershipReques
         return result
     }
 }
-GetMembershipRequest.prototype.name = ""
+GetMembershipRequest.prototype.name = GetMembershipRequest.reflection.fieldsById[1].defaultValue
 
 
 /**
@@ -2286,7 +2286,7 @@ export class BatchGetMembershipsRequest extends $sisyphus.Message<IBatchGetMembe
         return result
     }
 }
-BatchGetMembershipsRequest.prototype.names = null
+BatchGetMembershipsRequest.prototype.names = BatchGetMembershipsRequest.reflection.fieldsById[1].defaultValue
 
 
 /** 批量获取会员资源的 API 响应 */
@@ -2326,11 +2326,11 @@ export class BatchGetMembershipsResponse extends $sisyphus.Message<IBatchGetMemb
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("memberships") && properties.memberships !== undefined) result.memberships = $privilege.Membership.create(properties.memberships)
+        if(properties.hasOwnProperty("memberships") && properties.memberships != null) result.memberships = properties.memberships.map(it => $privilege.Membership.create(it))
         return result
     }
 }
-BatchGetMembershipsResponse.prototype.memberships = null
+BatchGetMembershipsResponse.prototype.memberships = BatchGetMembershipsResponse.reflection.fieldsById[1].defaultValue
 
 
 /**
@@ -2391,9 +2391,9 @@ export class ListMembershipsRequest extends $sisyphus.Message<IListMembershipsRe
         return result
     }
 }
-ListMembershipsRequest.prototype.pageSize = 0
-ListMembershipsRequest.prototype.pageToken = ""
-ListMembershipsRequest.prototype.filter = ""
+ListMembershipsRequest.prototype.pageSize = ListMembershipsRequest.reflection.fieldsById[1].defaultValue
+ListMembershipsRequest.prototype.pageToken = ListMembershipsRequest.reflection.fieldsById[2].defaultValue
+ListMembershipsRequest.prototype.filter = ListMembershipsRequest.reflection.fieldsById[3].defaultValue
 
 
 /** 列举会员资源的 API 响应 */
@@ -2439,12 +2439,15 @@ export class ListMembershipsResponse extends $sisyphus.Message<IListMembershipsR
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("memberships") && properties.memberships !== undefined) result.memberships = $privilege.Membership.create(properties.memberships)
+        if(properties.hasOwnProperty("memberships") && properties.memberships != null) result.memberships = properties.memberships.map(it => $privilege.Membership.create(it))
         if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
         return result
     }
 }
-ListMembershipsResponse.prototype.memberships = null
-ListMembershipsResponse.prototype.nextPageToken = ""
+ListMembershipsResponse.prototype.memberships = ListMembershipsResponse.reflection.fieldsById[1].defaultValue
+ListMembershipsResponse.prototype.nextPageToken = ListMembershipsResponse.reflection.fieldsById[2].defaultValue
 
 //Service: .bybutter.incubator.bread.v1.PrivilegeApi
+
+export class PrivilegeApi {
+}

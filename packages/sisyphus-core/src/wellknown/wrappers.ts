@@ -3,7 +3,7 @@
  *
  * The JSON representation for `DoubleValue` is JSON number.
  */
-import {Long} from "../long";
+import {Long} from "protobufjs";
 
 export interface IDoubleValue {
     /** The double value. */

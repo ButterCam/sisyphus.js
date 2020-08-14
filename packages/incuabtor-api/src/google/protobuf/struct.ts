@@ -1,5 +1,4 @@
 import * as $reflection from "../../_reflection"
-import * as $struct from "./struct"
 import * as $sisyphus from "@sisyphus.js/core"
 import * as $protobuf from "protobufjs"
 
@@ -29,13 +28,13 @@ export namespace NullValue {
  * 
  * The JSON representation for `Struct` is JSON object.
  */
-export interface IStruct {
+export interface IStruct extends $sisyphus.IStruct {
     /** Unordered map of dynamically typed values. */
-    fields?: ({ [k: string]: $struct.IValue } | null)
+    fields?: ({ [k: string]: IValue } | null)
 }
 
 export class Struct extends $sisyphus.Message<IStruct> implements IStruct {
-    fields!: ({ [k: string]: $struct.IValue } | null)
+    fields!: ({ [k: string]: IValue } | null)
     get $reflection() {
         return Struct.reflection
     }
@@ -45,12 +44,13 @@ export class Struct extends $sisyphus.Message<IStruct> implements IStruct {
         if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
         const end = length === undefined ? reader.len : reader.pos + length
         const result = new this()
+        let key: any, value: any
         while(reader.pos < end) {
             let tag = reader.uint32()
             switch(tag>>>3) {
                 case 1:
-                    if (!result.fields) result.fields = {}
-                    const [key, value] = sisyphus.readMapEntry(this.reflection.fields["fields"], reader, $struct.Value)
+                    if (!result.fields) result.fields = {};
+                    [key, value] = $sisyphus.readMapEntry(this.reflection.fields["fields"], reader, Value)
                     result.fields[key] = value
                     break
             }
@@ -66,11 +66,14 @@ export class Struct extends $sisyphus.Message<IStruct> implements IStruct {
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("fields") && properties.fields !== undefined) result.fields = $struct.Value.create(properties.fields)
+        if(properties.hasOwnProperty("fields") && properties.fields != null) {
+            result.fields = {}
+            for (let key in properties.fields) result.fields[key] = Value.create(properties.fields[key])
+        }
         return result
     }
 }
-Struct.prototype.fields = null
+Struct.prototype.fields = Struct.reflection.fieldsById[1].defaultValue
 
 
 /**
@@ -81,9 +84,9 @@ Struct.prototype.fields = null
  * 
  * The JSON representation for `Value` is JSON value.
  */
-export interface IValue {
+export interface IValue extends $sisyphus.IValue {
     /** Represents a null value. */
-    nullValue?: $struct.NullValue
+    nullValue?: NullValue
     /** Represents a double value. */
     numberValue?: number
     /** Represents a string value. */
@@ -91,20 +94,20 @@ export interface IValue {
     /** Represents a boolean value. */
     boolValue?: boolean
     /** Represents a structured value. */
-    structValue?: ($struct.IStruct | null)
+    structValue?: (IStruct | null)
     /** Represents a repeated `Value`. */
-    listValue?: ($struct.IListValue | null)
+    listValue?: (IListValue | null)
     /** The kind of value. */
     kind?: string
 }
 
 export class Value extends $sisyphus.Message<IValue> implements IValue {
-    nullValue!: $struct.NullValue
+    nullValue!: NullValue
     numberValue!: number
     stringValue!: string
     boolValue!: boolean
-    structValue!: ($struct.IStruct | null)
-    listValue!: ($struct.IListValue | null)
+    structValue!: (IStruct | null)
+    listValue!: (IListValue | null)
     kind?: string
 
     get $reflection() {
@@ -132,10 +135,10 @@ export class Value extends $sisyphus.Message<IValue> implements IValue {
                     result.boolValue = reader.bool()
                     break
                 case 5:
-                    result.structValue = $struct.Struct.decodeDelimited(reader)
+                    result.structValue = Struct.decodeDelimited(reader)
                     break
                 case 6:
-                    result.listValue = $struct.ListValue.decodeDelimited(reader)
+                    result.listValue = ListValue.decodeDelimited(reader)
                     break
             }
         }
@@ -154,18 +157,18 @@ export class Value extends $sisyphus.Message<IValue> implements IValue {
         if(properties.hasOwnProperty("numberValue") && properties.numberValue !== undefined) result.numberValue = properties.numberValue
         if(properties.hasOwnProperty("stringValue") && properties.stringValue !== undefined) result.stringValue = properties.stringValue
         if(properties.hasOwnProperty("boolValue") && properties.boolValue !== undefined) result.boolValue = properties.boolValue
-        if(properties.hasOwnProperty("structValue") && properties.structValue !== undefined) result.structValue = $struct.Struct.create(properties.structValue)
-        if(properties.hasOwnProperty("listValue") && properties.listValue !== undefined) result.listValue = $struct.ListValue.create(properties.listValue)
+        if(properties.hasOwnProperty("structValue") && properties.structValue != null) result.structValue = Struct.create(properties.structValue)
+        if(properties.hasOwnProperty("listValue") && properties.listValue != null) result.listValue = ListValue.create(properties.listValue)
         return result
     }
 }
 Object.defineProperty(Value.prototype, "kind", $sisyphus.oneOfProperty("nullValue", "numberValue", "stringValue", "boolValue", "structValue", "listValue"))
-Value.prototype.nullValue = $struct.NullValue.NULL_VALUE
-Value.prototype.numberValue = 0
-Value.prototype.stringValue = ""
-Value.prototype.boolValue = false
-Value.prototype.structValue = null
-Value.prototype.listValue = null
+Value.prototype.nullValue = Value.reflection.fieldsById[1].defaultValue
+Value.prototype.numberValue = Value.reflection.fieldsById[2].defaultValue
+Value.prototype.stringValue = Value.reflection.fieldsById[3].defaultValue
+Value.prototype.boolValue = Value.reflection.fieldsById[4].defaultValue
+Value.prototype.structValue = Value.reflection.fieldsById[5].defaultValue
+Value.prototype.listValue = Value.reflection.fieldsById[6].defaultValue
 
 
 /**
@@ -175,11 +178,11 @@ Value.prototype.listValue = null
  */
 export interface IListValue {
     /** Repeated field of dynamically typed values. */
-    values?: ($struct.IValue[] | null)
+    values?: (IValue[] | null)
 }
 
 export class ListValue extends $sisyphus.Message<IListValue> implements IListValue {
-    values!: ($struct.IValue[] | null)
+    values!: (IValue[] | null)
     get $reflection() {
         return ListValue.reflection
     }
@@ -194,7 +197,7 @@ export class ListValue extends $sisyphus.Message<IListValue> implements IListVal
             switch(tag>>>3) {
                 case 1:
                     if (!result.values) result.values = []
-                    result.values.push($struct.Value.decodeDelimited(reader))
+                    result.values.push(Value.decodeDelimited(reader))
                     break
             }
         }
@@ -209,8 +212,8 @@ export class ListValue extends $sisyphus.Message<IListValue> implements IListVal
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("values") && properties.values !== undefined) result.values = $struct.Value.create(properties.values)
+        if(properties.hasOwnProperty("values") && properties.values != null) result.values = properties.values.map(it => Value.create(it))
         return result
     }
 }
-ListValue.prototype.values = null
+ListValue.prototype.values = ListValue.reflection.fieldsById[1].defaultValue

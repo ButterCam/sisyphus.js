@@ -50,8 +50,8 @@ export class CommonTag extends $sisyphus.Message<ICommonTag> implements ICommonT
         return result
     }
 }
-CommonTag.prototype.key = ""
-CommonTag.prototype.value = ""
+CommonTag.prototype.key = CommonTag.reflection.fieldsById[1].defaultValue
+CommonTag.prototype.value = CommonTag.reflection.fieldsById[2].defaultValue
 
 
 /** 苹果 IAP 购买时的 IAP 商品 id */
@@ -94,4 +94,4 @@ export class AppleIapProductIdTag extends $sisyphus.Message<IAppleIapProductIdTa
         return result
     }
 }
-AppleIapProductIdTag.prototype.productId = ""
+AppleIapProductIdTag.prototype.productId = AppleIapProductIdTag.reflection.fieldsById[1].defaultValue

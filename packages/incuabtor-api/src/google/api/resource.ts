@@ -1,4 +1,3 @@
-import * as $resource from "./resource"
 import * as $sisyphus from "@sisyphus.js/core"
 import * as $reflection from "../../_reflection"
 import * as $protobuf from "protobufjs"
@@ -172,7 +171,7 @@ export interface IResourceDescriptor {
      * };
      * }
      */
-    history?: $resource.ResourceDescriptor.History
+    history?: ResourceDescriptor.History
     /**
      * The plural name used in the resource name, such as 'projects' for
      * the name of 'projects/{project}'. It is the same concept of the `plural`
@@ -192,7 +191,7 @@ export class ResourceDescriptor extends $sisyphus.Message<IResourceDescriptor> i
     type!: string
     pattern!: (string[] | null)
     nameField!: string
-    history!: $resource.ResourceDescriptor.History
+    history!: ResourceDescriptor.History
     plural!: string
     singular!: string
     get $reflection() {
@@ -248,12 +247,12 @@ export class ResourceDescriptor extends $sisyphus.Message<IResourceDescriptor> i
         return result
     }
 }
-ResourceDescriptor.prototype.type = ""
-ResourceDescriptor.prototype.pattern = null
-ResourceDescriptor.prototype.nameField = ""
-ResourceDescriptor.prototype.history = $resource.ResourceDescriptor.History.HISTORY_UNSPECIFIED
-ResourceDescriptor.prototype.plural = ""
-ResourceDescriptor.prototype.singular = ""
+ResourceDescriptor.prototype.type = ResourceDescriptor.reflection.fieldsById[1].defaultValue
+ResourceDescriptor.prototype.pattern = ResourceDescriptor.reflection.fieldsById[2].defaultValue
+ResourceDescriptor.prototype.nameField = ResourceDescriptor.reflection.fieldsById[3].defaultValue
+ResourceDescriptor.prototype.history = ResourceDescriptor.reflection.fieldsById[4].defaultValue
+ResourceDescriptor.prototype.plural = ResourceDescriptor.reflection.fieldsById[5].defaultValue
+ResourceDescriptor.prototype.singular = ResourceDescriptor.reflection.fieldsById[6].defaultValue
 
 export namespace ResourceDescriptor {
 
@@ -354,5 +353,11 @@ export class ResourceReference extends $sisyphus.Message<IResourceReference> imp
         return result
     }
 }
-ResourceReference.prototype.type = ""
-ResourceReference.prototype.childType = ""
+ResourceReference.prototype.type = ResourceReference.reflection.fieldsById[1].defaultValue
+ResourceReference.prototype.childType = ResourceReference.reflection.fieldsById[2].defaultValue
+
+export let resourceReference = $reflection.root.lookup(".google.api.resourceReference")
+
+export let resourceDefinition = $reflection.root.lookup(".google.api.resourceDefinition")
+
+export let resource = $reflection.root.lookup(".google.api.resource")

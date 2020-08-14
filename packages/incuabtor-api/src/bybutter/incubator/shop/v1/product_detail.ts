@@ -40,8 +40,8 @@ export class TransparentProductDetail extends $sisyphus.Message<ITransparentProd
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("detail") && properties.detail !== undefined) result.detail = $struct.Value.create(properties.detail)
+        if(properties.hasOwnProperty("detail") && properties.detail != null) result.detail = $struct.Value.create(properties.detail)
         return result
     }
 }
-TransparentProductDetail.prototype.detail = null
+TransparentProductDetail.prototype.detail = TransparentProductDetail.reflection.fieldsById[1].defaultValue

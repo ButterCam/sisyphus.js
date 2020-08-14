@@ -1,5 +1,4 @@
 import * as $reflection from "../../../../_reflection"
-import * as $ownership from "./ownership"
 import * as $timestamp from "../../../../google/protobuf/timestamp"
 import * as $sisyphus from "@sisyphus.js/core"
 import * as $protobuf from "protobufjs"
@@ -48,7 +47,7 @@ export interface IOwnership {
     /** 该所有权的对应 Privilege 资源名 */
     privilege?: string
     /** 所有权 */
-    ownership?: $ownership.OwnershipType
+    ownership?: OwnershipType
     /** 所有权的可见范围 */
     requirements?: (string[] | null)
     /** 所有权的有效期开始时间 */
@@ -65,7 +64,7 @@ export interface IOwnership {
 
 export class Ownership extends $sisyphus.Message<IOwnership> implements IOwnership {
     privilege!: string
-    ownership!: $ownership.OwnershipType
+    ownership!: OwnershipType
     requirements!: (string[] | null)
     startTime!: ($timestamp.ITimestamp | null)
     endTime!: ($timestamp.ITimestamp | null)
@@ -125,19 +124,19 @@ export class Ownership extends $sisyphus.Message<IOwnership> implements IOwnersh
         if(properties.hasOwnProperty("privilege") && properties.privilege !== undefined) result.privilege = properties.privilege
         if(properties.hasOwnProperty("ownership") && properties.ownership !== undefined) result.ownership = properties.ownership
         if(properties.hasOwnProperty("requirements") && properties.requirements !== undefined) result.requirements = properties.requirements
-        if(properties.hasOwnProperty("startTime") && properties.startTime !== undefined) result.startTime = $timestamp.Timestamp.create(properties.startTime)
-        if(properties.hasOwnProperty("endTime") && properties.endTime !== undefined) result.endTime = $timestamp.Timestamp.create(properties.endTime)
+        if(properties.hasOwnProperty("startTime") && properties.startTime != null) result.startTime = $timestamp.Timestamp.create(properties.startTime)
+        if(properties.hasOwnProperty("endTime") && properties.endTime != null) result.endTime = $timestamp.Timestamp.create(properties.endTime)
         if(properties.hasOwnProperty("overrideTitle") && properties.overrideTitle !== undefined) result.overrideTitle = properties.overrideTitle
         if(properties.hasOwnProperty("overrideIconUri") && properties.overrideIconUri !== undefined) result.overrideIconUri = properties.overrideIconUri
         if(properties.hasOwnProperty("overrideUri") && properties.overrideUri !== undefined) result.overrideUri = properties.overrideUri
         return result
     }
 }
-Ownership.prototype.privilege = ""
-Ownership.prototype.ownership = $ownership.OwnershipType.OWNERSHIP_TYPE_UNSPECIFIED
-Ownership.prototype.requirements = null
-Ownership.prototype.startTime = null
-Ownership.prototype.endTime = null
-Ownership.prototype.overrideTitle = ""
-Ownership.prototype.overrideIconUri = ""
-Ownership.prototype.overrideUri = ""
+Ownership.prototype.privilege = Ownership.reflection.fieldsById[1].defaultValue
+Ownership.prototype.ownership = Ownership.reflection.fieldsById[2].defaultValue
+Ownership.prototype.requirements = Ownership.reflection.fieldsById[3].defaultValue
+Ownership.prototype.startTime = Ownership.reflection.fieldsById[4].defaultValue
+Ownership.prototype.endTime = Ownership.reflection.fieldsById[5].defaultValue
+Ownership.prototype.overrideTitle = Ownership.reflection.fieldsById[6].defaultValue
+Ownership.prototype.overrideIconUri = Ownership.reflection.fieldsById[7].defaultValue
+Ownership.prototype.overrideUri = Ownership.reflection.fieldsById[8].defaultValue

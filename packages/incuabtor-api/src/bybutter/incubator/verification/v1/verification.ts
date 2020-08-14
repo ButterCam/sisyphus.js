@@ -50,8 +50,8 @@ export class PhoneTarget extends $sisyphus.Message<IPhoneTarget> implements IPho
         return result
     }
 }
-PhoneTarget.prototype.regionCode = ""
-PhoneTarget.prototype.phoneNumber = ""
+PhoneTarget.prototype.regionCode = PhoneTarget.reflection.fieldsById[1].defaultValue
+PhoneTarget.prototype.phoneNumber = PhoneTarget.reflection.fieldsById[2].defaultValue
 
 
 /** 邮箱 */
@@ -94,7 +94,7 @@ export class EmailTarget extends $sisyphus.Message<IEmailTarget> implements IEma
         return result
     }
 }
-EmailTarget.prototype.email = ""
+EmailTarget.prototype.email = EmailTarget.reflection.fieldsById[1].defaultValue
 
 
 /** 地区代码 */
@@ -151,6 +151,6 @@ export class RegionCode extends $sisyphus.Message<IRegionCode> implements IRegio
         return result
     }
 }
-RegionCode.prototype.regionCode = ""
-RegionCode.prototype.region = ""
-RegionCode.prototype.displayRegionCode = ""
+RegionCode.prototype.regionCode = RegionCode.reflection.fieldsById[1].defaultValue
+RegionCode.prototype.region = RegionCode.reflection.fieldsById[2].defaultValue
+RegionCode.prototype.displayRegionCode = RegionCode.reflection.fieldsById[3].defaultValue

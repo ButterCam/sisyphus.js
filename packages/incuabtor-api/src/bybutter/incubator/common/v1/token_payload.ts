@@ -48,6 +48,7 @@ export class TokenPayload extends $sisyphus.Message<ITokenPayload> implements IT
         if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
         const end = length === undefined ? reader.len : reader.pos + length
         const result = new this()
+        let key: any, value: any
         while(reader.pos < end) {
             let tag = reader.uint32()
             switch(tag>>>3) {
@@ -71,8 +72,8 @@ export class TokenPayload extends $sisyphus.Message<ITokenPayload> implements IT
                     result.client = $clientInfo.ClientInfo.decodeDelimited(reader)
                     break
                 case 24:
-                    if (!result.metadata) result.metadata = {}
-                    const [key, value] = sisyphus.readMapEntry(this.reflection.fields["metadata"], reader, $any.Any)
+                    if (!result.metadata) result.metadata = {};
+                    [key, value] = $sisyphus.readMapEntry(this.reflection.fields["metadata"], reader, $any.Any)
                     result.metadata[key] = value
                     break
             }
@@ -90,21 +91,24 @@ export class TokenPayload extends $sisyphus.Message<ITokenPayload> implements IT
         if (!properties) return result
         if(properties.hasOwnProperty("account") && properties.account !== undefined) result.account = properties.account
         if(properties.hasOwnProperty("generation") && properties.generation !== undefined) result.generation = properties.generation
-        if(properties.hasOwnProperty("createTime") && properties.createTime !== undefined) result.createTime = $timestamp.Timestamp.create(properties.createTime)
+        if(properties.hasOwnProperty("createTime") && properties.createTime != null) result.createTime = $timestamp.Timestamp.create(properties.createTime)
         if(properties.hasOwnProperty("resolved") && properties.resolved !== undefined) result.resolved = properties.resolved
-        if(properties.hasOwnProperty("permissions") && properties.permissions !== undefined) result.permissions = $struct.Value.create(properties.permissions)
-        if(properties.hasOwnProperty("client") && properties.client !== undefined) result.client = $clientInfo.ClientInfo.create(properties.client)
-        if(properties.hasOwnProperty("metadata") && properties.metadata !== undefined) result.metadata = $any.Any.create(properties.metadata)
+        if(properties.hasOwnProperty("permissions") && properties.permissions != null) result.permissions = properties.permissions.map(it => $struct.Value.create(it))
+        if(properties.hasOwnProperty("client") && properties.client != null) result.client = $clientInfo.ClientInfo.create(properties.client)
+        if(properties.hasOwnProperty("metadata") && properties.metadata != null) {
+            result.metadata = {}
+            for (let key in properties.metadata) result.metadata[key] = $any.Any.create(properties.metadata[key])
+        }
         return result
     }
 }
-TokenPayload.prototype.account = ""
-TokenPayload.prototype.generation = $sisyphus.Long.ZERO
-TokenPayload.prototype.createTime = null
-TokenPayload.prototype.resolved = false
-TokenPayload.prototype.permissions = null
-TokenPayload.prototype.client = null
-TokenPayload.prototype.metadata = null
+TokenPayload.prototype.account = TokenPayload.reflection.fieldsById[1].defaultValue
+TokenPayload.prototype.generation = TokenPayload.reflection.fieldsById[2].defaultValue
+TokenPayload.prototype.createTime = TokenPayload.reflection.fieldsById[3].defaultValue
+TokenPayload.prototype.resolved = TokenPayload.reflection.fieldsById[21].defaultValue
+TokenPayload.prototype.permissions = TokenPayload.reflection.fieldsById[22].defaultValue
+TokenPayload.prototype.client = TokenPayload.reflection.fieldsById[23].defaultValue
+TokenPayload.prototype.metadata = TokenPayload.reflection.fieldsById[24].defaultValue
 
 export namespace TokenPayload {
 

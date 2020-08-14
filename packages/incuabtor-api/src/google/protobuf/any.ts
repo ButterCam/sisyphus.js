@@ -84,7 +84,7 @@ import * as $protobuf from "protobufjs"
  * "value": "1.212s"
  * }
  */
-export interface IAny {
+export interface IAny extends $sisyphus.IAny {
     /**
      * A URL/resource name that uniquely identifies the type of the serialized
      * protocol buffer message. This string must contain at least
@@ -158,5 +158,5 @@ export class Any extends $sisyphus.Message<IAny> implements IAny {
         return result
     }
 }
-Any.prototype.typeUrl = ""
-Any.prototype.value = $sisyphus.emptyBytes
+Any.prototype.typeUrl = Any.reflection.fieldsById[1].defaultValue
+Any.prototype.value = Any.reflection.fieldsById[2].defaultValue

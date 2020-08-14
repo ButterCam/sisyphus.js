@@ -62,18 +62,18 @@ export class LoginRequest extends $sisyphus.Message<ILoginRequest> implements IL
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("identificationCredential") && properties.identificationCredential !== undefined) result.identificationCredential = $auth.IdentificationCredential.create(properties.identificationCredential)
-        if(properties.hasOwnProperty("mobileCredential") && properties.mobileCredential !== undefined) result.mobileCredential = $auth.MobileCredential.create(properties.mobileCredential)
-        if(properties.hasOwnProperty("signatureCredential") && properties.signatureCredential !== undefined) result.signatureCredential = $auth.SignatureCredential.create(properties.signatureCredential)
-        if(properties.hasOwnProperty("iapCredential") && properties.iapCredential !== undefined) result.iapCredential = $auth.IapCredential.create(properties.iapCredential)
+        if(properties.hasOwnProperty("identificationCredential") && properties.identificationCredential != null) result.identificationCredential = $auth.IdentificationCredential.create(properties.identificationCredential)
+        if(properties.hasOwnProperty("mobileCredential") && properties.mobileCredential != null) result.mobileCredential = $auth.MobileCredential.create(properties.mobileCredential)
+        if(properties.hasOwnProperty("signatureCredential") && properties.signatureCredential != null) result.signatureCredential = $auth.SignatureCredential.create(properties.signatureCredential)
+        if(properties.hasOwnProperty("iapCredential") && properties.iapCredential != null) result.iapCredential = $auth.IapCredential.create(properties.iapCredential)
         return result
     }
 }
 Object.defineProperty(LoginRequest.prototype, "Credential", $sisyphus.oneOfProperty("identificationCredential", "mobileCredential", "signatureCredential", "iapCredential"))
-LoginRequest.prototype.identificationCredential = null
-LoginRequest.prototype.mobileCredential = null
-LoginRequest.prototype.signatureCredential = null
-LoginRequest.prototype.iapCredential = null
+LoginRequest.prototype.identificationCredential = LoginRequest.reflection.fieldsById[11].defaultValue
+LoginRequest.prototype.mobileCredential = LoginRequest.reflection.fieldsById[12].defaultValue
+LoginRequest.prototype.signatureCredential = LoginRequest.reflection.fieldsById[13].defaultValue
+LoginRequest.prototype.iapCredential = LoginRequest.reflection.fieldsById[14].defaultValue
 
 
 /** 登陆响应结构。 */
@@ -134,18 +134,18 @@ export class LoginResponse extends $sisyphus.Message<ILoginResponse> implements 
         if(properties instanceof this) return properties
         const result = new this()
         if (!properties) return result
-        if(properties.hasOwnProperty("token") && properties.token !== undefined) result.token = $auth.ApiToken.create(properties.token)
-        if(properties.hasOwnProperty("identificationCredential") && properties.identificationCredential !== undefined) result.identificationCredential = $auth.IdentificationCredential.create(properties.identificationCredential)
-        if(properties.hasOwnProperty("mobileCredential") && properties.mobileCredential !== undefined) result.mobileCredential = $auth.MobileCredential.create(properties.mobileCredential)
-        if(properties.hasOwnProperty("iapCredential") && properties.iapCredential !== undefined) result.iapCredential = $auth.IapCredential.create(properties.iapCredential)
+        if(properties.hasOwnProperty("token") && properties.token != null) result.token = $auth.ApiToken.create(properties.token)
+        if(properties.hasOwnProperty("identificationCredential") && properties.identificationCredential != null) result.identificationCredential = $auth.IdentificationCredential.create(properties.identificationCredential)
+        if(properties.hasOwnProperty("mobileCredential") && properties.mobileCredential != null) result.mobileCredential = $auth.MobileCredential.create(properties.mobileCredential)
+        if(properties.hasOwnProperty("iapCredential") && properties.iapCredential != null) result.iapCredential = $auth.IapCredential.create(properties.iapCredential)
         return result
     }
 }
 Object.defineProperty(LoginResponse.prototype, "Credential", $sisyphus.oneOfProperty("identificationCredential", "mobileCredential", "iapCredential"))
-LoginResponse.prototype.token = null
-LoginResponse.prototype.identificationCredential = null
-LoginResponse.prototype.mobileCredential = null
-LoginResponse.prototype.iapCredential = null
+LoginResponse.prototype.token = LoginResponse.reflection.fieldsById[1].defaultValue
+LoginResponse.prototype.identificationCredential = LoginResponse.reflection.fieldsById[11].defaultValue
+LoginResponse.prototype.mobileCredential = LoginResponse.reflection.fieldsById[12].defaultValue
+LoginResponse.prototype.iapCredential = LoginResponse.reflection.fieldsById[14].defaultValue
 
 
 /** 获取账户详情请求结构。 */
@@ -188,6 +188,9 @@ export class GetAccountRequest extends $sisyphus.Message<IGetAccountRequest> imp
         return result
     }
 }
-GetAccountRequest.prototype.name = ""
+GetAccountRequest.prototype.name = GetAccountRequest.reflection.fieldsById[1].defaultValue
 
 //Service: .bybutter.incubator.account.v1.AuthApi
+
+export class AuthApi {
+}

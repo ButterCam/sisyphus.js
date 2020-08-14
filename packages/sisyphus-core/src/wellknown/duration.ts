@@ -58,7 +58,7 @@
  * be expressed in JSON format as "3.000000001s", and 3 seconds and 1
  * microsecond should be expressed in JSON format as "3.000001s".
  */
-import {Long} from "../long";
+import {Long} from "protobufjs";
 
 export interface IDuration {
     /**

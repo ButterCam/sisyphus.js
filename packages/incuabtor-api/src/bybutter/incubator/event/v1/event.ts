@@ -58,6 +58,7 @@ export class Event extends $sisyphus.Message<IEvent> implements IEvent {
         if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
         const end = length === undefined ? reader.len : reader.pos + length
         const result = new this()
+        let key: any, value: any
         while(reader.pos < end) {
             let tag = reader.uint32()
             switch(tag>>>3) {
@@ -83,13 +84,13 @@ export class Event extends $sisyphus.Message<IEvent> implements IEvent {
                     result.eventTimestampTime = $timestamp.Timestamp.decodeDelimited(reader)
                     break
                 case 8:
-                    if (!result.payload) result.payload = {}
-                    const [key, value] = sisyphus.readMapEntry(this.reflection.fields["payload"], reader)
+                    if (!result.payload) result.payload = {};
+                    [key, value] = $sisyphus.readMapEntry(this.reflection.fields["payload"], reader)
                     result.payload[key] = value
                     break
                 case 9:
-                    if (!result.extra) result.extra = {}
-                    const [key, value] = sisyphus.readMapEntry(this.reflection.fields["extra"], reader)
+                    if (!result.extra) result.extra = {};
+                    [key, value] = $sisyphus.readMapEntry(this.reflection.fields["extra"], reader)
                     result.extra[key] = value
                     break
                 case 10:
@@ -120,24 +121,23 @@ export class Event extends $sisyphus.Message<IEvent> implements IEvent {
         if(properties.hasOwnProperty("deviceId") && properties.deviceId !== undefined) result.deviceId = properties.deviceId
         if(properties.hasOwnProperty("channel") && properties.channel !== undefined) result.channel = properties.channel
         if(properties.hasOwnProperty("event") && properties.event !== undefined) result.event = properties.event
-        if(properties.hasOwnProperty("eventTimestampTime") && properties.eventTimestampTime !== undefined) result.eventTimestampTime = $timestamp.Timestamp.create(properties.eventTimestampTime)
-        if(properties.hasOwnProperty("payload") && properties.payload !== undefined) result.payload = properties.payload
-        if(properties.hasOwnProperty("extra") && properties.extra !== undefined) result.extra = properties.extra
-        if(properties.hasOwnProperty("eventTime") && properties.eventTime !== undefined) result.eventTime = properties.eventTime
-        if(properties.hasOwnProperty("partitionTime") && properties.partitionTime !== undefined) result.partitionTime = properties.partitionTime
-        if(properties.hasOwnProperty("sequenceNumber") && properties.sequenceNumber !== undefined) result.sequenceNumber = properties.sequenceNumber
+        if(properties.hasOwnProperty("eventTimestampTime") && properties.eventTimestampTime != null) result.eventTimestampTime = $timestamp.Timestamp.create(properties.eventTimestampTime)
+        if(properties.hasOwnProperty("payload") && properties.payload != null) {
+            result.payload = {}
+            for (let key in properties.payload) result.payload[key] = properties.payload[key]
+        }
         return result
     }
 }
-Event.prototype.uid = ""
-Event.prototype.platform = ""
-Event.prototype.sessionId = ""
-Event.prototype.deviceId = ""
-Event.prototype.channel = ""
-Event.prototype.event = ""
-Event.prototype.eventTimestampTime = null
-Event.prototype.payload = null
-Event.prototype.extra = null
-Event.prototype.eventTime = $sisyphus.Long.ZERO
-Event.prototype.partitionTime = ""
-Event.prototype.sequenceNumber = ""
+Event.prototype.uid = Event.reflection.fieldsById[1].defaultValue
+Event.prototype.platform = Event.reflection.fieldsById[2].defaultValue
+Event.prototype.sessionId = Event.reflection.fieldsById[3].defaultValue
+Event.prototype.deviceId = Event.reflection.fieldsById[4].defaultValue
+Event.prototype.channel = Event.reflection.fieldsById[5].defaultValue
+Event.prototype.event = Event.reflection.fieldsById[6].defaultValue
+Event.prototype.eventTimestampTime = Event.reflection.fieldsById[7].defaultValue
+Event.prototype.payload = Event.reflection.fieldsById[8].defaultValue
+Event.prototype.extra = Event.reflection.fieldsById[9].defaultValue
+Event.prototype.eventTime = Event.reflection.fieldsById[10].defaultValue
+Event.prototype.partitionTime = Event.reflection.fieldsById[11].defaultValue
+Event.prototype.sequenceNumber = Event.reflection.fieldsById[12].defaultValue
