@@ -80,7 +80,14 @@ export class RecordEventResponse extends $sisyphus.Message<IRecordEventResponse>
     }
 }
 
-//Service: .bybutter.incubator.event.v1.EventApi
-
-export class EventApi {
+/** Event Api */
+export class EventApi extends $sisyphus.Client {
+    get $reflection() {
+        return EventApi.reflection
+    }
+    /** 记录日志 */
+    async RecordEvent(input: IRecordEventRequest, metadata?: { [k: string]: string }): Promise<IRecordEventResponse> {
+        return await this.$call(this.$reflection.methods["RecordEvent"], input, metadata)
+    }
+    static readonly reflection = $reflection.root.lookupService(".bybutter.incubator.event.v1.EventApi")
 }

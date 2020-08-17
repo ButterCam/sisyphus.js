@@ -88,7 +88,18 @@ export class InvokeWebhookResponse extends $sisyphus.Message<IInvokeWebhookRespo
 }
 InvokeWebhookResponse.prototype.body = InvokeWebhookResponse.reflection.fieldsById[1].defaultValue
 
-//Service: .bybutter.incubator.bread.v1.Webhook
-
-export class Webhook {
+/** 提供各种第三方服务的 WebHook API */
+export class Webhook extends $sisyphus.Client {
+    get $reflection() {
+        return Webhook.reflection
+    }
+    /**
+     * Pingpp 支付回调 API
+     * (-- api-linter: core::0136::http-body=disabled
+     * aip.dev/not-precedent: 第三方服务，结构简化处理. --)
+     */
+    async InvokePingpp(input: IInvokeWebhookRequest, metadata?: { [k: string]: string }): Promise<IInvokeWebhookResponse> {
+        return await this.$call(this.$reflection.methods["InvokePingpp"], input, metadata)
+    }
+    static readonly reflection = $reflection.root.lookupService(".bybutter.incubator.bread.v1.Webhook")
 }

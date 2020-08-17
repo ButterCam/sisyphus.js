@@ -227,7 +227,18 @@ export class ChangeBindingResponse extends $sisyphus.Message<IChangeBindingRespo
 }
 ChangeBindingResponse.prototype.binding = ChangeBindingResponse.reflection.fieldsById[1].defaultValue
 
-//Service: .bybutter.incubator.account.v1.BindingApi
-
-export class BindingApi {
+/** 账户绑定相关的 API */
+export class BindingApi extends $sisyphus.Client {
+    get $reflection() {
+        return BindingApi.reflection
+    }
+    /** 获取用户的所有绑定信息。 */
+    async ListBindings(input: IListBindingsRequest, metadata?: { [k: string]: string }): Promise<IListBindingsResponse> {
+        return await this.$call(this.$reflection.methods["ListBindings"], input, metadata)
+    }
+    /** 修改用户的绑定信息 */
+    async ChangeBinding(input: IChangeBindingRequest, metadata?: { [k: string]: string }): Promise<IChangeBindingResponse> {
+        return await this.$call(this.$reflection.methods["ChangeBinding"], input, metadata)
+    }
+    static readonly reflection = $reflection.root.lookupService(".bybutter.incubator.account.v1.BindingApi")
 }

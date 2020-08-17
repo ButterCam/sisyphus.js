@@ -2,6 +2,7 @@ import * as $dictation from "./dictation"
 import * as $sisyphus from "@sisyphus.js/core"
 import * as $reflection from "../../../../_reflection"
 import * as $protobuf from "protobufjs"
+import * as $operations from "../../../../google/longrunning/operations"
 
 
 /** 创建语音识别任务请求 */
@@ -54,7 +55,14 @@ export class CreateDictationTaskRequest extends $sisyphus.Message<ICreateDictati
 CreateDictationTaskRequest.prototype.parent = CreateDictationTaskRequest.reflection.fieldsById[1].defaultValue
 CreateDictationTaskRequest.prototype.dictationTask = CreateDictationTaskRequest.reflection.fieldsById[2].defaultValue
 
-//Service: .bybutter.incubator.bread.v1.DictationApi
-
-export class DictationApi {
+/** 音频文字识别 */
+export class DictationApi extends $sisyphus.Client {
+    get $reflection() {
+        return DictationApi.reflection
+    }
+    /** 创建语音识别任务 */
+    async CreateDictationTask(input: ICreateDictationTaskRequest, metadata?: { [k: string]: string }): Promise<$operations.IOperation> {
+        return await this.$call(this.$reflection.methods["CreateDictationTask"], input, metadata)
+    }
+    static readonly reflection = $reflection.root.lookupService(".bybutter.incubator.bread.v1.DictationApi")
 }

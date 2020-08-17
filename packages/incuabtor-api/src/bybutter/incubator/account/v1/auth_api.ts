@@ -2,6 +2,8 @@ import * as $auth from "./auth"
 import * as $sisyphus from "@sisyphus.js/core"
 import * as $reflection from "../../../../_reflection"
 import * as $protobuf from "protobufjs"
+import * as $empty from "../../../../google/protobuf/empty"
+import * as $account from "../../common/v1/account"
 
 
 /** 登陆请求结构。 */
@@ -190,7 +192,30 @@ export class GetAccountRequest extends $sisyphus.Message<IGetAccountRequest> imp
 }
 GetAccountRequest.prototype.name = GetAccountRequest.reflection.fieldsById[1].defaultValue
 
-//Service: .bybutter.incubator.account.v1.AuthApi
-
-export class AuthApi {
+/** 验证与登陆 API。 */
+export class AuthApi extends $sisyphus.Client {
+    get $reflection() {
+        return AuthApi.reflection
+    }
+    /**
+     * 登陆接口。
+     * (-- api-linter: core::0136::verb-noun=disabled
+     * aip.dev/not-precedent: Login 是不及物动词，且确实没有名词合适 --)
+     */
+    async Login(input: ILoginRequest, metadata?: { [k: string]: string }): Promise<ILoginResponse> {
+        return await this.$call(this.$reflection.methods["Login"], input, metadata)
+    }
+    /**
+     * 登出接口。
+     * (-- api-linter: core::0136::verb-noun=disabled
+     * aip.dev/not-precedent: Logout 是不及物动词，且确实没有名词合适 --)
+     */
+    async Logout(input: $empty.IEmpty, metadata?: { [k: string]: string }): Promise<$empty.IEmpty> {
+        return await this.$call(this.$reflection.methods["Logout"], input, metadata)
+    }
+    /** 获取账户详情。 */
+    async GetAccount(input: IGetAccountRequest, metadata?: { [k: string]: string }): Promise<$account.IAccount> {
+        return await this.$call(this.$reflection.methods["GetAccount"], input, metadata)
+    }
+    static readonly reflection = $reflection.root.lookupService(".bybutter.incubator.account.v1.AuthApi")
 }

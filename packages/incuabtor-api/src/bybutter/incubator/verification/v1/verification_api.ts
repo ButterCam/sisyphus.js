@@ -342,7 +342,22 @@ export class ListRegionCodeResponse extends $sisyphus.Message<IListRegionCodeRes
 ListRegionCodeResponse.prototype.regionCodes = ListRegionCodeResponse.reflection.fieldsById[1].defaultValue
 ListRegionCodeResponse.prototype.nextPageToken = ListRegionCodeResponse.reflection.fieldsById[2].defaultValue
 
-//Service: .bybutter.incubator.verification.v1.VerificationApi
-
-export class VerificationApi {
+/** 验证Api */
+export class VerificationApi extends $sisyphus.Client {
+    get $reflection() {
+        return VerificationApi.reflection
+    }
+    /** 发送手机验证码 */
+    async SendVerificationCode(input: ISendVerificationCodeRequest, metadata?: { [k: string]: string }): Promise<ISendVerificationCodeResponse> {
+        return await this.$call(this.$reflection.methods["SendVerificationCode"], input, metadata)
+    }
+    /** 验证手机验证码 */
+    async VerifyVerificationCode(input: IVerifyVerificationCodeRequest, metadata?: { [k: string]: string }): Promise<IVerifyVerificationCodeResponse> {
+        return await this.$call(this.$reflection.methods["VerifyVerificationCode"], input, metadata)
+    }
+    /** 列举地区代码 */
+    async ListRegionCode(input: IListRegionCodeRequest, metadata?: { [k: string]: string }): Promise<IListRegionCodeResponse> {
+        return await this.$call(this.$reflection.methods["ListRegionCode"], input, metadata)
+    }
+    static readonly reflection = $reflection.root.lookupService(".bybutter.incubator.verification.v1.VerificationApi")
 }

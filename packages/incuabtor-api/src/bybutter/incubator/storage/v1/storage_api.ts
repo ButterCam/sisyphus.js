@@ -114,7 +114,14 @@ GenerateOssTokenResponse.prototype.accessKeySecret = GenerateOssTokenResponse.re
 GenerateOssTokenResponse.prototype.securityToken = GenerateOssTokenResponse.reflection.fieldsById[3].defaultValue
 GenerateOssTokenResponse.prototype.expirationTime = GenerateOssTokenResponse.reflection.fieldsById[4].defaultValue
 
-//Service: .bybutter.incubator.storage.v1.StorageApi
-
-export class StorageApi {
+/** 存储Api */
+export class StorageApi extends $sisyphus.Client {
+    get $reflection() {
+        return StorageApi.reflection
+    }
+    /** 获取Oss token */
+    async GenerateOssToken(input: IGenerateOssTokenRequest, metadata?: { [k: string]: string }): Promise<IGenerateOssTokenResponse> {
+        return await this.$call(this.$reflection.methods["GenerateOssToken"], input, metadata)
+    }
+    static readonly reflection = $reflection.root.lookupService(".bybutter.incubator.storage.v1.StorageApi")
 }

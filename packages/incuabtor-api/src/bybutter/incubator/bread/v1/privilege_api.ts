@@ -2447,7 +2447,118 @@ export class ListMembershipsResponse extends $sisyphus.Message<IListMembershipsR
 ListMembershipsResponse.prototype.memberships = ListMembershipsResponse.reflection.fieldsById[1].defaultValue
 ListMembershipsResponse.prototype.nextPageToken = ListMembershipsResponse.reflection.fieldsById[2].defaultValue
 
-//Service: .bybutter.incubator.bread.v1.PrivilegeApi
-
-export class PrivilegeApi {
+/** 特权资源相关 API */
+export class PrivilegeApi extends $sisyphus.Client {
+    get $reflection() {
+        return PrivilegeApi.reflection
+    }
+    /** 通过滤镜资源名称获取滤镜资源 */
+    async GetFilter(input: IGetFilterRequest, metadata?: { [k: string]: string }): Promise<$privilege.IFilter> {
+        return await this.$call(this.$reflection.methods["GetFilter"], input, metadata)
+    }
+    /** 批量通过滤镜资源名称获取滤镜资源 */
+    async BatchGetFilters(input: IBatchGetFiltersRequest, metadata?: { [k: string]: string }): Promise<IBatchGetFiltersResponse> {
+        return await this.$call(this.$reflection.methods["BatchGetFilters"], input, metadata)
+    }
+    /** 列举滤镜资源 */
+    async ListFilters(input: IListFiltersRequest, metadata?: { [k: string]: string }): Promise<IListFiltersResponse> {
+        return await this.$call(this.$reflection.methods["ListFilters"], input, metadata)
+    }
+    /** 列举滤镜组资源 */
+    async ListFilterGroups(input: IListFilterGroupsRequest, metadata?: { [k: string]: string }): Promise<IListFilterGroupsResponse> {
+        return await this.$call(this.$reflection.methods["ListFilterGroups"], input, metadata)
+    }
+    /** 通过边框资源名称获取边框资源 */
+    async GetBorder(input: IGetBorderRequest, metadata?: { [k: string]: string }): Promise<$privilege.IBorder> {
+        return await this.$call(this.$reflection.methods["GetBorder"], input, metadata)
+    }
+    /** 批量通过边框资源名称获取边框资源 */
+    async BatchGetBorders(input: IBatchGetBordersRequest, metadata?: { [k: string]: string }): Promise<IBatchGetBordersResponse> {
+        return await this.$call(this.$reflection.methods["BatchGetBorders"], input, metadata)
+    }
+    /** 列举边框资源 */
+    async ListBorders(input: IListBordersRequest, metadata?: { [k: string]: string }): Promise<IListBordersResponse> {
+        return await this.$call(this.$reflection.methods["ListBorders"], input, metadata)
+    }
+    /** 列举边框组资源 */
+    async ListBorderGroups(input: IListBorderGroupsRequest, metadata?: { [k: string]: string }): Promise<IListBorderGroupsResponse> {
+        return await this.$call(this.$reflection.methods["ListBorderGroups"], input, metadata)
+    }
+    /** 通过标签资源名称获取标签资源 */
+    async GetLabel(input: IGetLabelRequest, metadata?: { [k: string]: string }): Promise<$privilege.ILabel> {
+        return await this.$call(this.$reflection.methods["GetLabel"], input, metadata)
+    }
+    /** 批量通过标签资源名称获取标签资源 */
+    async BatchGetLabels(input: IBatchGetLabelsRequest, metadata?: { [k: string]: string }): Promise<IBatchGetLabelsResponse> {
+        return await this.$call(this.$reflection.methods["BatchGetLabels"], input, metadata)
+    }
+    /** 列举标签资源 */
+    async ListLabels(input: IListLabelsRequest, metadata?: { [k: string]: string }): Promise<IListLabelsResponse> {
+        return await this.$call(this.$reflection.methods["ListLabels"], input, metadata)
+    }
+    /** 列举标签组资源 */
+    async ListLabelGroups(input: IListLabelGroupsRequest, metadata?: { [k: string]: string }): Promise<IListLabelGroupsResponse> {
+        return await this.$call(this.$reflection.methods["ListLabelGroups"], input, metadata)
+    }
+    /** 通过贴纸资源名称获取贴纸资源 */
+    async GetSticker(input: IGetStickerRequest, metadata?: { [k: string]: string }): Promise<$privilege.ISticker> {
+        return await this.$call(this.$reflection.methods["GetSticker"], input, metadata)
+    }
+    /** 批量通过贴纸资源名称获取贴纸资源 */
+    async BatchGetStickers(input: IBatchGetStickersRequest, metadata?: { [k: string]: string }): Promise<IBatchGetStickersResponse> {
+        return await this.$call(this.$reflection.methods["BatchGetStickers"], input, metadata)
+    }
+    /** 列举贴纸资源 */
+    async ListStickers(input: IListStickersRequest, metadata?: { [k: string]: string }): Promise<IListStickersResponse> {
+        return await this.$call(this.$reflection.methods["ListStickers"], input, metadata)
+    }
+    /** 列举贴纸组资源 */
+    async ListStickerGroups(input: IListStickerGroupsRequest, metadata?: { [k: string]: string }): Promise<IListStickerGroupsResponse> {
+        return await this.$call(this.$reflection.methods["ListStickerGroups"], input, metadata)
+    }
+    /** 通过音乐资源名称获取音乐资源 */
+    async GetMusic(input: IGetMusicRequest, metadata?: { [k: string]: string }): Promise<$privilege.IMusic> {
+        return await this.$call(this.$reflection.methods["GetMusic"], input, metadata)
+    }
+    /** 批量通过音乐资源名称获取音乐资源 */
+    async BatchGetMusic(input: IBatchGetMusicRequest, metadata?: { [k: string]: string }): Promise<IBatchGetMusicResponse> {
+        return await this.$call(this.$reflection.methods["BatchGetMusic"], input, metadata)
+    }
+    /** 列举音乐资源 */
+    async ListMusic(input: IListMusicRequest, metadata?: { [k: string]: string }): Promise<IListMusicResponse> {
+        return await this.$call(this.$reflection.methods["ListMusic"], input, metadata)
+    }
+    /** 列举音乐组资源 */
+    async ListMusicGroups(input: IListMusicGroupsRequest, metadata?: { [k: string]: string }): Promise<IListMusicGroupsResponse> {
+        return await this.$call(this.$reflection.methods["ListMusicGroups"], input, metadata)
+    }
+    /** 通过音效资源名称获取音效资源 */
+    async GetSound(input: IGetSoundRequest, metadata?: { [k: string]: string }): Promise<$privilege.ISound> {
+        return await this.$call(this.$reflection.methods["GetSound"], input, metadata)
+    }
+    /** 批量通过音效资源名称获取音效资源 */
+    async BatchGetSounds(input: IBatchGetSoundsRequest, metadata?: { [k: string]: string }): Promise<IBatchGetSoundsResponse> {
+        return await this.$call(this.$reflection.methods["BatchGetSounds"], input, metadata)
+    }
+    /** 列举音效资源 */
+    async ListSounds(input: IListSoundsRequest, metadata?: { [k: string]: string }): Promise<IListSoundsResponse> {
+        return await this.$call(this.$reflection.methods["ListSounds"], input, metadata)
+    }
+    /** 列举音效组资源 */
+    async ListSoundGroups(input: IListSoundGroupsRequest, metadata?: { [k: string]: string }): Promise<IListSoundGroupsResponse> {
+        return await this.$call(this.$reflection.methods["ListSoundGroups"], input, metadata)
+    }
+    /** 通过会员资源名称获取会员资源 */
+    async GetMembership(input: IGetMembershipRequest, metadata?: { [k: string]: string }): Promise<$privilege.IMembership> {
+        return await this.$call(this.$reflection.methods["GetMembership"], input, metadata)
+    }
+    /** 批量通过会员资源名称获取会员资源 */
+    async BatchGetMemberships(input: IBatchGetMembershipsRequest, metadata?: { [k: string]: string }): Promise<IBatchGetMembershipsResponse> {
+        return await this.$call(this.$reflection.methods["BatchGetMemberships"], input, metadata)
+    }
+    /** 列举会员资源 */
+    async ListMemberships(input: IListMembershipsRequest, metadata?: { [k: string]: string }): Promise<IListMembershipsResponse> {
+        return await this.$call(this.$reflection.methods["ListMemberships"], input, metadata)
+    }
+    static readonly reflection = $reflection.root.lookupService(".bybutter.incubator.bread.v1.PrivilegeApi")
 }
