@@ -1,6 +1,5 @@
 import * as $reflection from "../../_reflection"
 import * as $sisyphus from "@sisyphus.js/core"
-import * as $protobuf from "protobufjs"
 
 
 /**
@@ -29,51 +28,16 @@ export namespace NullValue {
  * The JSON representation for `Struct` is JSON object.
  */
 export interface IStruct extends $sisyphus.IStruct {
-    /** Unordered map of dynamically typed values. */
-    fields?: ({ [k: string]: IValue } | null)
 }
 
-export class Struct extends $sisyphus.Message<IStruct> implements IStruct {
-    fields!: ({ [k: string]: IValue } | null)
-    get $reflection() {
-        return Struct.reflection
+export class Struct extends $sisyphus.Struct implements IStruct {
+    get $type() {
+        return Struct.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".google.protobuf.Struct")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): Struct {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        let key: any, value: any
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    if (!result.fields) result.fields = {};
-                    [key, value] = $sisyphus.readMapEntry(this.reflection.fields["fields"], reader, Value)
-                    result.fields[key] = value
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): Struct {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IStruct): Struct {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("fields") && properties.fields != null) {
-            result.fields = {}
-            for (let key in properties.fields) result.fields[key] = Value.create(properties.fields[key])
-        }
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".google.protobuf.Struct")
 }
-Struct.prototype.fields = Struct.reflection.fieldsById[1].defaultValue
+Struct.$type.generatedObject = Struct
 
 
 /**
@@ -85,90 +49,16 @@ Struct.prototype.fields = Struct.reflection.fieldsById[1].defaultValue
  * The JSON representation for `Value` is JSON value.
  */
 export interface IValue extends $sisyphus.IValue {
-    /** Represents a null value. */
-    nullValue?: NullValue
-    /** Represents a double value. */
-    numberValue?: number
-    /** Represents a string value. */
-    stringValue?: string
-    /** Represents a boolean value. */
-    boolValue?: boolean
-    /** Represents a structured value. */
-    structValue?: (IStruct | null)
-    /** Represents a repeated `Value`. */
-    listValue?: (IListValue | null)
-    /** The kind of value. */
-    kind?: string
 }
 
-export class Value extends $sisyphus.Message<IValue> implements IValue {
-    nullValue!: NullValue
-    numberValue!: number
-    stringValue!: string
-    boolValue!: boolean
-    structValue!: (IStruct | null)
-    listValue!: (IListValue | null)
-    kind?: string
-
-    get $reflection() {
-        return Value.reflection
+export class Value extends $sisyphus.Value implements IValue {
+    get $type() {
+        return Value.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".google.protobuf.Value")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): Value {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.nullValue = reader.uint32()
-                    break
-                case 2:
-                    result.numberValue = reader.double()
-                    break
-                case 3:
-                    result.stringValue = reader.string()
-                    break
-                case 4:
-                    result.boolValue = reader.bool()
-                    break
-                case 5:
-                    result.structValue = Struct.decodeDelimited(reader)
-                    break
-                case 6:
-                    result.listValue = ListValue.decodeDelimited(reader)
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): Value {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IValue): Value {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("nullValue") && properties.nullValue !== undefined) result.nullValue = properties.nullValue
-        if(properties.hasOwnProperty("numberValue") && properties.numberValue !== undefined) result.numberValue = properties.numberValue
-        if(properties.hasOwnProperty("stringValue") && properties.stringValue !== undefined) result.stringValue = properties.stringValue
-        if(properties.hasOwnProperty("boolValue") && properties.boolValue !== undefined) result.boolValue = properties.boolValue
-        if(properties.hasOwnProperty("structValue") && properties.structValue != null) result.structValue = Struct.create(properties.structValue)
-        if(properties.hasOwnProperty("listValue") && properties.listValue != null) result.listValue = ListValue.create(properties.listValue)
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".google.protobuf.Value")
 }
-Object.defineProperty(Value.prototype, "kind", $sisyphus.oneOfProperty("nullValue", "numberValue", "stringValue", "boolValue", "structValue", "listValue"))
-Value.prototype.nullValue = Value.reflection.fieldsById[1].defaultValue
-Value.prototype.numberValue = Value.reflection.fieldsById[2].defaultValue
-Value.prototype.stringValue = Value.reflection.fieldsById[3].defaultValue
-Value.prototype.boolValue = Value.reflection.fieldsById[4].defaultValue
-Value.prototype.structValue = Value.reflection.fieldsById[5].defaultValue
-Value.prototype.listValue = Value.reflection.fieldsById[6].defaultValue
+Value.$type.generatedObject = Value
 
 
 /**
@@ -176,44 +66,14 @@ Value.prototype.listValue = Value.reflection.fieldsById[6].defaultValue
  * 
  * The JSON representation for `ListValue` is JSON array.
  */
-export interface IListValue {
-    /** Repeated field of dynamically typed values. */
-    values?: (IValue[] | null)
+export interface IListValue extends $sisyphus.IListValue {
 }
 
-export class ListValue extends $sisyphus.Message<IListValue> implements IListValue {
-    values!: (IValue[] | null)
-    get $reflection() {
-        return ListValue.reflection
+export class ListValue extends $sisyphus.ListValue implements IListValue {
+    get $type() {
+        return ListValue.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".google.protobuf.ListValue")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): ListValue {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    if (!result.values) result.values = []
-                    result.values.push(Value.decodeDelimited(reader))
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): ListValue {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IListValue): ListValue {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("values") && properties.values != null) result.values = properties.values.map(it => Value.create(it))
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".google.protobuf.ListValue")
 }
-ListValue.prototype.values = ListValue.reflection.fieldsById[1].defaultValue
+ListValue.$type.generatedObject = ListValue

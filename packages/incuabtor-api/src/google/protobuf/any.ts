@@ -1,6 +1,5 @@
 import * as $sisyphus from "@sisyphus.js/core"
 import * as $reflection from "../../_reflection"
-import * as $protobuf from "protobufjs"
 
 
 /**
@@ -85,78 +84,13 @@ import * as $protobuf from "protobufjs"
  * }
  */
 export interface IAny extends $sisyphus.IAny {
-    /**
-     * A URL/resource name that uniquely identifies the type of the serialized
-     * protocol buffer message. This string must contain at least
-     * one "/" character. The last segment of the URL's path must represent
-     * the fully qualified name of the type (as in
-     * `path/google.protobuf.Duration`). The name should be in a canonical form
-     * (e.g., leading "." is not accepted).
-     * 
-     * In practice, teams usually precompile into the binary all types that they
-     * expect it to use in the context of Any. However, for URLs which use the
-     * scheme `http`, `https`, or no scheme, one can optionally set up a type
-     * server that maps type URLs to message definitions as follows:
-     * 
-     * * If no scheme is provided, `https` is assumed.
-     * * An HTTP GET on the URL must yield a [google.protobuf.Type][]
-     * value in binary format, or produce an error.
-     * * Applications are allowed to cache lookup results based on the
-     * URL, or have them precompiled into a binary to avoid any
-     * lookup. Therefore, binary compatibility needs to be preserved
-     * on changes to types. (Use versioned type names to manage
-     * breaking changes.)
-     * 
-     * Note: this functionality is not currently available in the official
-     * protobuf release, and it is not used for type URLs beginning with
-     * type.googleapis.com.
-     * 
-     * Schemes other than `http`, `https` (or the empty scheme) might be
-     * used with implementation specific semantics.
-     */
-    typeUrl?: string
-    /** Must be a valid serialized protocol buffer of the above specified type. */
-    value?: Uint8Array
 }
 
-export class Any extends $sisyphus.Message<IAny> implements IAny {
-    typeUrl!: string
-    value!: Uint8Array
-    get $reflection() {
-        return Any.reflection
+export class Any extends $sisyphus.Any implements IAny {
+    get $type() {
+        return Any.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".google.protobuf.Any")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): Any {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.typeUrl = reader.string()
-                    break
-                case 2:
-                    result.value = reader.bytes()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): Any {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IAny): Any {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("typeUrl") && properties.typeUrl !== undefined) result.typeUrl = properties.typeUrl
-        if(properties.hasOwnProperty("value") && properties.value !== undefined) result.value = properties.value
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".google.protobuf.Any")
 }
-Any.prototype.typeUrl = Any.reflection.fieldsById[1].defaultValue
-Any.prototype.value = Any.reflection.fieldsById[2].defaultValue
+Any.$type.generatedObject = Any

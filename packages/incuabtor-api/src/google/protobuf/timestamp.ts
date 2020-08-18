@@ -1,5 +1,4 @@
 import * as $sisyphus from "@sisyphus.js/core"
-import * as $protobuf from "protobufjs"
 import * as $reflection from "../../_reflection"
 
 
@@ -88,59 +87,13 @@ import * as $reflection from "../../_reflection"
  * ) to obtain a formatter capable of generating timestamps in this format.
  */
 export interface ITimestamp extends $sisyphus.ITimestamp {
-    /**
-     * Represents seconds of UTC time since Unix epoch
-     * 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to
-     * 9999-12-31T23:59:59Z inclusive.
-     */
-    seconds?: $protobuf.Long
-    /**
-     * Non-negative fractions of a second at nanosecond resolution. Negative
-     * second values with fractions must still have non-negative nanos values
-     * that count forward in time. Must be from 0 to 999,999,999
-     * inclusive.
-     */
-    nanos?: number
 }
 
-export class Timestamp extends $sisyphus.Message<ITimestamp> implements ITimestamp {
-    seconds!: $protobuf.Long
-    nanos!: number
-    get $reflection() {
-        return Timestamp.reflection
+export class Timestamp extends $sisyphus.Timestamp implements ITimestamp {
+    get $type() {
+        return Timestamp.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".google.protobuf.Timestamp")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): Timestamp {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.seconds = reader.int64()
-                    break
-                case 2:
-                    result.nanos = reader.int32()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): Timestamp {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: ITimestamp): Timestamp {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("seconds") && properties.seconds !== undefined) result.seconds = properties.seconds
-        if(properties.hasOwnProperty("nanos") && properties.nanos !== undefined) result.nanos = properties.nanos
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".google.protobuf.Timestamp")
 }
-Timestamp.prototype.seconds = Timestamp.reflection.fieldsById[1].defaultValue
-Timestamp.prototype.nanos = Timestamp.reflection.fieldsById[2].defaultValue
+Timestamp.$type.generatedObject = Timestamp

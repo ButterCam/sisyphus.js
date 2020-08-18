@@ -1,5 +1,4 @@
 import * as $sisyphus from "@sisyphus.js/core"
-import * as $protobuf from "protobufjs"
 import * as $reflection from "../../_reflection"
 
 
@@ -64,61 +63,13 @@ import * as $reflection from "../../_reflection"
  * microsecond should be expressed in JSON format as "3.000001s".
  */
 export interface IDuration extends $sisyphus.IDuration {
-    /**
-     * Signed seconds of the span of time. Must be from -315,576,000,000
-     * to +315,576,000,000 inclusive. Note: these bounds are computed from:
-     * 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
-     */
-    seconds?: $protobuf.Long
-    /**
-     * Signed fractions of a second at nanosecond resolution of the span
-     * of time. Durations less than one second are represented with a 0
-     * `seconds` field and a positive or negative `nanos` field. For durations
-     * of one second or more, a non-zero value for the `nanos` field must be
-     * of the same sign as the `seconds` field. Must be from -999,999,999
-     * to +999,999,999 inclusive.
-     */
-    nanos?: number
 }
 
-export class Duration extends $sisyphus.Message<IDuration> implements IDuration {
-    seconds!: $protobuf.Long
-    nanos!: number
-    get $reflection() {
-        return Duration.reflection
+export class Duration extends $sisyphus.Duration implements IDuration {
+    get $type() {
+        return Duration.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".google.protobuf.Duration")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): Duration {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.seconds = reader.int64()
-                    break
-                case 2:
-                    result.nanos = reader.int32()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): Duration {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IDuration): Duration {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("seconds") && properties.seconds !== undefined) result.seconds = properties.seconds
-        if(properties.hasOwnProperty("nanos") && properties.nanos !== undefined) result.nanos = properties.nanos
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".google.protobuf.Duration")
 }
-Duration.prototype.seconds = Duration.reflection.fieldsById[1].defaultValue
-Duration.prototype.nanos = Duration.reflection.fieldsById[2].defaultValue
+Duration.$type.generatedObject = Duration
