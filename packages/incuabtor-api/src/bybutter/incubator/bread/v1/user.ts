@@ -10,11 +10,13 @@ export interface IUser {
 
 export class User extends $protobuf.Message<User> implements IUser {
     name!: string
+
     get $type() {
         return User.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.User")
 }
+
 User.$type.generatedObject = User
 User.prototype.name = User.$type.fieldsById[1].defaultValue

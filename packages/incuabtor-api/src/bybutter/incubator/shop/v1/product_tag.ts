@@ -13,12 +13,14 @@ export interface ICommonTag {
 export class CommonTag extends $protobuf.Message<CommonTag> implements ICommonTag {
     key!: string
     value!: string
+
     get $type() {
         return CommonTag.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.CommonTag")
 }
+
 CommonTag.$type.generatedObject = CommonTag
 CommonTag.prototype.key = CommonTag.$type.fieldsById[1].defaultValue
 CommonTag.prototype.value = CommonTag.$type.fieldsById[2].defaultValue
@@ -32,11 +34,13 @@ export interface IAppleIapProductIdTag {
 
 export class AppleIapProductIdTag extends $protobuf.Message<AppleIapProductIdTag> implements IAppleIapProductIdTag {
     productId!: string
+
     get $type() {
         return AppleIapProductIdTag.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.AppleIapProductIdTag")
 }
+
 AppleIapProductIdTag.$type.generatedObject = AppleIapProductIdTag
 AppleIapProductIdTag.prototype.productId = AppleIapProductIdTag.$type.fieldsById[1].defaultValue

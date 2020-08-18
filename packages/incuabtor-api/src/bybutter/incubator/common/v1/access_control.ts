@@ -16,12 +16,14 @@ export class AccessControl extends $protobuf.Message<AccessControl> implements I
     anonymous!: boolean
     requiredPermissions!: readonly string[]
     allowPermissions!: readonly string[]
+
     get $type() {
         return AccessControl.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.common.v1.AccessControl")
 }
+
 AccessControl.$type.generatedObject = AccessControl
 AccessControl.prototype.anonymous = AccessControl.$type.fieldsById[1].defaultValue
 AccessControl.prototype.requiredPermissions = AccessControl.$type.fieldsById[2].defaultValue

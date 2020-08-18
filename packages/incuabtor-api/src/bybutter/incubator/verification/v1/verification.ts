@@ -13,12 +13,14 @@ export interface IPhoneTarget {
 export class PhoneTarget extends $protobuf.Message<PhoneTarget> implements IPhoneTarget {
     regionCode!: string
     phoneNumber!: string
+
     get $type() {
         return PhoneTarget.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.verification.v1.PhoneTarget")
 }
+
 PhoneTarget.$type.generatedObject = PhoneTarget
 PhoneTarget.prototype.regionCode = PhoneTarget.$type.fieldsById[1].defaultValue
 PhoneTarget.prototype.phoneNumber = PhoneTarget.$type.fieldsById[2].defaultValue
@@ -32,12 +34,14 @@ export interface IEmailTarget {
 
 export class EmailTarget extends $protobuf.Message<EmailTarget> implements IEmailTarget {
     email!: string
+
     get $type() {
         return EmailTarget.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.verification.v1.EmailTarget")
 }
+
 EmailTarget.$type.generatedObject = EmailTarget
 EmailTarget.prototype.email = EmailTarget.$type.fieldsById[1].defaultValue
 
@@ -56,12 +60,14 @@ export class RegionCode extends $protobuf.Message<RegionCode> implements IRegion
     regionCode!: string
     region!: string
     displayRegionCode!: string
+
     get $type() {
         return RegionCode.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.verification.v1.RegionCode")
 }
+
 RegionCode.$type.generatedObject = RegionCode
 RegionCode.prototype.regionCode = RegionCode.$type.fieldsById[1].defaultValue
 RegionCode.prototype.region = RegionCode.$type.fieldsById[2].defaultValue

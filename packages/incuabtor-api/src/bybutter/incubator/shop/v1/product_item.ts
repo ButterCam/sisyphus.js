@@ -18,12 +18,14 @@ export class PrivilegeProductItem extends $protobuf.Message<PrivilegeProductItem
     privilege!: string
     ownership!: $ownership.OwnershipType
     duration!: $duration.Duration
+
     get $type() {
         return PrivilegeProductItem.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.PrivilegeProductItem")
 }
+
 PrivilegeProductItem.$type.generatedObject = PrivilegeProductItem
 PrivilegeProductItem.prototype.privilege = PrivilegeProductItem.$type.fieldsById[1].defaultValue
 PrivilegeProductItem.prototype.ownership = PrivilegeProductItem.$type.fieldsById[3].defaultValue
@@ -41,12 +43,14 @@ export interface IEntityProductItem {
 export class EntityProductItem extends $protobuf.Message<EntityProductItem> implements IEntityProductItem {
     entity!: string
     inventory!: number
+
     get $type() {
         return EntityProductItem.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.EntityProductItem")
 }
+
 EntityProductItem.$type.generatedObject = EntityProductItem
 EntityProductItem.prototype.entity = EntityProductItem.$type.fieldsById[1].defaultValue
 EntityProductItem.prototype.inventory = EntityProductItem.$type.fieldsById[10].defaultValue

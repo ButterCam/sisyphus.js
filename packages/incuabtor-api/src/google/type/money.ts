@@ -26,12 +26,14 @@ export class Money extends $protobuf.Message<Money> implements IMoney {
     currencyCode!: string
     units!: $protobuf.Long
     nanos!: number
+
     get $type() {
         return Money.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".google.type.Money")
 }
+
 Money.$type.generatedObject = Money
 Money.prototype.currencyCode = Money.$type.fieldsById[1].defaultValue
 Money.prototype.units = Money.$type.fieldsById[2].defaultValue

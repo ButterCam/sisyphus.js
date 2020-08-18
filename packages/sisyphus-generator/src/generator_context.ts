@@ -87,9 +87,9 @@ root.resolveAll()\n`)
                         case reflectionObject instanceof Type:
                         case reflectionObject instanceof Service:
                         case reflectionObject instanceof Enum:
-                            if(reflectionObject.filename != null){
+                            if (reflectionObject.filename != null) {
                                 const moduleName = pathModule.basename(reflectionObject.filename, pathModule.extname(reflectionObject.filename))
-                                if(modules.indexOf(moduleName) < 0) {
+                                if (modules.indexOf(moduleName) < 0) {
                                     b.appendLn(`export * from "./${moduleName}"`)
                                     modules.push(moduleName)
                                 }
@@ -99,7 +99,7 @@ root.resolveAll()\n`)
                         case reflectionObject instanceof Namespace:
                             await this.generateIndex(dir, reflectionObject)
                             const moduleName = reflectionObject.name
-                            if(modules.indexOf(moduleName) < 0) {
+                            if (modules.indexOf(moduleName) < 0) {
                                 b.appendLn(`export * as ${moduleName} from "./${moduleName}"`)
                                 modules.push(moduleName)
                             }

@@ -49,12 +49,14 @@ export class Product extends $protobuf.Message<Product> implements IProduct {
     details!: $any.Any
     tags!: readonly $any.Any[]
     enable!: boolean
+
     get $type() {
         return Product.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.Product")
 }
+
 Product.$type.generatedObject = Product
 Product.prototype.name = Product.$type.fieldsById[1].defaultValue
 Product.prototype.type = Product.$type.fieldsById[2].defaultValue
@@ -120,12 +122,14 @@ export class Plan extends $protobuf.Message<Plan> implements IPlan {
     startTime!: $timestamp.Timestamp
     endTime!: $timestamp.Timestamp
     appliedAttributes!: readonly string[]
+
     get $type() {
         return Plan.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.Plan")
 }
+
 Plan.$type.generatedObject = Plan
 Plan.prototype.price = Plan.$type.fieldsById[1].defaultValue
 Plan.prototype.standardPrice = Plan.$type.fieldsById[2].defaultValue
@@ -159,12 +163,14 @@ export class PriceLabel extends $protobuf.Message<PriceLabel> implements IPriceL
     label!: string
     checkout!: string
     style!: string
+
     get $type() {
         return PriceLabel.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.PriceLabel")
 }
+
 PriceLabel.$type.generatedObject = PriceLabel
 PriceLabel.prototype.tag = PriceLabel.$type.fieldsById[1].defaultValue
 PriceLabel.prototype.label = PriceLabel.$type.fieldsById[2].defaultValue

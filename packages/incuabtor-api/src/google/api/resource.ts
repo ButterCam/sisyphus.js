@@ -4,13 +4,13 @@ import * as $reflection from "../../_reflection"
 
 /**
  * A simple descriptor of a resource type.
- * 
+ *
  * ResourceDescriptor annotates a resource message (either by means of a
  * protobuf annotation or use in the service config), and associates the
  * resource's schema, the resource type, and the pattern of the resource name.
- * 
+ *
  * Example:
- * 
+ *
  * message Topic {
  * // Indicates this message defines a resource schema.
  * // Declares the resource type in the format of {service}/{kind}.
@@ -24,21 +24,21 @@ import * as $reflection from "../../_reflection"
  * }
  * };
  * }
- * 
+ *
  * The ResourceDescriptor Yaml config will look like:
- * 
+ *
  * resources:
  * - type: "pubsub.googleapis.com/Topic"
  * name_descriptor:
  * - pattern: "projects/{project}/topics/{topic}"
  * parent_type: "cloudresourcemanager.googleapis.com/Project"
  * parent_name_extractor: "projects/{project}"
- * 
+ *
  * Sometimes, resources have multiple patterns, typically because they can
  * live under multiple parents.
- * 
+ *
  * Example:
- * 
+ *
  * message LogEntry {
  * option (google.api.resource) = {
  * type: "logging.googleapis.com/LogEntry"
@@ -64,9 +64,9 @@ import * as $reflection from "../../_reflection"
  * }
  * };
  * }
- * 
+ *
  * The ResourceDescriptor Yaml config will look like:
- * 
+ *
  * resources:
  * - type: 'logging.googleapis.com/LogEntry'
  * name_descriptor:
@@ -82,12 +82,12 @@ import * as $reflection from "../../_reflection"
  * - pattern: "billingAccounts/{billing_account}/logs/{log}"
  * parent_type: "billing.googleapis.com/BillingAccount"
  * parent_name_extractor: "billingAccounts/{billing_account}"
- * 
+ *
  * For flexible resources, the resource name doesn't contain parent names, but
  * the resource itself has parents for policy evaluation.
- * 
+ *
  * Example:
- * 
+ *
  * message Shelf {
  * option (google.api.resource) = {
  * type: "library.googleapis.com/Shelf"
@@ -101,9 +101,9 @@ import * as $reflection from "../../_reflection"
  * }
  * };
  * }
- * 
+ *
  * The ResourceDescriptor Yaml config will look like:
- * 
+ *
  * resources:
  * - type: 'library.googleapis.com/Shelf'
  * name_descriptor:
@@ -117,9 +117,9 @@ export interface IResourceDescriptor {
      * The resource type. It must be in the format of
      * {service_name}/{resource_type_kind}. The `resource_type_kind` must be
      * singular and must not include version numbers.
-     * 
+     *
      * Example: `storage.googleapis.com/Bucket`
-     * 
+     *
      * The value of the resource_type_kind must follow the regular expression
      * /[A-Za-z][a-zA-Z0-9]+/. It should start with an upper case character and
      * should use PascalCase (UpperCamelCase). The maximum number of
@@ -129,19 +129,19 @@ export interface IResourceDescriptor {
     /**
      * Optional. The relative resource name pattern associated with this resource
      * type. The DNS prefix of the full resource name shouldn't be specified here.
-     * 
+     *
      * The path pattern must follow the syntax, which aligns with HTTP binding
      * syntax:
-     * 
+     *
      * Template = Segment { "/" Segment } ;
      * Segment = LITERAL | Variable ;
      * Variable = "{" LITERAL "}" ;
-     * 
+     *
      * Examples:
-     * 
+     *
      * - "projects/{project}/topics/{topic}"
      * - "projects/{project}/knowledgeBases/{knowledge_base}"
-     * 
+     *
      * The components in braces correspond to the IDs for each resource in the
      * hierarchy. It is expected that, if multiple patterns are provided,
      * the same component name (e.g. "project") refers to IDs of the same
@@ -155,9 +155,9 @@ export interface IResourceDescriptor {
     nameField?: string
     /**
      * Optional. The historical or future-looking state of the resource pattern.
-     * 
+     *
      * Example:
-     * 
+     *
      * // The InspectTemplate message originally only supported resource
      * // names with organization, and project was added later.
      * message InspectTemplate {
@@ -193,12 +193,14 @@ export class ResourceDescriptor extends $protobuf.Message<ResourceDescriptor> im
     history!: ResourceDescriptor.History
     plural!: string
     singular!: string
+
     get $type() {
         return ResourceDescriptor.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".google.api.ResourceDescriptor")
 }
+
 ResourceDescriptor.$type.generatedObject = ResourceDescriptor
 ResourceDescriptor.prototype.type = ResourceDescriptor.$type.fieldsById[1].defaultValue
 ResourceDescriptor.prototype.pattern = ResourceDescriptor.$type.fieldsById[2].defaultValue
@@ -241,9 +243,9 @@ export namespace ResourceDescriptor {
 export interface IResourceReference {
     /**
      * The resource type that the annotated field references.
-     * 
+     *
      * Example:
-     * 
+     *
      * message Subscription {
      * string topic = 2 [(google.api.resource_reference) = {
      * type: "pubsub.googleapis.com/Topic"
@@ -255,9 +257,9 @@ export interface IResourceReference {
      * The resource type of a child collection that the annotated field
      * references. This is useful for annotating the `parent` field that
      * doesn't have a fixed resource type.
-     * 
+     *
      * Example:
-     * 
+     *
      * message ListLogEntriesRequest {
      * string parent = 1 [(google.api.resource_reference) = {
      * child_type: "logging.googleapis.com/LogEntry"
@@ -270,12 +272,14 @@ export interface IResourceReference {
 export class ResourceReference extends $protobuf.Message<ResourceReference> implements IResourceReference {
     type!: string
     childType!: string
+
     get $type() {
         return ResourceReference.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".google.api.ResourceReference")
 }
+
 ResourceReference.$type.generatedObject = ResourceReference
 ResourceReference.prototype.type = ResourceReference.$type.fieldsById[1].defaultValue
 ResourceReference.prototype.childType = ResourceReference.$type.fieldsById[2].defaultValue

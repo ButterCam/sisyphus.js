@@ -19,12 +19,14 @@ export class ApiToken extends $protobuf.Message<ApiToken> implements IApiToken {
     account!: string
     token!: string
     permissions!: readonly $struct.Value[]
+
     get $type() {
         return ApiToken.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.account.v1.ApiToken")
 }
+
 ApiToken.$type.generatedObject = ApiToken
 ApiToken.prototype.account = ApiToken.$type.fieldsById[1].defaultValue
 ApiToken.prototype.token = ApiToken.$type.fieldsById[2].defaultValue
@@ -45,12 +47,14 @@ export class MobileCredential extends $protobuf.Message<MobileCredential> implem
     regionCode!: string
     phoneNumber!: string
     code!: string
+
     get $type() {
         return MobileCredential.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.account.v1.MobileCredential")
 }
+
 MobileCredential.$type.generatedObject = MobileCredential
 MobileCredential.prototype.regionCode = MobileCredential.$type.fieldsById[1].defaultValue
 MobileCredential.prototype.phoneNumber = MobileCredential.$type.fieldsById[2].defaultValue
@@ -65,12 +69,14 @@ export interface IIdentificationCredential {
 
 export class IdentificationCredential extends $protobuf.Message<IdentificationCredential> implements IIdentificationCredential {
     identification!: string
+
     get $type() {
         return IdentificationCredential.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.account.v1.IdentificationCredential")
 }
+
 IdentificationCredential.$type.generatedObject = IdentificationCredential
 IdentificationCredential.prototype.identification = IdentificationCredential.$type.fieldsById[1].defaultValue
 
@@ -86,12 +92,14 @@ export interface IIapCredential {
 export class IapCredential extends $protobuf.Message<IapCredential> implements IIapCredential {
     receipt!: string
     product!: $incubatorProduct.IncubatorProduct
+
     get $type() {
         return IapCredential.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.account.v1.IapCredential")
 }
+
 IapCredential.$type.generatedObject = IapCredential
 IapCredential.prototype.receipt = IapCredential.$type.fieldsById[1].defaultValue
 IapCredential.prototype.product = IapCredential.$type.fieldsById[2].defaultValue
@@ -114,12 +122,14 @@ export interface ISignatureCredential {
 export class SignatureCredential extends $protobuf.Message<SignatureCredential> implements ISignatureCredential {
     signature!: Uint8Array
     createTime!: $timestamp.Timestamp
+
     get $type() {
         return SignatureCredential.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.account.v1.SignatureCredential")
 }
+
 SignatureCredential.$type.generatedObject = SignatureCredential
 SignatureCredential.prototype.signature = SignatureCredential.$type.fieldsById[1].defaultValue
 SignatureCredential.prototype.createTime = SignatureCredential.$type.fieldsById[2].defaultValue

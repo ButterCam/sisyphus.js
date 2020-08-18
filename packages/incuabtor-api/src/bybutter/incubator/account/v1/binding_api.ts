@@ -19,12 +19,14 @@ export class ListBindingsRequest extends $protobuf.Message<ListBindingsRequest> 
     parent!: string
     pageSize!: number
     pageToken!: string
+
     get $type() {
         return ListBindingsRequest.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.account.v1.ListBindingsRequest")
 }
+
 ListBindingsRequest.$type.generatedObject = ListBindingsRequest
 ListBindingsRequest.prototype.parent = ListBindingsRequest.$type.fieldsById[1].defaultValue
 ListBindingsRequest.prototype.pageSize = ListBindingsRequest.$type.fieldsById[2].defaultValue
@@ -42,12 +44,14 @@ export interface IListBindingsResponse {
 export class ListBindingsResponse extends $protobuf.Message<ListBindingsResponse> implements IListBindingsResponse {
     bindings!: readonly $binding.AccountBinding[]
     nextPageToken!: string
+
     get $type() {
         return ListBindingsResponse.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.account.v1.ListBindingsResponse")
 }
+
 ListBindingsResponse.$type.generatedObject = ListBindingsResponse
 ListBindingsResponse.prototype.bindings = ListBindingsResponse.$type.fieldsById[1].defaultValue
 ListBindingsResponse.prototype.nextPageToken = ListBindingsResponse.$type.fieldsById[2].defaultValue
@@ -81,6 +85,7 @@ export class ChangeBindingRequest extends $protobuf.Message<ChangeBindingRequest
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.account.v1.ChangeBindingRequest")
 }
+
 ChangeBindingRequest.$type.generatedObject = ChangeBindingRequest
 Object.defineProperty(ChangeBindingRequest.prototype, "AccountCredential", $sisyphus.oneOfProperty("mobileAccountCredential"))
 Object.defineProperty(ChangeBindingRequest.prototype, "BindingCredential", $sisyphus.oneOfProperty("mobileBindingCredential"))
@@ -97,12 +102,14 @@ export interface IChangeBindingResponse {
 
 export class ChangeBindingResponse extends $protobuf.Message<ChangeBindingResponse> implements IChangeBindingResponse {
     binding!: $binding.AccountBinding
+
     get $type() {
         return ChangeBindingResponse.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.account.v1.ChangeBindingResponse")
 }
+
 ChangeBindingResponse.$type.generatedObject = ChangeBindingResponse
 ChangeBindingResponse.prototype.binding = ChangeBindingResponse.$type.fieldsById[1].defaultValue
 
@@ -111,13 +118,16 @@ export class BindingApi extends $sisyphus.Client {
     get $reflection() {
         return BindingApi.reflection
     }
+
     /** 获取用户的所有绑定信息。 */
     async ListBindings(input: IListBindingsRequest, metadata?: { [k: string]: string }): Promise<IListBindingsResponse> {
         return await this.$call(this.$reflection.methods["ListBindings"], input, metadata)
     }
+
     /** 修改用户的绑定信息 */
     async ChangeBinding(input: IChangeBindingRequest, metadata?: { [k: string]: string }): Promise<IChangeBindingResponse> {
         return await this.$call(this.$reflection.methods["ChangeBinding"], input, metadata)
     }
+
     static readonly reflection = $reflection.root.lookupService(".bybutter.incubator.account.v1.BindingApi")
 }

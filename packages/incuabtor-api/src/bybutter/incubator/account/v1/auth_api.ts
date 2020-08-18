@@ -33,6 +33,7 @@ export class LoginRequest extends $protobuf.Message<LoginRequest> implements ILo
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.account.v1.LoginRequest")
 }
+
 LoginRequest.$type.generatedObject = LoginRequest
 Object.defineProperty(LoginRequest.prototype, "Credential", $sisyphus.oneOfProperty("identificationCredential", "mobileCredential", "signatureCredential", "iapCredential"))
 LoginRequest.prototype.identificationCredential = LoginRequest.$type.fieldsById[11].defaultValue
@@ -68,6 +69,7 @@ export class LoginResponse extends $protobuf.Message<LoginResponse> implements I
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.account.v1.LoginResponse")
 }
+
 LoginResponse.$type.generatedObject = LoginResponse
 Object.defineProperty(LoginResponse.prototype, "Credential", $sisyphus.oneOfProperty("identificationCredential", "mobileCredential", "iapCredential"))
 LoginResponse.prototype.token = LoginResponse.$type.fieldsById[1].defaultValue
@@ -84,12 +86,14 @@ export interface IGetAccountRequest {
 
 export class GetAccountRequest extends $protobuf.Message<GetAccountRequest> implements IGetAccountRequest {
     name!: string
+
     get $type() {
         return GetAccountRequest.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.account.v1.GetAccountRequest")
 }
+
 GetAccountRequest.$type.generatedObject = GetAccountRequest
 GetAccountRequest.prototype.name = GetAccountRequest.$type.fieldsById[1].defaultValue
 
@@ -98,6 +102,7 @@ export class AuthApi extends $sisyphus.Client {
     get $reflection() {
         return AuthApi.reflection
     }
+
     /**
      * 登陆接口。
      * (-- api-linter: core::0136::verb-noun=disabled
@@ -106,6 +111,7 @@ export class AuthApi extends $sisyphus.Client {
     async Login(input: ILoginRequest, metadata?: { [k: string]: string }): Promise<ILoginResponse> {
         return await this.$call(this.$reflection.methods["Login"], input, metadata)
     }
+
     /**
      * 登出接口。
      * (-- api-linter: core::0136::verb-noun=disabled
@@ -114,9 +120,11 @@ export class AuthApi extends $sisyphus.Client {
     async Logout(input: $empty.IEmpty, metadata?: { [k: string]: string }): Promise<$empty.IEmpty> {
         return await this.$call(this.$reflection.methods["Logout"], input, metadata)
     }
+
     /** 获取账户详情。 */
     async GetAccount(input: IGetAccountRequest, metadata?: { [k: string]: string }): Promise<$account.IAccount> {
         return await this.$call(this.$reflection.methods["GetAccount"], input, metadata)
     }
+
     static readonly reflection = $reflection.root.lookupService(".bybutter.incubator.account.v1.AuthApi")
 }

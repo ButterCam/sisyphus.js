@@ -26,12 +26,14 @@ export class Account extends $protobuf.Message<Account> implements IAccount {
     permissions!: readonly $struct.Value[]
     metadata!: { readonly [k: string]: $any.Any }
     createTime!: $timestamp.Timestamp
+
     get $type() {
         return Account.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.common.v1.Account")
 }
+
 Account.$type.generatedObject = Account
 Account.prototype.name = Account.$type.fieldsById[1].defaultValue
 Account.prototype.permissions = Account.$type.fieldsById[2].defaultValue

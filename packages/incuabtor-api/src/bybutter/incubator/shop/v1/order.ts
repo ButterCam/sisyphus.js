@@ -35,12 +35,14 @@ export class Order extends $protobuf.Message<Order> implements IOrder {
     price!: $money.Money
     standardPrice!: $money.Money
     metadata!: readonly $any.Any[]
+
     get $type() {
         return Order.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.Order")
 }
+
 Order.$type.generatedObject = Order
 Order.prototype.name = Order.$type.fieldsById[1].defaultValue
 Order.prototype.items = Order.$type.fieldsById[2].defaultValue
@@ -93,12 +95,14 @@ export namespace Order {
         payment!: string
         product!: $product.Product
         metadata!: readonly $any.Any[]
+
         get $type() {
             return Item.$type
         }
 
         static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.Order.Item")
     }
+
     Item.$type.generatedObject = Item
     Item.prototype.name = Item.$type.fieldsById[1].defaultValue
     Item.prototype.payment = Item.$type.fieldsById[2].defaultValue
@@ -120,12 +124,14 @@ export namespace Order {
         id!: string
         data!: string
         paymentChannel!: string
+
         get $type() {
             return Charge.$type
         }
 
         static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.Order.Charge")
     }
+
     Charge.$type.generatedObject = Charge
     Charge.prototype.id = Charge.$type.fieldsById[1].defaultValue
     Charge.prototype.data = Charge.$type.fieldsById[2].defaultValue

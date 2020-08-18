@@ -11,12 +11,14 @@ export interface IInvokeWebhookRequest {
 
 export class InvokeWebhookRequest extends $protobuf.Message<InvokeWebhookRequest> implements IInvokeWebhookRequest {
     body!: string
+
     get $type() {
         return InvokeWebhookRequest.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.InvokeWebhookRequest")
 }
+
 InvokeWebhookRequest.$type.generatedObject = InvokeWebhookRequest
 InvokeWebhookRequest.prototype.body = InvokeWebhookRequest.$type.fieldsById[1].defaultValue
 
@@ -29,12 +31,14 @@ export interface IInvokeWebhookResponse {
 
 export class InvokeWebhookResponse extends $protobuf.Message<InvokeWebhookResponse> implements IInvokeWebhookResponse {
     body!: string
+
     get $type() {
         return InvokeWebhookResponse.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.InvokeWebhookResponse")
 }
+
 InvokeWebhookResponse.$type.generatedObject = InvokeWebhookResponse
 InvokeWebhookResponse.prototype.body = InvokeWebhookResponse.$type.fieldsById[1].defaultValue
 
@@ -43,6 +47,7 @@ export class Webhook extends $sisyphus.Client {
     get $reflection() {
         return Webhook.reflection
     }
+
     /**
      * Pingpp 支付回调 API
      * (-- api-linter: core::0136::http-body=disabled
@@ -51,5 +56,6 @@ export class Webhook extends $sisyphus.Client {
     async InvokePingpp(input: IInvokeWebhookRequest, metadata?: { [k: string]: string }): Promise<IInvokeWebhookResponse> {
         return await this.$call(this.$reflection.methods["InvokePingpp"], input, metadata)
     }
+
     static readonly reflection = $reflection.root.lookupService(".bybutter.incubator.bread.v1.Webhook")
 }

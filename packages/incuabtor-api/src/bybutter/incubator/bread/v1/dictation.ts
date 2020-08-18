@@ -44,6 +44,7 @@ export class DictationOperationMetadata extends $protobuf.Message<DictationOpera
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.DictationOperationMetadata")
 }
+
 DictationOperationMetadata.$type.generatedObject = DictationOperationMetadata
 
 
@@ -73,12 +74,14 @@ export class DictationTask extends $protobuf.Message<DictationTask> implements I
     sentences!: readonly DictationSentence[]
     state!: DictationState
     vendor!: DictationVendor
+
     get $type() {
         return DictationTask.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.DictationTask")
 }
+
 DictationTask.$type.generatedObject = DictationTask
 DictationTask.prototype.name = DictationTask.$type.fieldsById[1].defaultValue
 DictationTask.prototype.audioFileKey = DictationTask.$type.fieldsById[2].defaultValue
@@ -106,12 +109,14 @@ export class DictationSentence extends $protobuf.Message<DictationSentence> impl
     endOffset!: $duration.Duration
     content!: string
     words!: readonly DictationWord[]
+
     get $type() {
         return DictationSentence.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.DictationSentence")
 }
+
 DictationSentence.$type.generatedObject = DictationSentence
 DictationSentence.prototype.beginOffset = DictationSentence.$type.fieldsById[1].defaultValue
 DictationSentence.prototype.endOffset = DictationSentence.$type.fieldsById[2].defaultValue
@@ -136,12 +141,14 @@ export class DictationWord extends $protobuf.Message<DictationWord> implements I
     endOffset!: $duration.Duration
     content!: string
     type!: DictationWord.Type
+
     get $type() {
         return DictationWord.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.DictationWord")
 }
+
 DictationWord.$type.generatedObject = DictationWord
 DictationWord.prototype.beginOffset = DictationWord.$type.fieldsById[1].defaultValue
 DictationWord.prototype.endOffset = DictationWord.$type.fieldsById[2].defaultValue

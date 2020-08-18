@@ -41,12 +41,14 @@ export class ClientInfo extends $protobuf.Message<ClientInfo> implements IClient
     languageTag!: string
     timeZone!: string
     ip!: string
+
     get $type() {
         return ClientInfo.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.common.v1.ClientInfo")
 }
+
 ClientInfo.$type.generatedObject = ClientInfo
 ClientInfo.prototype.version = ClientInfo.$type.fieldsById[1].defaultValue
 ClientInfo.prototype.channel = ClientInfo.$type.fieldsById[2].defaultValue

@@ -5,7 +5,7 @@ import * as $sisyphus from "@sisyphus.js/core"
 /**
  * `NullValue` is a singleton enumeration to represent the null value for the
  * `Value` type union.
- * 
+ *
  * The JSON representation for `NullValue` is JSON `null`.
  */
 export enum NullValue {
@@ -24,7 +24,7 @@ export namespace NullValue {
  * scripting languages like JS a struct is represented as an
  * object. The details of that representation are described together
  * with the proto support for the language.
- * 
+ *
  * The JSON representation for `Struct` is JSON object.
  */
 export interface IStruct extends $sisyphus.IStruct {
@@ -37,6 +37,7 @@ export class Struct extends $sisyphus.Struct implements IStruct {
 
     static readonly $type = $reflection.root.lookupType(".google.protobuf.Struct")
 }
+
 Struct.$type.generatedObject = Struct
 
 
@@ -45,7 +46,7 @@ Struct.$type.generatedObject = Struct
  * null, a number, a string, a boolean, a recursive struct value, or a
  * list of values. A producer of value is expected to set one of that
  * variants, absence of any variant indicates an error.
- * 
+ *
  * The JSON representation for `Value` is JSON value.
  */
 export interface IValue extends $sisyphus.IValue {
@@ -58,12 +59,13 @@ export class Value extends $sisyphus.Value implements IValue {
 
     static readonly $type = $reflection.root.lookupType(".google.protobuf.Value")
 }
+
 Value.$type.generatedObject = Value
 
 
 /**
  * `ListValue` is a wrapper around a repeated field of values.
- * 
+ *
  * The JSON representation for `ListValue` is JSON array.
  */
 export interface IListValue extends $sisyphus.IListValue {
@@ -76,4 +78,5 @@ export class ListValue extends $sisyphus.ListValue implements IListValue {
 
     static readonly $type = $reflection.root.lookupType(".google.protobuf.ListValue")
 }
+
 ListValue.$type.generatedObject = ListValue

@@ -26,6 +26,7 @@ export class AccountBinding extends $protobuf.Message<AccountBinding> implements
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.account.v1.AccountBinding")
 }
+
 AccountBinding.$type.generatedObject = AccountBinding
 Object.defineProperty(AccountBinding.prototype, "Target", $sisyphus.oneOfProperty("mobile", "identification"))
 AccountBinding.prototype.account = AccountBinding.$type.fieldsById[1].defaultValue
@@ -45,12 +46,14 @@ export namespace AccountBinding {
     export class Mobile extends $protobuf.Message<Mobile> implements IMobile {
         regionCode!: string
         phoneNumber!: string
+
         get $type() {
             return Mobile.$type
         }
 
         static readonly $type = $reflection.root.lookupType(".bybutter.incubator.account.v1.AccountBinding.Mobile")
     }
+
     Mobile.$type.generatedObject = Mobile
     Mobile.prototype.regionCode = Mobile.$type.fieldsById[1].defaultValue
     Mobile.prototype.phoneNumber = Mobile.$type.fieldsById[2].defaultValue
@@ -64,12 +67,14 @@ export namespace AccountBinding {
 
     export class Identification extends $protobuf.Message<Identification> implements IIdentification {
         identification!: string
+
         get $type() {
             return Identification.$type
         }
 
         static readonly $type = $reflection.root.lookupType(".bybutter.incubator.account.v1.AccountBinding.Identification")
     }
+
     Identification.$type.generatedObject = Identification
     Identification.prototype.identification = Identification.$type.fieldsById[1].defaultValue
 }

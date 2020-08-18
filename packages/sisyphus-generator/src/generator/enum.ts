@@ -39,7 +39,7 @@ export class EnumSpec implements GeneratorSpec {
 
         b.beginBlock(`export enum ${this._reflection.name}`)
         for (let num in this._reflection.valuesById) {
-            if(this._reflection.valuesById.hasOwnProperty(num)) {
+            if (this._reflection.valuesById.hasOwnProperty(num)) {
                 const valueComment = this._reflection.comments[this._reflection.valuesById[num]]
                 if (valueComment != null) {
                     b.appendLn(normalizeComment(valueComment))

@@ -13,12 +13,14 @@ export interface IUserMetadata {
 export class UserMetadata extends $protobuf.Message<UserMetadata> implements IUserMetadata {
     user!: string
     memberships!: readonly string[]
+
     get $type() {
         return UserMetadata.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.UserMetadata")
 }
+
 UserMetadata.$type.generatedObject = UserMetadata
 UserMetadata.prototype.user = UserMetadata.$type.fieldsById[1].defaultValue
 UserMetadata.prototype.memberships = UserMetadata.$type.fieldsById[2].defaultValue

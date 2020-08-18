@@ -36,12 +36,14 @@ export class ProductMeta extends $protobuf.Message<ProductMeta> implements IProd
     requirements!: readonly string[]
     startTime!: $timestamp.Timestamp
     endTime!: $timestamp.Timestamp
+
     get $type() {
         return ProductMeta.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.ProductMeta")
 }
+
 ProductMeta.$type.generatedObject = ProductMeta
 ProductMeta.prototype.name = ProductMeta.$type.fieldsById[1].defaultValue
 ProductMeta.prototype.type = ProductMeta.$type.fieldsById[2].defaultValue
@@ -82,12 +84,14 @@ export class ProductAttributeMeta extends $protobuf.Message<ProductAttributeMeta
     requirements!: readonly string[]
     startTime!: $timestamp.Timestamp
     endTime!: $timestamp.Timestamp
+
     get $type() {
         return ProductAttributeMeta.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.ProductAttributeMeta")
 }
+
 ProductAttributeMeta.$type.generatedObject = ProductAttributeMeta
 ProductAttributeMeta.prototype.name = ProductAttributeMeta.$type.fieldsById[1].defaultValue
 ProductAttributeMeta.prototype.type = ProductAttributeMeta.$type.fieldsById[2].defaultValue

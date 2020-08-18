@@ -22,12 +22,14 @@ export class PlaceOrderRequest extends $protobuf.Message<PlaceOrderRequest> impl
     order!: string
     items!: readonly PlaceOrderRequest.Item[]
     metadata!: readonly $any.Any[]
+
     get $type() {
         return PlaceOrderRequest.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.PlaceOrderRequest")
 }
+
 PlaceOrderRequest.$type.generatedObject = PlaceOrderRequest
 PlaceOrderRequest.prototype.order = PlaceOrderRequest.$type.fieldsById[1].defaultValue
 PlaceOrderRequest.prototype.items = PlaceOrderRequest.$type.fieldsById[2].defaultValue
@@ -50,12 +52,14 @@ export namespace PlaceOrderRequest {
     export class Item extends $protobuf.Message<Item> implements IItem {
         payment!: string
         metadata!: readonly $any.Any[]
+
         get $type() {
             return Item.$type
         }
 
         static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.PlaceOrderRequest.Item")
     }
+
     Item.$type.generatedObject = Item
     Item.prototype.payment = Item.$type.fieldsById[1].defaultValue
     Item.prototype.metadata = Item.$type.fieldsById[2].defaultValue
@@ -69,12 +73,14 @@ export interface IPlaceOrderResponse {
 
 export class PlaceOrderResponse extends $protobuf.Message<PlaceOrderResponse> implements IPlaceOrderResponse {
     order!: $order.Order
+
     get $type() {
         return PlaceOrderResponse.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.PlaceOrderResponse")
 }
+
 PlaceOrderResponse.$type.generatedObject = PlaceOrderResponse
 PlaceOrderResponse.prototype.order = PlaceOrderResponse.$type.fieldsById[1].defaultValue
 
@@ -90,12 +96,14 @@ export interface ICheckoutOrderRequest {
 export class CheckoutOrderRequest extends $protobuf.Message<CheckoutOrderRequest> implements ICheckoutOrderRequest {
     name!: string
     paymentChannel!: string
+
     get $type() {
         return CheckoutOrderRequest.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.CheckoutOrderRequest")
 }
+
 CheckoutOrderRequest.$type.generatedObject = CheckoutOrderRequest
 CheckoutOrderRequest.prototype.name = CheckoutOrderRequest.$type.fieldsById[1].defaultValue
 CheckoutOrderRequest.prototype.paymentChannel = CheckoutOrderRequest.$type.fieldsById[2].defaultValue
@@ -109,12 +117,14 @@ export interface ICheckoutOrderResponse {
 
 export class CheckoutOrderResponse extends $protobuf.Message<CheckoutOrderResponse> implements ICheckoutOrderResponse {
     order!: $order.Order
+
     get $type() {
         return CheckoutOrderResponse.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.CheckoutOrderResponse")
 }
+
 CheckoutOrderResponse.$type.generatedObject = CheckoutOrderResponse
 CheckoutOrderResponse.prototype.order = CheckoutOrderResponse.$type.fieldsById[1].defaultValue
 
@@ -134,12 +144,14 @@ export interface IVerifyOrderRequest {
 export class VerifyOrderRequest extends $protobuf.Message<VerifyOrderRequest> implements IVerifyOrderRequest {
     order!: string
     receipt!: $any.Any
+
     get $type() {
         return VerifyOrderRequest.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.VerifyOrderRequest")
 }
+
 VerifyOrderRequest.$type.generatedObject = VerifyOrderRequest
 VerifyOrderRequest.prototype.order = VerifyOrderRequest.$type.fieldsById[1].defaultValue
 VerifyOrderRequest.prototype.receipt = VerifyOrderRequest.$type.fieldsById[2].defaultValue
@@ -153,12 +165,14 @@ export interface IVerifyOrderResponse {
 
 export class VerifyOrderResponse extends $protobuf.Message<VerifyOrderResponse> implements IVerifyOrderResponse {
     order!: $order.Order
+
     get $type() {
         return VerifyOrderResponse.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.VerifyOrderResponse")
 }
+
 VerifyOrderResponse.$type.generatedObject = VerifyOrderResponse
 VerifyOrderResponse.prototype.order = VerifyOrderResponse.$type.fieldsById[1].defaultValue
 
@@ -178,12 +192,14 @@ export interface IRefundOrderRequest {
 export class RefundOrderRequest extends $protobuf.Message<RefundOrderRequest> implements IRefundOrderRequest {
     order!: string
     refund!: $any.Any
+
     get $type() {
         return RefundOrderRequest.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.RefundOrderRequest")
 }
+
 RefundOrderRequest.$type.generatedObject = RefundOrderRequest
 RefundOrderRequest.prototype.order = RefundOrderRequest.$type.fieldsById[1].defaultValue
 RefundOrderRequest.prototype.refund = RefundOrderRequest.$type.fieldsById[2].defaultValue
@@ -197,12 +213,14 @@ export interface IRefundOrderResponse {
 
 export class RefundOrderResponse extends $protobuf.Message<RefundOrderResponse> implements IRefundOrderResponse {
     order!: $order.Order
+
     get $type() {
         return RefundOrderResponse.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.RefundOrderResponse")
 }
+
 RefundOrderResponse.$type.generatedObject = RefundOrderResponse
 RefundOrderResponse.prototype.order = RefundOrderResponse.$type.fieldsById[1].defaultValue
 
@@ -215,12 +233,14 @@ export interface IGetOrderRequest {
 
 export class GetOrderRequest extends $protobuf.Message<GetOrderRequest> implements IGetOrderRequest {
     name!: string
+
     get $type() {
         return GetOrderRequest.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.GetOrderRequest")
 }
+
 GetOrderRequest.$type.generatedObject = GetOrderRequest
 GetOrderRequest.prototype.name = GetOrderRequest.$type.fieldsById[1].defaultValue
 
@@ -249,12 +269,14 @@ export class ListOrdersRequest extends $protobuf.Message<ListOrdersRequest> impl
     pageSize!: number
     pageToken!: string
     iapReceipt!: string
+
     get $type() {
         return ListOrdersRequest.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.ListOrdersRequest")
 }
+
 ListOrdersRequest.$type.generatedObject = ListOrdersRequest
 ListOrdersRequest.prototype.parent = ListOrdersRequest.$type.fieldsById[1].defaultValue
 ListOrdersRequest.prototype.filter = ListOrdersRequest.$type.fieldsById[2].defaultValue
@@ -274,12 +296,14 @@ export interface IListOrdersResponse {
 export class ListOrdersResponse extends $protobuf.Message<ListOrdersResponse> implements IListOrdersResponse {
     orders!: readonly $order.Order[]
     nextPageToken!: string
+
     get $type() {
         return ListOrdersResponse.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.ListOrdersResponse")
 }
+
 ListOrdersResponse.$type.generatedObject = ListOrdersResponse
 ListOrdersResponse.prototype.orders = ListOrdersResponse.$type.fieldsById[1].defaultValue
 ListOrdersResponse.prototype.nextPageToken = ListOrdersResponse.$type.fieldsById[2].defaultValue
@@ -296,12 +320,14 @@ export interface IBatchGetOrdersRequest {
 export class BatchGetOrdersRequest extends $protobuf.Message<BatchGetOrdersRequest> implements IBatchGetOrdersRequest {
     parent!: string
     names!: readonly string[]
+
     get $type() {
         return BatchGetOrdersRequest.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.BatchGetOrdersRequest")
 }
+
 BatchGetOrdersRequest.$type.generatedObject = BatchGetOrdersRequest
 BatchGetOrdersRequest.prototype.parent = BatchGetOrdersRequest.$type.fieldsById[1].defaultValue
 BatchGetOrdersRequest.prototype.names = BatchGetOrdersRequest.$type.fieldsById[2].defaultValue
@@ -315,11 +341,13 @@ export interface IBatchGetOrdersResponse {
 
 export class BatchGetOrdersResponse extends $protobuf.Message<BatchGetOrdersResponse> implements IBatchGetOrdersResponse {
     orders!: readonly $order.Order[]
+
     get $type() {
         return BatchGetOrdersResponse.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.BatchGetOrdersResponse")
 }
+
 BatchGetOrdersResponse.$type.generatedObject = BatchGetOrdersResponse
 BatchGetOrdersResponse.prototype.orders = BatchGetOrdersResponse.$type.fieldsById[1].defaultValue

@@ -1,6 +1,6 @@
 import {IConversionOptions, Message} from "protobufjs";
 import {emptyList, emptyMap} from "../defaults";
-import { oneOfProperty } from "../oneof";
+import {oneOfProperty} from "../oneof";
 
 export enum NullValue {
     NULL_VALUE = 0,

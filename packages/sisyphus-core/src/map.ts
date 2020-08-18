@@ -1,7 +1,7 @@
 import {FieldBase, MapField, Reader, Type} from "protobufjs/light";
 
 export function readMapEntry(field: FieldBase, reader: Reader, valueType?: any): [number | string, any] {
-    if(!(field instanceof MapField)) {
+    if (!(field instanceof MapField)) {
         throw new Error("field is not a MapField.")
     }
     const end = reader.uint32() + reader.pos

@@ -76,12 +76,14 @@ export class Filter extends $protobuf.Message<Filter> implements IFilter {
     startTime!: $timestamp.Timestamp
     endTime!: $timestamp.Timestamp
     defaultStrength!: number
+
     get $type() {
         return Filter.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.Filter")
 }
+
 Filter.$type.generatedObject = Filter
 Filter.prototype.name = Filter.$type.fieldsById[1].defaultValue
 Filter.prototype.title = Filter.$type.fieldsById[2].defaultValue
@@ -111,12 +113,14 @@ export class FilterGroup extends $protobuf.Message<FilterGroup> implements IFilt
     name!: string
     title!: string
     iconUri!: string
+
     get $type() {
         return FilterGroup.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.FilterGroup")
 }
+
 FilterGroup.$type.generatedObject = FilterGroup
 FilterGroup.prototype.name = FilterGroup.$type.fieldsById[1].defaultValue
 FilterGroup.prototype.title = FilterGroup.$type.fieldsById[2].defaultValue
@@ -164,12 +168,14 @@ export class Border extends $protobuf.Message<Border> implements IBorder {
     startTime!: $timestamp.Timestamp
     endTime!: $timestamp.Timestamp
     defaultStrength!: number
+
     get $type() {
         return Border.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.Border")
 }
+
 Border.$type.generatedObject = Border
 Border.prototype.name = Border.$type.fieldsById[1].defaultValue
 Border.prototype.title = Border.$type.fieldsById[2].defaultValue
@@ -199,12 +205,14 @@ export class BorderGroup extends $protobuf.Message<BorderGroup> implements IBord
     name!: string
     title!: string
     iconUri!: string
+
     get $type() {
         return BorderGroup.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.BorderGroup")
 }
+
 BorderGroup.$type.generatedObject = BorderGroup
 BorderGroup.prototype.name = BorderGroup.$type.fieldsById[1].defaultValue
 BorderGroup.prototype.title = BorderGroup.$type.fieldsById[2].defaultValue
@@ -252,12 +260,14 @@ export class Label extends $protobuf.Message<Label> implements ILabel {
     startTime!: $timestamp.Timestamp
     endTime!: $timestamp.Timestamp
     style!: $struct.Struct
+
     get $type() {
         return Label.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.Label")
 }
+
 Label.$type.generatedObject = Label
 Label.prototype.name = Label.$type.fieldsById[1].defaultValue
 Label.prototype.title = Label.$type.fieldsById[2].defaultValue
@@ -287,12 +297,14 @@ export class LabelGroup extends $protobuf.Message<LabelGroup> implements ILabelG
     name!: string
     title!: string
     iconUri!: string
+
     get $type() {
         return LabelGroup.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.LabelGroup")
 }
+
 LabelGroup.$type.generatedObject = LabelGroup
 LabelGroup.prototype.name = LabelGroup.$type.fieldsById[1].defaultValue
 LabelGroup.prototype.title = LabelGroup.$type.fieldsById[2].defaultValue
@@ -349,12 +361,14 @@ export class Sticker extends $protobuf.Message<Sticker> implements ISticker {
     fileType!: StickerType
     width!: number
     height!: number
+
     get $type() {
         return Sticker.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.Sticker")
 }
+
 Sticker.$type.generatedObject = Sticker
 Sticker.prototype.name = Sticker.$type.fieldsById[1].defaultValue
 Sticker.prototype.title = Sticker.$type.fieldsById[2].defaultValue
@@ -387,12 +401,14 @@ export class StickerGroup extends $protobuf.Message<StickerGroup> implements ISt
     name!: string
     title!: string
     iconUri!: string
+
     get $type() {
         return StickerGroup.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.StickerGroup")
 }
+
 StickerGroup.$type.generatedObject = StickerGroup
 StickerGroup.prototype.name = StickerGroup.$type.fieldsById[1].defaultValue
 StickerGroup.prototype.title = StickerGroup.$type.fieldsById[2].defaultValue
@@ -440,12 +456,14 @@ export class Music extends $protobuf.Message<Music> implements IMusic {
     startTime!: $timestamp.Timestamp
     endTime!: $timestamp.Timestamp
     author!: string
+
     get $type() {
         return Music.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.Music")
 }
+
 Music.$type.generatedObject = Music
 Music.prototype.name = Music.$type.fieldsById[1].defaultValue
 Music.prototype.title = Music.$type.fieldsById[2].defaultValue
@@ -475,12 +493,14 @@ export class MusicGroup extends $protobuf.Message<MusicGroup> implements IMusicG
     name!: string
     title!: string
     iconUri!: string
+
     get $type() {
         return MusicGroup.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.MusicGroup")
 }
+
 MusicGroup.$type.generatedObject = MusicGroup
 MusicGroup.prototype.name = MusicGroup.$type.fieldsById[1].defaultValue
 MusicGroup.prototype.title = MusicGroup.$type.fieldsById[2].defaultValue
@@ -525,12 +545,14 @@ export class Sound extends $protobuf.Message<Sound> implements ISound {
     usage!: $ownership.UsageType
     startTime!: $timestamp.Timestamp
     endTime!: $timestamp.Timestamp
+
     get $type() {
         return Sound.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.Sound")
 }
+
 Sound.$type.generatedObject = Sound
 Sound.prototype.name = Sound.$type.fieldsById[1].defaultValue
 Sound.prototype.title = Sound.$type.fieldsById[2].defaultValue
@@ -559,12 +581,14 @@ export class SoundGroup extends $protobuf.Message<SoundGroup> implements ISoundG
     name!: string
     title!: string
     iconUri!: string
+
     get $type() {
         return SoundGroup.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.SoundGroup")
 }
+
 SoundGroup.$type.generatedObject = SoundGroup
 SoundGroup.prototype.name = SoundGroup.$type.fieldsById[1].defaultValue
 SoundGroup.prototype.title = SoundGroup.$type.fieldsById[2].defaultValue
@@ -603,12 +627,14 @@ export class Membership extends $protobuf.Message<Membership> implements IMember
     usage!: $ownership.UsageType
     startTime!: $timestamp.Timestamp
     endTime!: $timestamp.Timestamp
+
     get $type() {
         return Membership.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.Membership")
 }
+
 Membership.$type.generatedObject = Membership
 Membership.prototype.name = Membership.$type.fieldsById[1].defaultValue
 Membership.prototype.title = Membership.$type.fieldsById[2].defaultValue

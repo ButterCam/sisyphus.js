@@ -13,12 +13,14 @@ export interface IInvokeDictationCallbackRequest {
 
 export class InvokeDictationCallbackRequest extends $protobuf.Message<InvokeDictationCallbackRequest> implements IInvokeDictationCallbackRequest {
     dictation!: $struct.Struct
+
     get $type() {
         return InvokeDictationCallbackRequest.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.InvokeDictationCallbackRequest")
 }
+
 InvokeDictationCallbackRequest.$type.generatedObject = InvokeDictationCallbackRequest
 InvokeDictationCallbackRequest.prototype.dictation = InvokeDictationCallbackRequest.$type.fieldsById[1].defaultValue
 
@@ -27,6 +29,7 @@ export class DictationCallbacksApi extends $sisyphus.Client {
     get $reflection() {
         return DictationCallbacksApi.reflection
     }
+
     /**
      * 阿里回调
      * (-- api-linter: core::0136::http-body=disabled
@@ -35,5 +38,6 @@ export class DictationCallbacksApi extends $sisyphus.Client {
     async InvokeDictationAliCallback(input: IInvokeDictationCallbackRequest, metadata?: { [k: string]: string }): Promise<$empty.IEmpty> {
         return await this.$call(this.$reflection.methods["InvokeDictationAliCallback"], input, metadata)
     }
+
     static readonly reflection = $reflection.root.lookupService(".bybutter.incubator.bread.v1.DictationCallbacksApi")
 }

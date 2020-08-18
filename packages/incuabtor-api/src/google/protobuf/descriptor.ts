@@ -18,12 +18,14 @@ export interface IFileDescriptorSet {
 
 export class FileDescriptorSet extends $protobuf.Message<FileDescriptorSet> implements IFileDescriptorSet {
     file!: readonly FileDescriptorProto[]
+
     get $type() {
         return FileDescriptorSet.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".google.protobuf.FileDescriptorSet")
 }
+
 FileDescriptorSet.$type.generatedObject = FileDescriptorSet
 FileDescriptorSet.prototype.file = FileDescriptorSet.$type.fieldsById[1].defaultValue
 
@@ -75,12 +77,14 @@ export class FileDescriptorProto extends $protobuf.Message<FileDescriptorProto> 
     options!: FileOptions
     sourceCodeInfo!: SourceCodeInfo
     syntax!: string
+
     get $type() {
         return FileDescriptorProto.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".google.protobuf.FileDescriptorProto")
 }
+
 FileDescriptorProto.$type.generatedObject = FileDescriptorProto
 FileDescriptorProto.prototype.name = FileDescriptorProto.$type.fieldsById[1].defaultValue
 FileDescriptorProto.prototype["package"] = FileDescriptorProto.$type.fieldsById[2].defaultValue
@@ -125,12 +129,14 @@ export class DescriptorProto extends $protobuf.Message<DescriptorProto> implemen
     options!: MessageOptions
     reservedRange!: readonly DescriptorProto.ReservedRange[]
     reservedName!: readonly string[]
+
     get $type() {
         return DescriptorProto.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".google.protobuf.DescriptorProto")
 }
+
 DescriptorProto.$type.generatedObject = DescriptorProto
 DescriptorProto.prototype.name = DescriptorProto.$type.fieldsById[1].defaultValue
 DescriptorProto.prototype.field = DescriptorProto.$type.fieldsById[2].defaultValue
@@ -157,12 +163,14 @@ export namespace DescriptorProto {
         start!: number
         end!: number
         options!: ExtensionRangeOptions
+
         get $type() {
             return ExtensionRange.$type
         }
 
         static readonly $type = $reflection.root.lookupType(".google.protobuf.DescriptorProto.ExtensionRange")
     }
+
     ExtensionRange.$type.generatedObject = ExtensionRange
     ExtensionRange.prototype.start = ExtensionRange.$type.fieldsById[1].defaultValue
     ExtensionRange.prototype.end = ExtensionRange.$type.fieldsById[2].defaultValue
@@ -184,12 +192,14 @@ export namespace DescriptorProto {
     export class ReservedRange extends $protobuf.Message<ReservedRange> implements IReservedRange {
         start!: number
         end!: number
+
         get $type() {
             return ReservedRange.$type
         }
 
         static readonly $type = $reflection.root.lookupType(".google.protobuf.DescriptorProto.ReservedRange")
     }
+
     ReservedRange.$type.generatedObject = ReservedRange
     ReservedRange.prototype.start = ReservedRange.$type.fieldsById[1].defaultValue
     ReservedRange.prototype.end = ReservedRange.$type.fieldsById[2].defaultValue
@@ -202,12 +212,14 @@ export interface IExtensionRangeOptions {
 
 export class ExtensionRangeOptions extends $protobuf.Message<ExtensionRangeOptions> implements IExtensionRangeOptions {
     uninterpretedOption!: readonly UninterpretedOption[]
+
     get $type() {
         return ExtensionRangeOptions.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".google.protobuf.ExtensionRangeOptions")
 }
+
 ExtensionRangeOptions.$type.generatedObject = ExtensionRangeOptions
 ExtensionRangeOptions.prototype.uninterpretedOption = ExtensionRangeOptions.$type.fieldsById[999].defaultValue
 
@@ -259,14 +271,14 @@ export interface IFieldDescriptorProto {
     /**
      * If true, this is a proto3 "optional". When a proto3 field is optional, it
      * tracks presence regardless of field type.
-     * 
+     *
      * When proto3_optional is true, this field must be belong to a oneof to
      * signal to old proto3 clients that presence is tracked for this field. This
      * oneof is known as a "synthetic" oneof, and this field must be its sole
      * member (each proto3 optional field gets its own synthetic oneof). Synthetic
      * oneofs exist in the descriptor only, and do not generate any API. Synthetic
      * oneofs must be ordered after all "real" oneofs.
-     * 
+     *
      * For message fields, proto3_optional doesn't create any semantic change,
      * since non-repeated message fields always track presence. However it still
      * indicates the semantic detail of whether the user wrote "optional" or not.
@@ -275,7 +287,7 @@ export interface IFieldDescriptorProto {
      * to track presence. This is especially important because the parser can't
      * tell if a field is a message or an enum, so it must always create a
      * synthetic oneof.
-     * 
+     *
      * Proto2 optional fields do not set this flag, because they already indicate
      * optional with `LABEL_OPTIONAL`.
      */
@@ -294,12 +306,14 @@ export class FieldDescriptorProto extends $protobuf.Message<FieldDescriptorProto
     jsonName!: string
     options!: FieldOptions
     proto3Optional!: boolean
+
     get $type() {
         return FieldDescriptorProto.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".google.protobuf.FieldDescriptorProto")
 }
+
 FieldDescriptorProto.$type.generatedObject = FieldDescriptorProto
 FieldDescriptorProto.prototype.name = FieldDescriptorProto.$type.fieldsById[1].defaultValue
 FieldDescriptorProto.prototype.number = FieldDescriptorProto.$type.fieldsById[3].defaultValue
@@ -382,12 +396,14 @@ export interface IOneofDescriptorProto {
 export class OneofDescriptorProto extends $protobuf.Message<OneofDescriptorProto> implements IOneofDescriptorProto {
     name!: string
     options!: OneofOptions
+
     get $type() {
         return OneofDescriptorProto.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".google.protobuf.OneofDescriptorProto")
 }
+
 OneofDescriptorProto.$type.generatedObject = OneofDescriptorProto
 OneofDescriptorProto.prototype.name = OneofDescriptorProto.$type.fieldsById[1].defaultValue
 OneofDescriptorProto.prototype.options = OneofDescriptorProto.$type.fieldsById[2].defaultValue
@@ -417,12 +433,14 @@ export class EnumDescriptorProto extends $protobuf.Message<EnumDescriptorProto> 
     options!: EnumOptions
     reservedRange!: readonly EnumDescriptorProto.EnumReservedRange[]
     reservedName!: readonly string[]
+
     get $type() {
         return EnumDescriptorProto.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".google.protobuf.EnumDescriptorProto")
 }
+
 EnumDescriptorProto.$type.generatedObject = EnumDescriptorProto
 EnumDescriptorProto.prototype.name = EnumDescriptorProto.$type.fieldsById[1].defaultValue
 EnumDescriptorProto.prototype.value = EnumDescriptorProto.$type.fieldsById[2].defaultValue
@@ -435,7 +453,7 @@ export namespace EnumDescriptorProto {
     /**
      * Range of reserved numeric values. Reserved values may not be used by
      * entries in the same enum. Reserved ranges may not overlap.
-     * 
+     *
      * Note that this is distinct from DescriptorProto.ReservedRange in that it
      * is inclusive such that it can appropriately represent the entire int32
      * domain.
@@ -450,12 +468,14 @@ export namespace EnumDescriptorProto {
     export class EnumReservedRange extends $protobuf.Message<EnumReservedRange> implements IEnumReservedRange {
         start!: number
         end!: number
+
         get $type() {
             return EnumReservedRange.$type
         }
 
         static readonly $type = $reflection.root.lookupType(".google.protobuf.EnumDescriptorProto.EnumReservedRange")
     }
+
     EnumReservedRange.$type.generatedObject = EnumReservedRange
     EnumReservedRange.prototype.start = EnumReservedRange.$type.fieldsById[1].defaultValue
     EnumReservedRange.prototype.end = EnumReservedRange.$type.fieldsById[2].defaultValue
@@ -472,12 +492,14 @@ export class EnumValueDescriptorProto extends $protobuf.Message<EnumValueDescrip
     name!: string
     number!: number
     options!: EnumValueOptions
+
     get $type() {
         return EnumValueDescriptorProto.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".google.protobuf.EnumValueDescriptorProto")
 }
+
 EnumValueDescriptorProto.$type.generatedObject = EnumValueDescriptorProto
 EnumValueDescriptorProto.prototype.name = EnumValueDescriptorProto.$type.fieldsById[1].defaultValue
 EnumValueDescriptorProto.prototype.number = EnumValueDescriptorProto.$type.fieldsById[2].defaultValue
@@ -495,12 +517,14 @@ export class ServiceDescriptorProto extends $protobuf.Message<ServiceDescriptorP
     name!: string
     method!: readonly MethodDescriptorProto[]
     options!: ServiceOptions
+
     get $type() {
         return ServiceDescriptorProto.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".google.protobuf.ServiceDescriptorProto")
 }
+
 ServiceDescriptorProto.$type.generatedObject = ServiceDescriptorProto
 ServiceDescriptorProto.prototype.name = ServiceDescriptorProto.$type.fieldsById[1].defaultValue
 ServiceDescriptorProto.prototype.method = ServiceDescriptorProto.$type.fieldsById[2].defaultValue
@@ -530,12 +554,14 @@ export class MethodDescriptorProto extends $protobuf.Message<MethodDescriptorPro
     options!: MethodOptions
     clientStreaming!: boolean
     serverStreaming!: boolean
+
     get $type() {
         return MethodDescriptorProto.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".google.protobuf.MethodDescriptorProto")
 }
+
 MethodDescriptorProto.$type.generatedObject = MethodDescriptorProto
 MethodDescriptorProto.prototype.name = MethodDescriptorProto.$type.fieldsById[1].defaultValue
 MethodDescriptorProto.prototype.inputType = MethodDescriptorProto.$type.fieldsById[2].defaultValue
@@ -596,7 +622,7 @@ export interface IFileOptions {
      * main code generators in each language (without additional plugins).
      * Generic services were the only kind of service generation supported by
      * early versions of google.protobuf.
-     * 
+     *
      * Generic services are now considered deprecated in favor of using plugins
      * that generate code specific to your particular RPC system.  Therefore,
      * these default to false.  Old code which depends on generic services should
@@ -686,12 +712,14 @@ export class FileOptions extends $protobuf.Message<FileOptions> implements IFile
     rubyPackage!: string
     uninterpretedOption!: readonly UninterpretedOption[]
     ".google.api.resourceDefinition"!: readonly $resource.ResourceDescriptor[]
+
     get $type() {
         return FileOptions.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".google.protobuf.FileOptions")
 }
+
 FileOptions.$type.generatedObject = FileOptions
 FileOptions.prototype.javaPackage = FileOptions.$type.fieldsById[1].defaultValue
 FileOptions.prototype.javaOuterClassname = FileOptions.$type.fieldsById[8].defaultValue
@@ -742,7 +770,7 @@ export interface IMessageOptions {
      * This is provided for backwards-compatibility with the MessageSet wire
      * format.  You should not use this for any other reason:  It's less
      * efficient, has fewer features, and is more complicated.
-     * 
+     *
      * The message must be defined exactly as follows:
      * message Foo {
      * option message_set_wire_format = true;
@@ -750,10 +778,10 @@ export interface IMessageOptions {
      * }
      * Note that the message cannot have any defined fields; MessageSets only
      * have extensions.
-     * 
+     *
      * All extensions of your type must be singular messages; e.g. they cannot
      * be int32s, enums, or repeated messages.
-     * 
+     *
      * Because this is an option, the above two restrictions are not enforced by
      * the protocol compiler.
      */
@@ -774,7 +802,7 @@ export interface IMessageOptions {
     /**
      * Whether the message is an automatically generated map entry type for the
      * maps field.
-     * 
+     *
      * For maps fields:
      * map<KeyType, ValueType> map_field = 1;
      * The parsed descriptor looks like:
@@ -784,12 +812,12 @@ export interface IMessageOptions {
      * optional ValueType value = 2;
      * }
      * repeated MapFieldEntry map_field = 1;
-     * 
+     *
      * Implementations may choose not to generate the map_entry=true message, but
      * use a native map in the target language to hold the keys and values.
      * The reflection APIs in such implementations still need to work as
      * if the field is a repeated message field.
-     * 
+     *
      * NOTE: Do not set the option in .proto files. Always use the maps syntax
      * instead. The option should only be implicitly set by the proto compiler
      * parser.
@@ -807,12 +835,14 @@ export class MessageOptions extends $protobuf.Message<MessageOptions> implements
     mapEntry!: boolean
     uninterpretedOption!: readonly UninterpretedOption[]
     ".google.api.resource"!: $resource.ResourceDescriptor
+
     get $type() {
         return MessageOptions.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".google.protobuf.MessageOptions")
 }
+
 MessageOptions.$type.generatedObject = MessageOptions
 MessageOptions.prototype.messageSetWireFormat = MessageOptions.$type.fieldsById[1].defaultValue
 MessageOptions.prototype.noStandardDescriptorAccessor = MessageOptions.$type.fieldsById[2].defaultValue
@@ -847,7 +877,7 @@ export interface IFieldOptions {
      * Specifying JS_NUMBER for the jstype causes the generated JavaScript code to
      * use the JavaScript "number" type.  The behavior of the default option
      * JS_NORMAL is implementation dependent.
-     * 
+     *
      * This option is an enum to permit additional types to be added, e.g.
      * goog.math.Integer.
      */
@@ -857,20 +887,20 @@ export interface IFieldOptions {
      * fields.  It means that when the outer message is initially parsed, the
      * inner message's contents will not be parsed but instead stored in encoded
      * form.  The inner message will actually be parsed when it is first accessed.
-     * 
+     *
      * This is only a hint.  Implementations are free to choose whether to use
      * eager or lazy parsing regardless of the value of this option.  However,
      * setting this option true suggests that the protocol author believes that
      * using lazy parsing on this field is worth the additional bookkeeping
      * overhead typically needed to implement it.
-     * 
+     *
      * This option does not affect the public interface of any generated code;
      * all method signatures remain the same.  Furthermore, thread-safety of the
      * interface is not affected by this option; const methods remain safe to
      * call from multiple threads concurrently, while non-const methods continue
      * to require exclusive access.
-     * 
-     * 
+     *
+     *
      * Note that implementations may choose not to check required fields within
      * a lazy sub-message.  That is, calling IsInitialized() on the outer message
      * may return true even if the inner message has missing required fields.
@@ -908,12 +938,14 @@ export class FieldOptions extends $protobuf.Message<FieldOptions> implements IFi
     uninterpretedOption!: readonly UninterpretedOption[]
     ".google.api.resourceReference"!: $resource.ResourceReference
     ".google.api.fieldBehavior"!: readonly $fieldBehavior.FieldBehavior[]
+
     get $type() {
         return FieldOptions.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".google.protobuf.FieldOptions")
 }
+
 FieldOptions.$type.generatedObject = FieldOptions
 FieldOptions.prototype.ctype = FieldOptions.$type.fieldsById[1].defaultValue
 FieldOptions.prototype.packed = FieldOptions.$type.fieldsById[2].defaultValue
@@ -959,12 +991,14 @@ export interface IOneofOptions {
 
 export class OneofOptions extends $protobuf.Message<OneofOptions> implements IOneofOptions {
     uninterpretedOption!: readonly UninterpretedOption[]
+
     get $type() {
         return OneofOptions.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".google.protobuf.OneofOptions")
 }
+
 OneofOptions.$type.generatedObject = OneofOptions
 OneofOptions.prototype.uninterpretedOption = OneofOptions.$type.fieldsById[999].defaultValue
 
@@ -990,12 +1024,14 @@ export class EnumOptions extends $protobuf.Message<EnumOptions> implements IEnum
     allowAlias!: boolean
     deprecated!: boolean
     uninterpretedOption!: readonly UninterpretedOption[]
+
     get $type() {
         return EnumOptions.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".google.protobuf.EnumOptions")
 }
+
 EnumOptions.$type.generatedObject = EnumOptions
 EnumOptions.prototype.allowAlias = EnumOptions.$type.fieldsById[2].defaultValue
 EnumOptions.prototype.deprecated = EnumOptions.$type.fieldsById[3].defaultValue
@@ -1019,12 +1055,14 @@ export class EnumValueOptions extends $protobuf.Message<EnumValueOptions> implem
     deprecated!: boolean
     uninterpretedOption!: readonly UninterpretedOption[]
     ".sisyphus.protobuf.string"!: string
+
     get $type() {
         return EnumValueOptions.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".google.protobuf.EnumValueOptions")
 }
+
 EnumValueOptions.$type.generatedObject = EnumValueOptions
 EnumValueOptions.prototype.deprecated = EnumValueOptions.$type.fieldsById[1].defaultValue
 EnumValueOptions.prototype.uninterpretedOption = EnumValueOptions.$type.fieldsById[999].defaultValue
@@ -1052,12 +1090,14 @@ export class ServiceOptions extends $protobuf.Message<ServiceOptions> implements
     ".google.api.defaultHost"!: string
     ".google.api.oauthScopes"!: string
     ".sisyphus.api.metadata"!: $serviceMeta.ServiceMetadata
+
     get $type() {
         return ServiceOptions.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".google.protobuf.ServiceOptions")
 }
+
 ServiceOptions.$type.generatedObject = ServiceOptions
 ServiceOptions.prototype.deprecated = ServiceOptions.$type.fieldsById[33].defaultValue
 ServiceOptions.prototype.uninterpretedOption = ServiceOptions.$type.fieldsById[999].defaultValue
@@ -1091,12 +1131,14 @@ export class MethodOptions extends $protobuf.Message<MethodOptions> implements I
     ".google.api.http"!: $http.HttpRule
     ".google.api.methodSignature"!: readonly string[]
     ".google.longrunning.operationInfo"!: $operations.OperationInfo
+
     get $type() {
         return MethodOptions.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".google.protobuf.MethodOptions")
 }
+
 MethodOptions.$type.generatedObject = MethodOptions
 MethodOptions.prototype.deprecated = MethodOptions.$type.fieldsById[33].defaultValue
 MethodOptions.prototype.idempotencyLevel = MethodOptions.$type.fieldsById[34].defaultValue
@@ -1156,12 +1198,14 @@ export class UninterpretedOption extends $protobuf.Message<UninterpretedOption> 
     doubleValue!: number
     stringValue!: Uint8Array
     aggregateValue!: string
+
     get $type() {
         return UninterpretedOption.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".google.protobuf.UninterpretedOption")
 }
+
 UninterpretedOption.$type.generatedObject = UninterpretedOption
 UninterpretedOption.prototype.name = UninterpretedOption.$type.fieldsById[2].defaultValue
 UninterpretedOption.prototype.identifierValue = UninterpretedOption.$type.fieldsById[3].defaultValue
@@ -1188,12 +1232,14 @@ export namespace UninterpretedOption {
     export class NamePart extends $protobuf.Message<NamePart> implements INamePart {
         namePart!: string
         isExtension!: boolean
+
         get $type() {
             return NamePart.$type
         }
 
         static readonly $type = $reflection.root.lookupType(".google.protobuf.UninterpretedOption.NamePart")
     }
+
     NamePart.$type.generatedObject = NamePart
     NamePart.prototype.namePart = NamePart.$type.fieldsById[1].defaultValue
     NamePart.prototype.isExtension = NamePart.$type.fieldsById[2].defaultValue
@@ -1209,7 +1255,7 @@ export interface ISourceCodeInfo {
      * corresponds to a particular definition.  This information is intended
      * to be useful to IDEs, code indexers, documentation generators, and similar
      * tools.
-     * 
+     *
      * For example, say we have a file like:
      * message Foo {
      * optional string foo = 1;
@@ -1225,7 +1271,7 @@ export interface ISourceCodeInfo {
      * [c,d)  [ 4, 0, 2, 0, 5 ]  The type (string).
      * [e,f)  [ 4, 0, 2, 0, 1 ]  The name (foo).
      * [g,h)  [ 4, 0, 2, 0, 3 ]  The number (1).
-     * 
+     *
      * Notes:
      * - A location may refer to a repeated field itself (i.e. not to any
      * particular index within it).  This is used whenever a set of elements are
@@ -1254,12 +1300,14 @@ export interface ISourceCodeInfo {
 
 export class SourceCodeInfo extends $protobuf.Message<SourceCodeInfo> implements ISourceCodeInfo {
     location!: readonly SourceCodeInfo.Location[]
+
     get $type() {
         return SourceCodeInfo.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".google.protobuf.SourceCodeInfo")
 }
+
 SourceCodeInfo.$type.generatedObject = SourceCodeInfo
 SourceCodeInfo.prototype.location = SourceCodeInfo.$type.fieldsById[1].defaultValue
 
@@ -1269,7 +1317,7 @@ export namespace SourceCodeInfo {
         /**
          * Identifies which part of the FileDescriptorProto was defined at this
          * location.
-         * 
+         *
          * Each element is a field number or an index.  They form a path from
          * the root FileDescriptorProto to the place where the definition.  For
          * example, this path:
@@ -1284,7 +1332,7 @@ export namespace SourceCodeInfo {
          * repeated FieldDescriptorProto field = 2;
          * and FieldDescriptorProto.name has field number 1:
          * optional string name = 1;
-         * 
+         *
          * Thus, the above path gives the location of a field name.  If we removed
          * the last element:
          * [ 4, 3, 2, 7 ]
@@ -1304,41 +1352,41 @@ export namespace SourceCodeInfo {
          * If this SourceCodeInfo represents a complete declaration, these are any
          * comments appearing before and after the declaration which appear to be
          * attached to the declaration.
-         * 
+         *
          * A series of line comments appearing on consecutive lines, with no other
          * tokens appearing on those lines, will be treated as a single comment.
-         * 
+         *
          * leading_detached_comments will keep paragraphs of comments that appear
          * before (but not connected to) the current element. Each paragraph,
          * separated by empty lines, will be one comment element in the repeated
          * field.
-         * 
+         *
          * Only the comment content is provided; comment markers (e.g. //) are
          * stripped out.  For block comments, leading whitespace and an asterisk
          * will be stripped from the beginning of each line other than the first.
          * Newlines are included in the output.
-         * 
+         *
          * Examples:
-         * 
+         *
          * optional int32 foo = 1;  // Comment attached to foo.
          * // Comment attached to bar.
          * optional int32 bar = 2;
-         * 
+         *
          * optional string baz = 3;
          * // Comment attached to baz.
          * // Another line attached to baz.
-         * 
+         *
          * // Comment attached to qux.
          * //
          * // Another line attached to qux.
          * optional double qux = 4;
-         * 
+         *
          * // Detached comment for corge. This is not leading or trailing comments
          * // to qux or corge because there are blank lines separating it from
          * // both.
-         * 
+         *
          * // Detached comment for corge paragraph 2.
-         * 
+         *
          * optional string corge = 5;
          * /* Block comment attached
          * * to corge.  Leading asterisks
@@ -1346,7 +1394,7 @@ export namespace SourceCodeInfo {
          * /* Block comment attached to
          * * grault. *&#47;
          * optional int32 grault = 6;
-         * 
+         *
          * // ignored detached comments.
          */
         leadingComments?: string
@@ -1360,12 +1408,14 @@ export namespace SourceCodeInfo {
         leadingComments!: string
         trailingComments!: string
         leadingDetachedComments!: readonly string[]
+
         get $type() {
             return Location.$type
         }
 
         static readonly $type = $reflection.root.lookupType(".google.protobuf.SourceCodeInfo.Location")
     }
+
     Location.$type.generatedObject = Location
     Location.prototype.path = Location.$type.fieldsById[1].defaultValue
     Location.prototype.span = Location.$type.fieldsById[2].defaultValue
@@ -1389,12 +1439,14 @@ export interface IGeneratedCodeInfo {
 
 export class GeneratedCodeInfo extends $protobuf.Message<GeneratedCodeInfo> implements IGeneratedCodeInfo {
     annotation!: readonly GeneratedCodeInfo.Annotation[]
+
     get $type() {
         return GeneratedCodeInfo.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".google.protobuf.GeneratedCodeInfo")
 }
+
 GeneratedCodeInfo.$type.generatedObject = GeneratedCodeInfo
 GeneratedCodeInfo.prototype.annotation = GeneratedCodeInfo.$type.fieldsById[1].defaultValue
 
@@ -1426,12 +1478,14 @@ export namespace GeneratedCodeInfo {
         sourceFile!: string
         begin!: number
         end!: number
+
         get $type() {
             return Annotation.$type
         }
 
         static readonly $type = $reflection.root.lookupType(".google.protobuf.GeneratedCodeInfo.Annotation")
     }
+
     Annotation.$type.generatedObject = Annotation
     Annotation.prototype.path = Annotation.$type.fieldsById[1].defaultValue
     Annotation.prototype.sourceFile = Annotation.$type.fieldsById[2].defaultValue

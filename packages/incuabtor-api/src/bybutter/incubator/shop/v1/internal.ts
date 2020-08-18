@@ -15,12 +15,14 @@ export interface IPaymentPayload {
 export class PaymentPayload extends $protobuf.Message<PaymentPayload> implements IPaymentPayload {
     product!: string
     planHash!: Uint8Array
+
     get $type() {
         return PaymentPayload.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.PaymentPayload")
 }
+
 PaymentPayload.$type.generatedObject = PaymentPayload
 PaymentPayload.prototype.product = PaymentPayload.$type.fieldsById[1].defaultValue
 PaymentPayload.prototype.planHash = PaymentPayload.$type.fieldsById[2].defaultValue
@@ -47,12 +49,14 @@ export class ResolvedOrderItem extends $protobuf.Message<ResolvedOrderItem> impl
     product!: $product.Product
     plan!: $product.Plan
     metadata!: readonly $any.Any[]
+
     get $type() {
         return ResolvedOrderItem.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.ResolvedOrderItem")
 }
+
 ResolvedOrderItem.$type.generatedObject = ResolvedOrderItem
 ResolvedOrderItem.prototype.payment = ResolvedOrderItem.$type.fieldsById[1].defaultValue
 ResolvedOrderItem.prototype.product = ResolvedOrderItem.$type.fieldsById[2].defaultValue

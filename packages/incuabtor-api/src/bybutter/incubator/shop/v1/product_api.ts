@@ -11,12 +11,14 @@ export interface IGetProductRequest {
 
 export class GetProductRequest extends $protobuf.Message<GetProductRequest> implements IGetProductRequest {
     name!: string
+
     get $type() {
         return GetProductRequest.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.GetProductRequest")
 }
+
 GetProductRequest.$type.generatedObject = GetProductRequest
 GetProductRequest.prototype.name = GetProductRequest.$type.fieldsById[1].defaultValue
 
@@ -33,12 +35,14 @@ export interface IBatchGetProductsRequest {
 
 export class BatchGetProductsRequest extends $protobuf.Message<BatchGetProductsRequest> implements IBatchGetProductsRequest {
     names!: readonly string[]
+
     get $type() {
         return BatchGetProductsRequest.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.BatchGetProductsRequest")
 }
+
 BatchGetProductsRequest.$type.generatedObject = BatchGetProductsRequest
 BatchGetProductsRequest.prototype.names = BatchGetProductsRequest.$type.fieldsById[1].defaultValue
 
@@ -51,12 +55,14 @@ export interface IBatchGetProductsResponse {
 
 export class BatchGetProductsResponse extends $protobuf.Message<BatchGetProductsResponse> implements IBatchGetProductsResponse {
     products!: readonly $product.Product[]
+
     get $type() {
         return BatchGetProductsResponse.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.BatchGetProductsResponse")
 }
+
 BatchGetProductsResponse.$type.generatedObject = BatchGetProductsResponse
 BatchGetProductsResponse.prototype.products = BatchGetProductsResponse.$type.fieldsById[1].defaultValue
 
@@ -82,12 +88,14 @@ export class ListProductsRequest extends $protobuf.Message<ListProductsRequest> 
     pageSize!: number
     pageToken!: string
     orderBy!: string
+
     get $type() {
         return ListProductsRequest.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.ListProductsRequest")
 }
+
 ListProductsRequest.$type.generatedObject = ListProductsRequest
 ListProductsRequest.prototype.filter = ListProductsRequest.$type.fieldsById[1].defaultValue
 ListProductsRequest.prototype.pageSize = ListProductsRequest.$type.fieldsById[2].defaultValue
@@ -106,12 +114,14 @@ export interface IListProductsResponse {
 export class ListProductsResponse extends $protobuf.Message<ListProductsResponse> implements IListProductsResponse {
     products!: readonly $product.Product[]
     nextPageToken!: string
+
     get $type() {
         return ListProductsResponse.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.ListProductsResponse")
 }
+
 ListProductsResponse.$type.generatedObject = ListProductsResponse
 ListProductsResponse.prototype.products = ListProductsResponse.$type.fieldsById[1].defaultValue
 ListProductsResponse.prototype.nextPageToken = ListProductsResponse.$type.fieldsById[2].defaultValue

@@ -25,12 +25,14 @@ export class ImageResource extends $protobuf.Message<ImageResource> implements I
     thumbnailUri!: string
     width!: number
     height!: number
+
     get $type() {
         return ImageResource.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.common.v1.ImageResource")
 }
+
 ImageResource.$type.generatedObject = ImageResource
 ImageResource.prototype.originUri = ImageResource.$type.fieldsById[1].defaultValue
 ImageResource.prototype.standardUri = ImageResource.$type.fieldsById[2].defaultValue

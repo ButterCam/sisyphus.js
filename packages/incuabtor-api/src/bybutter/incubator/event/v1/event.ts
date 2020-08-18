@@ -48,12 +48,14 @@ export class Event extends $protobuf.Message<Event> implements IEvent {
     eventTime!: $protobuf.Long
     partitionTime!: string
     sequenceNumber!: string
+
     get $type() {
         return Event.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.event.v1.Event")
 }
+
 Event.$type.generatedObject = Event
 Event.prototype.uid = Event.$type.fieldsById[1].defaultValue
 Event.prototype.platform = Event.$type.fieldsById[2].defaultValue

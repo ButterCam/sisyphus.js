@@ -70,12 +70,14 @@ export class Ownership extends $protobuf.Message<Ownership> implements IOwnershi
     overrideTitle!: string
     overrideIconUri!: string
     overrideUri!: string
+
     get $type() {
         return Ownership.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.Ownership")
 }
+
 Ownership.$type.generatedObject = Ownership
 Ownership.prototype.privilege = Ownership.$type.fieldsById[1].defaultValue
 Ownership.prototype.ownership = Ownership.$type.fieldsById[2].defaultValue

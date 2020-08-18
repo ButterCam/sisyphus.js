@@ -4,9 +4,9 @@ import pathModule from "path"
 export async function walkDir(dir: string, action: (file: string) => void) {
     let files = await fsModule.readdir(dir, {withFileTypes: true})
     for (let file of files) {
-        if(file.isFile()){
+        if (file.isFile()) {
             action(pathModule.join(dir, file.name))
-        }else {
+        } else {
             await walkDir(pathModule.join(dir, file.name), action)
         }
     }
@@ -28,11 +28,11 @@ export async function writeToFile(outDir: string, filename: string, data: string
 }
 
 export function normalizeComment(comment: string | null): string {
-    if(!comment) return ""
+    if (!comment) return ""
 
     comment = comment.replace(/\*\//g, "*&#47;")
 
-    if(comment.indexOf("\n") < 0) {
+    if (comment.indexOf("\n") < 0) {
         return `/** ${comment} */`
     }
 

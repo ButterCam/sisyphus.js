@@ -38,12 +38,14 @@ export class TokenPayload extends $protobuf.Message<TokenPayload> implements ITo
     permissions!: readonly $struct.Value[]
     client!: $clientInfo.ClientInfo
     metadata!: { readonly [k: string]: $any.Any }
+
     get $type() {
         return TokenPayload.$type
     }
 
     static readonly $type = $reflection.root.lookupType(".bybutter.incubator.common.v1.TokenPayload")
 }
+
 TokenPayload.$type.generatedObject = TokenPayload
 TokenPayload.prototype.account = TokenPayload.$type.fieldsById[1].defaultValue
 TokenPayload.prototype.generation = TokenPayload.$type.fieldsById[2].defaultValue
