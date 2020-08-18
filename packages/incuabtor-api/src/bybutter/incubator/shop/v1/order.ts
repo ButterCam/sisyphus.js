@@ -1,8 +1,7 @@
 import * as $money from "../../../../google/type/money"
 import * as $any from "../../../../google/protobuf/any"
-import * as $sisyphus from "@sisyphus.js/core"
-import * as $reflection from "../../../../_reflection"
 import * as $protobuf from "protobufjs"
+import * as $reflection from "../../../../_reflection"
 import * as $product from "./product"
 
 
@@ -11,96 +10,45 @@ export interface IOrder {
     /** 订单的资源名称，形式为 ‘users/{user}/orders/{order}’ */
     name?: string
     /** 订单包含的物品 */
-    items?: (Order.IItem[] | null)
+    items?: readonly Order.IItem[]
     /** 订单的用于支付信息 */
-    charge?: (Order.ICharge | null)
+    charge?: Order.ICharge
     /** 订单的状态 */
     status?: Order.State
     /** 展示用商品原价，一般以本地化价格展示 */
-    price?: ($money.IMoney | null)
+    price?: $money.IMoney
     /** 计算用商品原价，必须以 STD 为单位，1 STD 为 1 人民币分 */
-    standardPrice?: ($money.IMoney | null)
+    standardPrice?: $money.IMoney
     /**
      * 创建订单所提供的订单 Meta 信息，例如收货信息，物流信息
      * (-- api-linter: core::0146::any=disabled
      * aip.dev/not-precedent: 通用组件 --)
      */
-    metadata?: ($any.IAny[] | null)
+    metadata?: readonly $any.IAny[]
 }
 
-export class Order extends $sisyphus.Message<IOrder> implements IOrder {
+export class Order extends $protobuf.Message<Order> implements IOrder {
     name!: string
-    items!: (Order.IItem[] | null)
-    charge!: (Order.ICharge | null)
+    items!: readonly Order.Item[]
+    charge!: Order.Charge
     status!: Order.State
-    price!: ($money.IMoney | null)
-    standardPrice!: ($money.IMoney | null)
-    metadata!: ($any.IAny[] | null)
-    get $reflection() {
-        return Order.reflection
+    price!: $money.Money
+    standardPrice!: $money.Money
+    metadata!: readonly $any.Any[]
+    get $type() {
+        return Order.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.shop.v1.Order")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): Order {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.name = reader.string()
-                    break
-                case 2:
-                    if (!result.items) result.items = []
-                    result.items.push(Order.Item.decodeDelimited(reader))
-                    break
-                case 3:
-                    result.charge = Order.Charge.decodeDelimited(reader)
-                    break
-                case 4:
-                    result.status = reader.uint32()
-                    break
-                case 5:
-                    result.price = $money.Money.decodeDelimited(reader)
-                    break
-                case 6:
-                    result.standardPrice = $money.Money.decodeDelimited(reader)
-                    break
-                case 7:
-                    if (!result.metadata) result.metadata = []
-                    result.metadata.push($any.Any.decodeDelimited(reader))
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): Order {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IOrder): Order {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        if(properties.hasOwnProperty("items") && properties.items != null) result.items = properties.items.map(it => Order.Item.create(it))
-        if(properties.hasOwnProperty("charge") && properties.charge != null) result.charge = Order.Charge.create(properties.charge)
-        if(properties.hasOwnProperty("status") && properties.status !== undefined) result.status = properties.status
-        if(properties.hasOwnProperty("price") && properties.price != null) result.price = $money.Money.create(properties.price)
-        if(properties.hasOwnProperty("standardPrice") && properties.standardPrice != null) result.standardPrice = $money.Money.create(properties.standardPrice)
-        if(properties.hasOwnProperty("metadata") && properties.metadata != null) result.metadata = properties.metadata.map(it => $any.Any.create(it))
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.Order")
 }
-Order.prototype.name = Order.reflection.fieldsById[1].defaultValue
-Order.prototype.items = Order.reflection.fieldsById[2].defaultValue
-Order.prototype.charge = Order.reflection.fieldsById[3].defaultValue
-Order.prototype.status = Order.reflection.fieldsById[4].defaultValue
-Order.prototype.price = Order.reflection.fieldsById[5].defaultValue
-Order.prototype.standardPrice = Order.reflection.fieldsById[6].defaultValue
-Order.prototype.metadata = Order.reflection.fieldsById[7].defaultValue
+Order.$type.generatedObject = Order
+Order.prototype.name = Order.$type.fieldsById[1].defaultValue
+Order.prototype.items = Order.$type.fieldsById[2].defaultValue
+Order.prototype.charge = Order.$type.fieldsById[3].defaultValue
+Order.prototype.status = Order.$type.fieldsById[4].defaultValue
+Order.prototype.price = Order.$type.fieldsById[5].defaultValue
+Order.prototype.standardPrice = Order.$type.fieldsById[6].defaultValue
+Order.prototype.metadata = Order.$type.fieldsById[7].defaultValue
 
 export namespace Order {
 
@@ -131,69 +79,31 @@ export namespace Order {
         /** 订单内物品的条形码数据 */
         payment?: string
         /** 物品的商品资源 */
-        product?: ($product.IProduct | null)
+        product?: $product.IProduct
         /**
          * 创建订单时物品的 Meta 信息
          * (-- api-linter: core::0146::any=disabled
          * aip.dev/not-precedent: 通用组件 --)
          */
-        metadata?: ($any.IAny[] | null)
+        metadata?: readonly $any.IAny[]
     }
 
-    export class Item extends $sisyphus.Message<IItem> implements IItem {
+    export class Item extends $protobuf.Message<Item> implements IItem {
         name!: string
         payment!: string
-        product!: ($product.IProduct | null)
-        metadata!: ($any.IAny[] | null)
-        get $reflection() {
-            return Item.reflection
+        product!: $product.Product
+        metadata!: readonly $any.Any[]
+        get $type() {
+            return Item.$type
         }
 
-        static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.shop.v1.Order.Item")
-        static decode(reader: Uint8Array | $protobuf.Reader, length?: number): Item {
-            if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-            const end = length === undefined ? reader.len : reader.pos + length
-            const result = new this()
-            while(reader.pos < end) {
-                let tag = reader.uint32()
-                switch(tag>>>3) {
-                    case 1:
-                        result.name = reader.string()
-                        break
-                    case 2:
-                        result.payment = reader.string()
-                        break
-                    case 3:
-                        result.product = $product.Product.decodeDelimited(reader)
-                        break
-                    case 4:
-                        if (!result.metadata) result.metadata = []
-                        result.metadata.push($any.Any.decodeDelimited(reader))
-                        break
-                }
-            }
-            return result
-        }
-
-        static decodeDelimited(reader: Uint8Array | $protobuf.Reader): Item {
-            if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-            return this.decode(reader, reader.uint32())
-        }
-        static create(properties?: IItem): Item {
-            if(properties instanceof this) return properties
-            const result = new this()
-            if (!properties) return result
-            if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-            if(properties.hasOwnProperty("payment") && properties.payment !== undefined) result.payment = properties.payment
-            if(properties.hasOwnProperty("product") && properties.product != null) result.product = $product.Product.create(properties.product)
-            if(properties.hasOwnProperty("metadata") && properties.metadata != null) result.metadata = properties.metadata.map(it => $any.Any.create(it))
-            return result
-        }
+        static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.Order.Item")
     }
-    Item.prototype.name = Item.reflection.fieldsById[1].defaultValue
-    Item.prototype.payment = Item.reflection.fieldsById[2].defaultValue
-    Item.prototype.product = Item.reflection.fieldsById[3].defaultValue
-    Item.prototype.metadata = Item.reflection.fieldsById[4].defaultValue
+    Item.$type.generatedObject = Item
+    Item.prototype.name = Item.$type.fieldsById[1].defaultValue
+    Item.prototype.payment = Item.$type.fieldsById[2].defaultValue
+    Item.prototype.product = Item.$type.fieldsById[3].defaultValue
+    Item.prototype.metadata = Item.$type.fieldsById[4].defaultValue
 
 
     /** 订单的支付相关信息 */
@@ -206,51 +116,18 @@ export namespace Order {
         paymentChannel?: string
     }
 
-    export class Charge extends $sisyphus.Message<ICharge> implements ICharge {
+    export class Charge extends $protobuf.Message<Charge> implements ICharge {
         id!: string
         data!: string
         paymentChannel!: string
-        get $reflection() {
-            return Charge.reflection
+        get $type() {
+            return Charge.$type
         }
 
-        static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.shop.v1.Order.Charge")
-        static decode(reader: Uint8Array | $protobuf.Reader, length?: number): Charge {
-            if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-            const end = length === undefined ? reader.len : reader.pos + length
-            const result = new this()
-            while(reader.pos < end) {
-                let tag = reader.uint32()
-                switch(tag>>>3) {
-                    case 1:
-                        result.id = reader.string()
-                        break
-                    case 2:
-                        result.data = reader.string()
-                        break
-                    case 3:
-                        result.paymentChannel = reader.string()
-                        break
-                }
-            }
-            return result
-        }
-
-        static decodeDelimited(reader: Uint8Array | $protobuf.Reader): Charge {
-            if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-            return this.decode(reader, reader.uint32())
-        }
-        static create(properties?: ICharge): Charge {
-            if(properties instanceof this) return properties
-            const result = new this()
-            if (!properties) return result
-            if(properties.hasOwnProperty("id") && properties.id !== undefined) result.id = properties.id
-            if(properties.hasOwnProperty("data") && properties.data !== undefined) result.data = properties.data
-            if(properties.hasOwnProperty("paymentChannel") && properties.paymentChannel !== undefined) result.paymentChannel = properties.paymentChannel
-            return result
-        }
+        static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.Order.Charge")
     }
-    Charge.prototype.id = Charge.reflection.fieldsById[1].defaultValue
-    Charge.prototype.data = Charge.reflection.fieldsById[2].defaultValue
-    Charge.prototype.paymentChannel = Charge.reflection.fieldsById[3].defaultValue
+    Charge.$type.generatedObject = Charge
+    Charge.prototype.id = Charge.$type.fieldsById[1].defaultValue
+    Charge.prototype.data = Charge.$type.fieldsById[2].defaultValue
+    Charge.prototype.paymentChannel = Charge.$type.fieldsById[3].defaultValue
 }

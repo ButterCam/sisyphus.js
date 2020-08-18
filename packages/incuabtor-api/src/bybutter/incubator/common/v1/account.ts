@@ -1,9 +1,8 @@
 import * as $struct from "../../../../google/protobuf/struct"
 import * as $any from "../../../../google/protobuf/any"
 import * as $timestamp from "../../../../google/protobuf/timestamp"
-import * as $sisyphus from "@sisyphus.js/core"
-import * as $reflection from "../../../../_reflection"
 import * as $protobuf from "protobufjs"
+import * as $reflection from "../../../../_reflection"
 
 
 /**
@@ -15,69 +14,26 @@ export interface IAccount {
     /** 账户资源名称，形式为 ‘accounts/*’。 */
     name?: string
     /** 用户当前具有的所有权限。 */
-    permissions?: ($struct.IValue[] | null)
+    permissions?: readonly $struct.IValue[]
     /** 由其他应用储存的用户元信息。 */
-    metadata?: ({ [k: string]: $any.IAny } | null)
+    metadata?: { readonly [k: string]: $any.IAny }
     /** 账户创建的时间。 */
-    createTime?: ($timestamp.ITimestamp | null)
+    createTime?: $timestamp.ITimestamp
 }
 
-export class Account extends $sisyphus.Message<IAccount> implements IAccount {
+export class Account extends $protobuf.Message<Account> implements IAccount {
     name!: string
-    permissions!: ($struct.IValue[] | null)
-    metadata!: ({ [k: string]: $any.IAny } | null)
-    createTime!: ($timestamp.ITimestamp | null)
-    get $reflection() {
-        return Account.reflection
+    permissions!: readonly $struct.Value[]
+    metadata!: { readonly [k: string]: $any.Any }
+    createTime!: $timestamp.Timestamp
+    get $type() {
+        return Account.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.common.v1.Account")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): Account {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        let key: any, value: any
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.name = reader.string()
-                    break
-                case 2:
-                    if (!result.permissions) result.permissions = []
-                    result.permissions.push($struct.Value.decodeDelimited(reader))
-                    break
-                case 3:
-                    if (!result.metadata) result.metadata = {};
-                    [key, value] = $sisyphus.readMapEntry(this.reflection.fields["metadata"], reader, $any.Any)
-                    result.metadata[key] = value
-                    break
-                case 4:
-                    result.createTime = $timestamp.Timestamp.decodeDelimited(reader)
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): Account {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IAccount): Account {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        if(properties.hasOwnProperty("permissions") && properties.permissions != null) result.permissions = properties.permissions.map(it => $struct.Value.create(it))
-        if(properties.hasOwnProperty("metadata") && properties.metadata != null) {
-            result.metadata = {}
-            for (let key in properties.metadata) result.metadata[key] = $any.Any.create(properties.metadata[key])
-        }
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.common.v1.Account")
 }
-Account.prototype.name = Account.reflection.fieldsById[1].defaultValue
-Account.prototype.permissions = Account.reflection.fieldsById[2].defaultValue
-Account.prototype.metadata = Account.reflection.fieldsById[3].defaultValue
-Account.prototype.createTime = Account.reflection.fieldsById[4].defaultValue
+Account.$type.generatedObject = Account
+Account.prototype.name = Account.$type.fieldsById[1].defaultValue
+Account.prototype.permissions = Account.$type.fieldsById[2].defaultValue
+Account.prototype.metadata = Account.$type.fieldsById[3].defaultValue
+Account.prototype.createTime = Account.$type.fieldsById[4].defaultValue

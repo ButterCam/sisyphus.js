@@ -3,7 +3,6 @@ import * as $timestamp from "../../../../google/protobuf/timestamp"
 import * as $struct from "../../../../google/protobuf/struct"
 import * as $clientInfo from "./client_info"
 import * as $any from "../../../../google/protobuf/any"
-import * as $sisyphus from "@sisyphus.js/core"
 import * as $reflection from "../../../../_reflection"
 
 
@@ -20,95 +19,39 @@ export interface ITokenPayload {
      * Token 被签署的时间，Token 目前没有强制的失效时间。当 Token 被签发超过 1 天仍然被使用，
      * 服务端会尝试开始向客户端下发新的 Token。
      */
-    createTime?: ($timestamp.ITimestamp | null)
+    createTime?: $timestamp.ITimestamp
     /** 该 Token 是否以及被完全解析，无需重新解析。 */
     resolved?: boolean
     /** 用户的权限信息。 */
-    permissions?: ($struct.IValue[] | null)
+    permissions?: readonly $struct.IValue[]
     /** 客户端信息。 */
-    client?: ($clientInfo.IClientInfo | null)
+    client?: $clientInfo.IClientInfo
     /** 用户的 Meta 信息。 */
-    metadata?: ({ [k: string]: $any.IAny } | null)
+    metadata?: { readonly [k: string]: $any.IAny }
 }
 
-export class TokenPayload extends $sisyphus.Message<ITokenPayload> implements ITokenPayload {
+export class TokenPayload extends $protobuf.Message<TokenPayload> implements ITokenPayload {
     account!: string
     generation!: $protobuf.Long
-    createTime!: ($timestamp.ITimestamp | null)
+    createTime!: $timestamp.Timestamp
     resolved!: boolean
-    permissions!: ($struct.IValue[] | null)
-    client!: ($clientInfo.IClientInfo | null)
-    metadata!: ({ [k: string]: $any.IAny } | null)
-    get $reflection() {
-        return TokenPayload.reflection
+    permissions!: readonly $struct.Value[]
+    client!: $clientInfo.ClientInfo
+    metadata!: { readonly [k: string]: $any.Any }
+    get $type() {
+        return TokenPayload.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.common.v1.TokenPayload")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): TokenPayload {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        let key: any, value: any
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.account = reader.string()
-                    break
-                case 2:
-                    result.generation = reader.int64()
-                    break
-                case 3:
-                    result.createTime = $timestamp.Timestamp.decodeDelimited(reader)
-                    break
-                case 21:
-                    result.resolved = reader.bool()
-                    break
-                case 22:
-                    if (!result.permissions) result.permissions = []
-                    result.permissions.push($struct.Value.decodeDelimited(reader))
-                    break
-                case 23:
-                    result.client = $clientInfo.ClientInfo.decodeDelimited(reader)
-                    break
-                case 24:
-                    if (!result.metadata) result.metadata = {};
-                    [key, value] = $sisyphus.readMapEntry(this.reflection.fields["metadata"], reader, $any.Any)
-                    result.metadata[key] = value
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): TokenPayload {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: ITokenPayload): TokenPayload {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("account") && properties.account !== undefined) result.account = properties.account
-        if(properties.hasOwnProperty("generation") && properties.generation !== undefined) result.generation = properties.generation
-        if(properties.hasOwnProperty("createTime") && properties.createTime != null) result.createTime = $timestamp.Timestamp.create(properties.createTime)
-        if(properties.hasOwnProperty("resolved") && properties.resolved !== undefined) result.resolved = properties.resolved
-        if(properties.hasOwnProperty("permissions") && properties.permissions != null) result.permissions = properties.permissions.map(it => $struct.Value.create(it))
-        if(properties.hasOwnProperty("client") && properties.client != null) result.client = $clientInfo.ClientInfo.create(properties.client)
-        if(properties.hasOwnProperty("metadata") && properties.metadata != null) {
-            result.metadata = {}
-            for (let key in properties.metadata) result.metadata[key] = $any.Any.create(properties.metadata[key])
-        }
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.common.v1.TokenPayload")
 }
-TokenPayload.prototype.account = TokenPayload.reflection.fieldsById[1].defaultValue
-TokenPayload.prototype.generation = TokenPayload.reflection.fieldsById[2].defaultValue
-TokenPayload.prototype.createTime = TokenPayload.reflection.fieldsById[3].defaultValue
-TokenPayload.prototype.resolved = TokenPayload.reflection.fieldsById[21].defaultValue
-TokenPayload.prototype.permissions = TokenPayload.reflection.fieldsById[22].defaultValue
-TokenPayload.prototype.client = TokenPayload.reflection.fieldsById[23].defaultValue
-TokenPayload.prototype.metadata = TokenPayload.reflection.fieldsById[24].defaultValue
+TokenPayload.$type.generatedObject = TokenPayload
+TokenPayload.prototype.account = TokenPayload.$type.fieldsById[1].defaultValue
+TokenPayload.prototype.generation = TokenPayload.$type.fieldsById[2].defaultValue
+TokenPayload.prototype.createTime = TokenPayload.$type.fieldsById[3].defaultValue
+TokenPayload.prototype.resolved = TokenPayload.$type.fieldsById[21].defaultValue
+TokenPayload.prototype.permissions = TokenPayload.$type.fieldsById[22].defaultValue
+TokenPayload.prototype.client = TokenPayload.$type.fieldsById[23].defaultValue
+TokenPayload.prototype.metadata = TokenPayload.$type.fieldsById[24].defaultValue
 
 export namespace TokenPayload {
 

@@ -1,8 +1,8 @@
 import * as $any from "../protobuf/any"
 import * as $status from "../rpc/status"
-import * as $sisyphus from "@sisyphus.js/core"
-import * as $reflection from "../../_reflection"
 import * as $protobuf from "protobufjs"
+import * as $reflection from "../../_reflection"
+import * as $sisyphus from "@sisyphus.js/core"
 import * as $duration from "../protobuf/duration"
 import * as $empty from "../protobuf/empty"
 
@@ -24,7 +24,7 @@ export interface IOperation {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: ($any.IAny | null)
+    metadata?: $any.IAny
     /**
      * If the value is `false`, it means the operation is still in progress.
      * If `true`, the operation is completed, and either `error` or `response` is
@@ -32,7 +32,7 @@ export interface IOperation {
      */
     done?: boolean
     /** The error result of the operation in case of failure or cancellation. */
-    error?: ($status.IStatus | null)
+    error?: $status.IStatus
     /**
      * The normal response of the operation in case of success.  If the original
      * method returns no data on success, such as `Delete`, the response is
@@ -43,7 +43,7 @@ export interface IOperation {
      * is `TakeSnapshot()`, the inferred response type is
      * `TakeSnapshotResponse`.
      */
-    response?: ($any.IAny | null)
+    response?: $any.IAny
     /**
      * The operation result, which can be either an `error` or a valid `response`.
      * If `done` == `false`, neither `error` nor `response` is set.
@@ -52,68 +52,27 @@ export interface IOperation {
     result?: string
 }
 
-export class Operation extends $sisyphus.Message<IOperation> implements IOperation {
+export class Operation extends $protobuf.Message<Operation> implements IOperation {
     name!: string
-    metadata!: ($any.IAny | null)
+    metadata!: $any.Any
     done!: boolean
-    error!: ($status.IStatus | null)
-    response!: ($any.IAny | null)
+    error!: $status.Status
+    response!: $any.Any
     result?: string
 
-    get $reflection() {
-        return Operation.reflection
+    get $type() {
+        return Operation.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".google.longrunning.Operation")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): Operation {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.name = reader.string()
-                    break
-                case 2:
-                    result.metadata = $any.Any.decodeDelimited(reader)
-                    break
-                case 3:
-                    result.done = reader.bool()
-                    break
-                case 4:
-                    result.error = $status.Status.decodeDelimited(reader)
-                    break
-                case 5:
-                    result.response = $any.Any.decodeDelimited(reader)
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): Operation {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IOperation): Operation {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        if(properties.hasOwnProperty("metadata") && properties.metadata != null) result.metadata = $any.Any.create(properties.metadata)
-        if(properties.hasOwnProperty("done") && properties.done !== undefined) result.done = properties.done
-        if(properties.hasOwnProperty("error") && properties.error != null) result.error = $status.Status.create(properties.error)
-        if(properties.hasOwnProperty("response") && properties.response != null) result.response = $any.Any.create(properties.response)
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".google.longrunning.Operation")
 }
+Operation.$type.generatedObject = Operation
 Object.defineProperty(Operation.prototype, "result", $sisyphus.oneOfProperty("error", "response"))
-Operation.prototype.name = Operation.reflection.fieldsById[1].defaultValue
-Operation.prototype.metadata = Operation.reflection.fieldsById[2].defaultValue
-Operation.prototype.done = Operation.reflection.fieldsById[3].defaultValue
-Operation.prototype.error = Operation.reflection.fieldsById[4].defaultValue
-Operation.prototype.response = Operation.reflection.fieldsById[5].defaultValue
+Operation.prototype.name = Operation.$type.fieldsById[1].defaultValue
+Operation.prototype.metadata = Operation.$type.fieldsById[2].defaultValue
+Operation.prototype.done = Operation.$type.fieldsById[3].defaultValue
+Operation.prototype.error = Operation.$type.fieldsById[4].defaultValue
+Operation.prototype.response = Operation.$type.fieldsById[5].defaultValue
 
 
 /** The request message for [Operations.GetOperation][google.longrunning.Operations.GetOperation]. */
@@ -122,41 +81,16 @@ export interface IGetOperationRequest {
     name?: string
 }
 
-export class GetOperationRequest extends $sisyphus.Message<IGetOperationRequest> implements IGetOperationRequest {
+export class GetOperationRequest extends $protobuf.Message<GetOperationRequest> implements IGetOperationRequest {
     name!: string
-    get $reflection() {
-        return GetOperationRequest.reflection
+    get $type() {
+        return GetOperationRequest.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".google.longrunning.GetOperationRequest")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): GetOperationRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.name = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): GetOperationRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IGetOperationRequest): GetOperationRequest {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".google.longrunning.GetOperationRequest")
 }
-GetOperationRequest.prototype.name = GetOperationRequest.reflection.fieldsById[1].defaultValue
+GetOperationRequest.$type.generatedObject = GetOperationRequest
+GetOperationRequest.prototype.name = GetOperationRequest.$type.fieldsById[1].defaultValue
 
 
 /** The request message for [Operations.ListOperations][google.longrunning.Operations.ListOperations]. */
@@ -171,111 +105,44 @@ export interface IListOperationsRequest {
     pageToken?: string
 }
 
-export class ListOperationsRequest extends $sisyphus.Message<IListOperationsRequest> implements IListOperationsRequest {
+export class ListOperationsRequest extends $protobuf.Message<ListOperationsRequest> implements IListOperationsRequest {
     name!: string
     filter!: string
     pageSize!: number
     pageToken!: string
-    get $reflection() {
-        return ListOperationsRequest.reflection
+    get $type() {
+        return ListOperationsRequest.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".google.longrunning.ListOperationsRequest")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): ListOperationsRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 4:
-                    result.name = reader.string()
-                    break
-                case 1:
-                    result.filter = reader.string()
-                    break
-                case 2:
-                    result.pageSize = reader.int32()
-                    break
-                case 3:
-                    result.pageToken = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): ListOperationsRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IListOperationsRequest): ListOperationsRequest {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        if(properties.hasOwnProperty("filter") && properties.filter !== undefined) result.filter = properties.filter
-        if(properties.hasOwnProperty("pageSize") && properties.pageSize !== undefined) result.pageSize = properties.pageSize
-        if(properties.hasOwnProperty("pageToken") && properties.pageToken !== undefined) result.pageToken = properties.pageToken
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".google.longrunning.ListOperationsRequest")
 }
-ListOperationsRequest.prototype.name = ListOperationsRequest.reflection.fieldsById[4].defaultValue
-ListOperationsRequest.prototype.filter = ListOperationsRequest.reflection.fieldsById[1].defaultValue
-ListOperationsRequest.prototype.pageSize = ListOperationsRequest.reflection.fieldsById[2].defaultValue
-ListOperationsRequest.prototype.pageToken = ListOperationsRequest.reflection.fieldsById[3].defaultValue
+ListOperationsRequest.$type.generatedObject = ListOperationsRequest
+ListOperationsRequest.prototype.name = ListOperationsRequest.$type.fieldsById[4].defaultValue
+ListOperationsRequest.prototype.filter = ListOperationsRequest.$type.fieldsById[1].defaultValue
+ListOperationsRequest.prototype.pageSize = ListOperationsRequest.$type.fieldsById[2].defaultValue
+ListOperationsRequest.prototype.pageToken = ListOperationsRequest.$type.fieldsById[3].defaultValue
 
 
 /** The response message for [Operations.ListOperations][google.longrunning.Operations.ListOperations]. */
 export interface IListOperationsResponse {
     /** A list of operations that matches the specified filter in the request. */
-    operations?: (IOperation[] | null)
+    operations?: readonly IOperation[]
     /** The standard List next-page token. */
     nextPageToken?: string
 }
 
-export class ListOperationsResponse extends $sisyphus.Message<IListOperationsResponse> implements IListOperationsResponse {
-    operations!: (IOperation[] | null)
+export class ListOperationsResponse extends $protobuf.Message<ListOperationsResponse> implements IListOperationsResponse {
+    operations!: readonly Operation[]
     nextPageToken!: string
-    get $reflection() {
-        return ListOperationsResponse.reflection
+    get $type() {
+        return ListOperationsResponse.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".google.longrunning.ListOperationsResponse")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): ListOperationsResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    if (!result.operations) result.operations = []
-                    result.operations.push(Operation.decodeDelimited(reader))
-                    break
-                case 2:
-                    result.nextPageToken = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): ListOperationsResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IListOperationsResponse): ListOperationsResponse {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("operations") && properties.operations != null) result.operations = properties.operations.map(it => Operation.create(it))
-        if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".google.longrunning.ListOperationsResponse")
 }
-ListOperationsResponse.prototype.operations = ListOperationsResponse.reflection.fieldsById[1].defaultValue
-ListOperationsResponse.prototype.nextPageToken = ListOperationsResponse.reflection.fieldsById[2].defaultValue
+ListOperationsResponse.$type.generatedObject = ListOperationsResponse
+ListOperationsResponse.prototype.operations = ListOperationsResponse.$type.fieldsById[1].defaultValue
+ListOperationsResponse.prototype.nextPageToken = ListOperationsResponse.$type.fieldsById[2].defaultValue
 
 
 /** The request message for [Operations.CancelOperation][google.longrunning.Operations.CancelOperation]. */
@@ -284,41 +151,16 @@ export interface ICancelOperationRequest {
     name?: string
 }
 
-export class CancelOperationRequest extends $sisyphus.Message<ICancelOperationRequest> implements ICancelOperationRequest {
+export class CancelOperationRequest extends $protobuf.Message<CancelOperationRequest> implements ICancelOperationRequest {
     name!: string
-    get $reflection() {
-        return CancelOperationRequest.reflection
+    get $type() {
+        return CancelOperationRequest.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".google.longrunning.CancelOperationRequest")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): CancelOperationRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.name = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): CancelOperationRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: ICancelOperationRequest): CancelOperationRequest {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".google.longrunning.CancelOperationRequest")
 }
-CancelOperationRequest.prototype.name = CancelOperationRequest.reflection.fieldsById[1].defaultValue
+CancelOperationRequest.$type.generatedObject = CancelOperationRequest
+CancelOperationRequest.prototype.name = CancelOperationRequest.$type.fieldsById[1].defaultValue
 
 
 /** The request message for [Operations.DeleteOperation][google.longrunning.Operations.DeleteOperation]. */
@@ -327,41 +169,16 @@ export interface IDeleteOperationRequest {
     name?: string
 }
 
-export class DeleteOperationRequest extends $sisyphus.Message<IDeleteOperationRequest> implements IDeleteOperationRequest {
+export class DeleteOperationRequest extends $protobuf.Message<DeleteOperationRequest> implements IDeleteOperationRequest {
     name!: string
-    get $reflection() {
-        return DeleteOperationRequest.reflection
+    get $type() {
+        return DeleteOperationRequest.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".google.longrunning.DeleteOperationRequest")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): DeleteOperationRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.name = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): DeleteOperationRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IDeleteOperationRequest): DeleteOperationRequest {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".google.longrunning.DeleteOperationRequest")
 }
-DeleteOperationRequest.prototype.name = DeleteOperationRequest.reflection.fieldsById[1].defaultValue
+DeleteOperationRequest.$type.generatedObject = DeleteOperationRequest
+DeleteOperationRequest.prototype.name = DeleteOperationRequest.$type.fieldsById[1].defaultValue
 
 
 /** The request message for [Operations.WaitOperation][google.longrunning.Operations.WaitOperation]. */
@@ -373,50 +190,21 @@ export interface IWaitOperationRequest {
      * will be at most the time permitted by the underlying HTTP/RPC protocol.
      * If RPC context deadline is also specified, the shorter one will be used.
      */
-    timeout?: ($duration.IDuration | null)
+    timeout?: $duration.IDuration
 }
 
-export class WaitOperationRequest extends $sisyphus.Message<IWaitOperationRequest> implements IWaitOperationRequest {
+export class WaitOperationRequest extends $protobuf.Message<WaitOperationRequest> implements IWaitOperationRequest {
     name!: string
-    timeout!: ($duration.IDuration | null)
-    get $reflection() {
-        return WaitOperationRequest.reflection
+    timeout!: $duration.Duration
+    get $type() {
+        return WaitOperationRequest.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".google.longrunning.WaitOperationRequest")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): WaitOperationRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.name = reader.string()
-                    break
-                case 2:
-                    result.timeout = $duration.Duration.decodeDelimited(reader)
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): WaitOperationRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IWaitOperationRequest): WaitOperationRequest {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        if(properties.hasOwnProperty("timeout") && properties.timeout != null) result.timeout = $duration.Duration.create(properties.timeout)
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".google.longrunning.WaitOperationRequest")
 }
-WaitOperationRequest.prototype.name = WaitOperationRequest.reflection.fieldsById[1].defaultValue
-WaitOperationRequest.prototype.timeout = WaitOperationRequest.reflection.fieldsById[2].defaultValue
+WaitOperationRequest.$type.generatedObject = WaitOperationRequest
+WaitOperationRequest.prototype.name = WaitOperationRequest.$type.fieldsById[1].defaultValue
+WaitOperationRequest.prototype.timeout = WaitOperationRequest.$type.fieldsById[2].defaultValue
 
 
 /**
@@ -456,47 +244,18 @@ export interface IOperationInfo {
     metadataType?: string
 }
 
-export class OperationInfo extends $sisyphus.Message<IOperationInfo> implements IOperationInfo {
+export class OperationInfo extends $protobuf.Message<OperationInfo> implements IOperationInfo {
     responseType!: string
     metadataType!: string
-    get $reflection() {
-        return OperationInfo.reflection
+    get $type() {
+        return OperationInfo.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".google.longrunning.OperationInfo")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): OperationInfo {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.responseType = reader.string()
-                    break
-                case 2:
-                    result.metadataType = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): OperationInfo {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IOperationInfo): OperationInfo {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("responseType") && properties.responseType !== undefined) result.responseType = properties.responseType
-        if(properties.hasOwnProperty("metadataType") && properties.metadataType !== undefined) result.metadataType = properties.metadataType
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".google.longrunning.OperationInfo")
 }
-OperationInfo.prototype.responseType = OperationInfo.reflection.fieldsById[1].defaultValue
-OperationInfo.prototype.metadataType = OperationInfo.reflection.fieldsById[2].defaultValue
+OperationInfo.$type.generatedObject = OperationInfo
+OperationInfo.prototype.responseType = OperationInfo.$type.fieldsById[1].defaultValue
+OperationInfo.prototype.metadataType = OperationInfo.$type.fieldsById[2].defaultValue
 
 /**
  * Manages long-running operations with an API service.

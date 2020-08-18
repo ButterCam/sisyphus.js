@@ -1,6 +1,5 @@
-import * as $sisyphus from "@sisyphus.js/core"
-import * as $reflection from "../../../../_reflection"
 import * as $protobuf from "protobufjs"
+import * as $reflection from "../../../../_reflection"
 
 
 /** 附加在商品或者 Plan 上的通用 Tag 信息。 */
@@ -11,47 +10,18 @@ export interface ICommonTag {
     value?: string
 }
 
-export class CommonTag extends $sisyphus.Message<ICommonTag> implements ICommonTag {
+export class CommonTag extends $protobuf.Message<CommonTag> implements ICommonTag {
     key!: string
     value!: string
-    get $reflection() {
-        return CommonTag.reflection
+    get $type() {
+        return CommonTag.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.shop.v1.CommonTag")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): CommonTag {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.key = reader.string()
-                    break
-                case 2:
-                    result.value = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): CommonTag {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: ICommonTag): CommonTag {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("key") && properties.key !== undefined) result.key = properties.key
-        if(properties.hasOwnProperty("value") && properties.value !== undefined) result.value = properties.value
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.CommonTag")
 }
-CommonTag.prototype.key = CommonTag.reflection.fieldsById[1].defaultValue
-CommonTag.prototype.value = CommonTag.reflection.fieldsById[2].defaultValue
+CommonTag.$type.generatedObject = CommonTag
+CommonTag.prototype.key = CommonTag.$type.fieldsById[1].defaultValue
+CommonTag.prototype.value = CommonTag.$type.fieldsById[2].defaultValue
 
 
 /** 苹果 IAP 购买时的 IAP 商品 id */
@@ -60,38 +30,13 @@ export interface IAppleIapProductIdTag {
     productId?: string
 }
 
-export class AppleIapProductIdTag extends $sisyphus.Message<IAppleIapProductIdTag> implements IAppleIapProductIdTag {
+export class AppleIapProductIdTag extends $protobuf.Message<AppleIapProductIdTag> implements IAppleIapProductIdTag {
     productId!: string
-    get $reflection() {
-        return AppleIapProductIdTag.reflection
+    get $type() {
+        return AppleIapProductIdTag.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.shop.v1.AppleIapProductIdTag")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): AppleIapProductIdTag {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.productId = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): AppleIapProductIdTag {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IAppleIapProductIdTag): AppleIapProductIdTag {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("productId") && properties.productId !== undefined) result.productId = properties.productId
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.AppleIapProductIdTag")
 }
-AppleIapProductIdTag.prototype.productId = AppleIapProductIdTag.reflection.fieldsById[1].defaultValue
+AppleIapProductIdTag.$type.generatedObject = AppleIapProductIdTag
+AppleIapProductIdTag.prototype.productId = AppleIapProductIdTag.$type.fieldsById[1].defaultValue

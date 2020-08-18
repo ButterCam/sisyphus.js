@@ -1,6 +1,5 @@
-import * as $sisyphus from "@sisyphus.js/core"
-import * as $reflection from "../../../../_reflection"
 import * as $protobuf from "protobufjs"
+import * as $reflection from "../../../../_reflection"
 
 
 /**
@@ -31,7 +30,7 @@ export interface IClientInfo {
     ip?: string
 }
 
-export class ClientInfo extends $sisyphus.Message<IClientInfo> implements IClientInfo {
+export class ClientInfo extends $protobuf.Message<ClientInfo> implements IClientInfo {
     version!: string
     channel!: string
     name!: string
@@ -42,81 +41,20 @@ export class ClientInfo extends $sisyphus.Message<IClientInfo> implements IClien
     languageTag!: string
     timeZone!: string
     ip!: string
-    get $reflection() {
-        return ClientInfo.reflection
+    get $type() {
+        return ClientInfo.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.common.v1.ClientInfo")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): ClientInfo {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.version = reader.string()
-                    break
-                case 2:
-                    result.channel = reader.string()
-                    break
-                case 3:
-                    result.name = reader.string()
-                    break
-                case 4:
-                    result.os = reader.string()
-                    break
-                case 5:
-                    result.osVersion = reader.string()
-                    break
-                case 6:
-                    result.vendor = reader.string()
-                    break
-                case 7:
-                    result.resolution = reader.string()
-                    break
-                case 8:
-                    result.languageTag = reader.string()
-                    break
-                case 9:
-                    result.timeZone = reader.string()
-                    break
-                case 10:
-                    result.ip = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): ClientInfo {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IClientInfo): ClientInfo {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("version") && properties.version !== undefined) result.version = properties.version
-        if(properties.hasOwnProperty("channel") && properties.channel !== undefined) result.channel = properties.channel
-        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        if(properties.hasOwnProperty("os") && properties.os !== undefined) result.os = properties.os
-        if(properties.hasOwnProperty("osVersion") && properties.osVersion !== undefined) result.osVersion = properties.osVersion
-        if(properties.hasOwnProperty("vendor") && properties.vendor !== undefined) result.vendor = properties.vendor
-        if(properties.hasOwnProperty("resolution") && properties.resolution !== undefined) result.resolution = properties.resolution
-        if(properties.hasOwnProperty("languageTag") && properties.languageTag !== undefined) result.languageTag = properties.languageTag
-        if(properties.hasOwnProperty("timeZone") && properties.timeZone !== undefined) result.timeZone = properties.timeZone
-        if(properties.hasOwnProperty("ip") && properties.ip !== undefined) result.ip = properties.ip
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.common.v1.ClientInfo")
 }
-ClientInfo.prototype.version = ClientInfo.reflection.fieldsById[1].defaultValue
-ClientInfo.prototype.channel = ClientInfo.reflection.fieldsById[2].defaultValue
-ClientInfo.prototype.name = ClientInfo.reflection.fieldsById[3].defaultValue
-ClientInfo.prototype.os = ClientInfo.reflection.fieldsById[4].defaultValue
-ClientInfo.prototype.osVersion = ClientInfo.reflection.fieldsById[5].defaultValue
-ClientInfo.prototype.vendor = ClientInfo.reflection.fieldsById[6].defaultValue
-ClientInfo.prototype.resolution = ClientInfo.reflection.fieldsById[7].defaultValue
-ClientInfo.prototype.languageTag = ClientInfo.reflection.fieldsById[8].defaultValue
-ClientInfo.prototype.timeZone = ClientInfo.reflection.fieldsById[9].defaultValue
-ClientInfo.prototype.ip = ClientInfo.reflection.fieldsById[10].defaultValue
+ClientInfo.$type.generatedObject = ClientInfo
+ClientInfo.prototype.version = ClientInfo.$type.fieldsById[1].defaultValue
+ClientInfo.prototype.channel = ClientInfo.$type.fieldsById[2].defaultValue
+ClientInfo.prototype.name = ClientInfo.$type.fieldsById[3].defaultValue
+ClientInfo.prototype.os = ClientInfo.$type.fieldsById[4].defaultValue
+ClientInfo.prototype.osVersion = ClientInfo.$type.fieldsById[5].defaultValue
+ClientInfo.prototype.vendor = ClientInfo.$type.fieldsById[6].defaultValue
+ClientInfo.prototype.resolution = ClientInfo.$type.fieldsById[7].defaultValue
+ClientInfo.prototype.languageTag = ClientInfo.$type.fieldsById[8].defaultValue
+ClientInfo.prototype.timeZone = ClientInfo.$type.fieldsById[9].defaultValue
+ClientInfo.prototype.ip = ClientInfo.$type.fieldsById[10].defaultValue

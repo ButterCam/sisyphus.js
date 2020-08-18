@@ -1,6 +1,5 @@
-import * as $sisyphus from "@sisyphus.js/core"
-import * as $reflection from "../../_reflection"
 import * as $protobuf from "protobufjs"
+import * as $reflection from "../../_reflection"
 
 
 /**
@@ -148,7 +147,7 @@ export interface IResourceDescriptor {
      * the same component name (e.g. "project") refers to IDs of the same
      * type of resource.
      */
-    pattern?: (string[] | null)
+    pattern?: readonly string[]
     /**
      * Optional. The field on the resource that designates the resource name
      * field. If omitted, this is assumed to be "name".
@@ -187,72 +186,26 @@ export interface IResourceDescriptor {
     singular?: string
 }
 
-export class ResourceDescriptor extends $sisyphus.Message<IResourceDescriptor> implements IResourceDescriptor {
+export class ResourceDescriptor extends $protobuf.Message<ResourceDescriptor> implements IResourceDescriptor {
     type!: string
-    pattern!: (string[] | null)
+    pattern!: readonly string[]
     nameField!: string
     history!: ResourceDescriptor.History
     plural!: string
     singular!: string
-    get $reflection() {
-        return ResourceDescriptor.reflection
+    get $type() {
+        return ResourceDescriptor.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".google.api.ResourceDescriptor")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): ResourceDescriptor {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.type = reader.string()
-                    break
-                case 2:
-                    if (!result.pattern) result.pattern = []
-                    result.pattern.push(reader.string())
-                    break
-                case 3:
-                    result.nameField = reader.string()
-                    break
-                case 4:
-                    result.history = reader.uint32()
-                    break
-                case 5:
-                    result.plural = reader.string()
-                    break
-                case 6:
-                    result.singular = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): ResourceDescriptor {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IResourceDescriptor): ResourceDescriptor {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("type") && properties.type !== undefined) result.type = properties.type
-        if(properties.hasOwnProperty("pattern") && properties.pattern !== undefined) result.pattern = properties.pattern
-        if(properties.hasOwnProperty("nameField") && properties.nameField !== undefined) result.nameField = properties.nameField
-        if(properties.hasOwnProperty("history") && properties.history !== undefined) result.history = properties.history
-        if(properties.hasOwnProperty("plural") && properties.plural !== undefined) result.plural = properties.plural
-        if(properties.hasOwnProperty("singular") && properties.singular !== undefined) result.singular = properties.singular
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".google.api.ResourceDescriptor")
 }
-ResourceDescriptor.prototype.type = ResourceDescriptor.reflection.fieldsById[1].defaultValue
-ResourceDescriptor.prototype.pattern = ResourceDescriptor.reflection.fieldsById[2].defaultValue
-ResourceDescriptor.prototype.nameField = ResourceDescriptor.reflection.fieldsById[3].defaultValue
-ResourceDescriptor.prototype.history = ResourceDescriptor.reflection.fieldsById[4].defaultValue
-ResourceDescriptor.prototype.plural = ResourceDescriptor.reflection.fieldsById[5].defaultValue
-ResourceDescriptor.prototype.singular = ResourceDescriptor.reflection.fieldsById[6].defaultValue
+ResourceDescriptor.$type.generatedObject = ResourceDescriptor
+ResourceDescriptor.prototype.type = ResourceDescriptor.$type.fieldsById[1].defaultValue
+ResourceDescriptor.prototype.pattern = ResourceDescriptor.$type.fieldsById[2].defaultValue
+ResourceDescriptor.prototype.nameField = ResourceDescriptor.$type.fieldsById[3].defaultValue
+ResourceDescriptor.prototype.history = ResourceDescriptor.$type.fieldsById[4].defaultValue
+ResourceDescriptor.prototype.plural = ResourceDescriptor.$type.fieldsById[5].defaultValue
+ResourceDescriptor.prototype.singular = ResourceDescriptor.$type.fieldsById[6].defaultValue
 
 export namespace ResourceDescriptor {
 
@@ -314,47 +267,18 @@ export interface IResourceReference {
     childType?: string
 }
 
-export class ResourceReference extends $sisyphus.Message<IResourceReference> implements IResourceReference {
+export class ResourceReference extends $protobuf.Message<ResourceReference> implements IResourceReference {
     type!: string
     childType!: string
-    get $reflection() {
-        return ResourceReference.reflection
+    get $type() {
+        return ResourceReference.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".google.api.ResourceReference")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): ResourceReference {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.type = reader.string()
-                    break
-                case 2:
-                    result.childType = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): ResourceReference {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IResourceReference): ResourceReference {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("type") && properties.type !== undefined) result.type = properties.type
-        if(properties.hasOwnProperty("childType") && properties.childType !== undefined) result.childType = properties.childType
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".google.api.ResourceReference")
 }
-ResourceReference.prototype.type = ResourceReference.reflection.fieldsById[1].defaultValue
-ResourceReference.prototype.childType = ResourceReference.reflection.fieldsById[2].defaultValue
+ResourceReference.$type.generatedObject = ResourceReference
+ResourceReference.prototype.type = ResourceReference.$type.fieldsById[1].defaultValue
+ResourceReference.prototype.childType = ResourceReference.$type.fieldsById[2].defaultValue
 
 export let resourceReference = $reflection.root.lookup(".google.api.resourceReference")
 

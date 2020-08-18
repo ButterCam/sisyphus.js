@@ -1,6 +1,6 @@
-import * as $sisyphus from "@sisyphus.js/core"
-import * as $reflection from "../../../../_reflection"
 import * as $protobuf from "protobufjs"
+import * as $reflection from "../../../../_reflection"
+import * as $sisyphus from "@sisyphus.js/core"
 
 
 /** 账户绑定信息 */
@@ -8,62 +8,29 @@ export interface IAccountBinding {
     /** 绑定信息的账户资源名称 */
     account?: string
     /** 绑定的手机号 */
-    mobile?: (AccountBinding.IMobile | null)
+    mobile?: AccountBinding.IMobile
     /** 绑定的帐号码 */
-    identification?: (AccountBinding.IIdentification | null)
+    identification?: AccountBinding.IIdentification
     Target?: string
 }
 
-export class AccountBinding extends $sisyphus.Message<IAccountBinding> implements IAccountBinding {
+export class AccountBinding extends $protobuf.Message<AccountBinding> implements IAccountBinding {
     account!: string
-    mobile!: (AccountBinding.IMobile | null)
-    identification!: (AccountBinding.IIdentification | null)
+    mobile!: AccountBinding.Mobile
+    identification!: AccountBinding.Identification
     Target?: string
 
-    get $reflection() {
-        return AccountBinding.reflection
+    get $type() {
+        return AccountBinding.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.account.v1.AccountBinding")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): AccountBinding {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.account = reader.string()
-                    break
-                case 11:
-                    result.mobile = AccountBinding.Mobile.decodeDelimited(reader)
-                    break
-                case 12:
-                    result.identification = AccountBinding.Identification.decodeDelimited(reader)
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): AccountBinding {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IAccountBinding): AccountBinding {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("account") && properties.account !== undefined) result.account = properties.account
-        if(properties.hasOwnProperty("mobile") && properties.mobile != null) result.mobile = AccountBinding.Mobile.create(properties.mobile)
-        if(properties.hasOwnProperty("identification") && properties.identification != null) result.identification = AccountBinding.Identification.create(properties.identification)
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.account.v1.AccountBinding")
 }
+AccountBinding.$type.generatedObject = AccountBinding
 Object.defineProperty(AccountBinding.prototype, "Target", $sisyphus.oneOfProperty("mobile", "identification"))
-AccountBinding.prototype.account = AccountBinding.reflection.fieldsById[1].defaultValue
-AccountBinding.prototype.mobile = AccountBinding.reflection.fieldsById[11].defaultValue
-AccountBinding.prototype.identification = AccountBinding.reflection.fieldsById[12].defaultValue
+AccountBinding.prototype.account = AccountBinding.$type.fieldsById[1].defaultValue
+AccountBinding.prototype.mobile = AccountBinding.$type.fieldsById[11].defaultValue
+AccountBinding.prototype.identification = AccountBinding.$type.fieldsById[12].defaultValue
 
 export namespace AccountBinding {
 
@@ -75,47 +42,18 @@ export namespace AccountBinding {
         phoneNumber?: string
     }
 
-    export class Mobile extends $sisyphus.Message<IMobile> implements IMobile {
+    export class Mobile extends $protobuf.Message<Mobile> implements IMobile {
         regionCode!: string
         phoneNumber!: string
-        get $reflection() {
-            return Mobile.reflection
+        get $type() {
+            return Mobile.$type
         }
 
-        static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.account.v1.AccountBinding.Mobile")
-        static decode(reader: Uint8Array | $protobuf.Reader, length?: number): Mobile {
-            if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-            const end = length === undefined ? reader.len : reader.pos + length
-            const result = new this()
-            while(reader.pos < end) {
-                let tag = reader.uint32()
-                switch(tag>>>3) {
-                    case 1:
-                        result.regionCode = reader.string()
-                        break
-                    case 2:
-                        result.phoneNumber = reader.string()
-                        break
-                }
-            }
-            return result
-        }
-
-        static decodeDelimited(reader: Uint8Array | $protobuf.Reader): Mobile {
-            if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-            return this.decode(reader, reader.uint32())
-        }
-        static create(properties?: IMobile): Mobile {
-            if(properties instanceof this) return properties
-            const result = new this()
-            if (!properties) return result
-            if(properties.hasOwnProperty("regionCode") && properties.regionCode !== undefined) result.regionCode = properties.regionCode
-            if(properties.hasOwnProperty("phoneNumber") && properties.phoneNumber !== undefined) result.phoneNumber = properties.phoneNumber
-            return result
-        }
+        static readonly $type = $reflection.root.lookupType(".bybutter.incubator.account.v1.AccountBinding.Mobile")
     }
-    Mobile.prototype.regionCode = Mobile.reflection.fieldsById[1].defaultValue
-    Mobile.prototype.phoneNumber = Mobile.reflection.fieldsById[2].defaultValue
+    Mobile.$type.generatedObject = Mobile
+    Mobile.prototype.regionCode = Mobile.$type.fieldsById[1].defaultValue
+    Mobile.prototype.phoneNumber = Mobile.$type.fieldsById[2].defaultValue
 
 
     /** 帐号码绑定信息 */
@@ -124,39 +62,14 @@ export namespace AccountBinding {
         identification?: string
     }
 
-    export class Identification extends $sisyphus.Message<IIdentification> implements IIdentification {
+    export class Identification extends $protobuf.Message<Identification> implements IIdentification {
         identification!: string
-        get $reflection() {
-            return Identification.reflection
+        get $type() {
+            return Identification.$type
         }
 
-        static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.account.v1.AccountBinding.Identification")
-        static decode(reader: Uint8Array | $protobuf.Reader, length?: number): Identification {
-            if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-            const end = length === undefined ? reader.len : reader.pos + length
-            const result = new this()
-            while(reader.pos < end) {
-                let tag = reader.uint32()
-                switch(tag>>>3) {
-                    case 1:
-                        result.identification = reader.string()
-                        break
-                }
-            }
-            return result
-        }
-
-        static decodeDelimited(reader: Uint8Array | $protobuf.Reader): Identification {
-            if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-            return this.decode(reader, reader.uint32())
-        }
-        static create(properties?: IIdentification): Identification {
-            if(properties instanceof this) return properties
-            const result = new this()
-            if (!properties) return result
-            if(properties.hasOwnProperty("identification") && properties.identification !== undefined) result.identification = properties.identification
-            return result
-        }
+        static readonly $type = $reflection.root.lookupType(".bybutter.incubator.account.v1.AccountBinding.Identification")
     }
-    Identification.prototype.identification = Identification.reflection.fieldsById[1].defaultValue
+    Identification.$type.generatedObject = Identification
+    Identification.prototype.identification = Identification.$type.fieldsById[1].defaultValue
 }

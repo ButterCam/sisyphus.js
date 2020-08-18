@@ -82,20 +82,46 @@
  * http://www.joda.org/joda-time/apidocs/org/joda/time/format/ISODateTimeFormat.html#dateTime%2D%2D
  * ) to obtain a formatter capable of generating timestamps in this format.
  */
-import {Long} from "protobufjs";
+import {IConversionOptions, Long, Message} from "protobufjs";
+import long from "long";
+import {longZero} from "../defaults";
 
 export interface ITimestamp {
-    /**
-     * Represents seconds of UTC time since Unix epoch
-     * 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to
-     * 9999-12-31T23:59:59Z inclusive.
-     */
     seconds?: Long
-    /**
-     * Non-negative fractions of a second at nanosecond resolution. Negative
-     * second values with fractions must still have non-negative nanos values
-     * that count forward in time. Must be from 0 to 999,999,999
-     * inclusive.
-     */
     nanos?: number
 }
+
+export class Timestamp extends Message<Timestamp> implements ITimestamp {
+    seconds!: Long
+    nanos!: number
+
+    static fromObject<T extends Message<T>>(object: any): T {
+        if (typeof object !== "string") {
+            throw new Error("Timestamp must be a string")
+        }
+        const date = new Date(object)
+        return <T><any>this.fromDate(date)
+    }
+
+    static toObject<T extends Message<T>>(message: T, options?: IConversionOptions): any {
+        if (!(message instanceof Timestamp)) {
+            throw new Error("Message must be a Timestamp")
+        }
+        return this.toDate(message).toISOString()
+    }
+
+    static fromDate<T extends Timestamp>(date: Date): T {
+        const seconds = long.fromNumber(date.getTime() / 1000)
+        const nanos = (date.getTime() % 1000) * 1000000
+        return <T>this.create({
+            seconds, nanos
+        })
+    }
+
+    static toDate<T extends Timestamp>(object: T): Date {
+        return new Date((<long.Long>object.seconds).toNumber() * 1000 + object.nanos / 1000000)
+    }
+}
+
+Timestamp.prototype.seconds = longZero
+Timestamp.prototype.nanos = 0

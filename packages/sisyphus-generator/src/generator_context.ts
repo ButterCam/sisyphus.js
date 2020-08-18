@@ -60,7 +60,7 @@ import {Root} from "protobufjs"
 export let root = Root.fromJSON(reflectionJson)
 root.resolveAll()\n`)
 
-        await this.generateIndex(outDir)
+        //await this.generateIndex(outDir)
 
         for (let key in this._protos) {
             if (this._protos.hasOwnProperty(key)) {

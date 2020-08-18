@@ -1,6 +1,5 @@
-import * as $sisyphus from "@sisyphus.js/core"
-import * as $reflection from "../../../../_reflection"
 import * as $protobuf from "protobufjs"
+import * as $reflection from "../../../../_reflection"
 import * as $product from "./product"
 
 
@@ -10,41 +9,16 @@ export interface IGetProductRequest {
     name?: string
 }
 
-export class GetProductRequest extends $sisyphus.Message<IGetProductRequest> implements IGetProductRequest {
+export class GetProductRequest extends $protobuf.Message<GetProductRequest> implements IGetProductRequest {
     name!: string
-    get $reflection() {
-        return GetProductRequest.reflection
+    get $type() {
+        return GetProductRequest.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.shop.v1.GetProductRequest")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): GetProductRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.name = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): GetProductRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IGetProductRequest): GetProductRequest {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.GetProductRequest")
 }
-GetProductRequest.prototype.name = GetProductRequest.reflection.fieldsById[1].defaultValue
+GetProductRequest.$type.generatedObject = GetProductRequest
+GetProductRequest.prototype.name = GetProductRequest.$type.fieldsById[1].defaultValue
 
 
 /**
@@ -54,89 +28,37 @@ GetProductRequest.prototype.name = GetProductRequest.reflection.fieldsById[1].de
  */
 export interface IBatchGetProductsRequest {
     /** 商品的资源名 */
-    names?: (string[] | null)
+    names?: readonly string[]
 }
 
-export class BatchGetProductsRequest extends $sisyphus.Message<IBatchGetProductsRequest> implements IBatchGetProductsRequest {
-    names!: (string[] | null)
-    get $reflection() {
-        return BatchGetProductsRequest.reflection
+export class BatchGetProductsRequest extends $protobuf.Message<BatchGetProductsRequest> implements IBatchGetProductsRequest {
+    names!: readonly string[]
+    get $type() {
+        return BatchGetProductsRequest.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.shop.v1.BatchGetProductsRequest")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): BatchGetProductsRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    if (!result.names) result.names = []
-                    result.names.push(reader.string())
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): BatchGetProductsRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IBatchGetProductsRequest): BatchGetProductsRequest {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("names") && properties.names !== undefined) result.names = properties.names
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.BatchGetProductsRequest")
 }
-BatchGetProductsRequest.prototype.names = BatchGetProductsRequest.reflection.fieldsById[1].defaultValue
+BatchGetProductsRequest.$type.generatedObject = BatchGetProductsRequest
+BatchGetProductsRequest.prototype.names = BatchGetProductsRequest.$type.fieldsById[1].defaultValue
 
 
 /** 批量获取商品资源的 API 响应 */
 export interface IBatchGetProductsResponse {
     /** 返回的商品资源 */
-    products?: ($product.IProduct[] | null)
+    products?: readonly $product.IProduct[]
 }
 
-export class BatchGetProductsResponse extends $sisyphus.Message<IBatchGetProductsResponse> implements IBatchGetProductsResponse {
-    products!: ($product.IProduct[] | null)
-    get $reflection() {
-        return BatchGetProductsResponse.reflection
+export class BatchGetProductsResponse extends $protobuf.Message<BatchGetProductsResponse> implements IBatchGetProductsResponse {
+    products!: readonly $product.Product[]
+    get $type() {
+        return BatchGetProductsResponse.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.shop.v1.BatchGetProductsResponse")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): BatchGetProductsResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    if (!result.products) result.products = []
-                    result.products.push($product.Product.decodeDelimited(reader))
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): BatchGetProductsResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IBatchGetProductsResponse): BatchGetProductsResponse {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("products") && properties.products != null) result.products = properties.products.map(it => $product.Product.create(it))
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.BatchGetProductsResponse")
 }
-BatchGetProductsResponse.prototype.products = BatchGetProductsResponse.reflection.fieldsById[1].defaultValue
+BatchGetProductsResponse.$type.generatedObject = BatchGetProductsResponse
+BatchGetProductsResponse.prototype.products = BatchGetProductsResponse.$type.fieldsById[1].defaultValue
 
 
 /**
@@ -155,108 +77,41 @@ export interface IListProductsRequest {
     orderBy?: string
 }
 
-export class ListProductsRequest extends $sisyphus.Message<IListProductsRequest> implements IListProductsRequest {
+export class ListProductsRequest extends $protobuf.Message<ListProductsRequest> implements IListProductsRequest {
     filter!: string
     pageSize!: number
     pageToken!: string
     orderBy!: string
-    get $reflection() {
-        return ListProductsRequest.reflection
+    get $type() {
+        return ListProductsRequest.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.shop.v1.ListProductsRequest")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): ListProductsRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.filter = reader.string()
-                    break
-                case 2:
-                    result.pageSize = reader.int32()
-                    break
-                case 3:
-                    result.pageToken = reader.string()
-                    break
-                case 4:
-                    result.orderBy = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): ListProductsRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IListProductsRequest): ListProductsRequest {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("filter") && properties.filter !== undefined) result.filter = properties.filter
-        if(properties.hasOwnProperty("pageSize") && properties.pageSize !== undefined) result.pageSize = properties.pageSize
-        if(properties.hasOwnProperty("pageToken") && properties.pageToken !== undefined) result.pageToken = properties.pageToken
-        if(properties.hasOwnProperty("orderBy") && properties.orderBy !== undefined) result.orderBy = properties.orderBy
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.ListProductsRequest")
 }
-ListProductsRequest.prototype.filter = ListProductsRequest.reflection.fieldsById[1].defaultValue
-ListProductsRequest.prototype.pageSize = ListProductsRequest.reflection.fieldsById[2].defaultValue
-ListProductsRequest.prototype.pageToken = ListProductsRequest.reflection.fieldsById[3].defaultValue
-ListProductsRequest.prototype.orderBy = ListProductsRequest.reflection.fieldsById[4].defaultValue
+ListProductsRequest.$type.generatedObject = ListProductsRequest
+ListProductsRequest.prototype.filter = ListProductsRequest.$type.fieldsById[1].defaultValue
+ListProductsRequest.prototype.pageSize = ListProductsRequest.$type.fieldsById[2].defaultValue
+ListProductsRequest.prototype.pageToken = ListProductsRequest.$type.fieldsById[3].defaultValue
+ListProductsRequest.prototype.orderBy = ListProductsRequest.$type.fieldsById[4].defaultValue
 
 
 /** 列举商品资源的 API 响应 */
 export interface IListProductsResponse {
     /** 返回的商品资源 */
-    products?: ($product.IProduct[] | null)
+    products?: readonly $product.IProduct[]
     /** 下一页所需要的翻页信息 */
     nextPageToken?: string
 }
 
-export class ListProductsResponse extends $sisyphus.Message<IListProductsResponse> implements IListProductsResponse {
-    products!: ($product.IProduct[] | null)
+export class ListProductsResponse extends $protobuf.Message<ListProductsResponse> implements IListProductsResponse {
+    products!: readonly $product.Product[]
     nextPageToken!: string
-    get $reflection() {
-        return ListProductsResponse.reflection
+    get $type() {
+        return ListProductsResponse.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.shop.v1.ListProductsResponse")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): ListProductsResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    if (!result.products) result.products = []
-                    result.products.push($product.Product.decodeDelimited(reader))
-                    break
-                case 2:
-                    result.nextPageToken = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): ListProductsResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IListProductsResponse): ListProductsResponse {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("products") && properties.products != null) result.products = properties.products.map(it => $product.Product.create(it))
-        if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.ListProductsResponse")
 }
-ListProductsResponse.prototype.products = ListProductsResponse.reflection.fieldsById[1].defaultValue
-ListProductsResponse.prototype.nextPageToken = ListProductsResponse.reflection.fieldsById[2].defaultValue
+ListProductsResponse.$type.generatedObject = ListProductsResponse
+ListProductsResponse.prototype.products = ListProductsResponse.$type.fieldsById[1].defaultValue
+ListProductsResponse.prototype.nextPageToken = ListProductsResponse.$type.fieldsById[2].defaultValue

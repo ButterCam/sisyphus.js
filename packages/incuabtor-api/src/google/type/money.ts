@@ -1,5 +1,4 @@
 import * as $protobuf from "protobufjs"
-import * as $sisyphus from "@sisyphus.js/core"
 import * as $reflection from "../../_reflection"
 
 
@@ -23,50 +22,17 @@ export interface IMoney {
     nanos?: number
 }
 
-export class Money extends $sisyphus.Message<IMoney> implements IMoney {
+export class Money extends $protobuf.Message<Money> implements IMoney {
     currencyCode!: string
     units!: $protobuf.Long
     nanos!: number
-    get $reflection() {
-        return Money.reflection
+    get $type() {
+        return Money.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".google.type.Money")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): Money {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.currencyCode = reader.string()
-                    break
-                case 2:
-                    result.units = reader.int64()
-                    break
-                case 3:
-                    result.nanos = reader.int32()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): Money {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IMoney): Money {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("currencyCode") && properties.currencyCode !== undefined) result.currencyCode = properties.currencyCode
-        if(properties.hasOwnProperty("units") && properties.units !== undefined) result.units = properties.units
-        if(properties.hasOwnProperty("nanos") && properties.nanos !== undefined) result.nanos = properties.nanos
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".google.type.Money")
 }
-Money.prototype.currencyCode = Money.reflection.fieldsById[1].defaultValue
-Money.prototype.units = Money.reflection.fieldsById[2].defaultValue
-Money.prototype.nanos = Money.reflection.fieldsById[3].defaultValue
+Money.$type.generatedObject = Money
+Money.prototype.currencyCode = Money.$type.fieldsById[1].defaultValue
+Money.prototype.units = Money.$type.fieldsById[2].defaultValue
+Money.prototype.nanos = Money.$type.fieldsById[3].defaultValue

@@ -1,6 +1,5 @@
-import * as $sisyphus from "@sisyphus.js/core"
-import * as $reflection from "../../_reflection"
 import * as $protobuf from "protobufjs"
+import * as $reflection from "../../_reflection"
 import * as $resource from "../api/resource"
 import * as $fieldBehavior from "../api/field_behavior"
 import * as $serviceMeta from "../../sisyphus/api/service_meta"
@@ -14,45 +13,19 @@ import * as $operations from "../longrunning/operations"
  * files it parses.
  */
 export interface IFileDescriptorSet {
-    file?: (IFileDescriptorProto[] | null)
+    file?: readonly IFileDescriptorProto[]
 }
 
-export class FileDescriptorSet extends $sisyphus.Message<IFileDescriptorSet> implements IFileDescriptorSet {
-    file!: (IFileDescriptorProto[] | null)
-    get $reflection() {
-        return FileDescriptorSet.reflection
+export class FileDescriptorSet extends $protobuf.Message<FileDescriptorSet> implements IFileDescriptorSet {
+    file!: readonly FileDescriptorProto[]
+    get $type() {
+        return FileDescriptorSet.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".google.protobuf.FileDescriptorSet")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): FileDescriptorSet {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    if (!result.file) result.file = []
-                    result.file.push(FileDescriptorProto.decodeDelimited(reader))
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): FileDescriptorSet {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IFileDescriptorSet): FileDescriptorSet {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("file") && properties.file != null) result.file = properties.file.map(it => FileDescriptorProto.create(it))
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".google.protobuf.FileDescriptorSet")
 }
-FileDescriptorSet.prototype.file = FileDescriptorSet.reflection.fieldsById[1].defaultValue
+FileDescriptorSet.$type.generatedObject = FileDescriptorSet
+FileDescriptorSet.prototype.file = FileDescriptorSet.$type.fieldsById[1].defaultValue
 
 
 /** Describes a complete .proto file. */
@@ -61,27 +34,27 @@ export interface IFileDescriptorProto {
     name?: string
     package?: string
     /** Names of files imported by this file. */
-    dependency?: (string[] | null)
+    dependency?: readonly string[]
     /** Indexes of the public imported files in the dependency list above. */
-    publicDependency?: (number[] | null)
+    publicDependency?: readonly number[]
     /**
      * Indexes of the weak imported files in the dependency list.
      * For Google-internal migration only. Do not use.
      */
-    weakDependency?: (number[] | null)
+    weakDependency?: readonly number[]
     /** All top-level definitions in this file. */
-    messageType?: (IDescriptorProto[] | null)
-    enumType?: (IEnumDescriptorProto[] | null)
-    service?: (IServiceDescriptorProto[] | null)
-    extension?: (IFieldDescriptorProto[] | null)
-    options?: (IFileOptions | null)
+    messageType?: readonly IDescriptorProto[]
+    enumType?: readonly IEnumDescriptorProto[]
+    service?: readonly IServiceDescriptorProto[]
+    extension?: readonly IFieldDescriptorProto[]
+    options?: IFileOptions
     /**
      * This field contains optional information about the original source code.
      * You may safely remove this entire field without harming runtime
      * functionality of the descriptors -- the information is needed only by
      * development tools.
      */
-    sourceCodeInfo?: (ISourceCodeInfo | null)
+    sourceCodeInfo?: ISourceCodeInfo
     /**
      * The syntax of the proto file.
      * The supported values are "proto2" and "proto3".
@@ -89,231 +62,86 @@ export interface IFileDescriptorProto {
     syntax?: string
 }
 
-export class FileDescriptorProto extends $sisyphus.Message<IFileDescriptorProto> implements IFileDescriptorProto {
+export class FileDescriptorProto extends $protobuf.Message<FileDescriptorProto> implements IFileDescriptorProto {
     name!: string
     package!: string
-    dependency!: (string[] | null)
-    publicDependency!: (number[] | null)
-    weakDependency!: (number[] | null)
-    messageType!: (IDescriptorProto[] | null)
-    enumType!: (IEnumDescriptorProto[] | null)
-    service!: (IServiceDescriptorProto[] | null)
-    extension!: (IFieldDescriptorProto[] | null)
-    options!: (IFileOptions | null)
-    sourceCodeInfo!: (ISourceCodeInfo | null)
+    dependency!: readonly string[]
+    publicDependency!: readonly number[]
+    weakDependency!: readonly number[]
+    messageType!: readonly DescriptorProto[]
+    enumType!: readonly EnumDescriptorProto[]
+    service!: readonly ServiceDescriptorProto[]
+    extension!: readonly FieldDescriptorProto[]
+    options!: FileOptions
+    sourceCodeInfo!: SourceCodeInfo
     syntax!: string
-    get $reflection() {
-        return FileDescriptorProto.reflection
+    get $type() {
+        return FileDescriptorProto.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".google.protobuf.FileDescriptorProto")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): FileDescriptorProto {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.name = reader.string()
-                    break
-                case 2:
-                    result["package"] = reader.string()
-                    break
-                case 3:
-                    if (!result.dependency) result.dependency = []
-                    result.dependency.push(reader.string())
-                    break
-                case 10:
-                    if (!result.publicDependency) result.publicDependency = []
-                    result.publicDependency.push(reader.int32())
-                    break
-                case 11:
-                    if (!result.weakDependency) result.weakDependency = []
-                    result.weakDependency.push(reader.int32())
-                    break
-                case 4:
-                    if (!result.messageType) result.messageType = []
-                    result.messageType.push(DescriptorProto.decodeDelimited(reader))
-                    break
-                case 5:
-                    if (!result.enumType) result.enumType = []
-                    result.enumType.push(EnumDescriptorProto.decodeDelimited(reader))
-                    break
-                case 6:
-                    if (!result.service) result.service = []
-                    result.service.push(ServiceDescriptorProto.decodeDelimited(reader))
-                    break
-                case 7:
-                    if (!result.extension) result.extension = []
-                    result.extension.push(FieldDescriptorProto.decodeDelimited(reader))
-                    break
-                case 8:
-                    result.options = FileOptions.decodeDelimited(reader)
-                    break
-                case 9:
-                    result.sourceCodeInfo = SourceCodeInfo.decodeDelimited(reader)
-                    break
-                case 12:
-                    result.syntax = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): FileDescriptorProto {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IFileDescriptorProto): FileDescriptorProto {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        if(properties.hasOwnProperty("package") && properties["package"] !== undefined) result["package"] = properties["package"]
-        if(properties.hasOwnProperty("dependency") && properties.dependency !== undefined) result.dependency = properties.dependency
-        if(properties.hasOwnProperty("publicDependency") && properties.publicDependency !== undefined) result.publicDependency = properties.publicDependency
-        if(properties.hasOwnProperty("weakDependency") && properties.weakDependency !== undefined) result.weakDependency = properties.weakDependency
-        if(properties.hasOwnProperty("messageType") && properties.messageType != null) result.messageType = properties.messageType.map(it => DescriptorProto.create(it))
-        if(properties.hasOwnProperty("enumType") && properties.enumType != null) result.enumType = properties.enumType.map(it => EnumDescriptorProto.create(it))
-        if(properties.hasOwnProperty("service") && properties.service != null) result.service = properties.service.map(it => ServiceDescriptorProto.create(it))
-        if(properties.hasOwnProperty("extension") && properties.extension != null) result.extension = properties.extension.map(it => FieldDescriptorProto.create(it))
-        if(properties.hasOwnProperty("options") && properties.options != null) result.options = FileOptions.create(properties.options)
-        if(properties.hasOwnProperty("sourceCodeInfo") && properties.sourceCodeInfo != null) result.sourceCodeInfo = SourceCodeInfo.create(properties.sourceCodeInfo)
-        if(properties.hasOwnProperty("syntax") && properties.syntax !== undefined) result.syntax = properties.syntax
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".google.protobuf.FileDescriptorProto")
 }
-FileDescriptorProto.prototype.name = FileDescriptorProto.reflection.fieldsById[1].defaultValue
-FileDescriptorProto.prototype["package"] = FileDescriptorProto.reflection.fieldsById[2].defaultValue
-FileDescriptorProto.prototype.dependency = FileDescriptorProto.reflection.fieldsById[3].defaultValue
-FileDescriptorProto.prototype.publicDependency = FileDescriptorProto.reflection.fieldsById[10].defaultValue
-FileDescriptorProto.prototype.weakDependency = FileDescriptorProto.reflection.fieldsById[11].defaultValue
-FileDescriptorProto.prototype.messageType = FileDescriptorProto.reflection.fieldsById[4].defaultValue
-FileDescriptorProto.prototype.enumType = FileDescriptorProto.reflection.fieldsById[5].defaultValue
-FileDescriptorProto.prototype.service = FileDescriptorProto.reflection.fieldsById[6].defaultValue
-FileDescriptorProto.prototype.extension = FileDescriptorProto.reflection.fieldsById[7].defaultValue
-FileDescriptorProto.prototype.options = FileDescriptorProto.reflection.fieldsById[8].defaultValue
-FileDescriptorProto.prototype.sourceCodeInfo = FileDescriptorProto.reflection.fieldsById[9].defaultValue
-FileDescriptorProto.prototype.syntax = FileDescriptorProto.reflection.fieldsById[12].defaultValue
+FileDescriptorProto.$type.generatedObject = FileDescriptorProto
+FileDescriptorProto.prototype.name = FileDescriptorProto.$type.fieldsById[1].defaultValue
+FileDescriptorProto.prototype["package"] = FileDescriptorProto.$type.fieldsById[2].defaultValue
+FileDescriptorProto.prototype.dependency = FileDescriptorProto.$type.fieldsById[3].defaultValue
+FileDescriptorProto.prototype.publicDependency = FileDescriptorProto.$type.fieldsById[10].defaultValue
+FileDescriptorProto.prototype.weakDependency = FileDescriptorProto.$type.fieldsById[11].defaultValue
+FileDescriptorProto.prototype.messageType = FileDescriptorProto.$type.fieldsById[4].defaultValue
+FileDescriptorProto.prototype.enumType = FileDescriptorProto.$type.fieldsById[5].defaultValue
+FileDescriptorProto.prototype.service = FileDescriptorProto.$type.fieldsById[6].defaultValue
+FileDescriptorProto.prototype.extension = FileDescriptorProto.$type.fieldsById[7].defaultValue
+FileDescriptorProto.prototype.options = FileDescriptorProto.$type.fieldsById[8].defaultValue
+FileDescriptorProto.prototype.sourceCodeInfo = FileDescriptorProto.$type.fieldsById[9].defaultValue
+FileDescriptorProto.prototype.syntax = FileDescriptorProto.$type.fieldsById[12].defaultValue
 
 
 /** Describes a message type. */
 export interface IDescriptorProto {
     name?: string
-    field?: (IFieldDescriptorProto[] | null)
-    extension?: (IFieldDescriptorProto[] | null)
-    nestedType?: (IDescriptorProto[] | null)
-    enumType?: (IEnumDescriptorProto[] | null)
-    extensionRange?: (DescriptorProto.IExtensionRange[] | null)
-    oneofDecl?: (IOneofDescriptorProto[] | null)
-    options?: (IMessageOptions | null)
-    reservedRange?: (DescriptorProto.IReservedRange[] | null)
+    field?: readonly IFieldDescriptorProto[]
+    extension?: readonly IFieldDescriptorProto[]
+    nestedType?: readonly IDescriptorProto[]
+    enumType?: readonly IEnumDescriptorProto[]
+    extensionRange?: readonly DescriptorProto.IExtensionRange[]
+    oneofDecl?: readonly IOneofDescriptorProto[]
+    options?: IMessageOptions
+    reservedRange?: readonly DescriptorProto.IReservedRange[]
     /**
      * Reserved field names, which may not be used by fields in the same message.
      * A given name may only be reserved once.
      */
-    reservedName?: (string[] | null)
+    reservedName?: readonly string[]
 }
 
-export class DescriptorProto extends $sisyphus.Message<IDescriptorProto> implements IDescriptorProto {
+export class DescriptorProto extends $protobuf.Message<DescriptorProto> implements IDescriptorProto {
     name!: string
-    field!: (IFieldDescriptorProto[] | null)
-    extension!: (IFieldDescriptorProto[] | null)
-    nestedType!: (IDescriptorProto[] | null)
-    enumType!: (IEnumDescriptorProto[] | null)
-    extensionRange!: (DescriptorProto.IExtensionRange[] | null)
-    oneofDecl!: (IOneofDescriptorProto[] | null)
-    options!: (IMessageOptions | null)
-    reservedRange!: (DescriptorProto.IReservedRange[] | null)
-    reservedName!: (string[] | null)
-    get $reflection() {
-        return DescriptorProto.reflection
+    field!: readonly FieldDescriptorProto[]
+    extension!: readonly FieldDescriptorProto[]
+    nestedType!: readonly DescriptorProto[]
+    enumType!: readonly EnumDescriptorProto[]
+    extensionRange!: readonly DescriptorProto.ExtensionRange[]
+    oneofDecl!: readonly OneofDescriptorProto[]
+    options!: MessageOptions
+    reservedRange!: readonly DescriptorProto.ReservedRange[]
+    reservedName!: readonly string[]
+    get $type() {
+        return DescriptorProto.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".google.protobuf.DescriptorProto")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): DescriptorProto {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.name = reader.string()
-                    break
-                case 2:
-                    if (!result.field) result.field = []
-                    result.field.push(FieldDescriptorProto.decodeDelimited(reader))
-                    break
-                case 6:
-                    if (!result.extension) result.extension = []
-                    result.extension.push(FieldDescriptorProto.decodeDelimited(reader))
-                    break
-                case 3:
-                    if (!result.nestedType) result.nestedType = []
-                    result.nestedType.push(DescriptorProto.decodeDelimited(reader))
-                    break
-                case 4:
-                    if (!result.enumType) result.enumType = []
-                    result.enumType.push(EnumDescriptorProto.decodeDelimited(reader))
-                    break
-                case 5:
-                    if (!result.extensionRange) result.extensionRange = []
-                    result.extensionRange.push(DescriptorProto.ExtensionRange.decodeDelimited(reader))
-                    break
-                case 8:
-                    if (!result.oneofDecl) result.oneofDecl = []
-                    result.oneofDecl.push(OneofDescriptorProto.decodeDelimited(reader))
-                    break
-                case 7:
-                    result.options = MessageOptions.decodeDelimited(reader)
-                    break
-                case 9:
-                    if (!result.reservedRange) result.reservedRange = []
-                    result.reservedRange.push(DescriptorProto.ReservedRange.decodeDelimited(reader))
-                    break
-                case 10:
-                    if (!result.reservedName) result.reservedName = []
-                    result.reservedName.push(reader.string())
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): DescriptorProto {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IDescriptorProto): DescriptorProto {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        if(properties.hasOwnProperty("field") && properties.field != null) result.field = properties.field.map(it => FieldDescriptorProto.create(it))
-        if(properties.hasOwnProperty("extension") && properties.extension != null) result.extension = properties.extension.map(it => FieldDescriptorProto.create(it))
-        if(properties.hasOwnProperty("nestedType") && properties.nestedType != null) result.nestedType = properties.nestedType.map(it => DescriptorProto.create(it))
-        if(properties.hasOwnProperty("enumType") && properties.enumType != null) result.enumType = properties.enumType.map(it => EnumDescriptorProto.create(it))
-        if(properties.hasOwnProperty("extensionRange") && properties.extensionRange != null) result.extensionRange = properties.extensionRange.map(it => DescriptorProto.ExtensionRange.create(it))
-        if(properties.hasOwnProperty("oneofDecl") && properties.oneofDecl != null) result.oneofDecl = properties.oneofDecl.map(it => OneofDescriptorProto.create(it))
-        if(properties.hasOwnProperty("options") && properties.options != null) result.options = MessageOptions.create(properties.options)
-        if(properties.hasOwnProperty("reservedRange") && properties.reservedRange != null) result.reservedRange = properties.reservedRange.map(it => DescriptorProto.ReservedRange.create(it))
-        if(properties.hasOwnProperty("reservedName") && properties.reservedName !== undefined) result.reservedName = properties.reservedName
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".google.protobuf.DescriptorProto")
 }
-DescriptorProto.prototype.name = DescriptorProto.reflection.fieldsById[1].defaultValue
-DescriptorProto.prototype.field = DescriptorProto.reflection.fieldsById[2].defaultValue
-DescriptorProto.prototype.extension = DescriptorProto.reflection.fieldsById[6].defaultValue
-DescriptorProto.prototype.nestedType = DescriptorProto.reflection.fieldsById[3].defaultValue
-DescriptorProto.prototype.enumType = DescriptorProto.reflection.fieldsById[4].defaultValue
-DescriptorProto.prototype.extensionRange = DescriptorProto.reflection.fieldsById[5].defaultValue
-DescriptorProto.prototype.oneofDecl = DescriptorProto.reflection.fieldsById[8].defaultValue
-DescriptorProto.prototype.options = DescriptorProto.reflection.fieldsById[7].defaultValue
-DescriptorProto.prototype.reservedRange = DescriptorProto.reflection.fieldsById[9].defaultValue
-DescriptorProto.prototype.reservedName = DescriptorProto.reflection.fieldsById[10].defaultValue
+DescriptorProto.$type.generatedObject = DescriptorProto
+DescriptorProto.prototype.name = DescriptorProto.$type.fieldsById[1].defaultValue
+DescriptorProto.prototype.field = DescriptorProto.$type.fieldsById[2].defaultValue
+DescriptorProto.prototype.extension = DescriptorProto.$type.fieldsById[6].defaultValue
+DescriptorProto.prototype.nestedType = DescriptorProto.$type.fieldsById[3].defaultValue
+DescriptorProto.prototype.enumType = DescriptorProto.$type.fieldsById[4].defaultValue
+DescriptorProto.prototype.extensionRange = DescriptorProto.$type.fieldsById[5].defaultValue
+DescriptorProto.prototype.oneofDecl = DescriptorProto.$type.fieldsById[8].defaultValue
+DescriptorProto.prototype.options = DescriptorProto.$type.fieldsById[7].defaultValue
+DescriptorProto.prototype.reservedRange = DescriptorProto.$type.fieldsById[9].defaultValue
+DescriptorProto.prototype.reservedName = DescriptorProto.$type.fieldsById[10].defaultValue
 
 export namespace DescriptorProto {
 
@@ -322,56 +150,23 @@ export namespace DescriptorProto {
         start?: number
         /** Exclusive. */
         end?: number
-        options?: (IExtensionRangeOptions | null)
+        options?: IExtensionRangeOptions
     }
 
-    export class ExtensionRange extends $sisyphus.Message<IExtensionRange> implements IExtensionRange {
+    export class ExtensionRange extends $protobuf.Message<ExtensionRange> implements IExtensionRange {
         start!: number
         end!: number
-        options!: (IExtensionRangeOptions | null)
-        get $reflection() {
-            return ExtensionRange.reflection
+        options!: ExtensionRangeOptions
+        get $type() {
+            return ExtensionRange.$type
         }
 
-        static readonly reflection = $reflection.root.lookupType(".google.protobuf.DescriptorProto.ExtensionRange")
-        static decode(reader: Uint8Array | $protobuf.Reader, length?: number): ExtensionRange {
-            if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-            const end = length === undefined ? reader.len : reader.pos + length
-            const result = new this()
-            while(reader.pos < end) {
-                let tag = reader.uint32()
-                switch(tag>>>3) {
-                    case 1:
-                        result.start = reader.int32()
-                        break
-                    case 2:
-                        result.end = reader.int32()
-                        break
-                    case 3:
-                        result.options = ExtensionRangeOptions.decodeDelimited(reader)
-                        break
-                }
-            }
-            return result
-        }
-
-        static decodeDelimited(reader: Uint8Array | $protobuf.Reader): ExtensionRange {
-            if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-            return this.decode(reader, reader.uint32())
-        }
-        static create(properties?: IExtensionRange): ExtensionRange {
-            if(properties instanceof this) return properties
-            const result = new this()
-            if (!properties) return result
-            if(properties.hasOwnProperty("start") && properties.start !== undefined) result.start = properties.start
-            if(properties.hasOwnProperty("end") && properties.end !== undefined) result.end = properties.end
-            if(properties.hasOwnProperty("options") && properties.options != null) result.options = ExtensionRangeOptions.create(properties.options)
-            return result
-        }
+        static readonly $type = $reflection.root.lookupType(".google.protobuf.DescriptorProto.ExtensionRange")
     }
-    ExtensionRange.prototype.start = ExtensionRange.reflection.fieldsById[1].defaultValue
-    ExtensionRange.prototype.end = ExtensionRange.reflection.fieldsById[2].defaultValue
-    ExtensionRange.prototype.options = ExtensionRange.reflection.fieldsById[3].defaultValue
+    ExtensionRange.$type.generatedObject = ExtensionRange
+    ExtensionRange.prototype.start = ExtensionRange.$type.fieldsById[1].defaultValue
+    ExtensionRange.prototype.end = ExtensionRange.$type.fieldsById[2].defaultValue
+    ExtensionRange.prototype.options = ExtensionRange.$type.fieldsById[3].defaultValue
 
 
     /**
@@ -386,90 +181,35 @@ export namespace DescriptorProto {
         end?: number
     }
 
-    export class ReservedRange extends $sisyphus.Message<IReservedRange> implements IReservedRange {
+    export class ReservedRange extends $protobuf.Message<ReservedRange> implements IReservedRange {
         start!: number
         end!: number
-        get $reflection() {
-            return ReservedRange.reflection
+        get $type() {
+            return ReservedRange.$type
         }
 
-        static readonly reflection = $reflection.root.lookupType(".google.protobuf.DescriptorProto.ReservedRange")
-        static decode(reader: Uint8Array | $protobuf.Reader, length?: number): ReservedRange {
-            if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-            const end = length === undefined ? reader.len : reader.pos + length
-            const result = new this()
-            while(reader.pos < end) {
-                let tag = reader.uint32()
-                switch(tag>>>3) {
-                    case 1:
-                        result.start = reader.int32()
-                        break
-                    case 2:
-                        result.end = reader.int32()
-                        break
-                }
-            }
-            return result
-        }
-
-        static decodeDelimited(reader: Uint8Array | $protobuf.Reader): ReservedRange {
-            if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-            return this.decode(reader, reader.uint32())
-        }
-        static create(properties?: IReservedRange): ReservedRange {
-            if(properties instanceof this) return properties
-            const result = new this()
-            if (!properties) return result
-            if(properties.hasOwnProperty("start") && properties.start !== undefined) result.start = properties.start
-            if(properties.hasOwnProperty("end") && properties.end !== undefined) result.end = properties.end
-            return result
-        }
+        static readonly $type = $reflection.root.lookupType(".google.protobuf.DescriptorProto.ReservedRange")
     }
-    ReservedRange.prototype.start = ReservedRange.reflection.fieldsById[1].defaultValue
-    ReservedRange.prototype.end = ReservedRange.reflection.fieldsById[2].defaultValue
+    ReservedRange.$type.generatedObject = ReservedRange
+    ReservedRange.prototype.start = ReservedRange.$type.fieldsById[1].defaultValue
+    ReservedRange.prototype.end = ReservedRange.$type.fieldsById[2].defaultValue
 }
 
 export interface IExtensionRangeOptions {
     /** The parser stores options it doesn't recognize here. See above. */
-    uninterpretedOption?: (IUninterpretedOption[] | null)
+    uninterpretedOption?: readonly IUninterpretedOption[]
 }
 
-export class ExtensionRangeOptions extends $sisyphus.Message<IExtensionRangeOptions> implements IExtensionRangeOptions {
-    uninterpretedOption!: (IUninterpretedOption[] | null)
-    get $reflection() {
-        return ExtensionRangeOptions.reflection
+export class ExtensionRangeOptions extends $protobuf.Message<ExtensionRangeOptions> implements IExtensionRangeOptions {
+    uninterpretedOption!: readonly UninterpretedOption[]
+    get $type() {
+        return ExtensionRangeOptions.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".google.protobuf.ExtensionRangeOptions")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): ExtensionRangeOptions {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 999:
-                    if (!result.uninterpretedOption) result.uninterpretedOption = []
-                    result.uninterpretedOption.push(UninterpretedOption.decodeDelimited(reader))
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): ExtensionRangeOptions {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IExtensionRangeOptions): ExtensionRangeOptions {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("uninterpretedOption") && properties.uninterpretedOption != null) result.uninterpretedOption = properties.uninterpretedOption.map(it => UninterpretedOption.create(it))
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".google.protobuf.ExtensionRangeOptions")
 }
-ExtensionRangeOptions.prototype.uninterpretedOption = ExtensionRangeOptions.reflection.fieldsById[999].defaultValue
+ExtensionRangeOptions.$type.generatedObject = ExtensionRangeOptions
+ExtensionRangeOptions.prototype.uninterpretedOption = ExtensionRangeOptions.$type.fieldsById[999].defaultValue
 
 
 /** Describes a field within a message. */
@@ -515,7 +255,7 @@ export interface IFieldDescriptorProto {
      * it to camelCase.
      */
     jsonName?: string
-    options?: (IFieldOptions | null)
+    options?: IFieldOptions
     /**
      * If true, this is a proto3 "optional". When a proto3 field is optional, it
      * tracks presence regardless of field type.
@@ -542,7 +282,7 @@ export interface IFieldDescriptorProto {
     proto3Optional?: boolean
 }
 
-export class FieldDescriptorProto extends $sisyphus.Message<IFieldDescriptorProto> implements IFieldDescriptorProto {
+export class FieldDescriptorProto extends $protobuf.Message<FieldDescriptorProto> implements IFieldDescriptorProto {
     name!: string
     number!: number
     label!: FieldDescriptorProto.Label
@@ -552,91 +292,26 @@ export class FieldDescriptorProto extends $sisyphus.Message<IFieldDescriptorProt
     defaultValue!: string
     oneofIndex!: number
     jsonName!: string
-    options!: (IFieldOptions | null)
+    options!: FieldOptions
     proto3Optional!: boolean
-    get $reflection() {
-        return FieldDescriptorProto.reflection
+    get $type() {
+        return FieldDescriptorProto.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".google.protobuf.FieldDescriptorProto")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): FieldDescriptorProto {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.name = reader.string()
-                    break
-                case 3:
-                    result.number = reader.int32()
-                    break
-                case 4:
-                    result.label = reader.uint32()
-                    break
-                case 5:
-                    result.type = reader.uint32()
-                    break
-                case 6:
-                    result.typeName = reader.string()
-                    break
-                case 2:
-                    result.extendee = reader.string()
-                    break
-                case 7:
-                    result.defaultValue = reader.string()
-                    break
-                case 9:
-                    result.oneofIndex = reader.int32()
-                    break
-                case 10:
-                    result.jsonName = reader.string()
-                    break
-                case 8:
-                    result.options = FieldOptions.decodeDelimited(reader)
-                    break
-                case 17:
-                    result.proto3Optional = reader.bool()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): FieldDescriptorProto {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IFieldDescriptorProto): FieldDescriptorProto {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        if(properties.hasOwnProperty("number") && properties.number !== undefined) result.number = properties.number
-        if(properties.hasOwnProperty("label") && properties.label !== undefined) result.label = properties.label
-        if(properties.hasOwnProperty("type") && properties.type !== undefined) result.type = properties.type
-        if(properties.hasOwnProperty("typeName") && properties.typeName !== undefined) result.typeName = properties.typeName
-        if(properties.hasOwnProperty("extendee") && properties.extendee !== undefined) result.extendee = properties.extendee
-        if(properties.hasOwnProperty("defaultValue") && properties.defaultValue !== undefined) result.defaultValue = properties.defaultValue
-        if(properties.hasOwnProperty("oneofIndex") && properties.oneofIndex !== undefined) result.oneofIndex = properties.oneofIndex
-        if(properties.hasOwnProperty("jsonName") && properties.jsonName !== undefined) result.jsonName = properties.jsonName
-        if(properties.hasOwnProperty("options") && properties.options != null) result.options = FieldOptions.create(properties.options)
-        if(properties.hasOwnProperty("proto3Optional") && properties.proto3Optional !== undefined) result.proto3Optional = properties.proto3Optional
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".google.protobuf.FieldDescriptorProto")
 }
-FieldDescriptorProto.prototype.name = FieldDescriptorProto.reflection.fieldsById[1].defaultValue
-FieldDescriptorProto.prototype.number = FieldDescriptorProto.reflection.fieldsById[3].defaultValue
-FieldDescriptorProto.prototype.label = FieldDescriptorProto.reflection.fieldsById[4].defaultValue
-FieldDescriptorProto.prototype.type = FieldDescriptorProto.reflection.fieldsById[5].defaultValue
-FieldDescriptorProto.prototype.typeName = FieldDescriptorProto.reflection.fieldsById[6].defaultValue
-FieldDescriptorProto.prototype.extendee = FieldDescriptorProto.reflection.fieldsById[2].defaultValue
-FieldDescriptorProto.prototype.defaultValue = FieldDescriptorProto.reflection.fieldsById[7].defaultValue
-FieldDescriptorProto.prototype.oneofIndex = FieldDescriptorProto.reflection.fieldsById[9].defaultValue
-FieldDescriptorProto.prototype.jsonName = FieldDescriptorProto.reflection.fieldsById[10].defaultValue
-FieldDescriptorProto.prototype.options = FieldDescriptorProto.reflection.fieldsById[8].defaultValue
-FieldDescriptorProto.prototype.proto3Optional = FieldDescriptorProto.reflection.fieldsById[17].defaultValue
+FieldDescriptorProto.$type.generatedObject = FieldDescriptorProto
+FieldDescriptorProto.prototype.name = FieldDescriptorProto.$type.fieldsById[1].defaultValue
+FieldDescriptorProto.prototype.number = FieldDescriptorProto.$type.fieldsById[3].defaultValue
+FieldDescriptorProto.prototype.label = FieldDescriptorProto.$type.fieldsById[4].defaultValue
+FieldDescriptorProto.prototype.type = FieldDescriptorProto.$type.fieldsById[5].defaultValue
+FieldDescriptorProto.prototype.typeName = FieldDescriptorProto.$type.fieldsById[6].defaultValue
+FieldDescriptorProto.prototype.extendee = FieldDescriptorProto.$type.fieldsById[2].defaultValue
+FieldDescriptorProto.prototype.defaultValue = FieldDescriptorProto.$type.fieldsById[7].defaultValue
+FieldDescriptorProto.prototype.oneofIndex = FieldDescriptorProto.$type.fieldsById[9].defaultValue
+FieldDescriptorProto.prototype.jsonName = FieldDescriptorProto.$type.fieldsById[10].defaultValue
+FieldDescriptorProto.prototype.options = FieldDescriptorProto.$type.fieldsById[8].defaultValue
+FieldDescriptorProto.prototype.proto3Optional = FieldDescriptorProto.$type.fieldsById[17].defaultValue
 
 export namespace FieldDescriptorProto {
 
@@ -701,132 +376,59 @@ export namespace FieldDescriptorProto {
 /** Describes a oneof. */
 export interface IOneofDescriptorProto {
     name?: string
-    options?: (IOneofOptions | null)
+    options?: IOneofOptions
 }
 
-export class OneofDescriptorProto extends $sisyphus.Message<IOneofDescriptorProto> implements IOneofDescriptorProto {
+export class OneofDescriptorProto extends $protobuf.Message<OneofDescriptorProto> implements IOneofDescriptorProto {
     name!: string
-    options!: (IOneofOptions | null)
-    get $reflection() {
-        return OneofDescriptorProto.reflection
+    options!: OneofOptions
+    get $type() {
+        return OneofDescriptorProto.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".google.protobuf.OneofDescriptorProto")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): OneofDescriptorProto {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.name = reader.string()
-                    break
-                case 2:
-                    result.options = OneofOptions.decodeDelimited(reader)
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): OneofDescriptorProto {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IOneofDescriptorProto): OneofDescriptorProto {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        if(properties.hasOwnProperty("options") && properties.options != null) result.options = OneofOptions.create(properties.options)
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".google.protobuf.OneofDescriptorProto")
 }
-OneofDescriptorProto.prototype.name = OneofDescriptorProto.reflection.fieldsById[1].defaultValue
-OneofDescriptorProto.prototype.options = OneofDescriptorProto.reflection.fieldsById[2].defaultValue
+OneofDescriptorProto.$type.generatedObject = OneofDescriptorProto
+OneofDescriptorProto.prototype.name = OneofDescriptorProto.$type.fieldsById[1].defaultValue
+OneofDescriptorProto.prototype.options = OneofDescriptorProto.$type.fieldsById[2].defaultValue
 
 
 /** Describes an enum type. */
 export interface IEnumDescriptorProto {
     name?: string
-    value?: (IEnumValueDescriptorProto[] | null)
-    options?: (IEnumOptions | null)
+    value?: readonly IEnumValueDescriptorProto[]
+    options?: IEnumOptions
     /**
      * Range of reserved numeric values. Reserved numeric values may not be used
      * by enum values in the same enum declaration. Reserved ranges may not
      * overlap.
      */
-    reservedRange?: (EnumDescriptorProto.IEnumReservedRange[] | null)
+    reservedRange?: readonly EnumDescriptorProto.IEnumReservedRange[]
     /**
      * Reserved enum value names, which may not be reused. A given name may only
      * be reserved once.
      */
-    reservedName?: (string[] | null)
+    reservedName?: readonly string[]
 }
 
-export class EnumDescriptorProto extends $sisyphus.Message<IEnumDescriptorProto> implements IEnumDescriptorProto {
+export class EnumDescriptorProto extends $protobuf.Message<EnumDescriptorProto> implements IEnumDescriptorProto {
     name!: string
-    value!: (IEnumValueDescriptorProto[] | null)
-    options!: (IEnumOptions | null)
-    reservedRange!: (EnumDescriptorProto.IEnumReservedRange[] | null)
-    reservedName!: (string[] | null)
-    get $reflection() {
-        return EnumDescriptorProto.reflection
+    value!: readonly EnumValueDescriptorProto[]
+    options!: EnumOptions
+    reservedRange!: readonly EnumDescriptorProto.EnumReservedRange[]
+    reservedName!: readonly string[]
+    get $type() {
+        return EnumDescriptorProto.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".google.protobuf.EnumDescriptorProto")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): EnumDescriptorProto {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.name = reader.string()
-                    break
-                case 2:
-                    if (!result.value) result.value = []
-                    result.value.push(EnumValueDescriptorProto.decodeDelimited(reader))
-                    break
-                case 3:
-                    result.options = EnumOptions.decodeDelimited(reader)
-                    break
-                case 4:
-                    if (!result.reservedRange) result.reservedRange = []
-                    result.reservedRange.push(EnumDescriptorProto.EnumReservedRange.decodeDelimited(reader))
-                    break
-                case 5:
-                    if (!result.reservedName) result.reservedName = []
-                    result.reservedName.push(reader.string())
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): EnumDescriptorProto {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IEnumDescriptorProto): EnumDescriptorProto {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        if(properties.hasOwnProperty("value") && properties.value != null) result.value = properties.value.map(it => EnumValueDescriptorProto.create(it))
-        if(properties.hasOwnProperty("options") && properties.options != null) result.options = EnumOptions.create(properties.options)
-        if(properties.hasOwnProperty("reservedRange") && properties.reservedRange != null) result.reservedRange = properties.reservedRange.map(it => EnumDescriptorProto.EnumReservedRange.create(it))
-        if(properties.hasOwnProperty("reservedName") && properties.reservedName !== undefined) result.reservedName = properties.reservedName
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".google.protobuf.EnumDescriptorProto")
 }
-EnumDescriptorProto.prototype.name = EnumDescriptorProto.reflection.fieldsById[1].defaultValue
-EnumDescriptorProto.prototype.value = EnumDescriptorProto.reflection.fieldsById[2].defaultValue
-EnumDescriptorProto.prototype.options = EnumDescriptorProto.reflection.fieldsById[3].defaultValue
-EnumDescriptorProto.prototype.reservedRange = EnumDescriptorProto.reflection.fieldsById[4].defaultValue
-EnumDescriptorProto.prototype.reservedName = EnumDescriptorProto.reflection.fieldsById[5].defaultValue
+EnumDescriptorProto.$type.generatedObject = EnumDescriptorProto
+EnumDescriptorProto.prototype.name = EnumDescriptorProto.$type.fieldsById[1].defaultValue
+EnumDescriptorProto.prototype.value = EnumDescriptorProto.$type.fieldsById[2].defaultValue
+EnumDescriptorProto.prototype.options = EnumDescriptorProto.$type.fieldsById[3].defaultValue
+EnumDescriptorProto.prototype.reservedRange = EnumDescriptorProto.$type.fieldsById[4].defaultValue
+EnumDescriptorProto.prototype.reservedName = EnumDescriptorProto.$type.fieldsById[5].defaultValue
 
 export namespace EnumDescriptorProto {
 
@@ -845,160 +447,64 @@ export namespace EnumDescriptorProto {
         end?: number
     }
 
-    export class EnumReservedRange extends $sisyphus.Message<IEnumReservedRange> implements IEnumReservedRange {
+    export class EnumReservedRange extends $protobuf.Message<EnumReservedRange> implements IEnumReservedRange {
         start!: number
         end!: number
-        get $reflection() {
-            return EnumReservedRange.reflection
+        get $type() {
+            return EnumReservedRange.$type
         }
 
-        static readonly reflection = $reflection.root.lookupType(".google.protobuf.EnumDescriptorProto.EnumReservedRange")
-        static decode(reader: Uint8Array | $protobuf.Reader, length?: number): EnumReservedRange {
-            if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-            const end = length === undefined ? reader.len : reader.pos + length
-            const result = new this()
-            while(reader.pos < end) {
-                let tag = reader.uint32()
-                switch(tag>>>3) {
-                    case 1:
-                        result.start = reader.int32()
-                        break
-                    case 2:
-                        result.end = reader.int32()
-                        break
-                }
-            }
-            return result
-        }
-
-        static decodeDelimited(reader: Uint8Array | $protobuf.Reader): EnumReservedRange {
-            if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-            return this.decode(reader, reader.uint32())
-        }
-        static create(properties?: IEnumReservedRange): EnumReservedRange {
-            if(properties instanceof this) return properties
-            const result = new this()
-            if (!properties) return result
-            if(properties.hasOwnProperty("start") && properties.start !== undefined) result.start = properties.start
-            if(properties.hasOwnProperty("end") && properties.end !== undefined) result.end = properties.end
-            return result
-        }
+        static readonly $type = $reflection.root.lookupType(".google.protobuf.EnumDescriptorProto.EnumReservedRange")
     }
-    EnumReservedRange.prototype.start = EnumReservedRange.reflection.fieldsById[1].defaultValue
-    EnumReservedRange.prototype.end = EnumReservedRange.reflection.fieldsById[2].defaultValue
+    EnumReservedRange.$type.generatedObject = EnumReservedRange
+    EnumReservedRange.prototype.start = EnumReservedRange.$type.fieldsById[1].defaultValue
+    EnumReservedRange.prototype.end = EnumReservedRange.$type.fieldsById[2].defaultValue
 }
 
 /** Describes a value within an enum. */
 export interface IEnumValueDescriptorProto {
     name?: string
     number?: number
-    options?: (IEnumValueOptions | null)
+    options?: IEnumValueOptions
 }
 
-export class EnumValueDescriptorProto extends $sisyphus.Message<IEnumValueDescriptorProto> implements IEnumValueDescriptorProto {
+export class EnumValueDescriptorProto extends $protobuf.Message<EnumValueDescriptorProto> implements IEnumValueDescriptorProto {
     name!: string
     number!: number
-    options!: (IEnumValueOptions | null)
-    get $reflection() {
-        return EnumValueDescriptorProto.reflection
+    options!: EnumValueOptions
+    get $type() {
+        return EnumValueDescriptorProto.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".google.protobuf.EnumValueDescriptorProto")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): EnumValueDescriptorProto {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.name = reader.string()
-                    break
-                case 2:
-                    result.number = reader.int32()
-                    break
-                case 3:
-                    result.options = EnumValueOptions.decodeDelimited(reader)
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): EnumValueDescriptorProto {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IEnumValueDescriptorProto): EnumValueDescriptorProto {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        if(properties.hasOwnProperty("number") && properties.number !== undefined) result.number = properties.number
-        if(properties.hasOwnProperty("options") && properties.options != null) result.options = EnumValueOptions.create(properties.options)
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".google.protobuf.EnumValueDescriptorProto")
 }
-EnumValueDescriptorProto.prototype.name = EnumValueDescriptorProto.reflection.fieldsById[1].defaultValue
-EnumValueDescriptorProto.prototype.number = EnumValueDescriptorProto.reflection.fieldsById[2].defaultValue
-EnumValueDescriptorProto.prototype.options = EnumValueDescriptorProto.reflection.fieldsById[3].defaultValue
+EnumValueDescriptorProto.$type.generatedObject = EnumValueDescriptorProto
+EnumValueDescriptorProto.prototype.name = EnumValueDescriptorProto.$type.fieldsById[1].defaultValue
+EnumValueDescriptorProto.prototype.number = EnumValueDescriptorProto.$type.fieldsById[2].defaultValue
+EnumValueDescriptorProto.prototype.options = EnumValueDescriptorProto.$type.fieldsById[3].defaultValue
 
 
 /** Describes a service. */
 export interface IServiceDescriptorProto {
     name?: string
-    method?: (IMethodDescriptorProto[] | null)
-    options?: (IServiceOptions | null)
+    method?: readonly IMethodDescriptorProto[]
+    options?: IServiceOptions
 }
 
-export class ServiceDescriptorProto extends $sisyphus.Message<IServiceDescriptorProto> implements IServiceDescriptorProto {
+export class ServiceDescriptorProto extends $protobuf.Message<ServiceDescriptorProto> implements IServiceDescriptorProto {
     name!: string
-    method!: (IMethodDescriptorProto[] | null)
-    options!: (IServiceOptions | null)
-    get $reflection() {
-        return ServiceDescriptorProto.reflection
+    method!: readonly MethodDescriptorProto[]
+    options!: ServiceOptions
+    get $type() {
+        return ServiceDescriptorProto.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".google.protobuf.ServiceDescriptorProto")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): ServiceDescriptorProto {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.name = reader.string()
-                    break
-                case 2:
-                    if (!result.method) result.method = []
-                    result.method.push(MethodDescriptorProto.decodeDelimited(reader))
-                    break
-                case 3:
-                    result.options = ServiceOptions.decodeDelimited(reader)
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): ServiceDescriptorProto {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IServiceDescriptorProto): ServiceDescriptorProto {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        if(properties.hasOwnProperty("method") && properties.method != null) result.method = properties.method.map(it => MethodDescriptorProto.create(it))
-        if(properties.hasOwnProperty("options") && properties.options != null) result.options = ServiceOptions.create(properties.options)
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".google.protobuf.ServiceDescriptorProto")
 }
-ServiceDescriptorProto.prototype.name = ServiceDescriptorProto.reflection.fieldsById[1].defaultValue
-ServiceDescriptorProto.prototype.method = ServiceDescriptorProto.reflection.fieldsById[2].defaultValue
-ServiceDescriptorProto.prototype.options = ServiceDescriptorProto.reflection.fieldsById[3].defaultValue
+ServiceDescriptorProto.$type.generatedObject = ServiceDescriptorProto
+ServiceDescriptorProto.prototype.name = ServiceDescriptorProto.$type.fieldsById[1].defaultValue
+ServiceDescriptorProto.prototype.method = ServiceDescriptorProto.$type.fieldsById[2].defaultValue
+ServiceDescriptorProto.prototype.options = ServiceDescriptorProto.$type.fieldsById[3].defaultValue
 
 
 /** Describes a method of a service. */
@@ -1010,78 +516,33 @@ export interface IMethodDescriptorProto {
      */
     inputType?: string
     outputType?: string
-    options?: (IMethodOptions | null)
+    options?: IMethodOptions
     /** Identifies if client streams multiple client messages */
     clientStreaming?: boolean
     /** Identifies if server streams multiple server messages */
     serverStreaming?: boolean
 }
 
-export class MethodDescriptorProto extends $sisyphus.Message<IMethodDescriptorProto> implements IMethodDescriptorProto {
+export class MethodDescriptorProto extends $protobuf.Message<MethodDescriptorProto> implements IMethodDescriptorProto {
     name!: string
     inputType!: string
     outputType!: string
-    options!: (IMethodOptions | null)
+    options!: MethodOptions
     clientStreaming!: boolean
     serverStreaming!: boolean
-    get $reflection() {
-        return MethodDescriptorProto.reflection
+    get $type() {
+        return MethodDescriptorProto.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".google.protobuf.MethodDescriptorProto")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): MethodDescriptorProto {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.name = reader.string()
-                    break
-                case 2:
-                    result.inputType = reader.string()
-                    break
-                case 3:
-                    result.outputType = reader.string()
-                    break
-                case 4:
-                    result.options = MethodOptions.decodeDelimited(reader)
-                    break
-                case 5:
-                    result.clientStreaming = reader.bool()
-                    break
-                case 6:
-                    result.serverStreaming = reader.bool()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): MethodDescriptorProto {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IMethodDescriptorProto): MethodDescriptorProto {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        if(properties.hasOwnProperty("inputType") && properties.inputType !== undefined) result.inputType = properties.inputType
-        if(properties.hasOwnProperty("outputType") && properties.outputType !== undefined) result.outputType = properties.outputType
-        if(properties.hasOwnProperty("options") && properties.options != null) result.options = MethodOptions.create(properties.options)
-        if(properties.hasOwnProperty("clientStreaming") && properties.clientStreaming !== undefined) result.clientStreaming = properties.clientStreaming
-        if(properties.hasOwnProperty("serverStreaming") && properties.serverStreaming !== undefined) result.serverStreaming = properties.serverStreaming
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".google.protobuf.MethodDescriptorProto")
 }
-MethodDescriptorProto.prototype.name = MethodDescriptorProto.reflection.fieldsById[1].defaultValue
-MethodDescriptorProto.prototype.inputType = MethodDescriptorProto.reflection.fieldsById[2].defaultValue
-MethodDescriptorProto.prototype.outputType = MethodDescriptorProto.reflection.fieldsById[3].defaultValue
-MethodDescriptorProto.prototype.options = MethodDescriptorProto.reflection.fieldsById[4].defaultValue
-MethodDescriptorProto.prototype.clientStreaming = MethodDescriptorProto.reflection.fieldsById[5].defaultValue
-MethodDescriptorProto.prototype.serverStreaming = MethodDescriptorProto.reflection.fieldsById[6].defaultValue
+MethodDescriptorProto.$type.generatedObject = MethodDescriptorProto
+MethodDescriptorProto.prototype.name = MethodDescriptorProto.$type.fieldsById[1].defaultValue
+MethodDescriptorProto.prototype.inputType = MethodDescriptorProto.$type.fieldsById[2].defaultValue
+MethodDescriptorProto.prototype.outputType = MethodDescriptorProto.$type.fieldsById[3].defaultValue
+MethodDescriptorProto.prototype.options = MethodDescriptorProto.$type.fieldsById[4].defaultValue
+MethodDescriptorProto.prototype.clientStreaming = MethodDescriptorProto.$type.fieldsById[5].defaultValue
+MethodDescriptorProto.prototype.serverStreaming = MethodDescriptorProto.$type.fieldsById[6].defaultValue
 
 
 export interface IFileOptions {
@@ -1198,11 +659,11 @@ export interface IFileOptions {
      * The parser stores options it doesn't recognize here.
      * See the documentation for the "Options" section above.
      */
-    uninterpretedOption?: (IUninterpretedOption[] | null)
-    ".google.api.resourceDefinition"?: ($resource.IResourceDescriptor[] | null)
+    uninterpretedOption?: readonly IUninterpretedOption[]
+    ".google.api.resourceDefinition"?: readonly $resource.IResourceDescriptor[]
 }
 
-export class FileOptions extends $sisyphus.Message<IFileOptions> implements IFileOptions {
+export class FileOptions extends $protobuf.Message<FileOptions> implements IFileOptions {
     javaPackage!: string
     javaOuterClassname!: string
     javaMultipleFiles!: boolean
@@ -1223,148 +684,37 @@ export class FileOptions extends $sisyphus.Message<IFileOptions> implements IFil
     phpNamespace!: string
     phpMetadataNamespace!: string
     rubyPackage!: string
-    uninterpretedOption!: (IUninterpretedOption[] | null)
-    ".google.api.resourceDefinition"!: ($resource.IResourceDescriptor[] | null)
-    get $reflection() {
-        return FileOptions.reflection
+    uninterpretedOption!: readonly UninterpretedOption[]
+    ".google.api.resourceDefinition"!: readonly $resource.ResourceDescriptor[]
+    get $type() {
+        return FileOptions.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".google.protobuf.FileOptions")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): FileOptions {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.javaPackage = reader.string()
-                    break
-                case 8:
-                    result.javaOuterClassname = reader.string()
-                    break
-                case 10:
-                    result.javaMultipleFiles = reader.bool()
-                    break
-                case 20:
-                    result.javaGenerateEqualsAndHash = reader.bool()
-                    break
-                case 27:
-                    result.javaStringCheckUtf8 = reader.bool()
-                    break
-                case 9:
-                    result.optimizeFor = reader.uint32()
-                    break
-                case 11:
-                    result.goPackage = reader.string()
-                    break
-                case 16:
-                    result.ccGenericServices = reader.bool()
-                    break
-                case 17:
-                    result.javaGenericServices = reader.bool()
-                    break
-                case 18:
-                    result.pyGenericServices = reader.bool()
-                    break
-                case 42:
-                    result.phpGenericServices = reader.bool()
-                    break
-                case 23:
-                    result.deprecated = reader.bool()
-                    break
-                case 31:
-                    result.ccEnableArenas = reader.bool()
-                    break
-                case 36:
-                    result.objcClassPrefix = reader.string()
-                    break
-                case 37:
-                    result.csharpNamespace = reader.string()
-                    break
-                case 39:
-                    result.swiftPrefix = reader.string()
-                    break
-                case 40:
-                    result.phpClassPrefix = reader.string()
-                    break
-                case 41:
-                    result.phpNamespace = reader.string()
-                    break
-                case 44:
-                    result.phpMetadataNamespace = reader.string()
-                    break
-                case 45:
-                    result.rubyPackage = reader.string()
-                    break
-                case 999:
-                    if (!result.uninterpretedOption) result.uninterpretedOption = []
-                    result.uninterpretedOption.push(UninterpretedOption.decodeDelimited(reader))
-                    break
-                case 1053:
-                    if (!result[".google.api.resourceDefinition"]) result[".google.api.resourceDefinition"] = []
-                    result[".google.api.resourceDefinition"].push($resource.ResourceDescriptor.decodeDelimited(reader))
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): FileOptions {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IFileOptions): FileOptions {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("javaPackage") && properties.javaPackage !== undefined) result.javaPackage = properties.javaPackage
-        if(properties.hasOwnProperty("javaOuterClassname") && properties.javaOuterClassname !== undefined) result.javaOuterClassname = properties.javaOuterClassname
-        if(properties.hasOwnProperty("javaMultipleFiles") && properties.javaMultipleFiles !== undefined) result.javaMultipleFiles = properties.javaMultipleFiles
-        if(properties.hasOwnProperty("javaGenerateEqualsAndHash") && properties.javaGenerateEqualsAndHash !== undefined) result.javaGenerateEqualsAndHash = properties.javaGenerateEqualsAndHash
-        if(properties.hasOwnProperty("javaStringCheckUtf8") && properties.javaStringCheckUtf8 !== undefined) result.javaStringCheckUtf8 = properties.javaStringCheckUtf8
-        if(properties.hasOwnProperty("optimizeFor") && properties.optimizeFor !== undefined) result.optimizeFor = properties.optimizeFor
-        if(properties.hasOwnProperty("goPackage") && properties.goPackage !== undefined) result.goPackage = properties.goPackage
-        if(properties.hasOwnProperty("ccGenericServices") && properties.ccGenericServices !== undefined) result.ccGenericServices = properties.ccGenericServices
-        if(properties.hasOwnProperty("javaGenericServices") && properties.javaGenericServices !== undefined) result.javaGenericServices = properties.javaGenericServices
-        if(properties.hasOwnProperty("pyGenericServices") && properties.pyGenericServices !== undefined) result.pyGenericServices = properties.pyGenericServices
-        if(properties.hasOwnProperty("phpGenericServices") && properties.phpGenericServices !== undefined) result.phpGenericServices = properties.phpGenericServices
-        if(properties.hasOwnProperty("deprecated") && properties.deprecated !== undefined) result.deprecated = properties.deprecated
-        if(properties.hasOwnProperty("ccEnableArenas") && properties.ccEnableArenas !== undefined) result.ccEnableArenas = properties.ccEnableArenas
-        if(properties.hasOwnProperty("objcClassPrefix") && properties.objcClassPrefix !== undefined) result.objcClassPrefix = properties.objcClassPrefix
-        if(properties.hasOwnProperty("csharpNamespace") && properties.csharpNamespace !== undefined) result.csharpNamespace = properties.csharpNamespace
-        if(properties.hasOwnProperty("swiftPrefix") && properties.swiftPrefix !== undefined) result.swiftPrefix = properties.swiftPrefix
-        if(properties.hasOwnProperty("phpClassPrefix") && properties.phpClassPrefix !== undefined) result.phpClassPrefix = properties.phpClassPrefix
-        if(properties.hasOwnProperty("phpNamespace") && properties.phpNamespace !== undefined) result.phpNamespace = properties.phpNamespace
-        if(properties.hasOwnProperty("phpMetadataNamespace") && properties.phpMetadataNamespace !== undefined) result.phpMetadataNamespace = properties.phpMetadataNamespace
-        if(properties.hasOwnProperty("rubyPackage") && properties.rubyPackage !== undefined) result.rubyPackage = properties.rubyPackage
-        if(properties.hasOwnProperty("uninterpretedOption") && properties.uninterpretedOption != null) result.uninterpretedOption = properties.uninterpretedOption.map(it => UninterpretedOption.create(it))
-        if(properties.hasOwnProperty(".google.api.resourceDefinition") && properties[".google.api.resourceDefinition"] != null) result[".google.api.resourceDefinition"] = properties[".google.api.resourceDefinition"].map(it => $resource.ResourceDescriptor.create(it))
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".google.protobuf.FileOptions")
 }
-FileOptions.prototype.javaPackage = FileOptions.reflection.fieldsById[1].defaultValue
-FileOptions.prototype.javaOuterClassname = FileOptions.reflection.fieldsById[8].defaultValue
-FileOptions.prototype.javaMultipleFiles = FileOptions.reflection.fieldsById[10].defaultValue
-FileOptions.prototype.javaGenerateEqualsAndHash = FileOptions.reflection.fieldsById[20].defaultValue
-FileOptions.prototype.javaStringCheckUtf8 = FileOptions.reflection.fieldsById[27].defaultValue
-FileOptions.prototype.optimizeFor = FileOptions.reflection.fieldsById[9].defaultValue
-FileOptions.prototype.goPackage = FileOptions.reflection.fieldsById[11].defaultValue
-FileOptions.prototype.ccGenericServices = FileOptions.reflection.fieldsById[16].defaultValue
-FileOptions.prototype.javaGenericServices = FileOptions.reflection.fieldsById[17].defaultValue
-FileOptions.prototype.pyGenericServices = FileOptions.reflection.fieldsById[18].defaultValue
-FileOptions.prototype.phpGenericServices = FileOptions.reflection.fieldsById[42].defaultValue
-FileOptions.prototype.deprecated = FileOptions.reflection.fieldsById[23].defaultValue
-FileOptions.prototype.ccEnableArenas = FileOptions.reflection.fieldsById[31].defaultValue
-FileOptions.prototype.objcClassPrefix = FileOptions.reflection.fieldsById[36].defaultValue
-FileOptions.prototype.csharpNamespace = FileOptions.reflection.fieldsById[37].defaultValue
-FileOptions.prototype.swiftPrefix = FileOptions.reflection.fieldsById[39].defaultValue
-FileOptions.prototype.phpClassPrefix = FileOptions.reflection.fieldsById[40].defaultValue
-FileOptions.prototype.phpNamespace = FileOptions.reflection.fieldsById[41].defaultValue
-FileOptions.prototype.phpMetadataNamespace = FileOptions.reflection.fieldsById[44].defaultValue
-FileOptions.prototype.rubyPackage = FileOptions.reflection.fieldsById[45].defaultValue
-FileOptions.prototype.uninterpretedOption = FileOptions.reflection.fieldsById[999].defaultValue
-FileOptions.prototype[".google.api.resourceDefinition"] = FileOptions.reflection.fieldsById[1053].defaultValue
+FileOptions.$type.generatedObject = FileOptions
+FileOptions.prototype.javaPackage = FileOptions.$type.fieldsById[1].defaultValue
+FileOptions.prototype.javaOuterClassname = FileOptions.$type.fieldsById[8].defaultValue
+FileOptions.prototype.javaMultipleFiles = FileOptions.$type.fieldsById[10].defaultValue
+FileOptions.prototype.javaGenerateEqualsAndHash = FileOptions.$type.fieldsById[20].defaultValue
+FileOptions.prototype.javaStringCheckUtf8 = FileOptions.$type.fieldsById[27].defaultValue
+FileOptions.prototype.optimizeFor = FileOptions.$type.fieldsById[9].defaultValue
+FileOptions.prototype.goPackage = FileOptions.$type.fieldsById[11].defaultValue
+FileOptions.prototype.ccGenericServices = FileOptions.$type.fieldsById[16].defaultValue
+FileOptions.prototype.javaGenericServices = FileOptions.$type.fieldsById[17].defaultValue
+FileOptions.prototype.pyGenericServices = FileOptions.$type.fieldsById[18].defaultValue
+FileOptions.prototype.phpGenericServices = FileOptions.$type.fieldsById[42].defaultValue
+FileOptions.prototype.deprecated = FileOptions.$type.fieldsById[23].defaultValue
+FileOptions.prototype.ccEnableArenas = FileOptions.$type.fieldsById[31].defaultValue
+FileOptions.prototype.objcClassPrefix = FileOptions.$type.fieldsById[36].defaultValue
+FileOptions.prototype.csharpNamespace = FileOptions.$type.fieldsById[37].defaultValue
+FileOptions.prototype.swiftPrefix = FileOptions.$type.fieldsById[39].defaultValue
+FileOptions.prototype.phpClassPrefix = FileOptions.$type.fieldsById[40].defaultValue
+FileOptions.prototype.phpNamespace = FileOptions.$type.fieldsById[41].defaultValue
+FileOptions.prototype.phpMetadataNamespace = FileOptions.$type.fieldsById[44].defaultValue
+FileOptions.prototype.rubyPackage = FileOptions.$type.fieldsById[45].defaultValue
+FileOptions.prototype.uninterpretedOption = FileOptions.$type.fieldsById[999].defaultValue
+FileOptions.prototype[".google.api.resourceDefinition"] = FileOptions.$type.fieldsById[1053].defaultValue
 
 export namespace FileOptions {
 
@@ -1446,76 +796,30 @@ export interface IMessageOptions {
      */
     mapEntry?: boolean
     /** The parser stores options it doesn't recognize here. See above. */
-    uninterpretedOption?: (IUninterpretedOption[] | null)
-    ".google.api.resource"?: ($resource.IResourceDescriptor | null)
+    uninterpretedOption?: readonly IUninterpretedOption[]
+    ".google.api.resource"?: $resource.IResourceDescriptor
 }
 
-export class MessageOptions extends $sisyphus.Message<IMessageOptions> implements IMessageOptions {
+export class MessageOptions extends $protobuf.Message<MessageOptions> implements IMessageOptions {
     messageSetWireFormat!: boolean
     noStandardDescriptorAccessor!: boolean
     deprecated!: boolean
     mapEntry!: boolean
-    uninterpretedOption!: (IUninterpretedOption[] | null)
-    ".google.api.resource"!: ($resource.IResourceDescriptor | null)
-    get $reflection() {
-        return MessageOptions.reflection
+    uninterpretedOption!: readonly UninterpretedOption[]
+    ".google.api.resource"!: $resource.ResourceDescriptor
+    get $type() {
+        return MessageOptions.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".google.protobuf.MessageOptions")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): MessageOptions {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.messageSetWireFormat = reader.bool()
-                    break
-                case 2:
-                    result.noStandardDescriptorAccessor = reader.bool()
-                    break
-                case 3:
-                    result.deprecated = reader.bool()
-                    break
-                case 7:
-                    result.mapEntry = reader.bool()
-                    break
-                case 999:
-                    if (!result.uninterpretedOption) result.uninterpretedOption = []
-                    result.uninterpretedOption.push(UninterpretedOption.decodeDelimited(reader))
-                    break
-                case 1053:
-                    result[".google.api.resource"] = $resource.ResourceDescriptor.decodeDelimited(reader)
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): MessageOptions {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IMessageOptions): MessageOptions {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("messageSetWireFormat") && properties.messageSetWireFormat !== undefined) result.messageSetWireFormat = properties.messageSetWireFormat
-        if(properties.hasOwnProperty("noStandardDescriptorAccessor") && properties.noStandardDescriptorAccessor !== undefined) result.noStandardDescriptorAccessor = properties.noStandardDescriptorAccessor
-        if(properties.hasOwnProperty("deprecated") && properties.deprecated !== undefined) result.deprecated = properties.deprecated
-        if(properties.hasOwnProperty("mapEntry") && properties.mapEntry !== undefined) result.mapEntry = properties.mapEntry
-        if(properties.hasOwnProperty("uninterpretedOption") && properties.uninterpretedOption != null) result.uninterpretedOption = properties.uninterpretedOption.map(it => UninterpretedOption.create(it))
-        if(properties.hasOwnProperty(".google.api.resource") && properties[".google.api.resource"] != null) result[".google.api.resource"] = $resource.ResourceDescriptor.create(properties[".google.api.resource"])
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".google.protobuf.MessageOptions")
 }
-MessageOptions.prototype.messageSetWireFormat = MessageOptions.reflection.fieldsById[1].defaultValue
-MessageOptions.prototype.noStandardDescriptorAccessor = MessageOptions.reflection.fieldsById[2].defaultValue
-MessageOptions.prototype.deprecated = MessageOptions.reflection.fieldsById[3].defaultValue
-MessageOptions.prototype.mapEntry = MessageOptions.reflection.fieldsById[7].defaultValue
-MessageOptions.prototype.uninterpretedOption = MessageOptions.reflection.fieldsById[999].defaultValue
-MessageOptions.prototype[".google.api.resource"] = MessageOptions.reflection.fieldsById[1053].defaultValue
+MessageOptions.$type.generatedObject = MessageOptions
+MessageOptions.prototype.messageSetWireFormat = MessageOptions.$type.fieldsById[1].defaultValue
+MessageOptions.prototype.noStandardDescriptorAccessor = MessageOptions.$type.fieldsById[2].defaultValue
+MessageOptions.prototype.deprecated = MessageOptions.$type.fieldsById[3].defaultValue
+MessageOptions.prototype.mapEntry = MessageOptions.$type.fieldsById[7].defaultValue
+MessageOptions.prototype.uninterpretedOption = MessageOptions.$type.fieldsById[999].defaultValue
+MessageOptions.prototype[".google.api.resource"] = MessageOptions.$type.fieldsById[1053].defaultValue
 
 
 export interface IFieldOptions {
@@ -1589,96 +893,37 @@ export interface IFieldOptions {
     /** For Google-internal migration only. Do not use. */
     weak?: boolean
     /** The parser stores options it doesn't recognize here. See above. */
-    uninterpretedOption?: (IUninterpretedOption[] | null)
-    ".google.api.resourceReference"?: ($resource.IResourceReference | null)
-    ".google.api.fieldBehavior"?: ($fieldBehavior.FieldBehavior[] | null)
+    uninterpretedOption?: readonly IUninterpretedOption[]
+    ".google.api.resourceReference"?: $resource.IResourceReference
+    ".google.api.fieldBehavior"?: readonly $fieldBehavior.FieldBehavior[]
 }
 
-export class FieldOptions extends $sisyphus.Message<IFieldOptions> implements IFieldOptions {
+export class FieldOptions extends $protobuf.Message<FieldOptions> implements IFieldOptions {
     ctype!: FieldOptions.CType
     packed!: boolean
     jstype!: FieldOptions.JSType
     lazy!: boolean
     deprecated!: boolean
     weak!: boolean
-    uninterpretedOption!: (IUninterpretedOption[] | null)
-    ".google.api.resourceReference"!: ($resource.IResourceReference | null)
-    ".google.api.fieldBehavior"!: ($fieldBehavior.FieldBehavior[] | null)
-    get $reflection() {
-        return FieldOptions.reflection
+    uninterpretedOption!: readonly UninterpretedOption[]
+    ".google.api.resourceReference"!: $resource.ResourceReference
+    ".google.api.fieldBehavior"!: readonly $fieldBehavior.FieldBehavior[]
+    get $type() {
+        return FieldOptions.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".google.protobuf.FieldOptions")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): FieldOptions {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.ctype = reader.uint32()
-                    break
-                case 2:
-                    result.packed = reader.bool()
-                    break
-                case 6:
-                    result.jstype = reader.uint32()
-                    break
-                case 5:
-                    result.lazy = reader.bool()
-                    break
-                case 3:
-                    result.deprecated = reader.bool()
-                    break
-                case 10:
-                    result.weak = reader.bool()
-                    break
-                case 999:
-                    if (!result.uninterpretedOption) result.uninterpretedOption = []
-                    result.uninterpretedOption.push(UninterpretedOption.decodeDelimited(reader))
-                    break
-                case 1055:
-                    result[".google.api.resourceReference"] = $resource.ResourceReference.decodeDelimited(reader)
-                    break
-                case 1052:
-                    if (!result[".google.api.fieldBehavior"]) result[".google.api.fieldBehavior"] = []
-                    result[".google.api.fieldBehavior"].push(reader.uint32())
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): FieldOptions {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IFieldOptions): FieldOptions {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("ctype") && properties.ctype !== undefined) result.ctype = properties.ctype
-        if(properties.hasOwnProperty("packed") && properties.packed !== undefined) result.packed = properties.packed
-        if(properties.hasOwnProperty("jstype") && properties.jstype !== undefined) result.jstype = properties.jstype
-        if(properties.hasOwnProperty("lazy") && properties.lazy !== undefined) result.lazy = properties.lazy
-        if(properties.hasOwnProperty("deprecated") && properties.deprecated !== undefined) result.deprecated = properties.deprecated
-        if(properties.hasOwnProperty("weak") && properties.weak !== undefined) result.weak = properties.weak
-        if(properties.hasOwnProperty("uninterpretedOption") && properties.uninterpretedOption != null) result.uninterpretedOption = properties.uninterpretedOption.map(it => UninterpretedOption.create(it))
-        if(properties.hasOwnProperty(".google.api.resourceReference") && properties[".google.api.resourceReference"] != null) result[".google.api.resourceReference"] = $resource.ResourceReference.create(properties[".google.api.resourceReference"])
-        if(properties.hasOwnProperty(".google.api.fieldBehavior") && properties[".google.api.fieldBehavior"] !== undefined) result[".google.api.fieldBehavior"] = properties[".google.api.fieldBehavior"]
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".google.protobuf.FieldOptions")
 }
-FieldOptions.prototype.ctype = FieldOptions.reflection.fieldsById[1].defaultValue
-FieldOptions.prototype.packed = FieldOptions.reflection.fieldsById[2].defaultValue
-FieldOptions.prototype.jstype = FieldOptions.reflection.fieldsById[6].defaultValue
-FieldOptions.prototype.lazy = FieldOptions.reflection.fieldsById[5].defaultValue
-FieldOptions.prototype.deprecated = FieldOptions.reflection.fieldsById[3].defaultValue
-FieldOptions.prototype.weak = FieldOptions.reflection.fieldsById[10].defaultValue
-FieldOptions.prototype.uninterpretedOption = FieldOptions.reflection.fieldsById[999].defaultValue
-FieldOptions.prototype[".google.api.resourceReference"] = FieldOptions.reflection.fieldsById[1055].defaultValue
-FieldOptions.prototype[".google.api.fieldBehavior"] = FieldOptions.reflection.fieldsById[1052].defaultValue
+FieldOptions.$type.generatedObject = FieldOptions
+FieldOptions.prototype.ctype = FieldOptions.$type.fieldsById[1].defaultValue
+FieldOptions.prototype.packed = FieldOptions.$type.fieldsById[2].defaultValue
+FieldOptions.prototype.jstype = FieldOptions.$type.fieldsById[6].defaultValue
+FieldOptions.prototype.lazy = FieldOptions.$type.fieldsById[5].defaultValue
+FieldOptions.prototype.deprecated = FieldOptions.$type.fieldsById[3].defaultValue
+FieldOptions.prototype.weak = FieldOptions.$type.fieldsById[10].defaultValue
+FieldOptions.prototype.uninterpretedOption = FieldOptions.$type.fieldsById[999].defaultValue
+FieldOptions.prototype[".google.api.resourceReference"] = FieldOptions.$type.fieldsById[1055].defaultValue
+FieldOptions.prototype[".google.api.fieldBehavior"] = FieldOptions.$type.fieldsById[1052].defaultValue
 
 export namespace FieldOptions {
 
@@ -1709,45 +954,19 @@ export namespace FieldOptions {
 
 export interface IOneofOptions {
     /** The parser stores options it doesn't recognize here. See above. */
-    uninterpretedOption?: (IUninterpretedOption[] | null)
+    uninterpretedOption?: readonly IUninterpretedOption[]
 }
 
-export class OneofOptions extends $sisyphus.Message<IOneofOptions> implements IOneofOptions {
-    uninterpretedOption!: (IUninterpretedOption[] | null)
-    get $reflection() {
-        return OneofOptions.reflection
+export class OneofOptions extends $protobuf.Message<OneofOptions> implements IOneofOptions {
+    uninterpretedOption!: readonly UninterpretedOption[]
+    get $type() {
+        return OneofOptions.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".google.protobuf.OneofOptions")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): OneofOptions {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 999:
-                    if (!result.uninterpretedOption) result.uninterpretedOption = []
-                    result.uninterpretedOption.push(UninterpretedOption.decodeDelimited(reader))
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): OneofOptions {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IOneofOptions): OneofOptions {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("uninterpretedOption") && properties.uninterpretedOption != null) result.uninterpretedOption = properties.uninterpretedOption.map(it => UninterpretedOption.create(it))
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".google.protobuf.OneofOptions")
 }
-OneofOptions.prototype.uninterpretedOption = OneofOptions.reflection.fieldsById[999].defaultValue
+OneofOptions.$type.generatedObject = OneofOptions
+OneofOptions.prototype.uninterpretedOption = OneofOptions.$type.fieldsById[999].defaultValue
 
 
 export interface IEnumOptions {
@@ -1764,57 +983,23 @@ export interface IEnumOptions {
      */
     deprecated?: boolean
     /** The parser stores options it doesn't recognize here. See above. */
-    uninterpretedOption?: (IUninterpretedOption[] | null)
+    uninterpretedOption?: readonly IUninterpretedOption[]
 }
 
-export class EnumOptions extends $sisyphus.Message<IEnumOptions> implements IEnumOptions {
+export class EnumOptions extends $protobuf.Message<EnumOptions> implements IEnumOptions {
     allowAlias!: boolean
     deprecated!: boolean
-    uninterpretedOption!: (IUninterpretedOption[] | null)
-    get $reflection() {
-        return EnumOptions.reflection
+    uninterpretedOption!: readonly UninterpretedOption[]
+    get $type() {
+        return EnumOptions.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".google.protobuf.EnumOptions")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): EnumOptions {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 2:
-                    result.allowAlias = reader.bool()
-                    break
-                case 3:
-                    result.deprecated = reader.bool()
-                    break
-                case 999:
-                    if (!result.uninterpretedOption) result.uninterpretedOption = []
-                    result.uninterpretedOption.push(UninterpretedOption.decodeDelimited(reader))
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): EnumOptions {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IEnumOptions): EnumOptions {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("allowAlias") && properties.allowAlias !== undefined) result.allowAlias = properties.allowAlias
-        if(properties.hasOwnProperty("deprecated") && properties.deprecated !== undefined) result.deprecated = properties.deprecated
-        if(properties.hasOwnProperty("uninterpretedOption") && properties.uninterpretedOption != null) result.uninterpretedOption = properties.uninterpretedOption.map(it => UninterpretedOption.create(it))
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".google.protobuf.EnumOptions")
 }
-EnumOptions.prototype.allowAlias = EnumOptions.reflection.fieldsById[2].defaultValue
-EnumOptions.prototype.deprecated = EnumOptions.reflection.fieldsById[3].defaultValue
-EnumOptions.prototype.uninterpretedOption = EnumOptions.reflection.fieldsById[999].defaultValue
+EnumOptions.$type.generatedObject = EnumOptions
+EnumOptions.prototype.allowAlias = EnumOptions.$type.fieldsById[2].defaultValue
+EnumOptions.prototype.deprecated = EnumOptions.$type.fieldsById[3].defaultValue
+EnumOptions.prototype.uninterpretedOption = EnumOptions.$type.fieldsById[999].defaultValue
 
 
 export interface IEnumValueOptions {
@@ -1826,58 +1011,24 @@ export interface IEnumValueOptions {
      */
     deprecated?: boolean
     /** The parser stores options it doesn't recognize here. See above. */
-    uninterpretedOption?: (IUninterpretedOption[] | null)
+    uninterpretedOption?: readonly IUninterpretedOption[]
     ".sisyphus.protobuf.string"?: string
 }
 
-export class EnumValueOptions extends $sisyphus.Message<IEnumValueOptions> implements IEnumValueOptions {
+export class EnumValueOptions extends $protobuf.Message<EnumValueOptions> implements IEnumValueOptions {
     deprecated!: boolean
-    uninterpretedOption!: (IUninterpretedOption[] | null)
+    uninterpretedOption!: readonly UninterpretedOption[]
     ".sisyphus.protobuf.string"!: string
-    get $reflection() {
-        return EnumValueOptions.reflection
+    get $type() {
+        return EnumValueOptions.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".google.protobuf.EnumValueOptions")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): EnumValueOptions {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.deprecated = reader.bool()
-                    break
-                case 999:
-                    if (!result.uninterpretedOption) result.uninterpretedOption = []
-                    result.uninterpretedOption.push(UninterpretedOption.decodeDelimited(reader))
-                    break
-                case 26051:
-                    result[".sisyphus.protobuf.string"] = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): EnumValueOptions {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IEnumValueOptions): EnumValueOptions {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("deprecated") && properties.deprecated !== undefined) result.deprecated = properties.deprecated
-        if(properties.hasOwnProperty("uninterpretedOption") && properties.uninterpretedOption != null) result.uninterpretedOption = properties.uninterpretedOption.map(it => UninterpretedOption.create(it))
-        if(properties.hasOwnProperty(".sisyphus.protobuf.string") && properties[".sisyphus.protobuf.string"] !== undefined) result[".sisyphus.protobuf.string"] = properties[".sisyphus.protobuf.string"]
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".google.protobuf.EnumValueOptions")
 }
-EnumValueOptions.prototype.deprecated = EnumValueOptions.reflection.fieldsById[1].defaultValue
-EnumValueOptions.prototype.uninterpretedOption = EnumValueOptions.reflection.fieldsById[999].defaultValue
-EnumValueOptions.prototype[".sisyphus.protobuf.string"] = EnumValueOptions.reflection.fieldsById[26051].defaultValue
+EnumValueOptions.$type.generatedObject = EnumValueOptions
+EnumValueOptions.prototype.deprecated = EnumValueOptions.$type.fieldsById[1].defaultValue
+EnumValueOptions.prototype.uninterpretedOption = EnumValueOptions.$type.fieldsById[999].defaultValue
+EnumValueOptions.prototype[".sisyphus.protobuf.string"] = EnumValueOptions.$type.fieldsById[26051].defaultValue
 
 
 export interface IServiceOptions {
@@ -1889,72 +1040,30 @@ export interface IServiceOptions {
      */
     deprecated?: boolean
     /** The parser stores options it doesn't recognize here. See above. */
-    uninterpretedOption?: (IUninterpretedOption[] | null)
+    uninterpretedOption?: readonly IUninterpretedOption[]
     ".google.api.defaultHost"?: string
     ".google.api.oauthScopes"?: string
-    ".sisyphus.api.metadata"?: ($serviceMeta.IServiceMetadata | null)
+    ".sisyphus.api.metadata"?: $serviceMeta.IServiceMetadata
 }
 
-export class ServiceOptions extends $sisyphus.Message<IServiceOptions> implements IServiceOptions {
+export class ServiceOptions extends $protobuf.Message<ServiceOptions> implements IServiceOptions {
     deprecated!: boolean
-    uninterpretedOption!: (IUninterpretedOption[] | null)
+    uninterpretedOption!: readonly UninterpretedOption[]
     ".google.api.defaultHost"!: string
     ".google.api.oauthScopes"!: string
-    ".sisyphus.api.metadata"!: ($serviceMeta.IServiceMetadata | null)
-    get $reflection() {
-        return ServiceOptions.reflection
+    ".sisyphus.api.metadata"!: $serviceMeta.ServiceMetadata
+    get $type() {
+        return ServiceOptions.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".google.protobuf.ServiceOptions")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): ServiceOptions {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 33:
-                    result.deprecated = reader.bool()
-                    break
-                case 999:
-                    if (!result.uninterpretedOption) result.uninterpretedOption = []
-                    result.uninterpretedOption.push(UninterpretedOption.decodeDelimited(reader))
-                    break
-                case 1049:
-                    result[".google.api.defaultHost"] = reader.string()
-                    break
-                case 1050:
-                    result[".google.api.oauthScopes"] = reader.string()
-                    break
-                case 26051:
-                    result[".sisyphus.api.metadata"] = $serviceMeta.ServiceMetadata.decodeDelimited(reader)
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): ServiceOptions {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IServiceOptions): ServiceOptions {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("deprecated") && properties.deprecated !== undefined) result.deprecated = properties.deprecated
-        if(properties.hasOwnProperty("uninterpretedOption") && properties.uninterpretedOption != null) result.uninterpretedOption = properties.uninterpretedOption.map(it => UninterpretedOption.create(it))
-        if(properties.hasOwnProperty(".google.api.defaultHost") && properties[".google.api.defaultHost"] !== undefined) result[".google.api.defaultHost"] = properties[".google.api.defaultHost"]
-        if(properties.hasOwnProperty(".google.api.oauthScopes") && properties[".google.api.oauthScopes"] !== undefined) result[".google.api.oauthScopes"] = properties[".google.api.oauthScopes"]
-        if(properties.hasOwnProperty(".sisyphus.api.metadata") && properties[".sisyphus.api.metadata"] != null) result[".sisyphus.api.metadata"] = $serviceMeta.ServiceMetadata.create(properties[".sisyphus.api.metadata"])
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".google.protobuf.ServiceOptions")
 }
-ServiceOptions.prototype.deprecated = ServiceOptions.reflection.fieldsById[33].defaultValue
-ServiceOptions.prototype.uninterpretedOption = ServiceOptions.reflection.fieldsById[999].defaultValue
-ServiceOptions.prototype[".google.api.defaultHost"] = ServiceOptions.reflection.fieldsById[1049].defaultValue
-ServiceOptions.prototype[".google.api.oauthScopes"] = ServiceOptions.reflection.fieldsById[1050].defaultValue
-ServiceOptions.prototype[".sisyphus.api.metadata"] = ServiceOptions.reflection.fieldsById[26051].defaultValue
+ServiceOptions.$type.generatedObject = ServiceOptions
+ServiceOptions.prototype.deprecated = ServiceOptions.$type.fieldsById[33].defaultValue
+ServiceOptions.prototype.uninterpretedOption = ServiceOptions.$type.fieldsById[999].defaultValue
+ServiceOptions.prototype[".google.api.defaultHost"] = ServiceOptions.$type.fieldsById[1049].defaultValue
+ServiceOptions.prototype[".google.api.oauthScopes"] = ServiceOptions.$type.fieldsById[1050].defaultValue
+ServiceOptions.prototype[".sisyphus.api.metadata"] = ServiceOptions.$type.fieldsById[26051].defaultValue
 
 
 export interface IMethodOptions {
@@ -1967,86 +1076,35 @@ export interface IMethodOptions {
     deprecated?: boolean
     idempotencyLevel?: MethodOptions.IdempotencyLevel
     /** The parser stores options it doesn't recognize here. See above. */
-    uninterpretedOption?: (IUninterpretedOption[] | null)
-    ".bybutter.incubator.common.v1.access"?: ($accessControl.IAccessControl | null)
-    ".google.api.http"?: ($http.IHttpRule | null)
-    ".google.api.methodSignature"?: (string[] | null)
-    ".google.longrunning.operationInfo"?: ($operations.IOperationInfo | null)
+    uninterpretedOption?: readonly IUninterpretedOption[]
+    ".bybutter.incubator.common.v1.access"?: $accessControl.IAccessControl
+    ".google.api.http"?: $http.IHttpRule
+    ".google.api.methodSignature"?: readonly string[]
+    ".google.longrunning.operationInfo"?: $operations.IOperationInfo
 }
 
-export class MethodOptions extends $sisyphus.Message<IMethodOptions> implements IMethodOptions {
+export class MethodOptions extends $protobuf.Message<MethodOptions> implements IMethodOptions {
     deprecated!: boolean
     idempotencyLevel!: MethodOptions.IdempotencyLevel
-    uninterpretedOption!: (IUninterpretedOption[] | null)
-    ".bybutter.incubator.common.v1.access"!: ($accessControl.IAccessControl | null)
-    ".google.api.http"!: ($http.IHttpRule | null)
-    ".google.api.methodSignature"!: (string[] | null)
-    ".google.longrunning.operationInfo"!: ($operations.IOperationInfo | null)
-    get $reflection() {
-        return MethodOptions.reflection
+    uninterpretedOption!: readonly UninterpretedOption[]
+    ".bybutter.incubator.common.v1.access"!: $accessControl.AccessControl
+    ".google.api.http"!: $http.HttpRule
+    ".google.api.methodSignature"!: readonly string[]
+    ".google.longrunning.operationInfo"!: $operations.OperationInfo
+    get $type() {
+        return MethodOptions.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".google.protobuf.MethodOptions")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): MethodOptions {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 33:
-                    result.deprecated = reader.bool()
-                    break
-                case 34:
-                    result.idempotencyLevel = reader.uint32()
-                    break
-                case 999:
-                    if (!result.uninterpretedOption) result.uninterpretedOption = []
-                    result.uninterpretedOption.push(UninterpretedOption.decodeDelimited(reader))
-                    break
-                case 26051:
-                    result[".bybutter.incubator.common.v1.access"] = $accessControl.AccessControl.decodeDelimited(reader)
-                    break
-                case 72295728:
-                    result[".google.api.http"] = $http.HttpRule.decodeDelimited(reader)
-                    break
-                case 1051:
-                    if (!result[".google.api.methodSignature"]) result[".google.api.methodSignature"] = []
-                    result[".google.api.methodSignature"].push(reader.string())
-                    break
-                case 1049:
-                    result[".google.longrunning.operationInfo"] = $operations.OperationInfo.decodeDelimited(reader)
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): MethodOptions {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IMethodOptions): MethodOptions {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("deprecated") && properties.deprecated !== undefined) result.deprecated = properties.deprecated
-        if(properties.hasOwnProperty("idempotencyLevel") && properties.idempotencyLevel !== undefined) result.idempotencyLevel = properties.idempotencyLevel
-        if(properties.hasOwnProperty("uninterpretedOption") && properties.uninterpretedOption != null) result.uninterpretedOption = properties.uninterpretedOption.map(it => UninterpretedOption.create(it))
-        if(properties.hasOwnProperty(".bybutter.incubator.common.v1.access") && properties[".bybutter.incubator.common.v1.access"] != null) result[".bybutter.incubator.common.v1.access"] = $accessControl.AccessControl.create(properties[".bybutter.incubator.common.v1.access"])
-        if(properties.hasOwnProperty(".google.api.http") && properties[".google.api.http"] != null) result[".google.api.http"] = $http.HttpRule.create(properties[".google.api.http"])
-        if(properties.hasOwnProperty(".google.api.methodSignature") && properties[".google.api.methodSignature"] !== undefined) result[".google.api.methodSignature"] = properties[".google.api.methodSignature"]
-        if(properties.hasOwnProperty(".google.longrunning.operationInfo") && properties[".google.longrunning.operationInfo"] != null) result[".google.longrunning.operationInfo"] = $operations.OperationInfo.create(properties[".google.longrunning.operationInfo"])
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".google.protobuf.MethodOptions")
 }
-MethodOptions.prototype.deprecated = MethodOptions.reflection.fieldsById[33].defaultValue
-MethodOptions.prototype.idempotencyLevel = MethodOptions.reflection.fieldsById[34].defaultValue
-MethodOptions.prototype.uninterpretedOption = MethodOptions.reflection.fieldsById[999].defaultValue
-MethodOptions.prototype[".bybutter.incubator.common.v1.access"] = MethodOptions.reflection.fieldsById[26051].defaultValue
-MethodOptions.prototype[".google.api.http"] = MethodOptions.reflection.fieldsById[72295728].defaultValue
-MethodOptions.prototype[".google.api.methodSignature"] = MethodOptions.reflection.fieldsById[1051].defaultValue
-MethodOptions.prototype[".google.longrunning.operationInfo"] = MethodOptions.reflection.fieldsById[1049].defaultValue
+MethodOptions.$type.generatedObject = MethodOptions
+MethodOptions.prototype.deprecated = MethodOptions.$type.fieldsById[33].defaultValue
+MethodOptions.prototype.idempotencyLevel = MethodOptions.$type.fieldsById[34].defaultValue
+MethodOptions.prototype.uninterpretedOption = MethodOptions.$type.fieldsById[999].defaultValue
+MethodOptions.prototype[".bybutter.incubator.common.v1.access"] = MethodOptions.$type.fieldsById[26051].defaultValue
+MethodOptions.prototype[".google.api.http"] = MethodOptions.$type.fieldsById[72295728].defaultValue
+MethodOptions.prototype[".google.api.methodSignature"] = MethodOptions.$type.fieldsById[1051].defaultValue
+MethodOptions.prototype[".google.longrunning.operationInfo"] = MethodOptions.$type.fieldsById[1049].defaultValue
 
 export namespace MethodOptions {
 
@@ -2077,7 +1135,7 @@ export namespace MethodOptions {
  * in them.
  */
 export interface IUninterpretedOption {
-    name?: (UninterpretedOption.INamePart[] | null)
+    name?: readonly UninterpretedOption.INamePart[]
     /**
      * The value of the uninterpreted option, in whatever type the tokenizer
      * identified it as during parsing. Exactly one of these should be set.
@@ -2090,78 +1148,28 @@ export interface IUninterpretedOption {
     aggregateValue?: string
 }
 
-export class UninterpretedOption extends $sisyphus.Message<IUninterpretedOption> implements IUninterpretedOption {
-    name!: (UninterpretedOption.INamePart[] | null)
+export class UninterpretedOption extends $protobuf.Message<UninterpretedOption> implements IUninterpretedOption {
+    name!: readonly UninterpretedOption.NamePart[]
     identifierValue!: string
     positiveIntValue!: $protobuf.Long
     negativeIntValue!: $protobuf.Long
     doubleValue!: number
     stringValue!: Uint8Array
     aggregateValue!: string
-    get $reflection() {
-        return UninterpretedOption.reflection
+    get $type() {
+        return UninterpretedOption.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".google.protobuf.UninterpretedOption")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): UninterpretedOption {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 2:
-                    if (!result.name) result.name = []
-                    result.name.push(UninterpretedOption.NamePart.decodeDelimited(reader))
-                    break
-                case 3:
-                    result.identifierValue = reader.string()
-                    break
-                case 4:
-                    result.positiveIntValue = reader.uint64()
-                    break
-                case 5:
-                    result.negativeIntValue = reader.int64()
-                    break
-                case 6:
-                    result.doubleValue = reader.double()
-                    break
-                case 7:
-                    result.stringValue = reader.bytes()
-                    break
-                case 8:
-                    result.aggregateValue = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): UninterpretedOption {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IUninterpretedOption): UninterpretedOption {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("name") && properties.name != null) result.name = properties.name.map(it => UninterpretedOption.NamePart.create(it))
-        if(properties.hasOwnProperty("identifierValue") && properties.identifierValue !== undefined) result.identifierValue = properties.identifierValue
-        if(properties.hasOwnProperty("positiveIntValue") && properties.positiveIntValue !== undefined) result.positiveIntValue = properties.positiveIntValue
-        if(properties.hasOwnProperty("negativeIntValue") && properties.negativeIntValue !== undefined) result.negativeIntValue = properties.negativeIntValue
-        if(properties.hasOwnProperty("doubleValue") && properties.doubleValue !== undefined) result.doubleValue = properties.doubleValue
-        if(properties.hasOwnProperty("stringValue") && properties.stringValue !== undefined) result.stringValue = properties.stringValue
-        if(properties.hasOwnProperty("aggregateValue") && properties.aggregateValue !== undefined) result.aggregateValue = properties.aggregateValue
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".google.protobuf.UninterpretedOption")
 }
-UninterpretedOption.prototype.name = UninterpretedOption.reflection.fieldsById[2].defaultValue
-UninterpretedOption.prototype.identifierValue = UninterpretedOption.reflection.fieldsById[3].defaultValue
-UninterpretedOption.prototype.positiveIntValue = UninterpretedOption.reflection.fieldsById[4].defaultValue
-UninterpretedOption.prototype.negativeIntValue = UninterpretedOption.reflection.fieldsById[5].defaultValue
-UninterpretedOption.prototype.doubleValue = UninterpretedOption.reflection.fieldsById[6].defaultValue
-UninterpretedOption.prototype.stringValue = UninterpretedOption.reflection.fieldsById[7].defaultValue
-UninterpretedOption.prototype.aggregateValue = UninterpretedOption.reflection.fieldsById[8].defaultValue
+UninterpretedOption.$type.generatedObject = UninterpretedOption
+UninterpretedOption.prototype.name = UninterpretedOption.$type.fieldsById[2].defaultValue
+UninterpretedOption.prototype.identifierValue = UninterpretedOption.$type.fieldsById[3].defaultValue
+UninterpretedOption.prototype.positiveIntValue = UninterpretedOption.$type.fieldsById[4].defaultValue
+UninterpretedOption.prototype.negativeIntValue = UninterpretedOption.$type.fieldsById[5].defaultValue
+UninterpretedOption.prototype.doubleValue = UninterpretedOption.$type.fieldsById[6].defaultValue
+UninterpretedOption.prototype.stringValue = UninterpretedOption.$type.fieldsById[7].defaultValue
+UninterpretedOption.prototype.aggregateValue = UninterpretedOption.$type.fieldsById[8].defaultValue
 
 export namespace UninterpretedOption {
 
@@ -2177,47 +1185,18 @@ export namespace UninterpretedOption {
         isExtension: boolean
     }
 
-    export class NamePart extends $sisyphus.Message<INamePart> implements INamePart {
+    export class NamePart extends $protobuf.Message<NamePart> implements INamePart {
         namePart!: string
         isExtension!: boolean
-        get $reflection() {
-            return NamePart.reflection
+        get $type() {
+            return NamePart.$type
         }
 
-        static readonly reflection = $reflection.root.lookupType(".google.protobuf.UninterpretedOption.NamePart")
-        static decode(reader: Uint8Array | $protobuf.Reader, length?: number): NamePart {
-            if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-            const end = length === undefined ? reader.len : reader.pos + length
-            const result = new this()
-            while(reader.pos < end) {
-                let tag = reader.uint32()
-                switch(tag>>>3) {
-                    case 1:
-                        result.namePart = reader.string()
-                        break
-                    case 2:
-                        result.isExtension = reader.bool()
-                        break
-                }
-            }
-            return result
-        }
-
-        static decodeDelimited(reader: Uint8Array | $protobuf.Reader): NamePart {
-            if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-            return this.decode(reader, reader.uint32())
-        }
-        static create(properties?: INamePart): NamePart {
-            if(properties instanceof this) return properties
-            const result = new this()
-            if (!properties) return result
-            if(properties.hasOwnProperty("namePart") && properties.namePart !== undefined) result.namePart = properties.namePart
-            if(properties.hasOwnProperty("isExtension") && properties.isExtension !== undefined) result.isExtension = properties.isExtension
-            return result
-        }
+        static readonly $type = $reflection.root.lookupType(".google.protobuf.UninterpretedOption.NamePart")
     }
-    NamePart.prototype.namePart = NamePart.reflection.fieldsById[1].defaultValue
-    NamePart.prototype.isExtension = NamePart.reflection.fieldsById[2].defaultValue
+    NamePart.$type.generatedObject = NamePart
+    NamePart.prototype.namePart = NamePart.$type.fieldsById[1].defaultValue
+    NamePart.prototype.isExtension = NamePart.$type.fieldsById[2].defaultValue
 }
 
 /**
@@ -2270,45 +1249,19 @@ export interface ISourceCodeInfo {
      * ignore those that it doesn't understand, as more types of locations could
      * be recorded in the future.
      */
-    location?: (SourceCodeInfo.ILocation[] | null)
+    location?: readonly SourceCodeInfo.ILocation[]
 }
 
-export class SourceCodeInfo extends $sisyphus.Message<ISourceCodeInfo> implements ISourceCodeInfo {
-    location!: (SourceCodeInfo.ILocation[] | null)
-    get $reflection() {
-        return SourceCodeInfo.reflection
+export class SourceCodeInfo extends $protobuf.Message<SourceCodeInfo> implements ISourceCodeInfo {
+    location!: readonly SourceCodeInfo.Location[]
+    get $type() {
+        return SourceCodeInfo.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".google.protobuf.SourceCodeInfo")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): SourceCodeInfo {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    if (!result.location) result.location = []
-                    result.location.push(SourceCodeInfo.Location.decodeDelimited(reader))
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): SourceCodeInfo {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: ISourceCodeInfo): SourceCodeInfo {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("location") && properties.location != null) result.location = properties.location.map(it => SourceCodeInfo.Location.create(it))
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".google.protobuf.SourceCodeInfo")
 }
-SourceCodeInfo.prototype.location = SourceCodeInfo.reflection.fieldsById[1].defaultValue
+SourceCodeInfo.$type.generatedObject = SourceCodeInfo
+SourceCodeInfo.prototype.location = SourceCodeInfo.$type.fieldsById[1].defaultValue
 
 export namespace SourceCodeInfo {
 
@@ -2338,7 +1291,7 @@ export namespace SourceCodeInfo {
          * this path refers to the whole field declaration (from the beginning
          * of the label to the terminating semicolon).
          */
-        path?: (number[] | null)
+        path?: readonly number[]
         /**
          * Always has exactly three or four elements: start line, start column,
          * end line (optional, otherwise assumed same as start line), end column.
@@ -2346,7 +1299,7 @@ export namespace SourceCodeInfo {
          * and column numbers are zero-based -- typically you will want to add
          * 1 to each before displaying to a user.
          */
-        span?: (number[] | null)
+        span?: readonly number[]
         /**
          * If this SourceCodeInfo represents a complete declaration, these are any
          * comments appearing before and after the declaration which appear to be
@@ -2398,71 +1351,27 @@ export namespace SourceCodeInfo {
          */
         leadingComments?: string
         trailingComments?: string
-        leadingDetachedComments?: (string[] | null)
+        leadingDetachedComments?: readonly string[]
     }
 
-    export class Location extends $sisyphus.Message<ILocation> implements ILocation {
-        path!: (number[] | null)
-        span!: (number[] | null)
+    export class Location extends $protobuf.Message<Location> implements ILocation {
+        path!: readonly number[]
+        span!: readonly number[]
         leadingComments!: string
         trailingComments!: string
-        leadingDetachedComments!: (string[] | null)
-        get $reflection() {
-            return Location.reflection
+        leadingDetachedComments!: readonly string[]
+        get $type() {
+            return Location.$type
         }
 
-        static readonly reflection = $reflection.root.lookupType(".google.protobuf.SourceCodeInfo.Location")
-        static decode(reader: Uint8Array | $protobuf.Reader, length?: number): Location {
-            if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-            const end = length === undefined ? reader.len : reader.pos + length
-            const result = new this()
-            while(reader.pos < end) {
-                let tag = reader.uint32()
-                switch(tag>>>3) {
-                    case 1:
-                        if (!result.path) result.path = []
-                        result.path.push(reader.int32())
-                        break
-                    case 2:
-                        if (!result.span) result.span = []
-                        result.span.push(reader.int32())
-                        break
-                    case 3:
-                        result.leadingComments = reader.string()
-                        break
-                    case 4:
-                        result.trailingComments = reader.string()
-                        break
-                    case 6:
-                        if (!result.leadingDetachedComments) result.leadingDetachedComments = []
-                        result.leadingDetachedComments.push(reader.string())
-                        break
-                }
-            }
-            return result
-        }
-
-        static decodeDelimited(reader: Uint8Array | $protobuf.Reader): Location {
-            if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-            return this.decode(reader, reader.uint32())
-        }
-        static create(properties?: ILocation): Location {
-            if(properties instanceof this) return properties
-            const result = new this()
-            if (!properties) return result
-            if(properties.hasOwnProperty("path") && properties.path !== undefined) result.path = properties.path
-            if(properties.hasOwnProperty("span") && properties.span !== undefined) result.span = properties.span
-            if(properties.hasOwnProperty("leadingComments") && properties.leadingComments !== undefined) result.leadingComments = properties.leadingComments
-            if(properties.hasOwnProperty("trailingComments") && properties.trailingComments !== undefined) result.trailingComments = properties.trailingComments
-            if(properties.hasOwnProperty("leadingDetachedComments") && properties.leadingDetachedComments !== undefined) result.leadingDetachedComments = properties.leadingDetachedComments
-            return result
-        }
+        static readonly $type = $reflection.root.lookupType(".google.protobuf.SourceCodeInfo.Location")
     }
-    Location.prototype.path = Location.reflection.fieldsById[1].defaultValue
-    Location.prototype.span = Location.reflection.fieldsById[2].defaultValue
-    Location.prototype.leadingComments = Location.reflection.fieldsById[3].defaultValue
-    Location.prototype.trailingComments = Location.reflection.fieldsById[4].defaultValue
-    Location.prototype.leadingDetachedComments = Location.reflection.fieldsById[6].defaultValue
+    Location.$type.generatedObject = Location
+    Location.prototype.path = Location.$type.fieldsById[1].defaultValue
+    Location.prototype.span = Location.$type.fieldsById[2].defaultValue
+    Location.prototype.leadingComments = Location.$type.fieldsById[3].defaultValue
+    Location.prototype.trailingComments = Location.$type.fieldsById[4].defaultValue
+    Location.prototype.leadingDetachedComments = Location.$type.fieldsById[6].defaultValue
 }
 
 /**
@@ -2475,45 +1384,19 @@ export interface IGeneratedCodeInfo {
      * An Annotation connects some span of text in generated code to an element
      * of its generating .proto file.
      */
-    annotation?: (GeneratedCodeInfo.IAnnotation[] | null)
+    annotation?: readonly GeneratedCodeInfo.IAnnotation[]
 }
 
-export class GeneratedCodeInfo extends $sisyphus.Message<IGeneratedCodeInfo> implements IGeneratedCodeInfo {
-    annotation!: (GeneratedCodeInfo.IAnnotation[] | null)
-    get $reflection() {
-        return GeneratedCodeInfo.reflection
+export class GeneratedCodeInfo extends $protobuf.Message<GeneratedCodeInfo> implements IGeneratedCodeInfo {
+    annotation!: readonly GeneratedCodeInfo.Annotation[]
+    get $type() {
+        return GeneratedCodeInfo.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".google.protobuf.GeneratedCodeInfo")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): GeneratedCodeInfo {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    if (!result.annotation) result.annotation = []
-                    result.annotation.push(GeneratedCodeInfo.Annotation.decodeDelimited(reader))
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): GeneratedCodeInfo {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IGeneratedCodeInfo): GeneratedCodeInfo {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("annotation") && properties.annotation != null) result.annotation = properties.annotation.map(it => GeneratedCodeInfo.Annotation.create(it))
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".google.protobuf.GeneratedCodeInfo")
 }
-GeneratedCodeInfo.prototype.annotation = GeneratedCodeInfo.reflection.fieldsById[1].defaultValue
+GeneratedCodeInfo.$type.generatedObject = GeneratedCodeInfo
+GeneratedCodeInfo.prototype.annotation = GeneratedCodeInfo.$type.fieldsById[1].defaultValue
 
 export namespace GeneratedCodeInfo {
 
@@ -2522,7 +1405,7 @@ export namespace GeneratedCodeInfo {
          * Identifies the element in the original source .proto file. This field
          * is formatted the same as SourceCodeInfo.Location.path.
          */
-        path?: (number[] | null)
+        path?: readonly number[]
         /** Identifies the filesystem path to the original source .proto. */
         sourceFile?: string
         /**
@@ -2538,58 +1421,20 @@ export namespace GeneratedCodeInfo {
         end?: number
     }
 
-    export class Annotation extends $sisyphus.Message<IAnnotation> implements IAnnotation {
-        path!: (number[] | null)
+    export class Annotation extends $protobuf.Message<Annotation> implements IAnnotation {
+        path!: readonly number[]
         sourceFile!: string
         begin!: number
         end!: number
-        get $reflection() {
-            return Annotation.reflection
+        get $type() {
+            return Annotation.$type
         }
 
-        static readonly reflection = $reflection.root.lookupType(".google.protobuf.GeneratedCodeInfo.Annotation")
-        static decode(reader: Uint8Array | $protobuf.Reader, length?: number): Annotation {
-            if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-            const end = length === undefined ? reader.len : reader.pos + length
-            const result = new this()
-            while(reader.pos < end) {
-                let tag = reader.uint32()
-                switch(tag>>>3) {
-                    case 1:
-                        if (!result.path) result.path = []
-                        result.path.push(reader.int32())
-                        break
-                    case 2:
-                        result.sourceFile = reader.string()
-                        break
-                    case 3:
-                        result.begin = reader.int32()
-                        break
-                    case 4:
-                        result.end = reader.int32()
-                        break
-                }
-            }
-            return result
-        }
-
-        static decodeDelimited(reader: Uint8Array | $protobuf.Reader): Annotation {
-            if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-            return this.decode(reader, reader.uint32())
-        }
-        static create(properties?: IAnnotation): Annotation {
-            if(properties instanceof this) return properties
-            const result = new this()
-            if (!properties) return result
-            if(properties.hasOwnProperty("path") && properties.path !== undefined) result.path = properties.path
-            if(properties.hasOwnProperty("sourceFile") && properties.sourceFile !== undefined) result.sourceFile = properties.sourceFile
-            if(properties.hasOwnProperty("begin") && properties.begin !== undefined) result.begin = properties.begin
-            if(properties.hasOwnProperty("end") && properties.end !== undefined) result.end = properties.end
-            return result
-        }
+        static readonly $type = $reflection.root.lookupType(".google.protobuf.GeneratedCodeInfo.Annotation")
     }
-    Annotation.prototype.path = Annotation.reflection.fieldsById[1].defaultValue
-    Annotation.prototype.sourceFile = Annotation.reflection.fieldsById[2].defaultValue
-    Annotation.prototype.begin = Annotation.reflection.fieldsById[3].defaultValue
-    Annotation.prototype.end = Annotation.reflection.fieldsById[4].defaultValue
+    Annotation.$type.generatedObject = Annotation
+    Annotation.prototype.path = Annotation.$type.fieldsById[1].defaultValue
+    Annotation.prototype.sourceFile = Annotation.$type.fieldsById[2].defaultValue
+    Annotation.prototype.begin = Annotation.$type.fieldsById[3].defaultValue
+    Annotation.prototype.end = Annotation.$type.fieldsById[4].defaultValue
 }

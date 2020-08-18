@@ -1,6 +1,5 @@
 import * as $sisyphus from "@sisyphus.js/core"
 import * as $reflection from "../../_reflection"
-import * as $protobuf from "protobufjs"
 
 
 /**
@@ -205,43 +204,13 @@ import * as $protobuf from "protobufjs"
  * `INVALID_ARGUMENT` error if any path is unmappable.
  */
 export interface IFieldMask extends $sisyphus.IFieldMask {
-    /** The set of field mask paths. */
-    paths?: (string[] | null)
 }
 
-export class FieldMask extends $sisyphus.Message<IFieldMask> implements IFieldMask {
-    paths!: (string[] | null)
-    get $reflection() {
-        return FieldMask.reflection
+export class FieldMask extends $sisyphus.FieldMask implements IFieldMask {
+    get $type() {
+        return FieldMask.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".google.protobuf.FieldMask")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): FieldMask {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    if (!result.paths) result.paths = []
-                    result.paths.push(reader.string())
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): FieldMask {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IFieldMask): FieldMask {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("paths") && properties.paths !== undefined) result.paths = properties.paths
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".google.protobuf.FieldMask")
 }
-FieldMask.prototype.paths = FieldMask.reflection.fieldsById[1].defaultValue
+FieldMask.$type.generatedObject = FieldMask

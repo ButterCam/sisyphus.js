@@ -1,7 +1,6 @@
 import * as $any from "../../../../google/protobuf/any"
-import * as $sisyphus from "@sisyphus.js/core"
-import * as $reflection from "../../../../_reflection"
 import * as $protobuf from "protobufjs"
+import * as $reflection from "../../../../_reflection"
 import * as $order from "./order"
 
 
@@ -10,64 +9,29 @@ export interface IPlaceOrderRequest {
     /** 订单 ID，留空用于创建一个订单，如果非空将会将商品加入指定的订单 */
     order?: string
     /** 需要购买的物品 */
-    items?: (PlaceOrderRequest.IItem[] | null)
+    items?: readonly PlaceOrderRequest.IItem[]
     /**
      * 创建订单所提供的订单 Meta 信息，例如收货信息，物流信息。Meta 会追加到之前的 Meta 信息中
      * (-- api-linter: core::0146::any=disabled
      * aip.dev/not-precedent: 通用组件 --)
      */
-    metadata?: ($any.IAny[] | null)
+    metadata?: readonly $any.IAny[]
 }
 
-export class PlaceOrderRequest extends $sisyphus.Message<IPlaceOrderRequest> implements IPlaceOrderRequest {
+export class PlaceOrderRequest extends $protobuf.Message<PlaceOrderRequest> implements IPlaceOrderRequest {
     order!: string
-    items!: (PlaceOrderRequest.IItem[] | null)
-    metadata!: ($any.IAny[] | null)
-    get $reflection() {
-        return PlaceOrderRequest.reflection
+    items!: readonly PlaceOrderRequest.Item[]
+    metadata!: readonly $any.Any[]
+    get $type() {
+        return PlaceOrderRequest.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.shop.v1.PlaceOrderRequest")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): PlaceOrderRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.order = reader.string()
-                    break
-                case 2:
-                    if (!result.items) result.items = []
-                    result.items.push(PlaceOrderRequest.Item.decodeDelimited(reader))
-                    break
-                case 3:
-                    if (!result.metadata) result.metadata = []
-                    result.metadata.push($any.Any.decodeDelimited(reader))
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): PlaceOrderRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IPlaceOrderRequest): PlaceOrderRequest {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("order") && properties.order !== undefined) result.order = properties.order
-        if(properties.hasOwnProperty("items") && properties.items != null) result.items = properties.items.map(it => PlaceOrderRequest.Item.create(it))
-        if(properties.hasOwnProperty("metadata") && properties.metadata != null) result.metadata = properties.metadata.map(it => $any.Any.create(it))
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.PlaceOrderRequest")
 }
-PlaceOrderRequest.prototype.order = PlaceOrderRequest.reflection.fieldsById[1].defaultValue
-PlaceOrderRequest.prototype.items = PlaceOrderRequest.reflection.fieldsById[2].defaultValue
-PlaceOrderRequest.prototype.metadata = PlaceOrderRequest.reflection.fieldsById[3].defaultValue
+PlaceOrderRequest.$type.generatedObject = PlaceOrderRequest
+PlaceOrderRequest.prototype.order = PlaceOrderRequest.$type.fieldsById[1].defaultValue
+PlaceOrderRequest.prototype.items = PlaceOrderRequest.$type.fieldsById[2].defaultValue
+PlaceOrderRequest.prototype.metadata = PlaceOrderRequest.$type.fieldsById[3].defaultValue
 
 export namespace PlaceOrderRequest {
 
@@ -80,94 +44,39 @@ export namespace PlaceOrderRequest {
          * (-- api-linter: core::0146::any=disabled
          * aip.dev/not-precedent: 通用组件 --)
          */
-        metadata?: ($any.IAny[] | null)
+        metadata?: readonly $any.IAny[]
     }
 
-    export class Item extends $sisyphus.Message<IItem> implements IItem {
+    export class Item extends $protobuf.Message<Item> implements IItem {
         payment!: string
-        metadata!: ($any.IAny[] | null)
-        get $reflection() {
-            return Item.reflection
+        metadata!: readonly $any.Any[]
+        get $type() {
+            return Item.$type
         }
 
-        static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.shop.v1.PlaceOrderRequest.Item")
-        static decode(reader: Uint8Array | $protobuf.Reader, length?: number): Item {
-            if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-            const end = length === undefined ? reader.len : reader.pos + length
-            const result = new this()
-            while(reader.pos < end) {
-                let tag = reader.uint32()
-                switch(tag>>>3) {
-                    case 1:
-                        result.payment = reader.string()
-                        break
-                    case 2:
-                        if (!result.metadata) result.metadata = []
-                        result.metadata.push($any.Any.decodeDelimited(reader))
-                        break
-                }
-            }
-            return result
-        }
-
-        static decodeDelimited(reader: Uint8Array | $protobuf.Reader): Item {
-            if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-            return this.decode(reader, reader.uint32())
-        }
-        static create(properties?: IItem): Item {
-            if(properties instanceof this) return properties
-            const result = new this()
-            if (!properties) return result
-            if(properties.hasOwnProperty("payment") && properties.payment !== undefined) result.payment = properties.payment
-            if(properties.hasOwnProperty("metadata") && properties.metadata != null) result.metadata = properties.metadata.map(it => $any.Any.create(it))
-            return result
-        }
+        static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.PlaceOrderRequest.Item")
     }
-    Item.prototype.payment = Item.reflection.fieldsById[1].defaultValue
-    Item.prototype.metadata = Item.reflection.fieldsById[2].defaultValue
+    Item.$type.generatedObject = Item
+    Item.prototype.payment = Item.$type.fieldsById[1].defaultValue
+    Item.prototype.metadata = Item.$type.fieldsById[2].defaultValue
 }
 
 /** 创建订单 API 的响应 */
 export interface IPlaceOrderResponse {
     /** 更改后的订单结构 */
-    order?: ($order.IOrder | null)
+    order?: $order.IOrder
 }
 
-export class PlaceOrderResponse extends $sisyphus.Message<IPlaceOrderResponse> implements IPlaceOrderResponse {
-    order!: ($order.IOrder | null)
-    get $reflection() {
-        return PlaceOrderResponse.reflection
+export class PlaceOrderResponse extends $protobuf.Message<PlaceOrderResponse> implements IPlaceOrderResponse {
+    order!: $order.Order
+    get $type() {
+        return PlaceOrderResponse.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.shop.v1.PlaceOrderResponse")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): PlaceOrderResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.order = $order.Order.decodeDelimited(reader)
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): PlaceOrderResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IPlaceOrderResponse): PlaceOrderResponse {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("order") && properties.order != null) result.order = $order.Order.create(properties.order)
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.PlaceOrderResponse")
 }
-PlaceOrderResponse.prototype.order = PlaceOrderResponse.reflection.fieldsById[1].defaultValue
+PlaceOrderResponse.$type.generatedObject = PlaceOrderResponse
+PlaceOrderResponse.prototype.order = PlaceOrderResponse.$type.fieldsById[1].defaultValue
 
 
 /** 将订单进行结算。 */
@@ -178,90 +87,36 @@ export interface ICheckoutOrderRequest {
     paymentChannel?: string
 }
 
-export class CheckoutOrderRequest extends $sisyphus.Message<ICheckoutOrderRequest> implements ICheckoutOrderRequest {
+export class CheckoutOrderRequest extends $protobuf.Message<CheckoutOrderRequest> implements ICheckoutOrderRequest {
     name!: string
     paymentChannel!: string
-    get $reflection() {
-        return CheckoutOrderRequest.reflection
+    get $type() {
+        return CheckoutOrderRequest.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.shop.v1.CheckoutOrderRequest")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): CheckoutOrderRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.name = reader.string()
-                    break
-                case 2:
-                    result.paymentChannel = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): CheckoutOrderRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: ICheckoutOrderRequest): CheckoutOrderRequest {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        if(properties.hasOwnProperty("paymentChannel") && properties.paymentChannel !== undefined) result.paymentChannel = properties.paymentChannel
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.CheckoutOrderRequest")
 }
-CheckoutOrderRequest.prototype.name = CheckoutOrderRequest.reflection.fieldsById[1].defaultValue
-CheckoutOrderRequest.prototype.paymentChannel = CheckoutOrderRequest.reflection.fieldsById[2].defaultValue
+CheckoutOrderRequest.$type.generatedObject = CheckoutOrderRequest
+CheckoutOrderRequest.prototype.name = CheckoutOrderRequest.$type.fieldsById[1].defaultValue
+CheckoutOrderRequest.prototype.paymentChannel = CheckoutOrderRequest.$type.fieldsById[2].defaultValue
 
 
 /** 订单结算 API 的响应 */
 export interface ICheckoutOrderResponse {
     /** 更改后的订单结构 */
-    order?: ($order.IOrder | null)
+    order?: $order.IOrder
 }
 
-export class CheckoutOrderResponse extends $sisyphus.Message<ICheckoutOrderResponse> implements ICheckoutOrderResponse {
-    order!: ($order.IOrder | null)
-    get $reflection() {
-        return CheckoutOrderResponse.reflection
+export class CheckoutOrderResponse extends $protobuf.Message<CheckoutOrderResponse> implements ICheckoutOrderResponse {
+    order!: $order.Order
+    get $type() {
+        return CheckoutOrderResponse.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.shop.v1.CheckoutOrderResponse")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): CheckoutOrderResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.order = $order.Order.decodeDelimited(reader)
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): CheckoutOrderResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: ICheckoutOrderResponse): CheckoutOrderResponse {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("order") && properties.order != null) result.order = $order.Order.create(properties.order)
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.CheckoutOrderResponse")
 }
-CheckoutOrderResponse.prototype.order = CheckoutOrderResponse.reflection.fieldsById[1].defaultValue
+CheckoutOrderResponse.$type.generatedObject = CheckoutOrderResponse
+CheckoutOrderResponse.prototype.order = CheckoutOrderResponse.$type.fieldsById[1].defaultValue
 
 
 /** 为订单校验收据 */
@@ -273,93 +128,39 @@ export interface IVerifyOrderRequest {
      * (-- api-linter: core::0146::any=disabled
      * aip.dev/not-precedent: 通用组件 --)
      */
-    receipt?: ($any.IAny | null)
+    receipt?: $any.IAny
 }
 
-export class VerifyOrderRequest extends $sisyphus.Message<IVerifyOrderRequest> implements IVerifyOrderRequest {
+export class VerifyOrderRequest extends $protobuf.Message<VerifyOrderRequest> implements IVerifyOrderRequest {
     order!: string
-    receipt!: ($any.IAny | null)
-    get $reflection() {
-        return VerifyOrderRequest.reflection
+    receipt!: $any.Any
+    get $type() {
+        return VerifyOrderRequest.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.shop.v1.VerifyOrderRequest")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): VerifyOrderRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.order = reader.string()
-                    break
-                case 2:
-                    result.receipt = $any.Any.decodeDelimited(reader)
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): VerifyOrderRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IVerifyOrderRequest): VerifyOrderRequest {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("order") && properties.order !== undefined) result.order = properties.order
-        if(properties.hasOwnProperty("receipt") && properties.receipt != null) result.receipt = $any.Any.create(properties.receipt)
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.VerifyOrderRequest")
 }
-VerifyOrderRequest.prototype.order = VerifyOrderRequest.reflection.fieldsById[1].defaultValue
-VerifyOrderRequest.prototype.receipt = VerifyOrderRequest.reflection.fieldsById[2].defaultValue
+VerifyOrderRequest.$type.generatedObject = VerifyOrderRequest
+VerifyOrderRequest.prototype.order = VerifyOrderRequest.$type.fieldsById[1].defaultValue
+VerifyOrderRequest.prototype.receipt = VerifyOrderRequest.$type.fieldsById[2].defaultValue
 
 
 /** 校验收据 API 的响应 */
 export interface IVerifyOrderResponse {
     /** 更改后的订单结构 */
-    order?: ($order.IOrder | null)
+    order?: $order.IOrder
 }
 
-export class VerifyOrderResponse extends $sisyphus.Message<IVerifyOrderResponse> implements IVerifyOrderResponse {
-    order!: ($order.IOrder | null)
-    get $reflection() {
-        return VerifyOrderResponse.reflection
+export class VerifyOrderResponse extends $protobuf.Message<VerifyOrderResponse> implements IVerifyOrderResponse {
+    order!: $order.Order
+    get $type() {
+        return VerifyOrderResponse.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.shop.v1.VerifyOrderResponse")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): VerifyOrderResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.order = $order.Order.decodeDelimited(reader)
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): VerifyOrderResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IVerifyOrderResponse): VerifyOrderResponse {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("order") && properties.order != null) result.order = $order.Order.create(properties.order)
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.VerifyOrderResponse")
 }
-VerifyOrderResponse.prototype.order = VerifyOrderResponse.reflection.fieldsById[1].defaultValue
+VerifyOrderResponse.$type.generatedObject = VerifyOrderResponse
+VerifyOrderResponse.prototype.order = VerifyOrderResponse.$type.fieldsById[1].defaultValue
 
 
 /** 订单退款 */
@@ -371,93 +172,39 @@ export interface IRefundOrderRequest {
      * (-- api-linter: core::0146::any=disabled
      * aip.dev/not-precedent: 通用组件 --)
      */
-    refund?: ($any.IAny | null)
+    refund?: $any.IAny
 }
 
-export class RefundOrderRequest extends $sisyphus.Message<IRefundOrderRequest> implements IRefundOrderRequest {
+export class RefundOrderRequest extends $protobuf.Message<RefundOrderRequest> implements IRefundOrderRequest {
     order!: string
-    refund!: ($any.IAny | null)
-    get $reflection() {
-        return RefundOrderRequest.reflection
+    refund!: $any.Any
+    get $type() {
+        return RefundOrderRequest.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.shop.v1.RefundOrderRequest")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): RefundOrderRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.order = reader.string()
-                    break
-                case 2:
-                    result.refund = $any.Any.decodeDelimited(reader)
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): RefundOrderRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IRefundOrderRequest): RefundOrderRequest {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("order") && properties.order !== undefined) result.order = properties.order
-        if(properties.hasOwnProperty("refund") && properties.refund != null) result.refund = $any.Any.create(properties.refund)
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.RefundOrderRequest")
 }
-RefundOrderRequest.prototype.order = RefundOrderRequest.reflection.fieldsById[1].defaultValue
-RefundOrderRequest.prototype.refund = RefundOrderRequest.reflection.fieldsById[2].defaultValue
+RefundOrderRequest.$type.generatedObject = RefundOrderRequest
+RefundOrderRequest.prototype.order = RefundOrderRequest.$type.fieldsById[1].defaultValue
+RefundOrderRequest.prototype.refund = RefundOrderRequest.$type.fieldsById[2].defaultValue
 
 
 /** 退款订单的响应 */
 export interface IRefundOrderResponse {
     /** 更改后的订单结构 */
-    order?: ($order.IOrder | null)
+    order?: $order.IOrder
 }
 
-export class RefundOrderResponse extends $sisyphus.Message<IRefundOrderResponse> implements IRefundOrderResponse {
-    order!: ($order.IOrder | null)
-    get $reflection() {
-        return RefundOrderResponse.reflection
+export class RefundOrderResponse extends $protobuf.Message<RefundOrderResponse> implements IRefundOrderResponse {
+    order!: $order.Order
+    get $type() {
+        return RefundOrderResponse.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.shop.v1.RefundOrderResponse")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): RefundOrderResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.order = $order.Order.decodeDelimited(reader)
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): RefundOrderResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IRefundOrderResponse): RefundOrderResponse {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("order") && properties.order != null) result.order = $order.Order.create(properties.order)
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.RefundOrderResponse")
 }
-RefundOrderResponse.prototype.order = RefundOrderResponse.reflection.fieldsById[1].defaultValue
+RefundOrderResponse.$type.generatedObject = RefundOrderResponse
+RefundOrderResponse.prototype.order = RefundOrderResponse.$type.fieldsById[1].defaultValue
 
 
 /** 获取订单的 API 请求 */
@@ -466,41 +213,16 @@ export interface IGetOrderRequest {
     name?: string
 }
 
-export class GetOrderRequest extends $sisyphus.Message<IGetOrderRequest> implements IGetOrderRequest {
+export class GetOrderRequest extends $protobuf.Message<GetOrderRequest> implements IGetOrderRequest {
     name!: string
-    get $reflection() {
-        return GetOrderRequest.reflection
+    get $type() {
+        return GetOrderRequest.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.shop.v1.GetOrderRequest")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): GetOrderRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.name = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): GetOrderRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IGetOrderRequest): GetOrderRequest {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.GetOrderRequest")
 }
-GetOrderRequest.prototype.name = GetOrderRequest.reflection.fieldsById[1].defaultValue
+GetOrderRequest.$type.generatedObject = GetOrderRequest
+GetOrderRequest.prototype.name = GetOrderRequest.$type.fieldsById[1].defaultValue
 
 
 /** 列举订单的 API 请求 */
@@ -521,117 +243,46 @@ export interface IListOrdersRequest {
     iapReceipt?: string
 }
 
-export class ListOrdersRequest extends $sisyphus.Message<IListOrdersRequest> implements IListOrdersRequest {
+export class ListOrdersRequest extends $protobuf.Message<ListOrdersRequest> implements IListOrdersRequest {
     parent!: string
     filter!: string
     pageSize!: number
     pageToken!: string
     iapReceipt!: string
-    get $reflection() {
-        return ListOrdersRequest.reflection
+    get $type() {
+        return ListOrdersRequest.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.shop.v1.ListOrdersRequest")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): ListOrdersRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.parent = reader.string()
-                    break
-                case 2:
-                    result.filter = reader.string()
-                    break
-                case 3:
-                    result.pageSize = reader.int32()
-                    break
-                case 4:
-                    result.pageToken = reader.string()
-                    break
-                case 5:
-                    result.iapReceipt = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): ListOrdersRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IListOrdersRequest): ListOrdersRequest {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("parent") && properties.parent !== undefined) result.parent = properties.parent
-        if(properties.hasOwnProperty("filter") && properties.filter !== undefined) result.filter = properties.filter
-        if(properties.hasOwnProperty("pageSize") && properties.pageSize !== undefined) result.pageSize = properties.pageSize
-        if(properties.hasOwnProperty("pageToken") && properties.pageToken !== undefined) result.pageToken = properties.pageToken
-        if(properties.hasOwnProperty("iapReceipt") && properties.iapReceipt !== undefined) result.iapReceipt = properties.iapReceipt
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.ListOrdersRequest")
 }
-ListOrdersRequest.prototype.parent = ListOrdersRequest.reflection.fieldsById[1].defaultValue
-ListOrdersRequest.prototype.filter = ListOrdersRequest.reflection.fieldsById[2].defaultValue
-ListOrdersRequest.prototype.pageSize = ListOrdersRequest.reflection.fieldsById[3].defaultValue
-ListOrdersRequest.prototype.pageToken = ListOrdersRequest.reflection.fieldsById[4].defaultValue
-ListOrdersRequest.prototype.iapReceipt = ListOrdersRequest.reflection.fieldsById[5].defaultValue
+ListOrdersRequest.$type.generatedObject = ListOrdersRequest
+ListOrdersRequest.prototype.parent = ListOrdersRequest.$type.fieldsById[1].defaultValue
+ListOrdersRequest.prototype.filter = ListOrdersRequest.$type.fieldsById[2].defaultValue
+ListOrdersRequest.prototype.pageSize = ListOrdersRequest.$type.fieldsById[3].defaultValue
+ListOrdersRequest.prototype.pageToken = ListOrdersRequest.$type.fieldsById[4].defaultValue
+ListOrdersRequest.prototype.iapReceipt = ListOrdersRequest.$type.fieldsById[5].defaultValue
 
 
 /** 列举订单的 API 响应 */
 export interface IListOrdersResponse {
     /** 返回的订单信息 */
-    orders?: ($order.IOrder[] | null)
+    orders?: readonly $order.IOrder[]
     /** 下一页的翻页信息 */
     nextPageToken?: string
 }
 
-export class ListOrdersResponse extends $sisyphus.Message<IListOrdersResponse> implements IListOrdersResponse {
-    orders!: ($order.IOrder[] | null)
+export class ListOrdersResponse extends $protobuf.Message<ListOrdersResponse> implements IListOrdersResponse {
+    orders!: readonly $order.Order[]
     nextPageToken!: string
-    get $reflection() {
-        return ListOrdersResponse.reflection
+    get $type() {
+        return ListOrdersResponse.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.shop.v1.ListOrdersResponse")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): ListOrdersResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    if (!result.orders) result.orders = []
-                    result.orders.push($order.Order.decodeDelimited(reader))
-                    break
-                case 2:
-                    result.nextPageToken = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): ListOrdersResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IListOrdersResponse): ListOrdersResponse {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("orders") && properties.orders != null) result.orders = properties.orders.map(it => $order.Order.create(it))
-        if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.ListOrdersResponse")
 }
-ListOrdersResponse.prototype.orders = ListOrdersResponse.reflection.fieldsById[1].defaultValue
-ListOrdersResponse.prototype.nextPageToken = ListOrdersResponse.reflection.fieldsById[2].defaultValue
+ListOrdersResponse.$type.generatedObject = ListOrdersResponse
+ListOrdersResponse.prototype.orders = ListOrdersResponse.$type.fieldsById[1].defaultValue
+ListOrdersResponse.prototype.nextPageToken = ListOrdersResponse.$type.fieldsById[2].defaultValue
 
 
 /** 批量获取订单的请求 */
@@ -639,92 +290,36 @@ export interface IBatchGetOrdersRequest {
     /** 订单所属用户 */
     parent?: string
     /** 订单的资源名 */
-    names?: (string[] | null)
+    names?: readonly string[]
 }
 
-export class BatchGetOrdersRequest extends $sisyphus.Message<IBatchGetOrdersRequest> implements IBatchGetOrdersRequest {
+export class BatchGetOrdersRequest extends $protobuf.Message<BatchGetOrdersRequest> implements IBatchGetOrdersRequest {
     parent!: string
-    names!: (string[] | null)
-    get $reflection() {
-        return BatchGetOrdersRequest.reflection
+    names!: readonly string[]
+    get $type() {
+        return BatchGetOrdersRequest.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.shop.v1.BatchGetOrdersRequest")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): BatchGetOrdersRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.parent = reader.string()
-                    break
-                case 2:
-                    if (!result.names) result.names = []
-                    result.names.push(reader.string())
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): BatchGetOrdersRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IBatchGetOrdersRequest): BatchGetOrdersRequest {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("parent") && properties.parent !== undefined) result.parent = properties.parent
-        if(properties.hasOwnProperty("names") && properties.names !== undefined) result.names = properties.names
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.BatchGetOrdersRequest")
 }
-BatchGetOrdersRequest.prototype.parent = BatchGetOrdersRequest.reflection.fieldsById[1].defaultValue
-BatchGetOrdersRequest.prototype.names = BatchGetOrdersRequest.reflection.fieldsById[2].defaultValue
+BatchGetOrdersRequest.$type.generatedObject = BatchGetOrdersRequest
+BatchGetOrdersRequest.prototype.parent = BatchGetOrdersRequest.$type.fieldsById[1].defaultValue
+BatchGetOrdersRequest.prototype.names = BatchGetOrdersRequest.$type.fieldsById[2].defaultValue
 
 
 /** 批量获取订单的 API 响应 */
 export interface IBatchGetOrdersResponse {
     /** 返回的订单资源 */
-    orders?: ($order.IOrder[] | null)
+    orders?: readonly $order.IOrder[]
 }
 
-export class BatchGetOrdersResponse extends $sisyphus.Message<IBatchGetOrdersResponse> implements IBatchGetOrdersResponse {
-    orders!: ($order.IOrder[] | null)
-    get $reflection() {
-        return BatchGetOrdersResponse.reflection
+export class BatchGetOrdersResponse extends $protobuf.Message<BatchGetOrdersResponse> implements IBatchGetOrdersResponse {
+    orders!: readonly $order.Order[]
+    get $type() {
+        return BatchGetOrdersResponse.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.shop.v1.BatchGetOrdersResponse")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): BatchGetOrdersResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    if (!result.orders) result.orders = []
-                    result.orders.push($order.Order.decodeDelimited(reader))
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): BatchGetOrdersResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IBatchGetOrdersResponse): BatchGetOrdersResponse {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("orders") && properties.orders != null) result.orders = properties.orders.map(it => $order.Order.create(it))
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.BatchGetOrdersResponse")
 }
-BatchGetOrdersResponse.prototype.orders = BatchGetOrdersResponse.reflection.fieldsById[1].defaultValue
+BatchGetOrdersResponse.$type.generatedObject = BatchGetOrdersResponse
+BatchGetOrdersResponse.prototype.orders = BatchGetOrdersResponse.$type.fieldsById[1].defaultValue

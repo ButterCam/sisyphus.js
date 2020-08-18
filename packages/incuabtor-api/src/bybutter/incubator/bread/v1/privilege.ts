@@ -1,7 +1,6 @@
 import * as $reflection from "../../../../_reflection"
 import * as $ownership from "../../shop/v1/ownership"
 import * as $timestamp from "../../../../google/protobuf/timestamp"
-import * as $sisyphus from "@sisyphus.js/core"
 import * as $protobuf from "protobufjs"
 import * as $struct from "../../../../google/protobuf/struct"
 
@@ -57,14 +56,14 @@ export interface IFilter {
     /** 使用权 */
     usage?: $ownership.UsageType
     /** 特权开始时间 */
-    startTime?: ($timestamp.ITimestamp | null)
+    startTime?: $timestamp.ITimestamp
     /** 特权结束时间 */
-    endTime?: ($timestamp.ITimestamp | null)
+    endTime?: $timestamp.ITimestamp
     /** 滤镜默认值 */
     defaultStrength?: number
 }
 
-export class Filter extends $sisyphus.Message<IFilter> implements IFilter {
+export class Filter extends $protobuf.Message<Filter> implements IFilter {
     name!: string
     title!: string
     iconUri!: string
@@ -74,97 +73,28 @@ export class Filter extends $sisyphus.Message<IFilter> implements IFilter {
     remark!: string
     ownership!: $ownership.OwnershipType
     usage!: $ownership.UsageType
-    startTime!: ($timestamp.ITimestamp | null)
-    endTime!: ($timestamp.ITimestamp | null)
+    startTime!: $timestamp.Timestamp
+    endTime!: $timestamp.Timestamp
     defaultStrength!: number
-    get $reflection() {
-        return Filter.reflection
+    get $type() {
+        return Filter.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.Filter")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): Filter {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.name = reader.string()
-                    break
-                case 2:
-                    result.title = reader.string()
-                    break
-                case 3:
-                    result.iconUri = reader.string()
-                    break
-                case 4:
-                    result.uri = reader.string()
-                    break
-                case 5:
-                    result.downloadUri = reader.string()
-                    break
-                case 6:
-                    result.fileHash = reader.string()
-                    break
-                case 7:
-                    result.remark = reader.string()
-                    break
-                case 8:
-                    result.ownership = reader.uint32()
-                    break
-                case 9:
-                    result.usage = reader.uint32()
-                    break
-                case 10:
-                    result.startTime = $timestamp.Timestamp.decodeDelimited(reader)
-                    break
-                case 11:
-                    result.endTime = $timestamp.Timestamp.decodeDelimited(reader)
-                    break
-                case 20:
-                    result.defaultStrength = reader.int32()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): Filter {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IFilter): Filter {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        if(properties.hasOwnProperty("title") && properties.title !== undefined) result.title = properties.title
-        if(properties.hasOwnProperty("iconUri") && properties.iconUri !== undefined) result.iconUri = properties.iconUri
-        if(properties.hasOwnProperty("uri") && properties.uri !== undefined) result.uri = properties.uri
-        if(properties.hasOwnProperty("downloadUri") && properties.downloadUri !== undefined) result.downloadUri = properties.downloadUri
-        if(properties.hasOwnProperty("fileHash") && properties.fileHash !== undefined) result.fileHash = properties.fileHash
-        if(properties.hasOwnProperty("remark") && properties.remark !== undefined) result.remark = properties.remark
-        if(properties.hasOwnProperty("ownership") && properties.ownership !== undefined) result.ownership = properties.ownership
-        if(properties.hasOwnProperty("usage") && properties.usage !== undefined) result.usage = properties.usage
-        if(properties.hasOwnProperty("startTime") && properties.startTime != null) result.startTime = $timestamp.Timestamp.create(properties.startTime)
-        if(properties.hasOwnProperty("endTime") && properties.endTime != null) result.endTime = $timestamp.Timestamp.create(properties.endTime)
-        if(properties.hasOwnProperty("defaultStrength") && properties.defaultStrength !== undefined) result.defaultStrength = properties.defaultStrength
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.Filter")
 }
-Filter.prototype.name = Filter.reflection.fieldsById[1].defaultValue
-Filter.prototype.title = Filter.reflection.fieldsById[2].defaultValue
-Filter.prototype.iconUri = Filter.reflection.fieldsById[3].defaultValue
-Filter.prototype.uri = Filter.reflection.fieldsById[4].defaultValue
-Filter.prototype.downloadUri = Filter.reflection.fieldsById[5].defaultValue
-Filter.prototype.fileHash = Filter.reflection.fieldsById[6].defaultValue
-Filter.prototype.remark = Filter.reflection.fieldsById[7].defaultValue
-Filter.prototype.ownership = Filter.reflection.fieldsById[8].defaultValue
-Filter.prototype.usage = Filter.reflection.fieldsById[9].defaultValue
-Filter.prototype.startTime = Filter.reflection.fieldsById[10].defaultValue
-Filter.prototype.endTime = Filter.reflection.fieldsById[11].defaultValue
-Filter.prototype.defaultStrength = Filter.reflection.fieldsById[20].defaultValue
+Filter.$type.generatedObject = Filter
+Filter.prototype.name = Filter.$type.fieldsById[1].defaultValue
+Filter.prototype.title = Filter.$type.fieldsById[2].defaultValue
+Filter.prototype.iconUri = Filter.$type.fieldsById[3].defaultValue
+Filter.prototype.uri = Filter.$type.fieldsById[4].defaultValue
+Filter.prototype.downloadUri = Filter.$type.fieldsById[5].defaultValue
+Filter.prototype.fileHash = Filter.$type.fieldsById[6].defaultValue
+Filter.prototype.remark = Filter.$type.fieldsById[7].defaultValue
+Filter.prototype.ownership = Filter.$type.fieldsById[8].defaultValue
+Filter.prototype.usage = Filter.$type.fieldsById[9].defaultValue
+Filter.prototype.startTime = Filter.$type.fieldsById[10].defaultValue
+Filter.prototype.endTime = Filter.$type.fieldsById[11].defaultValue
+Filter.prototype.defaultStrength = Filter.$type.fieldsById[20].defaultValue
 
 
 /** 滤镜组 */
@@ -177,53 +107,20 @@ export interface IFilterGroup {
     iconUri?: string
 }
 
-export class FilterGroup extends $sisyphus.Message<IFilterGroup> implements IFilterGroup {
+export class FilterGroup extends $protobuf.Message<FilterGroup> implements IFilterGroup {
     name!: string
     title!: string
     iconUri!: string
-    get $reflection() {
-        return FilterGroup.reflection
+    get $type() {
+        return FilterGroup.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.FilterGroup")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): FilterGroup {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.name = reader.string()
-                    break
-                case 2:
-                    result.title = reader.string()
-                    break
-                case 3:
-                    result.iconUri = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): FilterGroup {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IFilterGroup): FilterGroup {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        if(properties.hasOwnProperty("title") && properties.title !== undefined) result.title = properties.title
-        if(properties.hasOwnProperty("iconUri") && properties.iconUri !== undefined) result.iconUri = properties.iconUri
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.FilterGroup")
 }
-FilterGroup.prototype.name = FilterGroup.reflection.fieldsById[1].defaultValue
-FilterGroup.prototype.title = FilterGroup.reflection.fieldsById[2].defaultValue
-FilterGroup.prototype.iconUri = FilterGroup.reflection.fieldsById[3].defaultValue
+FilterGroup.$type.generatedObject = FilterGroup
+FilterGroup.prototype.name = FilterGroup.$type.fieldsById[1].defaultValue
+FilterGroup.prototype.title = FilterGroup.$type.fieldsById[2].defaultValue
+FilterGroup.prototype.iconUri = FilterGroup.$type.fieldsById[3].defaultValue
 
 
 /** 边框特权资源 */
@@ -247,14 +144,14 @@ export interface IBorder {
     /** 使用权 */
     usage?: $ownership.UsageType
     /** 特权开始时间 */
-    startTime?: ($timestamp.ITimestamp | null)
+    startTime?: $timestamp.ITimestamp
     /** 特权结束时间 */
-    endTime?: ($timestamp.ITimestamp | null)
+    endTime?: $timestamp.ITimestamp
     /** 滤镜默认值 */
     defaultStrength?: number
 }
 
-export class Border extends $sisyphus.Message<IBorder> implements IBorder {
+export class Border extends $protobuf.Message<Border> implements IBorder {
     name!: string
     title!: string
     iconUri!: string
@@ -264,97 +161,28 @@ export class Border extends $sisyphus.Message<IBorder> implements IBorder {
     remark!: string
     ownership!: $ownership.OwnershipType
     usage!: $ownership.UsageType
-    startTime!: ($timestamp.ITimestamp | null)
-    endTime!: ($timestamp.ITimestamp | null)
+    startTime!: $timestamp.Timestamp
+    endTime!: $timestamp.Timestamp
     defaultStrength!: number
-    get $reflection() {
-        return Border.reflection
+    get $type() {
+        return Border.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.Border")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): Border {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.name = reader.string()
-                    break
-                case 2:
-                    result.title = reader.string()
-                    break
-                case 3:
-                    result.iconUri = reader.string()
-                    break
-                case 4:
-                    result.uri = reader.string()
-                    break
-                case 5:
-                    result.downloadUri = reader.string()
-                    break
-                case 6:
-                    result.fileHash = reader.string()
-                    break
-                case 7:
-                    result.remark = reader.string()
-                    break
-                case 8:
-                    result.ownership = reader.uint32()
-                    break
-                case 9:
-                    result.usage = reader.uint32()
-                    break
-                case 10:
-                    result.startTime = $timestamp.Timestamp.decodeDelimited(reader)
-                    break
-                case 11:
-                    result.endTime = $timestamp.Timestamp.decodeDelimited(reader)
-                    break
-                case 20:
-                    result.defaultStrength = reader.int32()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): Border {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IBorder): Border {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        if(properties.hasOwnProperty("title") && properties.title !== undefined) result.title = properties.title
-        if(properties.hasOwnProperty("iconUri") && properties.iconUri !== undefined) result.iconUri = properties.iconUri
-        if(properties.hasOwnProperty("uri") && properties.uri !== undefined) result.uri = properties.uri
-        if(properties.hasOwnProperty("downloadUri") && properties.downloadUri !== undefined) result.downloadUri = properties.downloadUri
-        if(properties.hasOwnProperty("fileHash") && properties.fileHash !== undefined) result.fileHash = properties.fileHash
-        if(properties.hasOwnProperty("remark") && properties.remark !== undefined) result.remark = properties.remark
-        if(properties.hasOwnProperty("ownership") && properties.ownership !== undefined) result.ownership = properties.ownership
-        if(properties.hasOwnProperty("usage") && properties.usage !== undefined) result.usage = properties.usage
-        if(properties.hasOwnProperty("startTime") && properties.startTime != null) result.startTime = $timestamp.Timestamp.create(properties.startTime)
-        if(properties.hasOwnProperty("endTime") && properties.endTime != null) result.endTime = $timestamp.Timestamp.create(properties.endTime)
-        if(properties.hasOwnProperty("defaultStrength") && properties.defaultStrength !== undefined) result.defaultStrength = properties.defaultStrength
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.Border")
 }
-Border.prototype.name = Border.reflection.fieldsById[1].defaultValue
-Border.prototype.title = Border.reflection.fieldsById[2].defaultValue
-Border.prototype.iconUri = Border.reflection.fieldsById[3].defaultValue
-Border.prototype.uri = Border.reflection.fieldsById[4].defaultValue
-Border.prototype.downloadUri = Border.reflection.fieldsById[5].defaultValue
-Border.prototype.fileHash = Border.reflection.fieldsById[6].defaultValue
-Border.prototype.remark = Border.reflection.fieldsById[7].defaultValue
-Border.prototype.ownership = Border.reflection.fieldsById[8].defaultValue
-Border.prototype.usage = Border.reflection.fieldsById[9].defaultValue
-Border.prototype.startTime = Border.reflection.fieldsById[10].defaultValue
-Border.prototype.endTime = Border.reflection.fieldsById[11].defaultValue
-Border.prototype.defaultStrength = Border.reflection.fieldsById[20].defaultValue
+Border.$type.generatedObject = Border
+Border.prototype.name = Border.$type.fieldsById[1].defaultValue
+Border.prototype.title = Border.$type.fieldsById[2].defaultValue
+Border.prototype.iconUri = Border.$type.fieldsById[3].defaultValue
+Border.prototype.uri = Border.$type.fieldsById[4].defaultValue
+Border.prototype.downloadUri = Border.$type.fieldsById[5].defaultValue
+Border.prototype.fileHash = Border.$type.fieldsById[6].defaultValue
+Border.prototype.remark = Border.$type.fieldsById[7].defaultValue
+Border.prototype.ownership = Border.$type.fieldsById[8].defaultValue
+Border.prototype.usage = Border.$type.fieldsById[9].defaultValue
+Border.prototype.startTime = Border.$type.fieldsById[10].defaultValue
+Border.prototype.endTime = Border.$type.fieldsById[11].defaultValue
+Border.prototype.defaultStrength = Border.$type.fieldsById[20].defaultValue
 
 
 /** 边框特权组 */
@@ -367,53 +195,20 @@ export interface IBorderGroup {
     iconUri?: string
 }
 
-export class BorderGroup extends $sisyphus.Message<IBorderGroup> implements IBorderGroup {
+export class BorderGroup extends $protobuf.Message<BorderGroup> implements IBorderGroup {
     name!: string
     title!: string
     iconUri!: string
-    get $reflection() {
-        return BorderGroup.reflection
+    get $type() {
+        return BorderGroup.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.BorderGroup")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): BorderGroup {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.name = reader.string()
-                    break
-                case 2:
-                    result.title = reader.string()
-                    break
-                case 3:
-                    result.iconUri = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): BorderGroup {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IBorderGroup): BorderGroup {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        if(properties.hasOwnProperty("title") && properties.title !== undefined) result.title = properties.title
-        if(properties.hasOwnProperty("iconUri") && properties.iconUri !== undefined) result.iconUri = properties.iconUri
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.BorderGroup")
 }
-BorderGroup.prototype.name = BorderGroup.reflection.fieldsById[1].defaultValue
-BorderGroup.prototype.title = BorderGroup.reflection.fieldsById[2].defaultValue
-BorderGroup.prototype.iconUri = BorderGroup.reflection.fieldsById[3].defaultValue
+BorderGroup.$type.generatedObject = BorderGroup
+BorderGroup.prototype.name = BorderGroup.$type.fieldsById[1].defaultValue
+BorderGroup.prototype.title = BorderGroup.$type.fieldsById[2].defaultValue
+BorderGroup.prototype.iconUri = BorderGroup.$type.fieldsById[3].defaultValue
 
 
 /** 标签资源 */
@@ -437,14 +232,14 @@ export interface ILabel {
     /** 使用权 */
     usage?: $ownership.UsageType
     /** 特权开始时间 */
-    startTime?: ($timestamp.ITimestamp | null)
+    startTime?: $timestamp.ITimestamp
     /** 特权结束时间 */
-    endTime?: ($timestamp.ITimestamp | null)
+    endTime?: $timestamp.ITimestamp
     /** 文本的 Style 结构 */
-    style?: ($struct.IStruct | null)
+    style?: $struct.IStruct
 }
 
-export class Label extends $sisyphus.Message<ILabel> implements ILabel {
+export class Label extends $protobuf.Message<Label> implements ILabel {
     name!: string
     title!: string
     iconUri!: string
@@ -454,97 +249,28 @@ export class Label extends $sisyphus.Message<ILabel> implements ILabel {
     remark!: string
     ownership!: $ownership.OwnershipType
     usage!: $ownership.UsageType
-    startTime!: ($timestamp.ITimestamp | null)
-    endTime!: ($timestamp.ITimestamp | null)
-    style!: ($struct.IStruct | null)
-    get $reflection() {
-        return Label.reflection
+    startTime!: $timestamp.Timestamp
+    endTime!: $timestamp.Timestamp
+    style!: $struct.Struct
+    get $type() {
+        return Label.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.Label")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): Label {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.name = reader.string()
-                    break
-                case 2:
-                    result.title = reader.string()
-                    break
-                case 3:
-                    result.iconUri = reader.string()
-                    break
-                case 4:
-                    result.uri = reader.string()
-                    break
-                case 5:
-                    result.downloadUri = reader.string()
-                    break
-                case 6:
-                    result.fileHash = reader.string()
-                    break
-                case 7:
-                    result.remark = reader.string()
-                    break
-                case 8:
-                    result.ownership = reader.uint32()
-                    break
-                case 9:
-                    result.usage = reader.uint32()
-                    break
-                case 10:
-                    result.startTime = $timestamp.Timestamp.decodeDelimited(reader)
-                    break
-                case 11:
-                    result.endTime = $timestamp.Timestamp.decodeDelimited(reader)
-                    break
-                case 20:
-                    result.style = $struct.Struct.decodeDelimited(reader)
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): Label {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: ILabel): Label {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        if(properties.hasOwnProperty("title") && properties.title !== undefined) result.title = properties.title
-        if(properties.hasOwnProperty("iconUri") && properties.iconUri !== undefined) result.iconUri = properties.iconUri
-        if(properties.hasOwnProperty("uri") && properties.uri !== undefined) result.uri = properties.uri
-        if(properties.hasOwnProperty("downloadUri") && properties.downloadUri !== undefined) result.downloadUri = properties.downloadUri
-        if(properties.hasOwnProperty("fileHash") && properties.fileHash !== undefined) result.fileHash = properties.fileHash
-        if(properties.hasOwnProperty("remark") && properties.remark !== undefined) result.remark = properties.remark
-        if(properties.hasOwnProperty("ownership") && properties.ownership !== undefined) result.ownership = properties.ownership
-        if(properties.hasOwnProperty("usage") && properties.usage !== undefined) result.usage = properties.usage
-        if(properties.hasOwnProperty("startTime") && properties.startTime != null) result.startTime = $timestamp.Timestamp.create(properties.startTime)
-        if(properties.hasOwnProperty("endTime") && properties.endTime != null) result.endTime = $timestamp.Timestamp.create(properties.endTime)
-        if(properties.hasOwnProperty("style") && properties.style != null) result.style = $struct.Struct.create(properties.style)
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.Label")
 }
-Label.prototype.name = Label.reflection.fieldsById[1].defaultValue
-Label.prototype.title = Label.reflection.fieldsById[2].defaultValue
-Label.prototype.iconUri = Label.reflection.fieldsById[3].defaultValue
-Label.prototype.uri = Label.reflection.fieldsById[4].defaultValue
-Label.prototype.downloadUri = Label.reflection.fieldsById[5].defaultValue
-Label.prototype.fileHash = Label.reflection.fieldsById[6].defaultValue
-Label.prototype.remark = Label.reflection.fieldsById[7].defaultValue
-Label.prototype.ownership = Label.reflection.fieldsById[8].defaultValue
-Label.prototype.usage = Label.reflection.fieldsById[9].defaultValue
-Label.prototype.startTime = Label.reflection.fieldsById[10].defaultValue
-Label.prototype.endTime = Label.reflection.fieldsById[11].defaultValue
-Label.prototype.style = Label.reflection.fieldsById[20].defaultValue
+Label.$type.generatedObject = Label
+Label.prototype.name = Label.$type.fieldsById[1].defaultValue
+Label.prototype.title = Label.$type.fieldsById[2].defaultValue
+Label.prototype.iconUri = Label.$type.fieldsById[3].defaultValue
+Label.prototype.uri = Label.$type.fieldsById[4].defaultValue
+Label.prototype.downloadUri = Label.$type.fieldsById[5].defaultValue
+Label.prototype.fileHash = Label.$type.fieldsById[6].defaultValue
+Label.prototype.remark = Label.$type.fieldsById[7].defaultValue
+Label.prototype.ownership = Label.$type.fieldsById[8].defaultValue
+Label.prototype.usage = Label.$type.fieldsById[9].defaultValue
+Label.prototype.startTime = Label.$type.fieldsById[10].defaultValue
+Label.prototype.endTime = Label.$type.fieldsById[11].defaultValue
+Label.prototype.style = Label.$type.fieldsById[20].defaultValue
 
 
 /** 标签组资源 */
@@ -557,53 +283,20 @@ export interface ILabelGroup {
     iconUri?: string
 }
 
-export class LabelGroup extends $sisyphus.Message<ILabelGroup> implements ILabelGroup {
+export class LabelGroup extends $protobuf.Message<LabelGroup> implements ILabelGroup {
     name!: string
     title!: string
     iconUri!: string
-    get $reflection() {
-        return LabelGroup.reflection
+    get $type() {
+        return LabelGroup.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.LabelGroup")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): LabelGroup {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.name = reader.string()
-                    break
-                case 2:
-                    result.title = reader.string()
-                    break
-                case 3:
-                    result.iconUri = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): LabelGroup {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: ILabelGroup): LabelGroup {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        if(properties.hasOwnProperty("title") && properties.title !== undefined) result.title = properties.title
-        if(properties.hasOwnProperty("iconUri") && properties.iconUri !== undefined) result.iconUri = properties.iconUri
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.LabelGroup")
 }
-LabelGroup.prototype.name = LabelGroup.reflection.fieldsById[1].defaultValue
-LabelGroup.prototype.title = LabelGroup.reflection.fieldsById[2].defaultValue
-LabelGroup.prototype.iconUri = LabelGroup.reflection.fieldsById[3].defaultValue
+LabelGroup.$type.generatedObject = LabelGroup
+LabelGroup.prototype.name = LabelGroup.$type.fieldsById[1].defaultValue
+LabelGroup.prototype.title = LabelGroup.$type.fieldsById[2].defaultValue
+LabelGroup.prototype.iconUri = LabelGroup.$type.fieldsById[3].defaultValue
 
 
 /** 贴纸资源 */
@@ -627,9 +320,9 @@ export interface ISticker {
     /** 使用权 */
     usage?: $ownership.UsageType
     /** 特权开始时间 */
-    startTime?: ($timestamp.ITimestamp | null)
+    startTime?: $timestamp.ITimestamp
     /** 特权结束时间 */
-    endTime?: ($timestamp.ITimestamp | null)
+    endTime?: $timestamp.ITimestamp
     /** 贴纸的调色类型 */
     paletteType?: PaletteType
     /** 贴纸的文件类型 */
@@ -640,7 +333,7 @@ export interface ISticker {
     height?: number
 }
 
-export class Sticker extends $sisyphus.Message<ISticker> implements ISticker {
+export class Sticker extends $protobuf.Message<Sticker> implements ISticker {
     name!: string
     title!: string
     iconUri!: string
@@ -650,115 +343,34 @@ export class Sticker extends $sisyphus.Message<ISticker> implements ISticker {
     remark!: string
     ownership!: $ownership.OwnershipType
     usage!: $ownership.UsageType
-    startTime!: ($timestamp.ITimestamp | null)
-    endTime!: ($timestamp.ITimestamp | null)
+    startTime!: $timestamp.Timestamp
+    endTime!: $timestamp.Timestamp
     paletteType!: PaletteType
     fileType!: StickerType
     width!: number
     height!: number
-    get $reflection() {
-        return Sticker.reflection
+    get $type() {
+        return Sticker.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.Sticker")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): Sticker {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.name = reader.string()
-                    break
-                case 2:
-                    result.title = reader.string()
-                    break
-                case 3:
-                    result.iconUri = reader.string()
-                    break
-                case 4:
-                    result.uri = reader.string()
-                    break
-                case 5:
-                    result.downloadUri = reader.string()
-                    break
-                case 6:
-                    result.fileHash = reader.string()
-                    break
-                case 7:
-                    result.remark = reader.string()
-                    break
-                case 8:
-                    result.ownership = reader.uint32()
-                    break
-                case 9:
-                    result.usage = reader.uint32()
-                    break
-                case 10:
-                    result.startTime = $timestamp.Timestamp.decodeDelimited(reader)
-                    break
-                case 11:
-                    result.endTime = $timestamp.Timestamp.decodeDelimited(reader)
-                    break
-                case 20:
-                    result.paletteType = reader.uint32()
-                    break
-                case 21:
-                    result.fileType = reader.uint32()
-                    break
-                case 22:
-                    result.width = reader.int32()
-                    break
-                case 23:
-                    result.height = reader.int32()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): Sticker {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: ISticker): Sticker {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        if(properties.hasOwnProperty("title") && properties.title !== undefined) result.title = properties.title
-        if(properties.hasOwnProperty("iconUri") && properties.iconUri !== undefined) result.iconUri = properties.iconUri
-        if(properties.hasOwnProperty("uri") && properties.uri !== undefined) result.uri = properties.uri
-        if(properties.hasOwnProperty("downloadUri") && properties.downloadUri !== undefined) result.downloadUri = properties.downloadUri
-        if(properties.hasOwnProperty("fileHash") && properties.fileHash !== undefined) result.fileHash = properties.fileHash
-        if(properties.hasOwnProperty("remark") && properties.remark !== undefined) result.remark = properties.remark
-        if(properties.hasOwnProperty("ownership") && properties.ownership !== undefined) result.ownership = properties.ownership
-        if(properties.hasOwnProperty("usage") && properties.usage !== undefined) result.usage = properties.usage
-        if(properties.hasOwnProperty("startTime") && properties.startTime != null) result.startTime = $timestamp.Timestamp.create(properties.startTime)
-        if(properties.hasOwnProperty("endTime") && properties.endTime != null) result.endTime = $timestamp.Timestamp.create(properties.endTime)
-        if(properties.hasOwnProperty("paletteType") && properties.paletteType !== undefined) result.paletteType = properties.paletteType
-        if(properties.hasOwnProperty("fileType") && properties.fileType !== undefined) result.fileType = properties.fileType
-        if(properties.hasOwnProperty("width") && properties.width !== undefined) result.width = properties.width
-        if(properties.hasOwnProperty("height") && properties.height !== undefined) result.height = properties.height
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.Sticker")
 }
-Sticker.prototype.name = Sticker.reflection.fieldsById[1].defaultValue
-Sticker.prototype.title = Sticker.reflection.fieldsById[2].defaultValue
-Sticker.prototype.iconUri = Sticker.reflection.fieldsById[3].defaultValue
-Sticker.prototype.uri = Sticker.reflection.fieldsById[4].defaultValue
-Sticker.prototype.downloadUri = Sticker.reflection.fieldsById[5].defaultValue
-Sticker.prototype.fileHash = Sticker.reflection.fieldsById[6].defaultValue
-Sticker.prototype.remark = Sticker.reflection.fieldsById[7].defaultValue
-Sticker.prototype.ownership = Sticker.reflection.fieldsById[8].defaultValue
-Sticker.prototype.usage = Sticker.reflection.fieldsById[9].defaultValue
-Sticker.prototype.startTime = Sticker.reflection.fieldsById[10].defaultValue
-Sticker.prototype.endTime = Sticker.reflection.fieldsById[11].defaultValue
-Sticker.prototype.paletteType = Sticker.reflection.fieldsById[20].defaultValue
-Sticker.prototype.fileType = Sticker.reflection.fieldsById[21].defaultValue
-Sticker.prototype.width = Sticker.reflection.fieldsById[22].defaultValue
-Sticker.prototype.height = Sticker.reflection.fieldsById[23].defaultValue
+Sticker.$type.generatedObject = Sticker
+Sticker.prototype.name = Sticker.$type.fieldsById[1].defaultValue
+Sticker.prototype.title = Sticker.$type.fieldsById[2].defaultValue
+Sticker.prototype.iconUri = Sticker.$type.fieldsById[3].defaultValue
+Sticker.prototype.uri = Sticker.$type.fieldsById[4].defaultValue
+Sticker.prototype.downloadUri = Sticker.$type.fieldsById[5].defaultValue
+Sticker.prototype.fileHash = Sticker.$type.fieldsById[6].defaultValue
+Sticker.prototype.remark = Sticker.$type.fieldsById[7].defaultValue
+Sticker.prototype.ownership = Sticker.$type.fieldsById[8].defaultValue
+Sticker.prototype.usage = Sticker.$type.fieldsById[9].defaultValue
+Sticker.prototype.startTime = Sticker.$type.fieldsById[10].defaultValue
+Sticker.prototype.endTime = Sticker.$type.fieldsById[11].defaultValue
+Sticker.prototype.paletteType = Sticker.$type.fieldsById[20].defaultValue
+Sticker.prototype.fileType = Sticker.$type.fieldsById[21].defaultValue
+Sticker.prototype.width = Sticker.$type.fieldsById[22].defaultValue
+Sticker.prototype.height = Sticker.$type.fieldsById[23].defaultValue
 
 
 /** 贴纸组资源 */
@@ -771,53 +383,20 @@ export interface IStickerGroup {
     iconUri?: string
 }
 
-export class StickerGroup extends $sisyphus.Message<IStickerGroup> implements IStickerGroup {
+export class StickerGroup extends $protobuf.Message<StickerGroup> implements IStickerGroup {
     name!: string
     title!: string
     iconUri!: string
-    get $reflection() {
-        return StickerGroup.reflection
+    get $type() {
+        return StickerGroup.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.StickerGroup")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): StickerGroup {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.name = reader.string()
-                    break
-                case 2:
-                    result.title = reader.string()
-                    break
-                case 3:
-                    result.iconUri = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): StickerGroup {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IStickerGroup): StickerGroup {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        if(properties.hasOwnProperty("title") && properties.title !== undefined) result.title = properties.title
-        if(properties.hasOwnProperty("iconUri") && properties.iconUri !== undefined) result.iconUri = properties.iconUri
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.StickerGroup")
 }
-StickerGroup.prototype.name = StickerGroup.reflection.fieldsById[1].defaultValue
-StickerGroup.prototype.title = StickerGroup.reflection.fieldsById[2].defaultValue
-StickerGroup.prototype.iconUri = StickerGroup.reflection.fieldsById[3].defaultValue
+StickerGroup.$type.generatedObject = StickerGroup
+StickerGroup.prototype.name = StickerGroup.$type.fieldsById[1].defaultValue
+StickerGroup.prototype.title = StickerGroup.$type.fieldsById[2].defaultValue
+StickerGroup.prototype.iconUri = StickerGroup.$type.fieldsById[3].defaultValue
 
 
 /** 音乐资源 */
@@ -841,14 +420,14 @@ export interface IMusic {
     /** 使用权 */
     usage?: $ownership.UsageType
     /** 特权开始时间 */
-    startTime?: ($timestamp.ITimestamp | null)
+    startTime?: $timestamp.ITimestamp
     /** 特权结束时间 */
-    endTime?: ($timestamp.ITimestamp | null)
+    endTime?: $timestamp.ITimestamp
     /** 音乐作者 */
     author?: string
 }
 
-export class Music extends $sisyphus.Message<IMusic> implements IMusic {
+export class Music extends $protobuf.Message<Music> implements IMusic {
     name!: string
     title!: string
     iconUri!: string
@@ -858,97 +437,28 @@ export class Music extends $sisyphus.Message<IMusic> implements IMusic {
     remark!: string
     ownership!: $ownership.OwnershipType
     usage!: $ownership.UsageType
-    startTime!: ($timestamp.ITimestamp | null)
-    endTime!: ($timestamp.ITimestamp | null)
+    startTime!: $timestamp.Timestamp
+    endTime!: $timestamp.Timestamp
     author!: string
-    get $reflection() {
-        return Music.reflection
+    get $type() {
+        return Music.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.Music")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): Music {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.name = reader.string()
-                    break
-                case 2:
-                    result.title = reader.string()
-                    break
-                case 3:
-                    result.iconUri = reader.string()
-                    break
-                case 4:
-                    result.uri = reader.string()
-                    break
-                case 5:
-                    result.downloadUri = reader.string()
-                    break
-                case 6:
-                    result.fileHash = reader.string()
-                    break
-                case 7:
-                    result.remark = reader.string()
-                    break
-                case 8:
-                    result.ownership = reader.uint32()
-                    break
-                case 9:
-                    result.usage = reader.uint32()
-                    break
-                case 10:
-                    result.startTime = $timestamp.Timestamp.decodeDelimited(reader)
-                    break
-                case 11:
-                    result.endTime = $timestamp.Timestamp.decodeDelimited(reader)
-                    break
-                case 21:
-                    result.author = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): Music {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IMusic): Music {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        if(properties.hasOwnProperty("title") && properties.title !== undefined) result.title = properties.title
-        if(properties.hasOwnProperty("iconUri") && properties.iconUri !== undefined) result.iconUri = properties.iconUri
-        if(properties.hasOwnProperty("uri") && properties.uri !== undefined) result.uri = properties.uri
-        if(properties.hasOwnProperty("downloadUri") && properties.downloadUri !== undefined) result.downloadUri = properties.downloadUri
-        if(properties.hasOwnProperty("fileHash") && properties.fileHash !== undefined) result.fileHash = properties.fileHash
-        if(properties.hasOwnProperty("remark") && properties.remark !== undefined) result.remark = properties.remark
-        if(properties.hasOwnProperty("ownership") && properties.ownership !== undefined) result.ownership = properties.ownership
-        if(properties.hasOwnProperty("usage") && properties.usage !== undefined) result.usage = properties.usage
-        if(properties.hasOwnProperty("startTime") && properties.startTime != null) result.startTime = $timestamp.Timestamp.create(properties.startTime)
-        if(properties.hasOwnProperty("endTime") && properties.endTime != null) result.endTime = $timestamp.Timestamp.create(properties.endTime)
-        if(properties.hasOwnProperty("author") && properties.author !== undefined) result.author = properties.author
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.Music")
 }
-Music.prototype.name = Music.reflection.fieldsById[1].defaultValue
-Music.prototype.title = Music.reflection.fieldsById[2].defaultValue
-Music.prototype.iconUri = Music.reflection.fieldsById[3].defaultValue
-Music.prototype.uri = Music.reflection.fieldsById[4].defaultValue
-Music.prototype.downloadUri = Music.reflection.fieldsById[5].defaultValue
-Music.prototype.fileHash = Music.reflection.fieldsById[6].defaultValue
-Music.prototype.remark = Music.reflection.fieldsById[7].defaultValue
-Music.prototype.ownership = Music.reflection.fieldsById[8].defaultValue
-Music.prototype.usage = Music.reflection.fieldsById[9].defaultValue
-Music.prototype.startTime = Music.reflection.fieldsById[10].defaultValue
-Music.prototype.endTime = Music.reflection.fieldsById[11].defaultValue
-Music.prototype.author = Music.reflection.fieldsById[21].defaultValue
+Music.$type.generatedObject = Music
+Music.prototype.name = Music.$type.fieldsById[1].defaultValue
+Music.prototype.title = Music.$type.fieldsById[2].defaultValue
+Music.prototype.iconUri = Music.$type.fieldsById[3].defaultValue
+Music.prototype.uri = Music.$type.fieldsById[4].defaultValue
+Music.prototype.downloadUri = Music.$type.fieldsById[5].defaultValue
+Music.prototype.fileHash = Music.$type.fieldsById[6].defaultValue
+Music.prototype.remark = Music.$type.fieldsById[7].defaultValue
+Music.prototype.ownership = Music.$type.fieldsById[8].defaultValue
+Music.prototype.usage = Music.$type.fieldsById[9].defaultValue
+Music.prototype.startTime = Music.$type.fieldsById[10].defaultValue
+Music.prototype.endTime = Music.$type.fieldsById[11].defaultValue
+Music.prototype.author = Music.$type.fieldsById[21].defaultValue
 
 
 /** 音乐组资源 */
@@ -961,53 +471,20 @@ export interface IMusicGroup {
     iconUri?: string
 }
 
-export class MusicGroup extends $sisyphus.Message<IMusicGroup> implements IMusicGroup {
+export class MusicGroup extends $protobuf.Message<MusicGroup> implements IMusicGroup {
     name!: string
     title!: string
     iconUri!: string
-    get $reflection() {
-        return MusicGroup.reflection
+    get $type() {
+        return MusicGroup.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.MusicGroup")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): MusicGroup {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.name = reader.string()
-                    break
-                case 2:
-                    result.title = reader.string()
-                    break
-                case 3:
-                    result.iconUri = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): MusicGroup {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IMusicGroup): MusicGroup {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        if(properties.hasOwnProperty("title") && properties.title !== undefined) result.title = properties.title
-        if(properties.hasOwnProperty("iconUri") && properties.iconUri !== undefined) result.iconUri = properties.iconUri
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.MusicGroup")
 }
-MusicGroup.prototype.name = MusicGroup.reflection.fieldsById[1].defaultValue
-MusicGroup.prototype.title = MusicGroup.reflection.fieldsById[2].defaultValue
-MusicGroup.prototype.iconUri = MusicGroup.reflection.fieldsById[3].defaultValue
+MusicGroup.$type.generatedObject = MusicGroup
+MusicGroup.prototype.name = MusicGroup.$type.fieldsById[1].defaultValue
+MusicGroup.prototype.title = MusicGroup.$type.fieldsById[2].defaultValue
+MusicGroup.prototype.iconUri = MusicGroup.$type.fieldsById[3].defaultValue
 
 
 /** 音效资源 */
@@ -1031,12 +508,12 @@ export interface ISound {
     /** 使用权 */
     usage?: $ownership.UsageType
     /** 特权开始时间 */
-    startTime?: ($timestamp.ITimestamp | null)
+    startTime?: $timestamp.ITimestamp
     /** 特权结束时间 */
-    endTime?: ($timestamp.ITimestamp | null)
+    endTime?: $timestamp.ITimestamp
 }
 
-export class Sound extends $sisyphus.Message<ISound> implements ISound {
+export class Sound extends $protobuf.Message<Sound> implements ISound {
     name!: string
     title!: string
     iconUri!: string
@@ -1046,91 +523,26 @@ export class Sound extends $sisyphus.Message<ISound> implements ISound {
     remark!: string
     ownership!: $ownership.OwnershipType
     usage!: $ownership.UsageType
-    startTime!: ($timestamp.ITimestamp | null)
-    endTime!: ($timestamp.ITimestamp | null)
-    get $reflection() {
-        return Sound.reflection
+    startTime!: $timestamp.Timestamp
+    endTime!: $timestamp.Timestamp
+    get $type() {
+        return Sound.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.Sound")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): Sound {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.name = reader.string()
-                    break
-                case 2:
-                    result.title = reader.string()
-                    break
-                case 3:
-                    result.iconUri = reader.string()
-                    break
-                case 4:
-                    result.uri = reader.string()
-                    break
-                case 5:
-                    result.downloadUri = reader.string()
-                    break
-                case 6:
-                    result.fileHash = reader.string()
-                    break
-                case 7:
-                    result.remark = reader.string()
-                    break
-                case 8:
-                    result.ownership = reader.uint32()
-                    break
-                case 9:
-                    result.usage = reader.uint32()
-                    break
-                case 10:
-                    result.startTime = $timestamp.Timestamp.decodeDelimited(reader)
-                    break
-                case 11:
-                    result.endTime = $timestamp.Timestamp.decodeDelimited(reader)
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): Sound {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: ISound): Sound {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        if(properties.hasOwnProperty("title") && properties.title !== undefined) result.title = properties.title
-        if(properties.hasOwnProperty("iconUri") && properties.iconUri !== undefined) result.iconUri = properties.iconUri
-        if(properties.hasOwnProperty("uri") && properties.uri !== undefined) result.uri = properties.uri
-        if(properties.hasOwnProperty("downloadUri") && properties.downloadUri !== undefined) result.downloadUri = properties.downloadUri
-        if(properties.hasOwnProperty("fileHash") && properties.fileHash !== undefined) result.fileHash = properties.fileHash
-        if(properties.hasOwnProperty("remark") && properties.remark !== undefined) result.remark = properties.remark
-        if(properties.hasOwnProperty("ownership") && properties.ownership !== undefined) result.ownership = properties.ownership
-        if(properties.hasOwnProperty("usage") && properties.usage !== undefined) result.usage = properties.usage
-        if(properties.hasOwnProperty("startTime") && properties.startTime != null) result.startTime = $timestamp.Timestamp.create(properties.startTime)
-        if(properties.hasOwnProperty("endTime") && properties.endTime != null) result.endTime = $timestamp.Timestamp.create(properties.endTime)
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.Sound")
 }
-Sound.prototype.name = Sound.reflection.fieldsById[1].defaultValue
-Sound.prototype.title = Sound.reflection.fieldsById[2].defaultValue
-Sound.prototype.iconUri = Sound.reflection.fieldsById[3].defaultValue
-Sound.prototype.uri = Sound.reflection.fieldsById[4].defaultValue
-Sound.prototype.downloadUri = Sound.reflection.fieldsById[5].defaultValue
-Sound.prototype.fileHash = Sound.reflection.fieldsById[6].defaultValue
-Sound.prototype.remark = Sound.reflection.fieldsById[7].defaultValue
-Sound.prototype.ownership = Sound.reflection.fieldsById[8].defaultValue
-Sound.prototype.usage = Sound.reflection.fieldsById[9].defaultValue
-Sound.prototype.startTime = Sound.reflection.fieldsById[10].defaultValue
-Sound.prototype.endTime = Sound.reflection.fieldsById[11].defaultValue
+Sound.$type.generatedObject = Sound
+Sound.prototype.name = Sound.$type.fieldsById[1].defaultValue
+Sound.prototype.title = Sound.$type.fieldsById[2].defaultValue
+Sound.prototype.iconUri = Sound.$type.fieldsById[3].defaultValue
+Sound.prototype.uri = Sound.$type.fieldsById[4].defaultValue
+Sound.prototype.downloadUri = Sound.$type.fieldsById[5].defaultValue
+Sound.prototype.fileHash = Sound.$type.fieldsById[6].defaultValue
+Sound.prototype.remark = Sound.$type.fieldsById[7].defaultValue
+Sound.prototype.ownership = Sound.$type.fieldsById[8].defaultValue
+Sound.prototype.usage = Sound.$type.fieldsById[9].defaultValue
+Sound.prototype.startTime = Sound.$type.fieldsById[10].defaultValue
+Sound.prototype.endTime = Sound.$type.fieldsById[11].defaultValue
 
 
 /** 音效组资源 */
@@ -1143,53 +555,20 @@ export interface ISoundGroup {
     iconUri?: string
 }
 
-export class SoundGroup extends $sisyphus.Message<ISoundGroup> implements ISoundGroup {
+export class SoundGroup extends $protobuf.Message<SoundGroup> implements ISoundGroup {
     name!: string
     title!: string
     iconUri!: string
-    get $reflection() {
-        return SoundGroup.reflection
+    get $type() {
+        return SoundGroup.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.SoundGroup")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): SoundGroup {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.name = reader.string()
-                    break
-                case 2:
-                    result.title = reader.string()
-                    break
-                case 3:
-                    result.iconUri = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): SoundGroup {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: ISoundGroup): SoundGroup {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        if(properties.hasOwnProperty("title") && properties.title !== undefined) result.title = properties.title
-        if(properties.hasOwnProperty("iconUri") && properties.iconUri !== undefined) result.iconUri = properties.iconUri
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.SoundGroup")
 }
-SoundGroup.prototype.name = SoundGroup.reflection.fieldsById[1].defaultValue
-SoundGroup.prototype.title = SoundGroup.reflection.fieldsById[2].defaultValue
-SoundGroup.prototype.iconUri = SoundGroup.reflection.fieldsById[3].defaultValue
+SoundGroup.$type.generatedObject = SoundGroup
+SoundGroup.prototype.name = SoundGroup.$type.fieldsById[1].defaultValue
+SoundGroup.prototype.title = SoundGroup.$type.fieldsById[2].defaultValue
+SoundGroup.prototype.iconUri = SoundGroup.$type.fieldsById[3].defaultValue
 
 
 /** 会员特权资源 */
@@ -1209,12 +588,12 @@ export interface IMembership {
     /** 使用权 */
     usage?: $ownership.UsageType
     /** 特权开始时间 */
-    startTime?: ($timestamp.ITimestamp | null)
+    startTime?: $timestamp.ITimestamp
     /** 特权结束时间 */
-    endTime?: ($timestamp.ITimestamp | null)
+    endTime?: $timestamp.ITimestamp
 }
 
-export class Membership extends $sisyphus.Message<IMembership> implements IMembership {
+export class Membership extends $protobuf.Message<Membership> implements IMembership {
     name!: string
     title!: string
     iconUri!: string
@@ -1222,78 +601,21 @@ export class Membership extends $sisyphus.Message<IMembership> implements IMembe
     remark!: string
     ownership!: $ownership.OwnershipType
     usage!: $ownership.UsageType
-    startTime!: ($timestamp.ITimestamp | null)
-    endTime!: ($timestamp.ITimestamp | null)
-    get $reflection() {
-        return Membership.reflection
+    startTime!: $timestamp.Timestamp
+    endTime!: $timestamp.Timestamp
+    get $type() {
+        return Membership.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.Membership")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): Membership {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.name = reader.string()
-                    break
-                case 2:
-                    result.title = reader.string()
-                    break
-                case 3:
-                    result.iconUri = reader.string()
-                    break
-                case 4:
-                    result.uri = reader.string()
-                    break
-                case 7:
-                    result.remark = reader.string()
-                    break
-                case 8:
-                    result.ownership = reader.uint32()
-                    break
-                case 9:
-                    result.usage = reader.uint32()
-                    break
-                case 10:
-                    result.startTime = $timestamp.Timestamp.decodeDelimited(reader)
-                    break
-                case 11:
-                    result.endTime = $timestamp.Timestamp.decodeDelimited(reader)
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): Membership {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IMembership): Membership {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        if(properties.hasOwnProperty("title") && properties.title !== undefined) result.title = properties.title
-        if(properties.hasOwnProperty("iconUri") && properties.iconUri !== undefined) result.iconUri = properties.iconUri
-        if(properties.hasOwnProperty("uri") && properties.uri !== undefined) result.uri = properties.uri
-        if(properties.hasOwnProperty("remark") && properties.remark !== undefined) result.remark = properties.remark
-        if(properties.hasOwnProperty("ownership") && properties.ownership !== undefined) result.ownership = properties.ownership
-        if(properties.hasOwnProperty("usage") && properties.usage !== undefined) result.usage = properties.usage
-        if(properties.hasOwnProperty("startTime") && properties.startTime != null) result.startTime = $timestamp.Timestamp.create(properties.startTime)
-        if(properties.hasOwnProperty("endTime") && properties.endTime != null) result.endTime = $timestamp.Timestamp.create(properties.endTime)
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.Membership")
 }
-Membership.prototype.name = Membership.reflection.fieldsById[1].defaultValue
-Membership.prototype.title = Membership.reflection.fieldsById[2].defaultValue
-Membership.prototype.iconUri = Membership.reflection.fieldsById[3].defaultValue
-Membership.prototype.uri = Membership.reflection.fieldsById[4].defaultValue
-Membership.prototype.remark = Membership.reflection.fieldsById[7].defaultValue
-Membership.prototype.ownership = Membership.reflection.fieldsById[8].defaultValue
-Membership.prototype.usage = Membership.reflection.fieldsById[9].defaultValue
-Membership.prototype.startTime = Membership.reflection.fieldsById[10].defaultValue
-Membership.prototype.endTime = Membership.reflection.fieldsById[11].defaultValue
+Membership.$type.generatedObject = Membership
+Membership.prototype.name = Membership.$type.fieldsById[1].defaultValue
+Membership.prototype.title = Membership.$type.fieldsById[2].defaultValue
+Membership.prototype.iconUri = Membership.$type.fieldsById[3].defaultValue
+Membership.prototype.uri = Membership.$type.fieldsById[4].defaultValue
+Membership.prototype.remark = Membership.$type.fieldsById[7].defaultValue
+Membership.prototype.ownership = Membership.$type.fieldsById[8].defaultValue
+Membership.prototype.usage = Membership.$type.fieldsById[9].defaultValue
+Membership.prototype.startTime = Membership.$type.fieldsById[10].defaultValue
+Membership.prototype.endTime = Membership.$type.fieldsById[11].defaultValue

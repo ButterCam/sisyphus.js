@@ -1,6 +1,5 @@
-import * as $sisyphus from "@sisyphus.js/core"
-import * as $reflection from "../../../../_reflection"
 import * as $protobuf from "protobufjs"
+import * as $reflection from "../../../../_reflection"
 import * as $product from "./product"
 import * as $any from "../../../../google/protobuf/any"
 
@@ -13,116 +12,49 @@ export interface IPaymentPayload {
     planHash?: Uint8Array
 }
 
-export class PaymentPayload extends $sisyphus.Message<IPaymentPayload> implements IPaymentPayload {
+export class PaymentPayload extends $protobuf.Message<PaymentPayload> implements IPaymentPayload {
     product!: string
     planHash!: Uint8Array
-    get $reflection() {
-        return PaymentPayload.reflection
+    get $type() {
+        return PaymentPayload.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.shop.v1.PaymentPayload")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): PaymentPayload {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.product = reader.string()
-                    break
-                case 2:
-                    result.planHash = reader.bytes()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): PaymentPayload {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IPaymentPayload): PaymentPayload {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("product") && properties.product !== undefined) result.product = properties.product
-        if(properties.hasOwnProperty("planHash") && properties.planHash !== undefined) result.planHash = properties.planHash
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.PaymentPayload")
 }
-PaymentPayload.prototype.product = PaymentPayload.reflection.fieldsById[1].defaultValue
-PaymentPayload.prototype.planHash = PaymentPayload.reflection.fieldsById[2].defaultValue
+PaymentPayload.$type.generatedObject = PaymentPayload
+PaymentPayload.prototype.product = PaymentPayload.$type.fieldsById[1].defaultValue
+PaymentPayload.prototype.planHash = PaymentPayload.$type.fieldsById[2].defaultValue
 
 
 /** 解析完成的订单商品 */
 export interface IResolvedOrderItem {
     /** 订单内容的 Payment 信息 */
-    payment?: (IPaymentPayload | null)
+    payment?: IPaymentPayload
     /** 商品接哦古 */
-    product?: ($product.IProduct | null)
+    product?: $product.IProduct
     /** 所选择的规格 */
-    plan?: ($product.IPlan | null)
+    plan?: $product.IPlan
     /**
      * 创建订单所提供的物品 Meta 信息
      * (-- api-linter: core::0146::any=disabled
      * aip.dev/not-precedent: 通用组件 --)
      */
-    metadata?: ($any.IAny[] | null)
+    metadata?: readonly $any.IAny[]
 }
 
-export class ResolvedOrderItem extends $sisyphus.Message<IResolvedOrderItem> implements IResolvedOrderItem {
-    payment!: (IPaymentPayload | null)
-    product!: ($product.IProduct | null)
-    plan!: ($product.IPlan | null)
-    metadata!: ($any.IAny[] | null)
-    get $reflection() {
-        return ResolvedOrderItem.reflection
+export class ResolvedOrderItem extends $protobuf.Message<ResolvedOrderItem> implements IResolvedOrderItem {
+    payment!: PaymentPayload
+    product!: $product.Product
+    plan!: $product.Plan
+    metadata!: readonly $any.Any[]
+    get $type() {
+        return ResolvedOrderItem.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.shop.v1.ResolvedOrderItem")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): ResolvedOrderItem {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.payment = PaymentPayload.decodeDelimited(reader)
-                    break
-                case 2:
-                    result.product = $product.Product.decodeDelimited(reader)
-                    break
-                case 3:
-                    result.plan = $product.Plan.decodeDelimited(reader)
-                    break
-                case 4:
-                    if (!result.metadata) result.metadata = []
-                    result.metadata.push($any.Any.decodeDelimited(reader))
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): ResolvedOrderItem {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IResolvedOrderItem): ResolvedOrderItem {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("payment") && properties.payment != null) result.payment = PaymentPayload.create(properties.payment)
-        if(properties.hasOwnProperty("product") && properties.product != null) result.product = $product.Product.create(properties.product)
-        if(properties.hasOwnProperty("plan") && properties.plan != null) result.plan = $product.Plan.create(properties.plan)
-        if(properties.hasOwnProperty("metadata") && properties.metadata != null) result.metadata = properties.metadata.map(it => $any.Any.create(it))
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.ResolvedOrderItem")
 }
-ResolvedOrderItem.prototype.payment = ResolvedOrderItem.reflection.fieldsById[1].defaultValue
-ResolvedOrderItem.prototype.product = ResolvedOrderItem.reflection.fieldsById[2].defaultValue
-ResolvedOrderItem.prototype.plan = ResolvedOrderItem.reflection.fieldsById[3].defaultValue
-ResolvedOrderItem.prototype.metadata = ResolvedOrderItem.reflection.fieldsById[4].defaultValue
+ResolvedOrderItem.$type.generatedObject = ResolvedOrderItem
+ResolvedOrderItem.prototype.payment = ResolvedOrderItem.$type.fieldsById[1].defaultValue
+ResolvedOrderItem.prototype.product = ResolvedOrderItem.$type.fieldsById[2].defaultValue
+ResolvedOrderItem.prototype.plan = ResolvedOrderItem.$type.fieldsById[3].defaultValue
+ResolvedOrderItem.prototype.metadata = ResolvedOrderItem.$type.fieldsById[4].defaultValue

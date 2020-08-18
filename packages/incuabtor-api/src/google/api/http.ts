@@ -1,6 +1,6 @@
-import * as $sisyphus from "@sisyphus.js/core"
-import * as $reflection from "../../_reflection"
 import * as $protobuf from "protobufjs"
+import * as $reflection from "../../_reflection"
+import * as $sisyphus from "@sisyphus.js/core"
 
 
 /**
@@ -14,7 +14,7 @@ export interface IHttp {
      * 
      * **NOTE:** All service configuration rules follow "last one wins" order.
      */
-    rules?: (IHttpRule[] | null)
+    rules?: readonly IHttpRule[]
     /**
      * When set to true, URL path parameters will be fully URI-decoded except in
      * cases of single segment matches in reserved expansion, where "%2F" will be
@@ -26,48 +26,18 @@ export interface IHttp {
     fullyDecodeReservedExpansion?: boolean
 }
 
-export class Http extends $sisyphus.Message<IHttp> implements IHttp {
-    rules!: (IHttpRule[] | null)
+export class Http extends $protobuf.Message<Http> implements IHttp {
+    rules!: readonly HttpRule[]
     fullyDecodeReservedExpansion!: boolean
-    get $reflection() {
-        return Http.reflection
+    get $type() {
+        return Http.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".google.api.Http")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): Http {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    if (!result.rules) result.rules = []
-                    result.rules.push(HttpRule.decodeDelimited(reader))
-                    break
-                case 2:
-                    result.fullyDecodeReservedExpansion = reader.bool()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): Http {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IHttp): Http {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("rules") && properties.rules != null) result.rules = properties.rules.map(it => HttpRule.create(it))
-        if(properties.hasOwnProperty("fullyDecodeReservedExpansion") && properties.fullyDecodeReservedExpansion !== undefined) result.fullyDecodeReservedExpansion = properties.fullyDecodeReservedExpansion
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".google.api.Http")
 }
-Http.prototype.rules = Http.reflection.fieldsById[1].defaultValue
-Http.prototype.fullyDecodeReservedExpansion = Http.reflection.fieldsById[2].defaultValue
+Http.$type.generatedObject = Http
+Http.prototype.rules = Http.$type.fieldsById[1].defaultValue
+Http.prototype.fullyDecodeReservedExpansion = Http.$type.fieldsById[2].defaultValue
 
 
 /**
@@ -367,7 +337,7 @@ export interface IHttpRule {
      * HTTP method unspecified for this rule. The wild-card rule is useful
      * for services that provide content to Web (HTML) clients.
      */
-    custom?: (ICustomHttpPattern | null)
+    custom?: ICustomHttpPattern
     /**
      * The name of the request field whose value is mapped to the HTTP request
      * body, or `*` for mapping all request fields not captured by the path
@@ -391,7 +361,7 @@ export interface IHttpRule {
      * not contain an `additional_bindings` field themselves (that is,
      * the nesting may only be one level deep).
      */
-    additionalBindings?: (IHttpRule[] | null)
+    additionalBindings?: readonly IHttpRule[]
     /**
      * Determines the URL pattern is matched by this rules. This pattern can be
      * used with any of the {get|put|post|delete|patch} methods. A custom method
@@ -400,99 +370,37 @@ export interface IHttpRule {
     pattern?: string
 }
 
-export class HttpRule extends $sisyphus.Message<IHttpRule> implements IHttpRule {
+export class HttpRule extends $protobuf.Message<HttpRule> implements IHttpRule {
     selector!: string
     get!: string
     put!: string
     post!: string
     delete!: string
     patch!: string
-    custom!: (ICustomHttpPattern | null)
+    custom!: CustomHttpPattern
     body!: string
     responseBody!: string
-    additionalBindings!: (IHttpRule[] | null)
+    additionalBindings!: readonly HttpRule[]
     pattern?: string
 
-    get $reflection() {
-        return HttpRule.reflection
+    get $type() {
+        return HttpRule.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".google.api.HttpRule")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): HttpRule {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.selector = reader.string()
-                    break
-                case 2:
-                    result.get = reader.string()
-                    break
-                case 3:
-                    result.put = reader.string()
-                    break
-                case 4:
-                    result.post = reader.string()
-                    break
-                case 5:
-                    result["delete"] = reader.string()
-                    break
-                case 6:
-                    result.patch = reader.string()
-                    break
-                case 8:
-                    result.custom = CustomHttpPattern.decodeDelimited(reader)
-                    break
-                case 7:
-                    result.body = reader.string()
-                    break
-                case 12:
-                    result.responseBody = reader.string()
-                    break
-                case 11:
-                    if (!result.additionalBindings) result.additionalBindings = []
-                    result.additionalBindings.push(HttpRule.decodeDelimited(reader))
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): HttpRule {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IHttpRule): HttpRule {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("selector") && properties.selector !== undefined) result.selector = properties.selector
-        if(properties.hasOwnProperty("get") && properties.get !== undefined) result.get = properties.get
-        if(properties.hasOwnProperty("put") && properties.put !== undefined) result.put = properties.put
-        if(properties.hasOwnProperty("post") && properties.post !== undefined) result.post = properties.post
-        if(properties.hasOwnProperty("delete") && properties["delete"] !== undefined) result["delete"] = properties["delete"]
-        if(properties.hasOwnProperty("patch") && properties.patch !== undefined) result.patch = properties.patch
-        if(properties.hasOwnProperty("custom") && properties.custom != null) result.custom = CustomHttpPattern.create(properties.custom)
-        if(properties.hasOwnProperty("body") && properties.body !== undefined) result.body = properties.body
-        if(properties.hasOwnProperty("responseBody") && properties.responseBody !== undefined) result.responseBody = properties.responseBody
-        if(properties.hasOwnProperty("additionalBindings") && properties.additionalBindings != null) result.additionalBindings = properties.additionalBindings.map(it => HttpRule.create(it))
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".google.api.HttpRule")
 }
+HttpRule.$type.generatedObject = HttpRule
 Object.defineProperty(HttpRule.prototype, "pattern", $sisyphus.oneOfProperty("get", "put", "post", "delete", "patch", "custom"))
-HttpRule.prototype.selector = HttpRule.reflection.fieldsById[1].defaultValue
-HttpRule.prototype.get = HttpRule.reflection.fieldsById[2].defaultValue
-HttpRule.prototype.put = HttpRule.reflection.fieldsById[3].defaultValue
-HttpRule.prototype.post = HttpRule.reflection.fieldsById[4].defaultValue
-HttpRule.prototype["delete"] = HttpRule.reflection.fieldsById[5].defaultValue
-HttpRule.prototype.patch = HttpRule.reflection.fieldsById[6].defaultValue
-HttpRule.prototype.custom = HttpRule.reflection.fieldsById[8].defaultValue
-HttpRule.prototype.body = HttpRule.reflection.fieldsById[7].defaultValue
-HttpRule.prototype.responseBody = HttpRule.reflection.fieldsById[12].defaultValue
-HttpRule.prototype.additionalBindings = HttpRule.reflection.fieldsById[11].defaultValue
+HttpRule.prototype.selector = HttpRule.$type.fieldsById[1].defaultValue
+HttpRule.prototype.get = HttpRule.$type.fieldsById[2].defaultValue
+HttpRule.prototype.put = HttpRule.$type.fieldsById[3].defaultValue
+HttpRule.prototype.post = HttpRule.$type.fieldsById[4].defaultValue
+HttpRule.prototype["delete"] = HttpRule.$type.fieldsById[5].defaultValue
+HttpRule.prototype.patch = HttpRule.$type.fieldsById[6].defaultValue
+HttpRule.prototype.custom = HttpRule.$type.fieldsById[8].defaultValue
+HttpRule.prototype.body = HttpRule.$type.fieldsById[7].defaultValue
+HttpRule.prototype.responseBody = HttpRule.$type.fieldsById[12].defaultValue
+HttpRule.prototype.additionalBindings = HttpRule.$type.fieldsById[11].defaultValue
 
 
 /** A custom pattern is used for defining custom HTTP verb. */
@@ -503,44 +411,15 @@ export interface ICustomHttpPattern {
     path?: string
 }
 
-export class CustomHttpPattern extends $sisyphus.Message<ICustomHttpPattern> implements ICustomHttpPattern {
+export class CustomHttpPattern extends $protobuf.Message<CustomHttpPattern> implements ICustomHttpPattern {
     kind!: string
     path!: string
-    get $reflection() {
-        return CustomHttpPattern.reflection
+    get $type() {
+        return CustomHttpPattern.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".google.api.CustomHttpPattern")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): CustomHttpPattern {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.kind = reader.string()
-                    break
-                case 2:
-                    result.path = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): CustomHttpPattern {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: ICustomHttpPattern): CustomHttpPattern {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("kind") && properties.kind !== undefined) result.kind = properties.kind
-        if(properties.hasOwnProperty("path") && properties.path !== undefined) result.path = properties.path
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".google.api.CustomHttpPattern")
 }
-CustomHttpPattern.prototype.kind = CustomHttpPattern.reflection.fieldsById[1].defaultValue
-CustomHttpPattern.prototype.path = CustomHttpPattern.reflection.fieldsById[2].defaultValue
+CustomHttpPattern.$type.generatedObject = CustomHttpPattern
+CustomHttpPattern.prototype.kind = CustomHttpPattern.$type.fieldsById[1].defaultValue
+CustomHttpPattern.prototype.path = CustomHttpPattern.$type.fieldsById[2].defaultValue

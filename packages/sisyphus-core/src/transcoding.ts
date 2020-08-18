@@ -1,8 +1,6 @@
 import {IRpcImpl} from "./client"
-import {Method, util} from "protobufjs"
-import {Message} from "./message"
+import {Message, Method} from "protobufjs"
 import axios, {AxiosRequestConfig, AxiosResponse} from "axios"
-import base64 = util.base64;
 
 interface IHttpOption {
     "(google.api.http).selector": string
@@ -41,7 +39,7 @@ function fillUrl(url: string, message: any): string {
     return url.replace(/{([a-zA-Z0-9_]+)(?:=[^}]+)?}/g, (substring, args) => `${message[args[0]]}`)
 }
 
-export let transcoding = function (host: string, ref: any, metadata ?: { [k: string]: string }, interceptor?: (resp: AxiosResponse) => Promise<void>): IRpcImpl {
+export let transcoding = function (host: string, metadata ?: { [k: string]: string }, interceptor?: (resp: AxiosResponse) => Promise<void>): IRpcImpl {
     metadata = {...metadata, Accept: "application/x-protobuf", "Content-Type": "application/x-protobuf"}
 
     return async function (desc: Method, message: Message, meta?: { [k: string]: string }): Promise<Message> {
@@ -62,7 +60,7 @@ export let transcoding = function (host: string, ref: any, metadata ?: { [k: str
         }
 
         for (const string of ["get", "put", "post", "delete", "patch", "custom"]) {
-            if((<any>rule)[string]) {
+            if ((<any>rule)[string]) {
                 rule.pattern = string
             }
         }
@@ -72,7 +70,7 @@ export let transcoding = function (host: string, ref: any, metadata ?: { [k: str
             headers: {...metadata, ...meta}
         }
 
-        if(rule.pattern == undefined) {
+        if (rule.pattern == undefined) {
             throw new Error(`Transcoding rule must have pattern.`)
         }
         if (rule.pattern == "custom") {
@@ -83,18 +81,14 @@ export let transcoding = function (host: string, ref: any, metadata ?: { [k: str
             request.url = fillUrl((<any>rule)[rule.pattern], message)
         }
 
-        const inputType = desc.resolvedRequestType?.fullName?.split('.')
-        if(!inputType) throw new Error("Input type not found.")
-        let input = ref
-        for (let string of inputType) {
-            if(string.length == 0) continue
-            input = input[string]
+        if (desc.resolvedRequestType?.generatedObject == null) {
+            throw Error("Reflection info missed.")
         }
-        message = input.create(message)
+        message = desc.resolvedRequestType.generatedObject.create(message)
 
         switch (rule.body) {
             case "*":
-                request.data = message.$encode().finish()
+                request.data = desc.resolvedRequestType.generatedObject.encode(message).finish()
                 break
             case null:
             case undefined:
@@ -103,7 +97,7 @@ export let transcoding = function (host: string, ref: any, metadata ?: { [k: str
             default:
                 request.data = (<any>message)[rule.body]
                 if (request.data instanceof Message) {
-                    request.data = request.data.$encode().finish()
+                    request.data = request.data.$type.generatedObject.encode(message).finish()
                 } else {
                     request.data = `${request.data}`
                 }
@@ -111,21 +105,17 @@ export let transcoding = function (host: string, ref: any, metadata ?: { [k: str
         }
 
         let response = await axios.request(request)
-        if(interceptor) {
+        if (interceptor) {
             await interceptor(response)
         }
 
-        if(response.status < 300) {
-            const outputType = desc.resolvedResponseType?.fullName?.split('.')
-            if(!outputType) throw new Error("Output type not found.")
-            let output = ref
-            for (let string of outputType) {
-                if(string.length == 0) continue
-                output = output[string]
+        if (response.status < 300) {
+            if (desc.resolvedResponseType?.generatedObject == null) {
+                throw Error("Reflection info missed.")
             }
             const enc = new TextEncoder()
-            return output.decode(enc.encode(response.data))
-        }else {
+            return desc.resolvedResponseType.generatedObject.decode(enc.encode(response.data))
+        } else {
             throw new Error("")
         }
     }

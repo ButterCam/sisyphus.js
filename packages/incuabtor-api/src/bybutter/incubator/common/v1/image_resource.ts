@@ -1,6 +1,5 @@
-import * as $sisyphus from "@sisyphus.js/core"
-import * as $reflection from "../../../../_reflection"
 import * as $protobuf from "protobufjs"
+import * as $reflection from "../../../../_reflection"
 
 
 /** 图像资源 */
@@ -19,68 +18,23 @@ export interface IImageResource {
     height?: number
 }
 
-export class ImageResource extends $sisyphus.Message<IImageResource> implements IImageResource {
+export class ImageResource extends $protobuf.Message<ImageResource> implements IImageResource {
     originUri!: string
     standardUri!: string
     previewUri!: string
     thumbnailUri!: string
     width!: number
     height!: number
-    get $reflection() {
-        return ImageResource.reflection
+    get $type() {
+        return ImageResource.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.common.v1.ImageResource")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): ImageResource {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.originUri = reader.string()
-                    break
-                case 2:
-                    result.standardUri = reader.string()
-                    break
-                case 3:
-                    result.previewUri = reader.string()
-                    break
-                case 4:
-                    result.thumbnailUri = reader.string()
-                    break
-                case 11:
-                    result.width = reader.int32()
-                    break
-                case 12:
-                    result.height = reader.int32()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): ImageResource {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IImageResource): ImageResource {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("originUri") && properties.originUri !== undefined) result.originUri = properties.originUri
-        if(properties.hasOwnProperty("standardUri") && properties.standardUri !== undefined) result.standardUri = properties.standardUri
-        if(properties.hasOwnProperty("previewUri") && properties.previewUri !== undefined) result.previewUri = properties.previewUri
-        if(properties.hasOwnProperty("thumbnailUri") && properties.thumbnailUri !== undefined) result.thumbnailUri = properties.thumbnailUri
-        if(properties.hasOwnProperty("width") && properties.width !== undefined) result.width = properties.width
-        if(properties.hasOwnProperty("height") && properties.height !== undefined) result.height = properties.height
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.common.v1.ImageResource")
 }
-ImageResource.prototype.originUri = ImageResource.reflection.fieldsById[1].defaultValue
-ImageResource.prototype.standardUri = ImageResource.reflection.fieldsById[2].defaultValue
-ImageResource.prototype.previewUri = ImageResource.reflection.fieldsById[3].defaultValue
-ImageResource.prototype.thumbnailUri = ImageResource.reflection.fieldsById[4].defaultValue
-ImageResource.prototype.width = ImageResource.reflection.fieldsById[11].defaultValue
-ImageResource.prototype.height = ImageResource.reflection.fieldsById[12].defaultValue
+ImageResource.$type.generatedObject = ImageResource
+ImageResource.prototype.originUri = ImageResource.$type.fieldsById[1].defaultValue
+ImageResource.prototype.standardUri = ImageResource.$type.fieldsById[2].defaultValue
+ImageResource.prototype.previewUri = ImageResource.$type.fieldsById[3].defaultValue
+ImageResource.prototype.thumbnailUri = ImageResource.$type.fieldsById[4].defaultValue
+ImageResource.prototype.width = ImageResource.$type.fieldsById[11].defaultValue
+ImageResource.prototype.height = ImageResource.$type.fieldsById[12].defaultValue

@@ -1,6 +1,5 @@
 import * as $protobuf from "protobufjs"
 import * as $timestamp from "../../../../google/protobuf/timestamp"
-import * as $sisyphus from "@sisyphus.js/core"
 import * as $reflection from "../../../../_reflection"
 import * as $struct from "../../../../google/protobuf/struct"
 
@@ -21,91 +20,37 @@ export interface IProductMeta {
      */
     basePrice?: $protobuf.Long
     /** 商品的可见范围 */
-    requirements?: (string[] | null)
+    requirements?: readonly string[]
     /** 商品的上线日期 */
-    startTime?: ($timestamp.ITimestamp | null)
+    startTime?: $timestamp.ITimestamp
     /** 商品的下线时间 */
-    endTime?: ($timestamp.ITimestamp | null)
+    endTime?: $timestamp.ITimestamp
 }
 
-export class ProductMeta extends $sisyphus.Message<IProductMeta> implements IProductMeta {
+export class ProductMeta extends $protobuf.Message<ProductMeta> implements IProductMeta {
     name!: string
     type!: string
     title!: string
     pictureUri!: string
     basePrice!: $protobuf.Long
-    requirements!: (string[] | null)
-    startTime!: ($timestamp.ITimestamp | null)
-    endTime!: ($timestamp.ITimestamp | null)
-    get $reflection() {
-        return ProductMeta.reflection
+    requirements!: readonly string[]
+    startTime!: $timestamp.Timestamp
+    endTime!: $timestamp.Timestamp
+    get $type() {
+        return ProductMeta.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.shop.v1.ProductMeta")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): ProductMeta {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.name = reader.string()
-                    break
-                case 2:
-                    result.type = reader.string()
-                    break
-                case 3:
-                    result.title = reader.string()
-                    break
-                case 4:
-                    result.pictureUri = reader.string()
-                    break
-                case 5:
-                    result.basePrice = reader.int64()
-                    break
-                case 6:
-                    if (!result.requirements) result.requirements = []
-                    result.requirements.push(reader.string())
-                    break
-                case 7:
-                    result.startTime = $timestamp.Timestamp.decodeDelimited(reader)
-                    break
-                case 8:
-                    result.endTime = $timestamp.Timestamp.decodeDelimited(reader)
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): ProductMeta {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IProductMeta): ProductMeta {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        if(properties.hasOwnProperty("type") && properties.type !== undefined) result.type = properties.type
-        if(properties.hasOwnProperty("title") && properties.title !== undefined) result.title = properties.title
-        if(properties.hasOwnProperty("pictureUri") && properties.pictureUri !== undefined) result.pictureUri = properties.pictureUri
-        if(properties.hasOwnProperty("basePrice") && properties.basePrice !== undefined) result.basePrice = properties.basePrice
-        if(properties.hasOwnProperty("requirements") && properties.requirements !== undefined) result.requirements = properties.requirements
-        if(properties.hasOwnProperty("startTime") && properties.startTime != null) result.startTime = $timestamp.Timestamp.create(properties.startTime)
-        if(properties.hasOwnProperty("endTime") && properties.endTime != null) result.endTime = $timestamp.Timestamp.create(properties.endTime)
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.ProductMeta")
 }
-ProductMeta.prototype.name = ProductMeta.reflection.fieldsById[1].defaultValue
-ProductMeta.prototype.type = ProductMeta.reflection.fieldsById[2].defaultValue
-ProductMeta.prototype.title = ProductMeta.reflection.fieldsById[3].defaultValue
-ProductMeta.prototype.pictureUri = ProductMeta.reflection.fieldsById[4].defaultValue
-ProductMeta.prototype.basePrice = ProductMeta.reflection.fieldsById[5].defaultValue
-ProductMeta.prototype.requirements = ProductMeta.reflection.fieldsById[6].defaultValue
-ProductMeta.prototype.startTime = ProductMeta.reflection.fieldsById[7].defaultValue
-ProductMeta.prototype.endTime = ProductMeta.reflection.fieldsById[8].defaultValue
+ProductMeta.$type.generatedObject = ProductMeta
+ProductMeta.prototype.name = ProductMeta.$type.fieldsById[1].defaultValue
+ProductMeta.prototype.type = ProductMeta.$type.fieldsById[2].defaultValue
+ProductMeta.prototype.title = ProductMeta.$type.fieldsById[3].defaultValue
+ProductMeta.prototype.pictureUri = ProductMeta.$type.fieldsById[4].defaultValue
+ProductMeta.prototype.basePrice = ProductMeta.$type.fieldsById[5].defaultValue
+ProductMeta.prototype.requirements = ProductMeta.$type.fieldsById[6].defaultValue
+ProductMeta.prototype.startTime = ProductMeta.$type.fieldsById[7].defaultValue
+ProductMeta.prototype.endTime = ProductMeta.$type.fieldsById[8].defaultValue
 
 
 /** 商品特性的元数据，仅包含数据库中的数据，用于后端内部使用。 */
@@ -115,94 +60,40 @@ export interface IProductAttributeMeta {
     /** 特性类型 */
     type?: string
     /** 特性的参数，可以为任意 Json 值 */
-    parameter?: ($struct.IValue | null)
+    parameter?: $struct.IValue
     /** 特性的索引参数，可用于后续索引 */
     indexedParameter1?: string
     /** 特性的第二个索引参数，可用于后续索引 */
     indexedParameter2?: string
     /** 商品特性的可见范围 */
-    requirements?: (string[] | null)
+    requirements?: readonly string[]
     /** 商品特性的上线时间 */
-    startTime?: ($timestamp.ITimestamp | null)
+    startTime?: $timestamp.ITimestamp
     /** 商品特性的下线时间 */
-    endTime?: ($timestamp.ITimestamp | null)
+    endTime?: $timestamp.ITimestamp
 }
 
-export class ProductAttributeMeta extends $sisyphus.Message<IProductAttributeMeta> implements IProductAttributeMeta {
+export class ProductAttributeMeta extends $protobuf.Message<ProductAttributeMeta> implements IProductAttributeMeta {
     name!: string
     type!: string
-    parameter!: ($struct.IValue | null)
+    parameter!: $struct.Value
     indexedParameter1!: string
     indexedParameter2!: string
-    requirements!: (string[] | null)
-    startTime!: ($timestamp.ITimestamp | null)
-    endTime!: ($timestamp.ITimestamp | null)
-    get $reflection() {
-        return ProductAttributeMeta.reflection
+    requirements!: readonly string[]
+    startTime!: $timestamp.Timestamp
+    endTime!: $timestamp.Timestamp
+    get $type() {
+        return ProductAttributeMeta.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.shop.v1.ProductAttributeMeta")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): ProductAttributeMeta {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.name = reader.string()
-                    break
-                case 2:
-                    result.type = reader.string()
-                    break
-                case 3:
-                    result.parameter = $struct.Value.decodeDelimited(reader)
-                    break
-                case 4:
-                    result.indexedParameter1 = reader.string()
-                    break
-                case 5:
-                    result.indexedParameter2 = reader.string()
-                    break
-                case 6:
-                    if (!result.requirements) result.requirements = []
-                    result.requirements.push(reader.string())
-                    break
-                case 7:
-                    result.startTime = $timestamp.Timestamp.decodeDelimited(reader)
-                    break
-                case 8:
-                    result.endTime = $timestamp.Timestamp.decodeDelimited(reader)
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): ProductAttributeMeta {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IProductAttributeMeta): ProductAttributeMeta {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        if(properties.hasOwnProperty("type") && properties.type !== undefined) result.type = properties.type
-        if(properties.hasOwnProperty("parameter") && properties.parameter != null) result.parameter = $struct.Value.create(properties.parameter)
-        if(properties.hasOwnProperty("indexedParameter1") && properties.indexedParameter1 !== undefined) result.indexedParameter1 = properties.indexedParameter1
-        if(properties.hasOwnProperty("indexedParameter2") && properties.indexedParameter2 !== undefined) result.indexedParameter2 = properties.indexedParameter2
-        if(properties.hasOwnProperty("requirements") && properties.requirements !== undefined) result.requirements = properties.requirements
-        if(properties.hasOwnProperty("startTime") && properties.startTime != null) result.startTime = $timestamp.Timestamp.create(properties.startTime)
-        if(properties.hasOwnProperty("endTime") && properties.endTime != null) result.endTime = $timestamp.Timestamp.create(properties.endTime)
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.ProductAttributeMeta")
 }
-ProductAttributeMeta.prototype.name = ProductAttributeMeta.reflection.fieldsById[1].defaultValue
-ProductAttributeMeta.prototype.type = ProductAttributeMeta.reflection.fieldsById[2].defaultValue
-ProductAttributeMeta.prototype.parameter = ProductAttributeMeta.reflection.fieldsById[3].defaultValue
-ProductAttributeMeta.prototype.indexedParameter1 = ProductAttributeMeta.reflection.fieldsById[4].defaultValue
-ProductAttributeMeta.prototype.indexedParameter2 = ProductAttributeMeta.reflection.fieldsById[5].defaultValue
-ProductAttributeMeta.prototype.requirements = ProductAttributeMeta.reflection.fieldsById[6].defaultValue
-ProductAttributeMeta.prototype.startTime = ProductAttributeMeta.reflection.fieldsById[7].defaultValue
-ProductAttributeMeta.prototype.endTime = ProductAttributeMeta.reflection.fieldsById[8].defaultValue
+ProductAttributeMeta.$type.generatedObject = ProductAttributeMeta
+ProductAttributeMeta.prototype.name = ProductAttributeMeta.$type.fieldsById[1].defaultValue
+ProductAttributeMeta.prototype.type = ProductAttributeMeta.$type.fieldsById[2].defaultValue
+ProductAttributeMeta.prototype.parameter = ProductAttributeMeta.$type.fieldsById[3].defaultValue
+ProductAttributeMeta.prototype.indexedParameter1 = ProductAttributeMeta.$type.fieldsById[4].defaultValue
+ProductAttributeMeta.prototype.indexedParameter2 = ProductAttributeMeta.$type.fieldsById[5].defaultValue
+ProductAttributeMeta.prototype.requirements = ProductAttributeMeta.$type.fieldsById[6].defaultValue
+ProductAttributeMeta.prototype.startTime = ProductAttributeMeta.$type.fieldsById[7].defaultValue
+ProductAttributeMeta.prototype.endTime = ProductAttributeMeta.$type.fieldsById[8].defaultValue

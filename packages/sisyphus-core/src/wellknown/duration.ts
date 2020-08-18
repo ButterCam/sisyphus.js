@@ -1,79 +1,63 @@
-/**
- * A Duration represents a signed, fixed-length span of time represented
- * as a count of seconds and fractions of seconds at nanosecond
- * resolution. It is independent of any calendar and concepts like "day"
- * or "month". It is related to Timestamp in that the difference between
- * two Timestamp values is a Duration and it can be added or subtracted
- * from a Timestamp. Range is approximately +-10,000 years.
- *
- * # Examples
- *
- * Example 1: Compute Duration from two Timestamps in pseudo code.
- *
- * Timestamp start = ...;
- * Timestamp end = ...;
- * Duration duration = ...;
- *
- * duration.seconds = end.seconds - start.seconds;
- * duration.nanos = end.nanos - start.nanos;
- *
- * if (duration.seconds < 0 && duration.nanos > 0) {
- * duration.seconds += 1;
- * duration.nanos -= 1000000000;
- * } else if (duration.seconds > 0 && duration.nanos < 0) {
- * duration.seconds -= 1;
- * duration.nanos += 1000000000;
- * }
- *
- * Example 2: Compute Timestamp from Timestamp + Duration in pseudo code.
- *
- * Timestamp start = ...;
- * Duration duration = ...;
- * Timestamp end = ...;
- *
- * end.seconds = start.seconds + duration.seconds;
- * end.nanos = start.nanos + duration.nanos;
- *
- * if (end.nanos < 0) {
- * end.seconds -= 1;
- * end.nanos += 1000000000;
- * } else if (end.nanos >= 1000000000) {
- * end.seconds += 1;
- * end.nanos -= 1000000000;
- * }
- *
- * Example 3: Compute Duration from datetime.timedelta in Python.
- *
- * td = datetime.timedelta(days=3, minutes=10)
- * duration = Duration()
- * duration.FromTimedelta(td)
- *
- * # JSON Mapping
- *
- * In JSON format, the Duration type is encoded as a string rather than an
- * object, where the string ends in the suffix "s" (indicating seconds) and
- * is preceded by the number of seconds, with nanoseconds expressed as
- * fractional seconds. For example, 3 seconds with 0 nanoseconds should be
- * encoded in JSON format as "3s", while 3 seconds and 1 nanosecond should
- * be expressed in JSON format as "3.000000001s", and 3 seconds and 1
- * microsecond should be expressed in JSON format as "3.000001s".
- */
-import {Long} from "protobufjs";
+import {IConversionOptions, Long, Message} from "protobufjs";
+import long from "long";
+import {longZero} from "../defaults";
 
 export interface IDuration {
-    /**
-     * Signed seconds of the span of time. Must be from -315,576,000,000
-     * to +315,576,000,000 inclusive. Note: these bounds are computed from:
-     * 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
-     */
     seconds?: Long
-    /**
-     * Signed fractions of a second at nanosecond resolution of the span
-     * of time. Durations less than one second are represented with a 0
-     * `seconds` field and a positive or negative `nanos` field. For durations
-     * of one second or more, a non-zero value for the `nanos` field must be
-     * of the same sign as the `seconds` field. Must be from -999,999,999
-     * to +999,999,999 inclusive.
-     */
     nanos?: number
 }
+
+const durationRegex = /^(-)?([0-9]+)(?:\.([0-9]+))?s$/
+
+export class Duration extends Message<Duration> implements IDuration {
+    seconds!: Long
+    nanos!: number
+
+    static fromObject<T extends Message<T>>(object: any): T {
+        if (typeof object !== "string") {
+            throw new Error("Duration must be a string")
+        }
+
+        const result = durationRegex.exec(object)
+        if (!result) {
+            throw new Error("Wrong duration format")
+        }
+
+        let sign = result[1] ? "-" : ""
+        let seconds = long.fromValue(`${sign}${result[2]}`)
+        let nanos = Math.floor(parseFloat(`${sign}0.${result[3]}`) * 1000000000)
+        return <T>this.create({
+            seconds, nanos
+        })
+    }
+
+    static toObject<T extends Message<T>>(message: T, options?: IConversionOptions): any {
+        if (!(message instanceof Duration)) {
+            throw new Error("Message must be a duration")
+        }
+        let second = message.seconds ? <long.Long>message.seconds : long.ZERO
+        let nanos = message.nanos ? message.nanos : 0
+        nanos = nanos / 1000000000
+
+        if (second.isZero()) {
+            return `${nanos}s`
+        }
+        if (nanos == 0) {
+            return `${second.toString()}.0s`
+        }
+
+        let secondSign = second.isNegative() ? -1 : 1
+        if (secondSign != Math.sign(nanos)) {
+            nanos += secondSign
+            if (second.isNegative()) {
+                second.add(long.ONE)
+            } else {
+                second.add(long.NEG_ONE)
+            }
+        }
+        return `${second.toString()}.${nanos.toString().substring(2)}s`
+    }
+}
+
+Duration.prototype.seconds = longZero
+Duration.prototype.nanos = 0

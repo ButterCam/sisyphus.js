@@ -1,7 +1,7 @@
-import * as $sisyphus from "@sisyphus.js/core"
-import * as $reflection from "../../../../_reflection"
 import * as $protobuf from "protobufjs"
+import * as $reflection from "../../../../_reflection"
 import * as $privilege from "./privilege"
+import * as $sisyphus from "@sisyphus.js/core"
 
 
 /** 获取滤镜资源的 API 请求 */
@@ -10,41 +10,16 @@ export interface IGetFilterRequest {
     name?: string
 }
 
-export class GetFilterRequest extends $sisyphus.Message<IGetFilterRequest> implements IGetFilterRequest {
+export class GetFilterRequest extends $protobuf.Message<GetFilterRequest> implements IGetFilterRequest {
     name!: string
-    get $reflection() {
-        return GetFilterRequest.reflection
+    get $type() {
+        return GetFilterRequest.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.GetFilterRequest")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): GetFilterRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.name = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): GetFilterRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IGetFilterRequest): GetFilterRequest {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.GetFilterRequest")
 }
-GetFilterRequest.prototype.name = GetFilterRequest.reflection.fieldsById[1].defaultValue
+GetFilterRequest.$type.generatedObject = GetFilterRequest
+GetFilterRequest.prototype.name = GetFilterRequest.$type.fieldsById[1].defaultValue
 
 
 /**
@@ -54,89 +29,37 @@ GetFilterRequest.prototype.name = GetFilterRequest.reflection.fieldsById[1].defa
  */
 export interface IBatchGetFiltersRequest {
     /** 资源名称 */
-    names?: (string[] | null)
+    names?: readonly string[]
 }
 
-export class BatchGetFiltersRequest extends $sisyphus.Message<IBatchGetFiltersRequest> implements IBatchGetFiltersRequest {
-    names!: (string[] | null)
-    get $reflection() {
-        return BatchGetFiltersRequest.reflection
+export class BatchGetFiltersRequest extends $protobuf.Message<BatchGetFiltersRequest> implements IBatchGetFiltersRequest {
+    names!: readonly string[]
+    get $type() {
+        return BatchGetFiltersRequest.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.BatchGetFiltersRequest")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): BatchGetFiltersRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    if (!result.names) result.names = []
-                    result.names.push(reader.string())
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): BatchGetFiltersRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IBatchGetFiltersRequest): BatchGetFiltersRequest {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("names") && properties.names !== undefined) result.names = properties.names
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.BatchGetFiltersRequest")
 }
-BatchGetFiltersRequest.prototype.names = BatchGetFiltersRequest.reflection.fieldsById[1].defaultValue
+BatchGetFiltersRequest.$type.generatedObject = BatchGetFiltersRequest
+BatchGetFiltersRequest.prototype.names = BatchGetFiltersRequest.$type.fieldsById[1].defaultValue
 
 
 /** 批量获取滤镜资源的 API 响应 */
 export interface IBatchGetFiltersResponse {
     /** 获取到的滤镜资源 */
-    filters?: ($privilege.IFilter[] | null)
+    filters?: readonly $privilege.IFilter[]
 }
 
-export class BatchGetFiltersResponse extends $sisyphus.Message<IBatchGetFiltersResponse> implements IBatchGetFiltersResponse {
-    filters!: ($privilege.IFilter[] | null)
-    get $reflection() {
-        return BatchGetFiltersResponse.reflection
+export class BatchGetFiltersResponse extends $protobuf.Message<BatchGetFiltersResponse> implements IBatchGetFiltersResponse {
+    filters!: readonly $privilege.Filter[]
+    get $type() {
+        return BatchGetFiltersResponse.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.BatchGetFiltersResponse")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): BatchGetFiltersResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    if (!result.filters) result.filters = []
-                    result.filters.push($privilege.Filter.decodeDelimited(reader))
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): BatchGetFiltersResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IBatchGetFiltersResponse): BatchGetFiltersResponse {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("filters") && properties.filters != null) result.filters = properties.filters.map(it => $privilege.Filter.create(it))
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.BatchGetFiltersResponse")
 }
-BatchGetFiltersResponse.prototype.filters = BatchGetFiltersResponse.reflection.fieldsById[1].defaultValue
+BatchGetFiltersResponse.$type.generatedObject = BatchGetFiltersResponse
+BatchGetFiltersResponse.prototype.filters = BatchGetFiltersResponse.$type.fieldsById[1].defaultValue
 
 
 /**
@@ -153,105 +76,42 @@ export interface IListFiltersRequest {
     filter?: string
 }
 
-export class ListFiltersRequest extends $sisyphus.Message<IListFiltersRequest> implements IListFiltersRequest {
+export class ListFiltersRequest extends $protobuf.Message<ListFiltersRequest> implements IListFiltersRequest {
     pageSize!: number
     pageToken!: string
     filter!: string
-    get $reflection() {
-        return ListFiltersRequest.reflection
+    get $type() {
+        return ListFiltersRequest.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListFiltersRequest")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): ListFiltersRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.pageSize = reader.int32()
-                    break
-                case 2:
-                    result.pageToken = reader.string()
-                    break
-                case 3:
-                    result.filter = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): ListFiltersRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IListFiltersRequest): ListFiltersRequest {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("pageSize") && properties.pageSize !== undefined) result.pageSize = properties.pageSize
-        if(properties.hasOwnProperty("pageToken") && properties.pageToken !== undefined) result.pageToken = properties.pageToken
-        if(properties.hasOwnProperty("filter") && properties.filter !== undefined) result.filter = properties.filter
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListFiltersRequest")
 }
-ListFiltersRequest.prototype.pageSize = ListFiltersRequest.reflection.fieldsById[1].defaultValue
-ListFiltersRequest.prototype.pageToken = ListFiltersRequest.reflection.fieldsById[2].defaultValue
-ListFiltersRequest.prototype.filter = ListFiltersRequest.reflection.fieldsById[3].defaultValue
+ListFiltersRequest.$type.generatedObject = ListFiltersRequest
+ListFiltersRequest.prototype.pageSize = ListFiltersRequest.$type.fieldsById[1].defaultValue
+ListFiltersRequest.prototype.pageToken = ListFiltersRequest.$type.fieldsById[2].defaultValue
+ListFiltersRequest.prototype.filter = ListFiltersRequest.$type.fieldsById[3].defaultValue
 
 
 /** 列举滤镜资源的 API 响应 */
 export interface IListFiltersResponse {
     /** 返回的滤镜资源 */
-    filters?: ($privilege.IFilter[] | null)
+    filters?: readonly $privilege.IFilter[]
     /** 下一页的翻页信息 */
     nextPageToken?: string
 }
 
-export class ListFiltersResponse extends $sisyphus.Message<IListFiltersResponse> implements IListFiltersResponse {
-    filters!: ($privilege.IFilter[] | null)
+export class ListFiltersResponse extends $protobuf.Message<ListFiltersResponse> implements IListFiltersResponse {
+    filters!: readonly $privilege.Filter[]
     nextPageToken!: string
-    get $reflection() {
-        return ListFiltersResponse.reflection
+    get $type() {
+        return ListFiltersResponse.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListFiltersResponse")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): ListFiltersResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    if (!result.filters) result.filters = []
-                    result.filters.push($privilege.Filter.decodeDelimited(reader))
-                    break
-                case 2:
-                    result.nextPageToken = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): ListFiltersResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IListFiltersResponse): ListFiltersResponse {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("filters") && properties.filters != null) result.filters = properties.filters.map(it => $privilege.Filter.create(it))
-        if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListFiltersResponse")
 }
-ListFiltersResponse.prototype.filters = ListFiltersResponse.reflection.fieldsById[1].defaultValue
-ListFiltersResponse.prototype.nextPageToken = ListFiltersResponse.reflection.fieldsById[2].defaultValue
+ListFiltersResponse.$type.generatedObject = ListFiltersResponse
+ListFiltersResponse.prototype.filters = ListFiltersResponse.$type.fieldsById[1].defaultValue
+ListFiltersResponse.prototype.nextPageToken = ListFiltersResponse.$type.fieldsById[2].defaultValue
 
 
 /**
@@ -268,105 +128,42 @@ export interface IListFilterGroupsRequest {
     filter?: string
 }
 
-export class ListFilterGroupsRequest extends $sisyphus.Message<IListFilterGroupsRequest> implements IListFilterGroupsRequest {
+export class ListFilterGroupsRequest extends $protobuf.Message<ListFilterGroupsRequest> implements IListFilterGroupsRequest {
     pageSize!: number
     pageToken!: string
     filter!: string
-    get $reflection() {
-        return ListFilterGroupsRequest.reflection
+    get $type() {
+        return ListFilterGroupsRequest.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListFilterGroupsRequest")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): ListFilterGroupsRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.pageSize = reader.int32()
-                    break
-                case 2:
-                    result.pageToken = reader.string()
-                    break
-                case 3:
-                    result.filter = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): ListFilterGroupsRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IListFilterGroupsRequest): ListFilterGroupsRequest {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("pageSize") && properties.pageSize !== undefined) result.pageSize = properties.pageSize
-        if(properties.hasOwnProperty("pageToken") && properties.pageToken !== undefined) result.pageToken = properties.pageToken
-        if(properties.hasOwnProperty("filter") && properties.filter !== undefined) result.filter = properties.filter
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListFilterGroupsRequest")
 }
-ListFilterGroupsRequest.prototype.pageSize = ListFilterGroupsRequest.reflection.fieldsById[1].defaultValue
-ListFilterGroupsRequest.prototype.pageToken = ListFilterGroupsRequest.reflection.fieldsById[2].defaultValue
-ListFilterGroupsRequest.prototype.filter = ListFilterGroupsRequest.reflection.fieldsById[3].defaultValue
+ListFilterGroupsRequest.$type.generatedObject = ListFilterGroupsRequest
+ListFilterGroupsRequest.prototype.pageSize = ListFilterGroupsRequest.$type.fieldsById[1].defaultValue
+ListFilterGroupsRequest.prototype.pageToken = ListFilterGroupsRequest.$type.fieldsById[2].defaultValue
+ListFilterGroupsRequest.prototype.filter = ListFilterGroupsRequest.$type.fieldsById[3].defaultValue
 
 
 /** 列举滤镜资源组的 API 响应 */
 export interface IListFilterGroupsResponse {
     /** 返回的滤镜组资源 */
-    filterGroups?: ($privilege.IFilterGroup[] | null)
+    filterGroups?: readonly $privilege.IFilterGroup[]
     /** 下一页的翻页信息 */
     nextPageToken?: string
 }
 
-export class ListFilterGroupsResponse extends $sisyphus.Message<IListFilterGroupsResponse> implements IListFilterGroupsResponse {
-    filterGroups!: ($privilege.IFilterGroup[] | null)
+export class ListFilterGroupsResponse extends $protobuf.Message<ListFilterGroupsResponse> implements IListFilterGroupsResponse {
+    filterGroups!: readonly $privilege.FilterGroup[]
     nextPageToken!: string
-    get $reflection() {
-        return ListFilterGroupsResponse.reflection
+    get $type() {
+        return ListFilterGroupsResponse.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListFilterGroupsResponse")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): ListFilterGroupsResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    if (!result.filterGroups) result.filterGroups = []
-                    result.filterGroups.push($privilege.FilterGroup.decodeDelimited(reader))
-                    break
-                case 2:
-                    result.nextPageToken = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): ListFilterGroupsResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IListFilterGroupsResponse): ListFilterGroupsResponse {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("filterGroups") && properties.filterGroups != null) result.filterGroups = properties.filterGroups.map(it => $privilege.FilterGroup.create(it))
-        if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListFilterGroupsResponse")
 }
-ListFilterGroupsResponse.prototype.filterGroups = ListFilterGroupsResponse.reflection.fieldsById[1].defaultValue
-ListFilterGroupsResponse.prototype.nextPageToken = ListFilterGroupsResponse.reflection.fieldsById[2].defaultValue
+ListFilterGroupsResponse.$type.generatedObject = ListFilterGroupsResponse
+ListFilterGroupsResponse.prototype.filterGroups = ListFilterGroupsResponse.$type.fieldsById[1].defaultValue
+ListFilterGroupsResponse.prototype.nextPageToken = ListFilterGroupsResponse.$type.fieldsById[2].defaultValue
 
 
 /** 获取边框资源的 API 请求 */
@@ -375,41 +172,16 @@ export interface IGetBorderRequest {
     name?: string
 }
 
-export class GetBorderRequest extends $sisyphus.Message<IGetBorderRequest> implements IGetBorderRequest {
+export class GetBorderRequest extends $protobuf.Message<GetBorderRequest> implements IGetBorderRequest {
     name!: string
-    get $reflection() {
-        return GetBorderRequest.reflection
+    get $type() {
+        return GetBorderRequest.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.GetBorderRequest")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): GetBorderRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.name = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): GetBorderRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IGetBorderRequest): GetBorderRequest {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.GetBorderRequest")
 }
-GetBorderRequest.prototype.name = GetBorderRequest.reflection.fieldsById[1].defaultValue
+GetBorderRequest.$type.generatedObject = GetBorderRequest
+GetBorderRequest.prototype.name = GetBorderRequest.$type.fieldsById[1].defaultValue
 
 
 /**
@@ -419,89 +191,37 @@ GetBorderRequest.prototype.name = GetBorderRequest.reflection.fieldsById[1].defa
  */
 export interface IBatchGetBordersRequest {
     /** 资源名称 */
-    names?: (string[] | null)
+    names?: readonly string[]
 }
 
-export class BatchGetBordersRequest extends $sisyphus.Message<IBatchGetBordersRequest> implements IBatchGetBordersRequest {
-    names!: (string[] | null)
-    get $reflection() {
-        return BatchGetBordersRequest.reflection
+export class BatchGetBordersRequest extends $protobuf.Message<BatchGetBordersRequest> implements IBatchGetBordersRequest {
+    names!: readonly string[]
+    get $type() {
+        return BatchGetBordersRequest.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.BatchGetBordersRequest")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): BatchGetBordersRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    if (!result.names) result.names = []
-                    result.names.push(reader.string())
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): BatchGetBordersRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IBatchGetBordersRequest): BatchGetBordersRequest {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("names") && properties.names !== undefined) result.names = properties.names
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.BatchGetBordersRequest")
 }
-BatchGetBordersRequest.prototype.names = BatchGetBordersRequest.reflection.fieldsById[1].defaultValue
+BatchGetBordersRequest.$type.generatedObject = BatchGetBordersRequest
+BatchGetBordersRequest.prototype.names = BatchGetBordersRequest.$type.fieldsById[1].defaultValue
 
 
 /** 批量获取边框资源的 API 响应 */
 export interface IBatchGetBordersResponse {
     /** 返回的边框资源 */
-    borders?: ($privilege.IBorder[] | null)
+    borders?: readonly $privilege.IBorder[]
 }
 
-export class BatchGetBordersResponse extends $sisyphus.Message<IBatchGetBordersResponse> implements IBatchGetBordersResponse {
-    borders!: ($privilege.IBorder[] | null)
-    get $reflection() {
-        return BatchGetBordersResponse.reflection
+export class BatchGetBordersResponse extends $protobuf.Message<BatchGetBordersResponse> implements IBatchGetBordersResponse {
+    borders!: readonly $privilege.Border[]
+    get $type() {
+        return BatchGetBordersResponse.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.BatchGetBordersResponse")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): BatchGetBordersResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    if (!result.borders) result.borders = []
-                    result.borders.push($privilege.Border.decodeDelimited(reader))
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): BatchGetBordersResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IBatchGetBordersResponse): BatchGetBordersResponse {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("borders") && properties.borders != null) result.borders = properties.borders.map(it => $privilege.Border.create(it))
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.BatchGetBordersResponse")
 }
-BatchGetBordersResponse.prototype.borders = BatchGetBordersResponse.reflection.fieldsById[1].defaultValue
+BatchGetBordersResponse.$type.generatedObject = BatchGetBordersResponse
+BatchGetBordersResponse.prototype.borders = BatchGetBordersResponse.$type.fieldsById[1].defaultValue
 
 
 /**
@@ -518,105 +238,42 @@ export interface IListBordersRequest {
     filter?: string
 }
 
-export class ListBordersRequest extends $sisyphus.Message<IListBordersRequest> implements IListBordersRequest {
+export class ListBordersRequest extends $protobuf.Message<ListBordersRequest> implements IListBordersRequest {
     pageSize!: number
     pageToken!: string
     filter!: string
-    get $reflection() {
-        return ListBordersRequest.reflection
+    get $type() {
+        return ListBordersRequest.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListBordersRequest")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): ListBordersRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.pageSize = reader.int32()
-                    break
-                case 2:
-                    result.pageToken = reader.string()
-                    break
-                case 3:
-                    result.filter = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): ListBordersRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IListBordersRequest): ListBordersRequest {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("pageSize") && properties.pageSize !== undefined) result.pageSize = properties.pageSize
-        if(properties.hasOwnProperty("pageToken") && properties.pageToken !== undefined) result.pageToken = properties.pageToken
-        if(properties.hasOwnProperty("filter") && properties.filter !== undefined) result.filter = properties.filter
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListBordersRequest")
 }
-ListBordersRequest.prototype.pageSize = ListBordersRequest.reflection.fieldsById[1].defaultValue
-ListBordersRequest.prototype.pageToken = ListBordersRequest.reflection.fieldsById[2].defaultValue
-ListBordersRequest.prototype.filter = ListBordersRequest.reflection.fieldsById[3].defaultValue
+ListBordersRequest.$type.generatedObject = ListBordersRequest
+ListBordersRequest.prototype.pageSize = ListBordersRequest.$type.fieldsById[1].defaultValue
+ListBordersRequest.prototype.pageToken = ListBordersRequest.$type.fieldsById[2].defaultValue
+ListBordersRequest.prototype.filter = ListBordersRequest.$type.fieldsById[3].defaultValue
 
 
 /** 批量获取边框资源的 API 响应 */
 export interface IListBordersResponse {
     /** 返回的边框资源 */
-    borders?: ($privilege.IBorder[] | null)
+    borders?: readonly $privilege.IBorder[]
     /** 下一页的翻页信息 */
     nextPageToken?: string
 }
 
-export class ListBordersResponse extends $sisyphus.Message<IListBordersResponse> implements IListBordersResponse {
-    borders!: ($privilege.IBorder[] | null)
+export class ListBordersResponse extends $protobuf.Message<ListBordersResponse> implements IListBordersResponse {
+    borders!: readonly $privilege.Border[]
     nextPageToken!: string
-    get $reflection() {
-        return ListBordersResponse.reflection
+    get $type() {
+        return ListBordersResponse.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListBordersResponse")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): ListBordersResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    if (!result.borders) result.borders = []
-                    result.borders.push($privilege.Border.decodeDelimited(reader))
-                    break
-                case 2:
-                    result.nextPageToken = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): ListBordersResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IListBordersResponse): ListBordersResponse {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("borders") && properties.borders != null) result.borders = properties.borders.map(it => $privilege.Border.create(it))
-        if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListBordersResponse")
 }
-ListBordersResponse.prototype.borders = ListBordersResponse.reflection.fieldsById[1].defaultValue
-ListBordersResponse.prototype.nextPageToken = ListBordersResponse.reflection.fieldsById[2].defaultValue
+ListBordersResponse.$type.generatedObject = ListBordersResponse
+ListBordersResponse.prototype.borders = ListBordersResponse.$type.fieldsById[1].defaultValue
+ListBordersResponse.prototype.nextPageToken = ListBordersResponse.$type.fieldsById[2].defaultValue
 
 
 /**
@@ -633,105 +290,42 @@ export interface IListBorderGroupsRequest {
     filter?: string
 }
 
-export class ListBorderGroupsRequest extends $sisyphus.Message<IListBorderGroupsRequest> implements IListBorderGroupsRequest {
+export class ListBorderGroupsRequest extends $protobuf.Message<ListBorderGroupsRequest> implements IListBorderGroupsRequest {
     pageSize!: number
     pageToken!: string
     filter!: string
-    get $reflection() {
-        return ListBorderGroupsRequest.reflection
+    get $type() {
+        return ListBorderGroupsRequest.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListBorderGroupsRequest")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): ListBorderGroupsRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.pageSize = reader.int32()
-                    break
-                case 2:
-                    result.pageToken = reader.string()
-                    break
-                case 3:
-                    result.filter = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): ListBorderGroupsRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IListBorderGroupsRequest): ListBorderGroupsRequest {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("pageSize") && properties.pageSize !== undefined) result.pageSize = properties.pageSize
-        if(properties.hasOwnProperty("pageToken") && properties.pageToken !== undefined) result.pageToken = properties.pageToken
-        if(properties.hasOwnProperty("filter") && properties.filter !== undefined) result.filter = properties.filter
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListBorderGroupsRequest")
 }
-ListBorderGroupsRequest.prototype.pageSize = ListBorderGroupsRequest.reflection.fieldsById[1].defaultValue
-ListBorderGroupsRequest.prototype.pageToken = ListBorderGroupsRequest.reflection.fieldsById[2].defaultValue
-ListBorderGroupsRequest.prototype.filter = ListBorderGroupsRequest.reflection.fieldsById[3].defaultValue
+ListBorderGroupsRequest.$type.generatedObject = ListBorderGroupsRequest
+ListBorderGroupsRequest.prototype.pageSize = ListBorderGroupsRequest.$type.fieldsById[1].defaultValue
+ListBorderGroupsRequest.prototype.pageToken = ListBorderGroupsRequest.$type.fieldsById[2].defaultValue
+ListBorderGroupsRequest.prototype.filter = ListBorderGroupsRequest.$type.fieldsById[3].defaultValue
 
 
 /** 批量获取边框组资源的 API 响应 */
 export interface IListBorderGroupsResponse {
     /** 返回的边框组资源 */
-    borderGroups?: ($privilege.IBorderGroup[] | null)
+    borderGroups?: readonly $privilege.IBorderGroup[]
     /** 下一页的翻页信息 */
     nextPageToken?: string
 }
 
-export class ListBorderGroupsResponse extends $sisyphus.Message<IListBorderGroupsResponse> implements IListBorderGroupsResponse {
-    borderGroups!: ($privilege.IBorderGroup[] | null)
+export class ListBorderGroupsResponse extends $protobuf.Message<ListBorderGroupsResponse> implements IListBorderGroupsResponse {
+    borderGroups!: readonly $privilege.BorderGroup[]
     nextPageToken!: string
-    get $reflection() {
-        return ListBorderGroupsResponse.reflection
+    get $type() {
+        return ListBorderGroupsResponse.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListBorderGroupsResponse")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): ListBorderGroupsResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    if (!result.borderGroups) result.borderGroups = []
-                    result.borderGroups.push($privilege.BorderGroup.decodeDelimited(reader))
-                    break
-                case 2:
-                    result.nextPageToken = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): ListBorderGroupsResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IListBorderGroupsResponse): ListBorderGroupsResponse {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("borderGroups") && properties.borderGroups != null) result.borderGroups = properties.borderGroups.map(it => $privilege.BorderGroup.create(it))
-        if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListBorderGroupsResponse")
 }
-ListBorderGroupsResponse.prototype.borderGroups = ListBorderGroupsResponse.reflection.fieldsById[1].defaultValue
-ListBorderGroupsResponse.prototype.nextPageToken = ListBorderGroupsResponse.reflection.fieldsById[2].defaultValue
+ListBorderGroupsResponse.$type.generatedObject = ListBorderGroupsResponse
+ListBorderGroupsResponse.prototype.borderGroups = ListBorderGroupsResponse.$type.fieldsById[1].defaultValue
+ListBorderGroupsResponse.prototype.nextPageToken = ListBorderGroupsResponse.$type.fieldsById[2].defaultValue
 
 
 /** 获取标签资源的 API 响应 */
@@ -740,41 +334,16 @@ export interface IGetLabelRequest {
     name?: string
 }
 
-export class GetLabelRequest extends $sisyphus.Message<IGetLabelRequest> implements IGetLabelRequest {
+export class GetLabelRequest extends $protobuf.Message<GetLabelRequest> implements IGetLabelRequest {
     name!: string
-    get $reflection() {
-        return GetLabelRequest.reflection
+    get $type() {
+        return GetLabelRequest.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.GetLabelRequest")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): GetLabelRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.name = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): GetLabelRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IGetLabelRequest): GetLabelRequest {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.GetLabelRequest")
 }
-GetLabelRequest.prototype.name = GetLabelRequest.reflection.fieldsById[1].defaultValue
+GetLabelRequest.$type.generatedObject = GetLabelRequest
+GetLabelRequest.prototype.name = GetLabelRequest.$type.fieldsById[1].defaultValue
 
 
 /**
@@ -784,89 +353,37 @@ GetLabelRequest.prototype.name = GetLabelRequest.reflection.fieldsById[1].defaul
  */
 export interface IBatchGetLabelsRequest {
     /** 资源名 */
-    names?: (string[] | null)
+    names?: readonly string[]
 }
 
-export class BatchGetLabelsRequest extends $sisyphus.Message<IBatchGetLabelsRequest> implements IBatchGetLabelsRequest {
-    names!: (string[] | null)
-    get $reflection() {
-        return BatchGetLabelsRequest.reflection
+export class BatchGetLabelsRequest extends $protobuf.Message<BatchGetLabelsRequest> implements IBatchGetLabelsRequest {
+    names!: readonly string[]
+    get $type() {
+        return BatchGetLabelsRequest.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.BatchGetLabelsRequest")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): BatchGetLabelsRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    if (!result.names) result.names = []
-                    result.names.push(reader.string())
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): BatchGetLabelsRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IBatchGetLabelsRequest): BatchGetLabelsRequest {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("names") && properties.names !== undefined) result.names = properties.names
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.BatchGetLabelsRequest")
 }
-BatchGetLabelsRequest.prototype.names = BatchGetLabelsRequest.reflection.fieldsById[1].defaultValue
+BatchGetLabelsRequest.$type.generatedObject = BatchGetLabelsRequest
+BatchGetLabelsRequest.prototype.names = BatchGetLabelsRequest.$type.fieldsById[1].defaultValue
 
 
 /** 批量获取标签资源的 API 响应 */
 export interface IBatchGetLabelsResponse {
     /** 返回的标签资源 */
-    labels?: ($privilege.ILabel[] | null)
+    labels?: readonly $privilege.ILabel[]
 }
 
-export class BatchGetLabelsResponse extends $sisyphus.Message<IBatchGetLabelsResponse> implements IBatchGetLabelsResponse {
-    labels!: ($privilege.ILabel[] | null)
-    get $reflection() {
-        return BatchGetLabelsResponse.reflection
+export class BatchGetLabelsResponse extends $protobuf.Message<BatchGetLabelsResponse> implements IBatchGetLabelsResponse {
+    labels!: readonly $privilege.Label[]
+    get $type() {
+        return BatchGetLabelsResponse.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.BatchGetLabelsResponse")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): BatchGetLabelsResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    if (!result.labels) result.labels = []
-                    result.labels.push($privilege.Label.decodeDelimited(reader))
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): BatchGetLabelsResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IBatchGetLabelsResponse): BatchGetLabelsResponse {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("labels") && properties.labels != null) result.labels = properties.labels.map(it => $privilege.Label.create(it))
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.BatchGetLabelsResponse")
 }
-BatchGetLabelsResponse.prototype.labels = BatchGetLabelsResponse.reflection.fieldsById[1].defaultValue
+BatchGetLabelsResponse.$type.generatedObject = BatchGetLabelsResponse
+BatchGetLabelsResponse.prototype.labels = BatchGetLabelsResponse.$type.fieldsById[1].defaultValue
 
 
 /**
@@ -883,105 +400,42 @@ export interface IListLabelsRequest {
     filter?: string
 }
 
-export class ListLabelsRequest extends $sisyphus.Message<IListLabelsRequest> implements IListLabelsRequest {
+export class ListLabelsRequest extends $protobuf.Message<ListLabelsRequest> implements IListLabelsRequest {
     pageSize!: number
     pageToken!: string
     filter!: string
-    get $reflection() {
-        return ListLabelsRequest.reflection
+    get $type() {
+        return ListLabelsRequest.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListLabelsRequest")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): ListLabelsRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.pageSize = reader.int32()
-                    break
-                case 2:
-                    result.pageToken = reader.string()
-                    break
-                case 3:
-                    result.filter = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): ListLabelsRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IListLabelsRequest): ListLabelsRequest {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("pageSize") && properties.pageSize !== undefined) result.pageSize = properties.pageSize
-        if(properties.hasOwnProperty("pageToken") && properties.pageToken !== undefined) result.pageToken = properties.pageToken
-        if(properties.hasOwnProperty("filter") && properties.filter !== undefined) result.filter = properties.filter
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListLabelsRequest")
 }
-ListLabelsRequest.prototype.pageSize = ListLabelsRequest.reflection.fieldsById[1].defaultValue
-ListLabelsRequest.prototype.pageToken = ListLabelsRequest.reflection.fieldsById[2].defaultValue
-ListLabelsRequest.prototype.filter = ListLabelsRequest.reflection.fieldsById[3].defaultValue
+ListLabelsRequest.$type.generatedObject = ListLabelsRequest
+ListLabelsRequest.prototype.pageSize = ListLabelsRequest.$type.fieldsById[1].defaultValue
+ListLabelsRequest.prototype.pageToken = ListLabelsRequest.$type.fieldsById[2].defaultValue
+ListLabelsRequest.prototype.filter = ListLabelsRequest.$type.fieldsById[3].defaultValue
 
 
 /** 列举标签资源的 API 响应 */
 export interface IListLabelsResponse {
     /** 返回的标签资源 */
-    labels?: ($privilege.ILabel[] | null)
+    labels?: readonly $privilege.ILabel[]
     /** 下一页的翻页信息 */
     nextPageToken?: string
 }
 
-export class ListLabelsResponse extends $sisyphus.Message<IListLabelsResponse> implements IListLabelsResponse {
-    labels!: ($privilege.ILabel[] | null)
+export class ListLabelsResponse extends $protobuf.Message<ListLabelsResponse> implements IListLabelsResponse {
+    labels!: readonly $privilege.Label[]
     nextPageToken!: string
-    get $reflection() {
-        return ListLabelsResponse.reflection
+    get $type() {
+        return ListLabelsResponse.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListLabelsResponse")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): ListLabelsResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    if (!result.labels) result.labels = []
-                    result.labels.push($privilege.Label.decodeDelimited(reader))
-                    break
-                case 2:
-                    result.nextPageToken = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): ListLabelsResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IListLabelsResponse): ListLabelsResponse {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("labels") && properties.labels != null) result.labels = properties.labels.map(it => $privilege.Label.create(it))
-        if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListLabelsResponse")
 }
-ListLabelsResponse.prototype.labels = ListLabelsResponse.reflection.fieldsById[1].defaultValue
-ListLabelsResponse.prototype.nextPageToken = ListLabelsResponse.reflection.fieldsById[2].defaultValue
+ListLabelsResponse.$type.generatedObject = ListLabelsResponse
+ListLabelsResponse.prototype.labels = ListLabelsResponse.$type.fieldsById[1].defaultValue
+ListLabelsResponse.prototype.nextPageToken = ListLabelsResponse.$type.fieldsById[2].defaultValue
 
 
 /**
@@ -998,105 +452,42 @@ export interface IListLabelGroupsRequest {
     filter?: string
 }
 
-export class ListLabelGroupsRequest extends $sisyphus.Message<IListLabelGroupsRequest> implements IListLabelGroupsRequest {
+export class ListLabelGroupsRequest extends $protobuf.Message<ListLabelGroupsRequest> implements IListLabelGroupsRequest {
     pageSize!: number
     pageToken!: string
     filter!: string
-    get $reflection() {
-        return ListLabelGroupsRequest.reflection
+    get $type() {
+        return ListLabelGroupsRequest.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListLabelGroupsRequest")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): ListLabelGroupsRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.pageSize = reader.int32()
-                    break
-                case 2:
-                    result.pageToken = reader.string()
-                    break
-                case 3:
-                    result.filter = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): ListLabelGroupsRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IListLabelGroupsRequest): ListLabelGroupsRequest {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("pageSize") && properties.pageSize !== undefined) result.pageSize = properties.pageSize
-        if(properties.hasOwnProperty("pageToken") && properties.pageToken !== undefined) result.pageToken = properties.pageToken
-        if(properties.hasOwnProperty("filter") && properties.filter !== undefined) result.filter = properties.filter
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListLabelGroupsRequest")
 }
-ListLabelGroupsRequest.prototype.pageSize = ListLabelGroupsRequest.reflection.fieldsById[1].defaultValue
-ListLabelGroupsRequest.prototype.pageToken = ListLabelGroupsRequest.reflection.fieldsById[2].defaultValue
-ListLabelGroupsRequest.prototype.filter = ListLabelGroupsRequest.reflection.fieldsById[3].defaultValue
+ListLabelGroupsRequest.$type.generatedObject = ListLabelGroupsRequest
+ListLabelGroupsRequest.prototype.pageSize = ListLabelGroupsRequest.$type.fieldsById[1].defaultValue
+ListLabelGroupsRequest.prototype.pageToken = ListLabelGroupsRequest.$type.fieldsById[2].defaultValue
+ListLabelGroupsRequest.prototype.filter = ListLabelGroupsRequest.$type.fieldsById[3].defaultValue
 
 
 /** 列举标签组资源的 API 响应 */
 export interface IListLabelGroupsResponse {
     /** 返回的标签组资源 */
-    labelGroups?: ($privilege.ILabelGroup[] | null)
+    labelGroups?: readonly $privilege.ILabelGroup[]
     /** 下一页的翻页信息 */
     nextPageToken?: string
 }
 
-export class ListLabelGroupsResponse extends $sisyphus.Message<IListLabelGroupsResponse> implements IListLabelGroupsResponse {
-    labelGroups!: ($privilege.ILabelGroup[] | null)
+export class ListLabelGroupsResponse extends $protobuf.Message<ListLabelGroupsResponse> implements IListLabelGroupsResponse {
+    labelGroups!: readonly $privilege.LabelGroup[]
     nextPageToken!: string
-    get $reflection() {
-        return ListLabelGroupsResponse.reflection
+    get $type() {
+        return ListLabelGroupsResponse.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListLabelGroupsResponse")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): ListLabelGroupsResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    if (!result.labelGroups) result.labelGroups = []
-                    result.labelGroups.push($privilege.LabelGroup.decodeDelimited(reader))
-                    break
-                case 2:
-                    result.nextPageToken = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): ListLabelGroupsResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IListLabelGroupsResponse): ListLabelGroupsResponse {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("labelGroups") && properties.labelGroups != null) result.labelGroups = properties.labelGroups.map(it => $privilege.LabelGroup.create(it))
-        if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListLabelGroupsResponse")
 }
-ListLabelGroupsResponse.prototype.labelGroups = ListLabelGroupsResponse.reflection.fieldsById[1].defaultValue
-ListLabelGroupsResponse.prototype.nextPageToken = ListLabelGroupsResponse.reflection.fieldsById[2].defaultValue
+ListLabelGroupsResponse.$type.generatedObject = ListLabelGroupsResponse
+ListLabelGroupsResponse.prototype.labelGroups = ListLabelGroupsResponse.$type.fieldsById[1].defaultValue
+ListLabelGroupsResponse.prototype.nextPageToken = ListLabelGroupsResponse.$type.fieldsById[2].defaultValue
 
 
 /** 获取贴纸资源的 API 请求 */
@@ -1105,41 +496,16 @@ export interface IGetStickerRequest {
     name?: string
 }
 
-export class GetStickerRequest extends $sisyphus.Message<IGetStickerRequest> implements IGetStickerRequest {
+export class GetStickerRequest extends $protobuf.Message<GetStickerRequest> implements IGetStickerRequest {
     name!: string
-    get $reflection() {
-        return GetStickerRequest.reflection
+    get $type() {
+        return GetStickerRequest.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.GetStickerRequest")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): GetStickerRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.name = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): GetStickerRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IGetStickerRequest): GetStickerRequest {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.GetStickerRequest")
 }
-GetStickerRequest.prototype.name = GetStickerRequest.reflection.fieldsById[1].defaultValue
+GetStickerRequest.$type.generatedObject = GetStickerRequest
+GetStickerRequest.prototype.name = GetStickerRequest.$type.fieldsById[1].defaultValue
 
 
 /**
@@ -1149,89 +515,37 @@ GetStickerRequest.prototype.name = GetStickerRequest.reflection.fieldsById[1].de
  */
 export interface IBatchGetStickersRequest {
     /** 资源名 */
-    names?: (string[] | null)
+    names?: readonly string[]
 }
 
-export class BatchGetStickersRequest extends $sisyphus.Message<IBatchGetStickersRequest> implements IBatchGetStickersRequest {
-    names!: (string[] | null)
-    get $reflection() {
-        return BatchGetStickersRequest.reflection
+export class BatchGetStickersRequest extends $protobuf.Message<BatchGetStickersRequest> implements IBatchGetStickersRequest {
+    names!: readonly string[]
+    get $type() {
+        return BatchGetStickersRequest.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.BatchGetStickersRequest")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): BatchGetStickersRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    if (!result.names) result.names = []
-                    result.names.push(reader.string())
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): BatchGetStickersRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IBatchGetStickersRequest): BatchGetStickersRequest {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("names") && properties.names !== undefined) result.names = properties.names
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.BatchGetStickersRequest")
 }
-BatchGetStickersRequest.prototype.names = BatchGetStickersRequest.reflection.fieldsById[1].defaultValue
+BatchGetStickersRequest.$type.generatedObject = BatchGetStickersRequest
+BatchGetStickersRequest.prototype.names = BatchGetStickersRequest.$type.fieldsById[1].defaultValue
 
 
 /** 批量获取贴纸资源的 API 响应 */
 export interface IBatchGetStickersResponse {
     /** 返回的贴纸资源 */
-    stickers?: ($privilege.ISticker[] | null)
+    stickers?: readonly $privilege.ISticker[]
 }
 
-export class BatchGetStickersResponse extends $sisyphus.Message<IBatchGetStickersResponse> implements IBatchGetStickersResponse {
-    stickers!: ($privilege.ISticker[] | null)
-    get $reflection() {
-        return BatchGetStickersResponse.reflection
+export class BatchGetStickersResponse extends $protobuf.Message<BatchGetStickersResponse> implements IBatchGetStickersResponse {
+    stickers!: readonly $privilege.Sticker[]
+    get $type() {
+        return BatchGetStickersResponse.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.BatchGetStickersResponse")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): BatchGetStickersResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    if (!result.stickers) result.stickers = []
-                    result.stickers.push($privilege.Sticker.decodeDelimited(reader))
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): BatchGetStickersResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IBatchGetStickersResponse): BatchGetStickersResponse {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("stickers") && properties.stickers != null) result.stickers = properties.stickers.map(it => $privilege.Sticker.create(it))
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.BatchGetStickersResponse")
 }
-BatchGetStickersResponse.prototype.stickers = BatchGetStickersResponse.reflection.fieldsById[1].defaultValue
+BatchGetStickersResponse.$type.generatedObject = BatchGetStickersResponse
+BatchGetStickersResponse.prototype.stickers = BatchGetStickersResponse.$type.fieldsById[1].defaultValue
 
 
 /**
@@ -1248,105 +562,42 @@ export interface IListStickersRequest {
     filter?: string
 }
 
-export class ListStickersRequest extends $sisyphus.Message<IListStickersRequest> implements IListStickersRequest {
+export class ListStickersRequest extends $protobuf.Message<ListStickersRequest> implements IListStickersRequest {
     pageSize!: number
     pageToken!: string
     filter!: string
-    get $reflection() {
-        return ListStickersRequest.reflection
+    get $type() {
+        return ListStickersRequest.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListStickersRequest")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): ListStickersRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.pageSize = reader.int32()
-                    break
-                case 2:
-                    result.pageToken = reader.string()
-                    break
-                case 3:
-                    result.filter = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): ListStickersRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IListStickersRequest): ListStickersRequest {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("pageSize") && properties.pageSize !== undefined) result.pageSize = properties.pageSize
-        if(properties.hasOwnProperty("pageToken") && properties.pageToken !== undefined) result.pageToken = properties.pageToken
-        if(properties.hasOwnProperty("filter") && properties.filter !== undefined) result.filter = properties.filter
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListStickersRequest")
 }
-ListStickersRequest.prototype.pageSize = ListStickersRequest.reflection.fieldsById[1].defaultValue
-ListStickersRequest.prototype.pageToken = ListStickersRequest.reflection.fieldsById[2].defaultValue
-ListStickersRequest.prototype.filter = ListStickersRequest.reflection.fieldsById[3].defaultValue
+ListStickersRequest.$type.generatedObject = ListStickersRequest
+ListStickersRequest.prototype.pageSize = ListStickersRequest.$type.fieldsById[1].defaultValue
+ListStickersRequest.prototype.pageToken = ListStickersRequest.$type.fieldsById[2].defaultValue
+ListStickersRequest.prototype.filter = ListStickersRequest.$type.fieldsById[3].defaultValue
 
 
 /** 列举贴纸资源的 API 响应 */
 export interface IListStickersResponse {
     /** 返回的贴纸资源 */
-    stickers?: ($privilege.ISticker[] | null)
+    stickers?: readonly $privilege.ISticker[]
     /** 下一页的翻页信息 */
     nextPageToken?: string
 }
 
-export class ListStickersResponse extends $sisyphus.Message<IListStickersResponse> implements IListStickersResponse {
-    stickers!: ($privilege.ISticker[] | null)
+export class ListStickersResponse extends $protobuf.Message<ListStickersResponse> implements IListStickersResponse {
+    stickers!: readonly $privilege.Sticker[]
     nextPageToken!: string
-    get $reflection() {
-        return ListStickersResponse.reflection
+    get $type() {
+        return ListStickersResponse.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListStickersResponse")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): ListStickersResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    if (!result.stickers) result.stickers = []
-                    result.stickers.push($privilege.Sticker.decodeDelimited(reader))
-                    break
-                case 2:
-                    result.nextPageToken = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): ListStickersResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IListStickersResponse): ListStickersResponse {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("stickers") && properties.stickers != null) result.stickers = properties.stickers.map(it => $privilege.Sticker.create(it))
-        if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListStickersResponse")
 }
-ListStickersResponse.prototype.stickers = ListStickersResponse.reflection.fieldsById[1].defaultValue
-ListStickersResponse.prototype.nextPageToken = ListStickersResponse.reflection.fieldsById[2].defaultValue
+ListStickersResponse.$type.generatedObject = ListStickersResponse
+ListStickersResponse.prototype.stickers = ListStickersResponse.$type.fieldsById[1].defaultValue
+ListStickersResponse.prototype.nextPageToken = ListStickersResponse.$type.fieldsById[2].defaultValue
 
 
 /**
@@ -1363,105 +614,42 @@ export interface IListStickerGroupsRequest {
     filter?: string
 }
 
-export class ListStickerGroupsRequest extends $sisyphus.Message<IListStickerGroupsRequest> implements IListStickerGroupsRequest {
+export class ListStickerGroupsRequest extends $protobuf.Message<ListStickerGroupsRequest> implements IListStickerGroupsRequest {
     pageSize!: number
     pageToken!: string
     filter!: string
-    get $reflection() {
-        return ListStickerGroupsRequest.reflection
+    get $type() {
+        return ListStickerGroupsRequest.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListStickerGroupsRequest")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): ListStickerGroupsRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.pageSize = reader.int32()
-                    break
-                case 2:
-                    result.pageToken = reader.string()
-                    break
-                case 3:
-                    result.filter = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): ListStickerGroupsRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IListStickerGroupsRequest): ListStickerGroupsRequest {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("pageSize") && properties.pageSize !== undefined) result.pageSize = properties.pageSize
-        if(properties.hasOwnProperty("pageToken") && properties.pageToken !== undefined) result.pageToken = properties.pageToken
-        if(properties.hasOwnProperty("filter") && properties.filter !== undefined) result.filter = properties.filter
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListStickerGroupsRequest")
 }
-ListStickerGroupsRequest.prototype.pageSize = ListStickerGroupsRequest.reflection.fieldsById[1].defaultValue
-ListStickerGroupsRequest.prototype.pageToken = ListStickerGroupsRequest.reflection.fieldsById[2].defaultValue
-ListStickerGroupsRequest.prototype.filter = ListStickerGroupsRequest.reflection.fieldsById[3].defaultValue
+ListStickerGroupsRequest.$type.generatedObject = ListStickerGroupsRequest
+ListStickerGroupsRequest.prototype.pageSize = ListStickerGroupsRequest.$type.fieldsById[1].defaultValue
+ListStickerGroupsRequest.prototype.pageToken = ListStickerGroupsRequest.$type.fieldsById[2].defaultValue
+ListStickerGroupsRequest.prototype.filter = ListStickerGroupsRequest.$type.fieldsById[3].defaultValue
 
 
 /** 列举贴纸组资源的 API 响应 */
 export interface IListStickerGroupsResponse {
     /** 下一页的翻页信息 */
-    stickerGroups?: ($privilege.IStickerGroup[] | null)
+    stickerGroups?: readonly $privilege.IStickerGroup[]
     /** 下一页的翻页信息 */
     nextPageToken?: string
 }
 
-export class ListStickerGroupsResponse extends $sisyphus.Message<IListStickerGroupsResponse> implements IListStickerGroupsResponse {
-    stickerGroups!: ($privilege.IStickerGroup[] | null)
+export class ListStickerGroupsResponse extends $protobuf.Message<ListStickerGroupsResponse> implements IListStickerGroupsResponse {
+    stickerGroups!: readonly $privilege.StickerGroup[]
     nextPageToken!: string
-    get $reflection() {
-        return ListStickerGroupsResponse.reflection
+    get $type() {
+        return ListStickerGroupsResponse.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListStickerGroupsResponse")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): ListStickerGroupsResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    if (!result.stickerGroups) result.stickerGroups = []
-                    result.stickerGroups.push($privilege.StickerGroup.decodeDelimited(reader))
-                    break
-                case 2:
-                    result.nextPageToken = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): ListStickerGroupsResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IListStickerGroupsResponse): ListStickerGroupsResponse {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("stickerGroups") && properties.stickerGroups != null) result.stickerGroups = properties.stickerGroups.map(it => $privilege.StickerGroup.create(it))
-        if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListStickerGroupsResponse")
 }
-ListStickerGroupsResponse.prototype.stickerGroups = ListStickerGroupsResponse.reflection.fieldsById[1].defaultValue
-ListStickerGroupsResponse.prototype.nextPageToken = ListStickerGroupsResponse.reflection.fieldsById[2].defaultValue
+ListStickerGroupsResponse.$type.generatedObject = ListStickerGroupsResponse
+ListStickerGroupsResponse.prototype.stickerGroups = ListStickerGroupsResponse.$type.fieldsById[1].defaultValue
+ListStickerGroupsResponse.prototype.nextPageToken = ListStickerGroupsResponse.$type.fieldsById[2].defaultValue
 
 
 /** 获取音乐资源的 API 请求 */
@@ -1470,41 +658,16 @@ export interface IGetMusicRequest {
     name?: string
 }
 
-export class GetMusicRequest extends $sisyphus.Message<IGetMusicRequest> implements IGetMusicRequest {
+export class GetMusicRequest extends $protobuf.Message<GetMusicRequest> implements IGetMusicRequest {
     name!: string
-    get $reflection() {
-        return GetMusicRequest.reflection
+    get $type() {
+        return GetMusicRequest.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.GetMusicRequest")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): GetMusicRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.name = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): GetMusicRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IGetMusicRequest): GetMusicRequest {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.GetMusicRequest")
 }
-GetMusicRequest.prototype.name = GetMusicRequest.reflection.fieldsById[1].defaultValue
+GetMusicRequest.$type.generatedObject = GetMusicRequest
+GetMusicRequest.prototype.name = GetMusicRequest.$type.fieldsById[1].defaultValue
 
 
 /**
@@ -1514,45 +677,19 @@ GetMusicRequest.prototype.name = GetMusicRequest.reflection.fieldsById[1].defaul
  */
 export interface IBatchGetMusicRequest {
     /** 资源名 */
-    names?: (string[] | null)
+    names?: readonly string[]
 }
 
-export class BatchGetMusicRequest extends $sisyphus.Message<IBatchGetMusicRequest> implements IBatchGetMusicRequest {
-    names!: (string[] | null)
-    get $reflection() {
-        return BatchGetMusicRequest.reflection
+export class BatchGetMusicRequest extends $protobuf.Message<BatchGetMusicRequest> implements IBatchGetMusicRequest {
+    names!: readonly string[]
+    get $type() {
+        return BatchGetMusicRequest.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.BatchGetMusicRequest")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): BatchGetMusicRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    if (!result.names) result.names = []
-                    result.names.push(reader.string())
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): BatchGetMusicRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IBatchGetMusicRequest): BatchGetMusicRequest {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("names") && properties.names !== undefined) result.names = properties.names
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.BatchGetMusicRequest")
 }
-BatchGetMusicRequest.prototype.names = BatchGetMusicRequest.reflection.fieldsById[1].defaultValue
+BatchGetMusicRequest.$type.generatedObject = BatchGetMusicRequest
+BatchGetMusicRequest.prototype.names = BatchGetMusicRequest.$type.fieldsById[1].defaultValue
 
 
 /**
@@ -1562,45 +699,19 @@ BatchGetMusicRequest.prototype.names = BatchGetMusicRequest.reflection.fieldsByI
  */
 export interface IBatchGetMusicResponse {
     /** 返回的音乐资源 */
-    music?: ($privilege.IMusic[] | null)
+    music?: readonly $privilege.IMusic[]
 }
 
-export class BatchGetMusicResponse extends $sisyphus.Message<IBatchGetMusicResponse> implements IBatchGetMusicResponse {
-    music!: ($privilege.IMusic[] | null)
-    get $reflection() {
-        return BatchGetMusicResponse.reflection
+export class BatchGetMusicResponse extends $protobuf.Message<BatchGetMusicResponse> implements IBatchGetMusicResponse {
+    music!: readonly $privilege.Music[]
+    get $type() {
+        return BatchGetMusicResponse.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.BatchGetMusicResponse")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): BatchGetMusicResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    if (!result.music) result.music = []
-                    result.music.push($privilege.Music.decodeDelimited(reader))
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): BatchGetMusicResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IBatchGetMusicResponse): BatchGetMusicResponse {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("music") && properties.music != null) result.music = properties.music.map(it => $privilege.Music.create(it))
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.BatchGetMusicResponse")
 }
-BatchGetMusicResponse.prototype.music = BatchGetMusicResponse.reflection.fieldsById[1].defaultValue
+BatchGetMusicResponse.$type.generatedObject = BatchGetMusicResponse
+BatchGetMusicResponse.prototype.music = BatchGetMusicResponse.$type.fieldsById[1].defaultValue
 
 
 /**
@@ -1617,105 +728,42 @@ export interface IListMusicRequest {
     filter?: string
 }
 
-export class ListMusicRequest extends $sisyphus.Message<IListMusicRequest> implements IListMusicRequest {
+export class ListMusicRequest extends $protobuf.Message<ListMusicRequest> implements IListMusicRequest {
     pageSize!: number
     pageToken!: string
     filter!: string
-    get $reflection() {
-        return ListMusicRequest.reflection
+    get $type() {
+        return ListMusicRequest.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListMusicRequest")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): ListMusicRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.pageSize = reader.int32()
-                    break
-                case 2:
-                    result.pageToken = reader.string()
-                    break
-                case 3:
-                    result.filter = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): ListMusicRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IListMusicRequest): ListMusicRequest {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("pageSize") && properties.pageSize !== undefined) result.pageSize = properties.pageSize
-        if(properties.hasOwnProperty("pageToken") && properties.pageToken !== undefined) result.pageToken = properties.pageToken
-        if(properties.hasOwnProperty("filter") && properties.filter !== undefined) result.filter = properties.filter
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListMusicRequest")
 }
-ListMusicRequest.prototype.pageSize = ListMusicRequest.reflection.fieldsById[1].defaultValue
-ListMusicRequest.prototype.pageToken = ListMusicRequest.reflection.fieldsById[2].defaultValue
-ListMusicRequest.prototype.filter = ListMusicRequest.reflection.fieldsById[3].defaultValue
+ListMusicRequest.$type.generatedObject = ListMusicRequest
+ListMusicRequest.prototype.pageSize = ListMusicRequest.$type.fieldsById[1].defaultValue
+ListMusicRequest.prototype.pageToken = ListMusicRequest.$type.fieldsById[2].defaultValue
+ListMusicRequest.prototype.filter = ListMusicRequest.$type.fieldsById[3].defaultValue
 
 
 /** 列举音乐资源的 API 响应 */
 export interface IListMusicResponse {
     /** 返回的音乐资源 */
-    music?: ($privilege.IMusic[] | null)
+    music?: readonly $privilege.IMusic[]
     /** 下一页的翻页信息 */
     nextPageToken?: string
 }
 
-export class ListMusicResponse extends $sisyphus.Message<IListMusicResponse> implements IListMusicResponse {
-    music!: ($privilege.IMusic[] | null)
+export class ListMusicResponse extends $protobuf.Message<ListMusicResponse> implements IListMusicResponse {
+    music!: readonly $privilege.Music[]
     nextPageToken!: string
-    get $reflection() {
-        return ListMusicResponse.reflection
+    get $type() {
+        return ListMusicResponse.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListMusicResponse")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): ListMusicResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    if (!result.music) result.music = []
-                    result.music.push($privilege.Music.decodeDelimited(reader))
-                    break
-                case 2:
-                    result.nextPageToken = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): ListMusicResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IListMusicResponse): ListMusicResponse {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("music") && properties.music != null) result.music = properties.music.map(it => $privilege.Music.create(it))
-        if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListMusicResponse")
 }
-ListMusicResponse.prototype.music = ListMusicResponse.reflection.fieldsById[1].defaultValue
-ListMusicResponse.prototype.nextPageToken = ListMusicResponse.reflection.fieldsById[2].defaultValue
+ListMusicResponse.$type.generatedObject = ListMusicResponse
+ListMusicResponse.prototype.music = ListMusicResponse.$type.fieldsById[1].defaultValue
+ListMusicResponse.prototype.nextPageToken = ListMusicResponse.$type.fieldsById[2].defaultValue
 
 
 /**
@@ -1732,105 +780,42 @@ export interface IListMusicGroupsRequest {
     filter?: string
 }
 
-export class ListMusicGroupsRequest extends $sisyphus.Message<IListMusicGroupsRequest> implements IListMusicGroupsRequest {
+export class ListMusicGroupsRequest extends $protobuf.Message<ListMusicGroupsRequest> implements IListMusicGroupsRequest {
     pageSize!: number
     pageToken!: string
     filter!: string
-    get $reflection() {
-        return ListMusicGroupsRequest.reflection
+    get $type() {
+        return ListMusicGroupsRequest.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListMusicGroupsRequest")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): ListMusicGroupsRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.pageSize = reader.int32()
-                    break
-                case 2:
-                    result.pageToken = reader.string()
-                    break
-                case 3:
-                    result.filter = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): ListMusicGroupsRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IListMusicGroupsRequest): ListMusicGroupsRequest {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("pageSize") && properties.pageSize !== undefined) result.pageSize = properties.pageSize
-        if(properties.hasOwnProperty("pageToken") && properties.pageToken !== undefined) result.pageToken = properties.pageToken
-        if(properties.hasOwnProperty("filter") && properties.filter !== undefined) result.filter = properties.filter
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListMusicGroupsRequest")
 }
-ListMusicGroupsRequest.prototype.pageSize = ListMusicGroupsRequest.reflection.fieldsById[1].defaultValue
-ListMusicGroupsRequest.prototype.pageToken = ListMusicGroupsRequest.reflection.fieldsById[2].defaultValue
-ListMusicGroupsRequest.prototype.filter = ListMusicGroupsRequest.reflection.fieldsById[3].defaultValue
+ListMusicGroupsRequest.$type.generatedObject = ListMusicGroupsRequest
+ListMusicGroupsRequest.prototype.pageSize = ListMusicGroupsRequest.$type.fieldsById[1].defaultValue
+ListMusicGroupsRequest.prototype.pageToken = ListMusicGroupsRequest.$type.fieldsById[2].defaultValue
+ListMusicGroupsRequest.prototype.filter = ListMusicGroupsRequest.$type.fieldsById[3].defaultValue
 
 
 /** 列举音乐组资源的 API 响应 */
 export interface IListMusicGroupsResponse {
     /** 返回的音乐组资源 */
-    musicGroups?: ($privilege.IMusicGroup[] | null)
+    musicGroups?: readonly $privilege.IMusicGroup[]
     /** 下一页的翻页信息 */
     nextPageToken?: string
 }
 
-export class ListMusicGroupsResponse extends $sisyphus.Message<IListMusicGroupsResponse> implements IListMusicGroupsResponse {
-    musicGroups!: ($privilege.IMusicGroup[] | null)
+export class ListMusicGroupsResponse extends $protobuf.Message<ListMusicGroupsResponse> implements IListMusicGroupsResponse {
+    musicGroups!: readonly $privilege.MusicGroup[]
     nextPageToken!: string
-    get $reflection() {
-        return ListMusicGroupsResponse.reflection
+    get $type() {
+        return ListMusicGroupsResponse.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListMusicGroupsResponse")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): ListMusicGroupsResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    if (!result.musicGroups) result.musicGroups = []
-                    result.musicGroups.push($privilege.MusicGroup.decodeDelimited(reader))
-                    break
-                case 2:
-                    result.nextPageToken = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): ListMusicGroupsResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IListMusicGroupsResponse): ListMusicGroupsResponse {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("musicGroups") && properties.musicGroups != null) result.musicGroups = properties.musicGroups.map(it => $privilege.MusicGroup.create(it))
-        if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListMusicGroupsResponse")
 }
-ListMusicGroupsResponse.prototype.musicGroups = ListMusicGroupsResponse.reflection.fieldsById[1].defaultValue
-ListMusicGroupsResponse.prototype.nextPageToken = ListMusicGroupsResponse.reflection.fieldsById[2].defaultValue
+ListMusicGroupsResponse.$type.generatedObject = ListMusicGroupsResponse
+ListMusicGroupsResponse.prototype.musicGroups = ListMusicGroupsResponse.$type.fieldsById[1].defaultValue
+ListMusicGroupsResponse.prototype.nextPageToken = ListMusicGroupsResponse.$type.fieldsById[2].defaultValue
 
 
 /** 获取音效资源的 API 请求 */
@@ -1839,41 +824,16 @@ export interface IGetSoundRequest {
     name?: string
 }
 
-export class GetSoundRequest extends $sisyphus.Message<IGetSoundRequest> implements IGetSoundRequest {
+export class GetSoundRequest extends $protobuf.Message<GetSoundRequest> implements IGetSoundRequest {
     name!: string
-    get $reflection() {
-        return GetSoundRequest.reflection
+    get $type() {
+        return GetSoundRequest.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.GetSoundRequest")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): GetSoundRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.name = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): GetSoundRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IGetSoundRequest): GetSoundRequest {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.GetSoundRequest")
 }
-GetSoundRequest.prototype.name = GetSoundRequest.reflection.fieldsById[1].defaultValue
+GetSoundRequest.$type.generatedObject = GetSoundRequest
+GetSoundRequest.prototype.name = GetSoundRequest.$type.fieldsById[1].defaultValue
 
 
 /**
@@ -1883,89 +843,37 @@ GetSoundRequest.prototype.name = GetSoundRequest.reflection.fieldsById[1].defaul
  */
 export interface IBatchGetSoundsRequest {
     /** 资源名 */
-    names?: (string[] | null)
+    names?: readonly string[]
 }
 
-export class BatchGetSoundsRequest extends $sisyphus.Message<IBatchGetSoundsRequest> implements IBatchGetSoundsRequest {
-    names!: (string[] | null)
-    get $reflection() {
-        return BatchGetSoundsRequest.reflection
+export class BatchGetSoundsRequest extends $protobuf.Message<BatchGetSoundsRequest> implements IBatchGetSoundsRequest {
+    names!: readonly string[]
+    get $type() {
+        return BatchGetSoundsRequest.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.BatchGetSoundsRequest")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): BatchGetSoundsRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    if (!result.names) result.names = []
-                    result.names.push(reader.string())
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): BatchGetSoundsRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IBatchGetSoundsRequest): BatchGetSoundsRequest {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("names") && properties.names !== undefined) result.names = properties.names
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.BatchGetSoundsRequest")
 }
-BatchGetSoundsRequest.prototype.names = BatchGetSoundsRequest.reflection.fieldsById[1].defaultValue
+BatchGetSoundsRequest.$type.generatedObject = BatchGetSoundsRequest
+BatchGetSoundsRequest.prototype.names = BatchGetSoundsRequest.$type.fieldsById[1].defaultValue
 
 
 /** 批量获取音效资源的 API 响应 */
 export interface IBatchGetSoundsResponse {
     /** 返回的音效资源 */
-    sounds?: ($privilege.ISound[] | null)
+    sounds?: readonly $privilege.ISound[]
 }
 
-export class BatchGetSoundsResponse extends $sisyphus.Message<IBatchGetSoundsResponse> implements IBatchGetSoundsResponse {
-    sounds!: ($privilege.ISound[] | null)
-    get $reflection() {
-        return BatchGetSoundsResponse.reflection
+export class BatchGetSoundsResponse extends $protobuf.Message<BatchGetSoundsResponse> implements IBatchGetSoundsResponse {
+    sounds!: readonly $privilege.Sound[]
+    get $type() {
+        return BatchGetSoundsResponse.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.BatchGetSoundsResponse")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): BatchGetSoundsResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    if (!result.sounds) result.sounds = []
-                    result.sounds.push($privilege.Sound.decodeDelimited(reader))
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): BatchGetSoundsResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IBatchGetSoundsResponse): BatchGetSoundsResponse {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("sounds") && properties.sounds != null) result.sounds = properties.sounds.map(it => $privilege.Sound.create(it))
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.BatchGetSoundsResponse")
 }
-BatchGetSoundsResponse.prototype.sounds = BatchGetSoundsResponse.reflection.fieldsById[1].defaultValue
+BatchGetSoundsResponse.$type.generatedObject = BatchGetSoundsResponse
+BatchGetSoundsResponse.prototype.sounds = BatchGetSoundsResponse.$type.fieldsById[1].defaultValue
 
 
 /**
@@ -1982,105 +890,42 @@ export interface IListSoundsRequest {
     filter?: string
 }
 
-export class ListSoundsRequest extends $sisyphus.Message<IListSoundsRequest> implements IListSoundsRequest {
+export class ListSoundsRequest extends $protobuf.Message<ListSoundsRequest> implements IListSoundsRequest {
     pageSize!: number
     pageToken!: string
     filter!: string
-    get $reflection() {
-        return ListSoundsRequest.reflection
+    get $type() {
+        return ListSoundsRequest.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListSoundsRequest")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): ListSoundsRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.pageSize = reader.int32()
-                    break
-                case 2:
-                    result.pageToken = reader.string()
-                    break
-                case 3:
-                    result.filter = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): ListSoundsRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IListSoundsRequest): ListSoundsRequest {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("pageSize") && properties.pageSize !== undefined) result.pageSize = properties.pageSize
-        if(properties.hasOwnProperty("pageToken") && properties.pageToken !== undefined) result.pageToken = properties.pageToken
-        if(properties.hasOwnProperty("filter") && properties.filter !== undefined) result.filter = properties.filter
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListSoundsRequest")
 }
-ListSoundsRequest.prototype.pageSize = ListSoundsRequest.reflection.fieldsById[1].defaultValue
-ListSoundsRequest.prototype.pageToken = ListSoundsRequest.reflection.fieldsById[2].defaultValue
-ListSoundsRequest.prototype.filter = ListSoundsRequest.reflection.fieldsById[3].defaultValue
+ListSoundsRequest.$type.generatedObject = ListSoundsRequest
+ListSoundsRequest.prototype.pageSize = ListSoundsRequest.$type.fieldsById[1].defaultValue
+ListSoundsRequest.prototype.pageToken = ListSoundsRequest.$type.fieldsById[2].defaultValue
+ListSoundsRequest.prototype.filter = ListSoundsRequest.$type.fieldsById[3].defaultValue
 
 
 /** 列举音效资源的 API 响应 */
 export interface IListSoundsResponse {
     /** 返回的音效资源 */
-    sounds?: ($privilege.ISound[] | null)
+    sounds?: readonly $privilege.ISound[]
     /** 下一页的翻页信息 */
     nextPageToken?: string
 }
 
-export class ListSoundsResponse extends $sisyphus.Message<IListSoundsResponse> implements IListSoundsResponse {
-    sounds!: ($privilege.ISound[] | null)
+export class ListSoundsResponse extends $protobuf.Message<ListSoundsResponse> implements IListSoundsResponse {
+    sounds!: readonly $privilege.Sound[]
     nextPageToken!: string
-    get $reflection() {
-        return ListSoundsResponse.reflection
+    get $type() {
+        return ListSoundsResponse.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListSoundsResponse")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): ListSoundsResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    if (!result.sounds) result.sounds = []
-                    result.sounds.push($privilege.Sound.decodeDelimited(reader))
-                    break
-                case 2:
-                    result.nextPageToken = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): ListSoundsResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IListSoundsResponse): ListSoundsResponse {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("sounds") && properties.sounds != null) result.sounds = properties.sounds.map(it => $privilege.Sound.create(it))
-        if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListSoundsResponse")
 }
-ListSoundsResponse.prototype.sounds = ListSoundsResponse.reflection.fieldsById[1].defaultValue
-ListSoundsResponse.prototype.nextPageToken = ListSoundsResponse.reflection.fieldsById[2].defaultValue
+ListSoundsResponse.$type.generatedObject = ListSoundsResponse
+ListSoundsResponse.prototype.sounds = ListSoundsResponse.$type.fieldsById[1].defaultValue
+ListSoundsResponse.prototype.nextPageToken = ListSoundsResponse.$type.fieldsById[2].defaultValue
 
 
 /**
@@ -2097,105 +942,42 @@ export interface IListSoundGroupsRequest {
     filter?: string
 }
 
-export class ListSoundGroupsRequest extends $sisyphus.Message<IListSoundGroupsRequest> implements IListSoundGroupsRequest {
+export class ListSoundGroupsRequest extends $protobuf.Message<ListSoundGroupsRequest> implements IListSoundGroupsRequest {
     pageSize!: number
     pageToken!: string
     filter!: string
-    get $reflection() {
-        return ListSoundGroupsRequest.reflection
+    get $type() {
+        return ListSoundGroupsRequest.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListSoundGroupsRequest")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): ListSoundGroupsRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.pageSize = reader.int32()
-                    break
-                case 2:
-                    result.pageToken = reader.string()
-                    break
-                case 3:
-                    result.filter = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): ListSoundGroupsRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IListSoundGroupsRequest): ListSoundGroupsRequest {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("pageSize") && properties.pageSize !== undefined) result.pageSize = properties.pageSize
-        if(properties.hasOwnProperty("pageToken") && properties.pageToken !== undefined) result.pageToken = properties.pageToken
-        if(properties.hasOwnProperty("filter") && properties.filter !== undefined) result.filter = properties.filter
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListSoundGroupsRequest")
 }
-ListSoundGroupsRequest.prototype.pageSize = ListSoundGroupsRequest.reflection.fieldsById[1].defaultValue
-ListSoundGroupsRequest.prototype.pageToken = ListSoundGroupsRequest.reflection.fieldsById[2].defaultValue
-ListSoundGroupsRequest.prototype.filter = ListSoundGroupsRequest.reflection.fieldsById[3].defaultValue
+ListSoundGroupsRequest.$type.generatedObject = ListSoundGroupsRequest
+ListSoundGroupsRequest.prototype.pageSize = ListSoundGroupsRequest.$type.fieldsById[1].defaultValue
+ListSoundGroupsRequest.prototype.pageToken = ListSoundGroupsRequest.$type.fieldsById[2].defaultValue
+ListSoundGroupsRequest.prototype.filter = ListSoundGroupsRequest.$type.fieldsById[3].defaultValue
 
 
 /** 列举音效组资源的 API 响应 */
 export interface IListSoundGroupsResponse {
     /** 返回的音效组资源 */
-    soundGroups?: ($privilege.ISoundGroup[] | null)
+    soundGroups?: readonly $privilege.ISoundGroup[]
     /** 下一页的翻页信息 */
     nextPageToken?: string
 }
 
-export class ListSoundGroupsResponse extends $sisyphus.Message<IListSoundGroupsResponse> implements IListSoundGroupsResponse {
-    soundGroups!: ($privilege.ISoundGroup[] | null)
+export class ListSoundGroupsResponse extends $protobuf.Message<ListSoundGroupsResponse> implements IListSoundGroupsResponse {
+    soundGroups!: readonly $privilege.SoundGroup[]
     nextPageToken!: string
-    get $reflection() {
-        return ListSoundGroupsResponse.reflection
+    get $type() {
+        return ListSoundGroupsResponse.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListSoundGroupsResponse")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): ListSoundGroupsResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    if (!result.soundGroups) result.soundGroups = []
-                    result.soundGroups.push($privilege.SoundGroup.decodeDelimited(reader))
-                    break
-                case 2:
-                    result.nextPageToken = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): ListSoundGroupsResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IListSoundGroupsResponse): ListSoundGroupsResponse {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("soundGroups") && properties.soundGroups != null) result.soundGroups = properties.soundGroups.map(it => $privilege.SoundGroup.create(it))
-        if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListSoundGroupsResponse")
 }
-ListSoundGroupsResponse.prototype.soundGroups = ListSoundGroupsResponse.reflection.fieldsById[1].defaultValue
-ListSoundGroupsResponse.prototype.nextPageToken = ListSoundGroupsResponse.reflection.fieldsById[2].defaultValue
+ListSoundGroupsResponse.$type.generatedObject = ListSoundGroupsResponse
+ListSoundGroupsResponse.prototype.soundGroups = ListSoundGroupsResponse.$type.fieldsById[1].defaultValue
+ListSoundGroupsResponse.prototype.nextPageToken = ListSoundGroupsResponse.$type.fieldsById[2].defaultValue
 
 
 /** 获取会员资源的请求 */
@@ -2204,41 +986,16 @@ export interface IGetMembershipRequest {
     name?: string
 }
 
-export class GetMembershipRequest extends $sisyphus.Message<IGetMembershipRequest> implements IGetMembershipRequest {
+export class GetMembershipRequest extends $protobuf.Message<GetMembershipRequest> implements IGetMembershipRequest {
     name!: string
-    get $reflection() {
-        return GetMembershipRequest.reflection
+    get $type() {
+        return GetMembershipRequest.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.GetMembershipRequest")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): GetMembershipRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.name = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): GetMembershipRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IGetMembershipRequest): GetMembershipRequest {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.GetMembershipRequest")
 }
-GetMembershipRequest.prototype.name = GetMembershipRequest.reflection.fieldsById[1].defaultValue
+GetMembershipRequest.$type.generatedObject = GetMembershipRequest
+GetMembershipRequest.prototype.name = GetMembershipRequest.$type.fieldsById[1].defaultValue
 
 
 /**
@@ -2248,89 +1005,37 @@ GetMembershipRequest.prototype.name = GetMembershipRequest.reflection.fieldsById
  */
 export interface IBatchGetMembershipsRequest {
     /** 资源名称 */
-    names?: (string[] | null)
+    names?: readonly string[]
 }
 
-export class BatchGetMembershipsRequest extends $sisyphus.Message<IBatchGetMembershipsRequest> implements IBatchGetMembershipsRequest {
-    names!: (string[] | null)
-    get $reflection() {
-        return BatchGetMembershipsRequest.reflection
+export class BatchGetMembershipsRequest extends $protobuf.Message<BatchGetMembershipsRequest> implements IBatchGetMembershipsRequest {
+    names!: readonly string[]
+    get $type() {
+        return BatchGetMembershipsRequest.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.BatchGetMembershipsRequest")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): BatchGetMembershipsRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    if (!result.names) result.names = []
-                    result.names.push(reader.string())
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): BatchGetMembershipsRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IBatchGetMembershipsRequest): BatchGetMembershipsRequest {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("names") && properties.names !== undefined) result.names = properties.names
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.BatchGetMembershipsRequest")
 }
-BatchGetMembershipsRequest.prototype.names = BatchGetMembershipsRequest.reflection.fieldsById[1].defaultValue
+BatchGetMembershipsRequest.$type.generatedObject = BatchGetMembershipsRequest
+BatchGetMembershipsRequest.prototype.names = BatchGetMembershipsRequest.$type.fieldsById[1].defaultValue
 
 
 /** 批量获取会员资源的 API 响应 */
 export interface IBatchGetMembershipsResponse {
     /** 返回的会员资源 */
-    memberships?: ($privilege.IMembership[] | null)
+    memberships?: readonly $privilege.IMembership[]
 }
 
-export class BatchGetMembershipsResponse extends $sisyphus.Message<IBatchGetMembershipsResponse> implements IBatchGetMembershipsResponse {
-    memberships!: ($privilege.IMembership[] | null)
-    get $reflection() {
-        return BatchGetMembershipsResponse.reflection
+export class BatchGetMembershipsResponse extends $protobuf.Message<BatchGetMembershipsResponse> implements IBatchGetMembershipsResponse {
+    memberships!: readonly $privilege.Membership[]
+    get $type() {
+        return BatchGetMembershipsResponse.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.BatchGetMembershipsResponse")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): BatchGetMembershipsResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    if (!result.memberships) result.memberships = []
-                    result.memberships.push($privilege.Membership.decodeDelimited(reader))
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): BatchGetMembershipsResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IBatchGetMembershipsResponse): BatchGetMembershipsResponse {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("memberships") && properties.memberships != null) result.memberships = properties.memberships.map(it => $privilege.Membership.create(it))
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.BatchGetMembershipsResponse")
 }
-BatchGetMembershipsResponse.prototype.memberships = BatchGetMembershipsResponse.reflection.fieldsById[1].defaultValue
+BatchGetMembershipsResponse.$type.generatedObject = BatchGetMembershipsResponse
+BatchGetMembershipsResponse.prototype.memberships = BatchGetMembershipsResponse.$type.fieldsById[1].defaultValue
 
 
 /**
@@ -2347,105 +1052,42 @@ export interface IListMembershipsRequest {
     filter?: string
 }
 
-export class ListMembershipsRequest extends $sisyphus.Message<IListMembershipsRequest> implements IListMembershipsRequest {
+export class ListMembershipsRequest extends $protobuf.Message<ListMembershipsRequest> implements IListMembershipsRequest {
     pageSize!: number
     pageToken!: string
     filter!: string
-    get $reflection() {
-        return ListMembershipsRequest.reflection
+    get $type() {
+        return ListMembershipsRequest.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListMembershipsRequest")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): ListMembershipsRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.pageSize = reader.int32()
-                    break
-                case 2:
-                    result.pageToken = reader.string()
-                    break
-                case 3:
-                    result.filter = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): ListMembershipsRequest {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IListMembershipsRequest): ListMembershipsRequest {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("pageSize") && properties.pageSize !== undefined) result.pageSize = properties.pageSize
-        if(properties.hasOwnProperty("pageToken") && properties.pageToken !== undefined) result.pageToken = properties.pageToken
-        if(properties.hasOwnProperty("filter") && properties.filter !== undefined) result.filter = properties.filter
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListMembershipsRequest")
 }
-ListMembershipsRequest.prototype.pageSize = ListMembershipsRequest.reflection.fieldsById[1].defaultValue
-ListMembershipsRequest.prototype.pageToken = ListMembershipsRequest.reflection.fieldsById[2].defaultValue
-ListMembershipsRequest.prototype.filter = ListMembershipsRequest.reflection.fieldsById[3].defaultValue
+ListMembershipsRequest.$type.generatedObject = ListMembershipsRequest
+ListMembershipsRequest.prototype.pageSize = ListMembershipsRequest.$type.fieldsById[1].defaultValue
+ListMembershipsRequest.prototype.pageToken = ListMembershipsRequest.$type.fieldsById[2].defaultValue
+ListMembershipsRequest.prototype.filter = ListMembershipsRequest.$type.fieldsById[3].defaultValue
 
 
 /** 列举会员资源的 API 响应 */
 export interface IListMembershipsResponse {
     /** 返回的会员资源 */
-    memberships?: ($privilege.IMembership[] | null)
+    memberships?: readonly $privilege.IMembership[]
     /** 下一页的翻页信息 */
     nextPageToken?: string
 }
 
-export class ListMembershipsResponse extends $sisyphus.Message<IListMembershipsResponse> implements IListMembershipsResponse {
-    memberships!: ($privilege.IMembership[] | null)
+export class ListMembershipsResponse extends $protobuf.Message<ListMembershipsResponse> implements IListMembershipsResponse {
+    memberships!: readonly $privilege.Membership[]
     nextPageToken!: string
-    get $reflection() {
-        return ListMembershipsResponse.reflection
+    get $type() {
+        return ListMembershipsResponse.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListMembershipsResponse")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): ListMembershipsResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    if (!result.memberships) result.memberships = []
-                    result.memberships.push($privilege.Membership.decodeDelimited(reader))
-                    break
-                case 2:
-                    result.nextPageToken = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): ListMembershipsResponse {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IListMembershipsResponse): ListMembershipsResponse {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("memberships") && properties.memberships != null) result.memberships = properties.memberships.map(it => $privilege.Membership.create(it))
-        if(properties.hasOwnProperty("nextPageToken") && properties.nextPageToken !== undefined) result.nextPageToken = properties.nextPageToken
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.ListMembershipsResponse")
 }
-ListMembershipsResponse.prototype.memberships = ListMembershipsResponse.reflection.fieldsById[1].defaultValue
-ListMembershipsResponse.prototype.nextPageToken = ListMembershipsResponse.reflection.fieldsById[2].defaultValue
+ListMembershipsResponse.$type.generatedObject = ListMembershipsResponse
+ListMembershipsResponse.prototype.memberships = ListMembershipsResponse.$type.fieldsById[1].defaultValue
+ListMembershipsResponse.prototype.nextPageToken = ListMembershipsResponse.$type.fieldsById[2].defaultValue
 
 /** 特权资源相关 API */
 export class PrivilegeApi extends $sisyphus.Client {

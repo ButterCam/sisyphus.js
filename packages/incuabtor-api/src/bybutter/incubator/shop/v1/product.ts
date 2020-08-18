@@ -1,9 +1,8 @@
 import * as $imageResource from "../../common/v1/image_resource"
 import * as $money from "../../../../google/type/money"
 import * as $any from "../../../../google/protobuf/any"
-import * as $sisyphus from "@sisyphus.js/core"
-import * as $reflection from "../../../../_reflection"
 import * as $protobuf from "protobufjs"
+import * as $reflection from "../../../../_reflection"
 import * as $timestamp from "../../../../google/protobuf/timestamp"
 
 
@@ -16,146 +15,83 @@ export interface IProduct {
     /** 商品标题 */
     title?: string
     /** 商品的展示图 */
-    picture?: ($imageResource.IImageResource | null)
+    picture?: $imageResource.IImageResource
     /** 展示用商品原价，一般以本地化价格展示 */
-    price?: ($money.IMoney | null)
+    price?: $money.IMoney
     /** 计算用商品原价，必须以 STD 为单位，1 STD 为 1 人民币分 */
-    standardPrice?: ($money.IMoney | null)
+    standardPrice?: $money.IMoney
     /** 用户可见的 Plan */
-    plans?: (IPlan[] | null)
+    plans?: readonly IPlan[]
     /**
      * 商品的详情
      * (-- api-linter: core::0146::any=disabled
      * aip.dev/not-precedent: 通用组件 --)
      */
-    details?: ($any.IAny | null)
+    details?: $any.IAny
     /**
      * 商品标签，由使用者决定要不要处理里面相关的内容
      * (-- api-linter: core::0146::any=disabled
      * aip.dev/not-precedent: 通用组件 --)
      */
-    tags?: ($any.IAny[] | null)
+    tags?: readonly $any.IAny[]
     /** 商品是否对当前用户可用 */
     enable?: boolean
 }
 
-export class Product extends $sisyphus.Message<IProduct> implements IProduct {
+export class Product extends $protobuf.Message<Product> implements IProduct {
     name!: string
     type!: string
     title!: string
-    picture!: ($imageResource.IImageResource | null)
-    price!: ($money.IMoney | null)
-    standardPrice!: ($money.IMoney | null)
-    plans!: (IPlan[] | null)
-    details!: ($any.IAny | null)
-    tags!: ($any.IAny[] | null)
+    picture!: $imageResource.ImageResource
+    price!: $money.Money
+    standardPrice!: $money.Money
+    plans!: readonly Plan[]
+    details!: $any.Any
+    tags!: readonly $any.Any[]
     enable!: boolean
-    get $reflection() {
-        return Product.reflection
+    get $type() {
+        return Product.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.shop.v1.Product")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): Product {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.name = reader.string()
-                    break
-                case 2:
-                    result.type = reader.string()
-                    break
-                case 3:
-                    result.title = reader.string()
-                    break
-                case 4:
-                    result.picture = $imageResource.ImageResource.decodeDelimited(reader)
-                    break
-                case 5:
-                    result.price = $money.Money.decodeDelimited(reader)
-                    break
-                case 6:
-                    result.standardPrice = $money.Money.decodeDelimited(reader)
-                    break
-                case 7:
-                    if (!result.plans) result.plans = []
-                    result.plans.push(Plan.decodeDelimited(reader))
-                    break
-                case 9:
-                    result.details = $any.Any.decodeDelimited(reader)
-                    break
-                case 11:
-                    if (!result.tags) result.tags = []
-                    result.tags.push($any.Any.decodeDelimited(reader))
-                    break
-                case 12:
-                    result.enable = reader.bool()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): Product {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IProduct): Product {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("name") && properties.name !== undefined) result.name = properties.name
-        if(properties.hasOwnProperty("type") && properties.type !== undefined) result.type = properties.type
-        if(properties.hasOwnProperty("title") && properties.title !== undefined) result.title = properties.title
-        if(properties.hasOwnProperty("picture") && properties.picture != null) result.picture = $imageResource.ImageResource.create(properties.picture)
-        if(properties.hasOwnProperty("price") && properties.price != null) result.price = $money.Money.create(properties.price)
-        if(properties.hasOwnProperty("standardPrice") && properties.standardPrice != null) result.standardPrice = $money.Money.create(properties.standardPrice)
-        if(properties.hasOwnProperty("plans") && properties.plans != null) result.plans = properties.plans.map(it => Plan.create(it))
-        if(properties.hasOwnProperty("details") && properties.details != null) result.details = $any.Any.create(properties.details)
-        if(properties.hasOwnProperty("tags") && properties.tags != null) result.tags = properties.tags.map(it => $any.Any.create(it))
-        if(properties.hasOwnProperty("enable") && properties.enable !== undefined) result.enable = properties.enable
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.Product")
 }
-Product.prototype.name = Product.reflection.fieldsById[1].defaultValue
-Product.prototype.type = Product.reflection.fieldsById[2].defaultValue
-Product.prototype.title = Product.reflection.fieldsById[3].defaultValue
-Product.prototype.picture = Product.reflection.fieldsById[4].defaultValue
-Product.prototype.price = Product.reflection.fieldsById[5].defaultValue
-Product.prototype.standardPrice = Product.reflection.fieldsById[6].defaultValue
-Product.prototype.plans = Product.reflection.fieldsById[7].defaultValue
-Product.prototype.details = Product.reflection.fieldsById[9].defaultValue
-Product.prototype.tags = Product.reflection.fieldsById[11].defaultValue
-Product.prototype.enable = Product.reflection.fieldsById[12].defaultValue
+Product.$type.generatedObject = Product
+Product.prototype.name = Product.$type.fieldsById[1].defaultValue
+Product.prototype.type = Product.$type.fieldsById[2].defaultValue
+Product.prototype.title = Product.$type.fieldsById[3].defaultValue
+Product.prototype.picture = Product.$type.fieldsById[4].defaultValue
+Product.prototype.price = Product.$type.fieldsById[5].defaultValue
+Product.prototype.standardPrice = Product.$type.fieldsById[6].defaultValue
+Product.prototype.plans = Product.$type.fieldsById[7].defaultValue
+Product.prototype.details = Product.$type.fieldsById[9].defaultValue
+Product.prototype.tags = Product.$type.fieldsById[11].defaultValue
+Product.prototype.enable = Product.$type.fieldsById[12].defaultValue
 
 
 /** 购买计划，确定购买商品的某个具体的计划 */
 export interface IPlan {
     /** 展示用商品价格，一般以本地化价格展示 */
-    price?: ($money.IMoney | null)
+    price?: $money.IMoney
     /** 计算用商品价格，必须以 STD 为单位，1 STD 为 1 人民币分 */
-    standardPrice?: ($money.IMoney | null)
+    standardPrice?: $money.IMoney
     /** 用于结账的条形码数据 */
     payment?: string
     /** 价格标签，包含列表中价格标签，详情页标签，与支付按钮标签 */
-    priceLabel?: (IPriceLabel | null)
+    priceLabel?: IPriceLabel
     /**
      * 本价格商品内包含物品
      * (-- api-linter: core::0146::any=disabled
      * aip.dev/not-precedent: 通用组件 --)
      */
-    items?: ($any.IAny[] | null)
+    items?: readonly $any.IAny[]
     /**
      * 价格标签，由使用者决定要不要处理里面相关的内容
      * (-- api-linter: core::0146::any=disabled
      * aip.dev/not-precedent: 通用组件 --)
      */
-    tags?: ($any.IAny[] | null)
+    tags?: readonly $any.IAny[]
     /** 支持的支付方式 */
-    paymentChannels?: (string[] | null)
+    paymentChannels?: readonly string[]
     /** 商品组 */
     group?: string
     /** 商品权重 */
@@ -163,124 +99,47 @@ export interface IPlan {
     /** 价格是否对当前用户可用 */
     enable?: boolean
     /** 优惠价格的开始时间 */
-    startTime?: ($timestamp.ITimestamp | null)
+    startTime?: $timestamp.ITimestamp
     /** 优惠价格的结束时间 */
-    endTime?: ($timestamp.ITimestamp | null)
+    endTime?: $timestamp.ITimestamp
     /** 仅内部使用字段 */
-    appliedAttributes?: (string[] | null)
+    appliedAttributes?: readonly string[]
 }
 
-export class Plan extends $sisyphus.Message<IPlan> implements IPlan {
-    price!: ($money.IMoney | null)
-    standardPrice!: ($money.IMoney | null)
+export class Plan extends $protobuf.Message<Plan> implements IPlan {
+    price!: $money.Money
+    standardPrice!: $money.Money
     payment!: string
-    priceLabel!: (IPriceLabel | null)
-    items!: ($any.IAny[] | null)
-    tags!: ($any.IAny[] | null)
-    paymentChannels!: (string[] | null)
+    priceLabel!: PriceLabel
+    items!: readonly $any.Any[]
+    tags!: readonly $any.Any[]
+    paymentChannels!: readonly string[]
     group!: string
     weight!: $protobuf.Long
     enable!: boolean
-    startTime!: ($timestamp.ITimestamp | null)
-    endTime!: ($timestamp.ITimestamp | null)
-    appliedAttributes!: (string[] | null)
-    get $reflection() {
-        return Plan.reflection
+    startTime!: $timestamp.Timestamp
+    endTime!: $timestamp.Timestamp
+    appliedAttributes!: readonly string[]
+    get $type() {
+        return Plan.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.shop.v1.Plan")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): Plan {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.price = $money.Money.decodeDelimited(reader)
-                    break
-                case 2:
-                    result.standardPrice = $money.Money.decodeDelimited(reader)
-                    break
-                case 3:
-                    result.payment = reader.string()
-                    break
-                case 4:
-                    result.priceLabel = PriceLabel.decodeDelimited(reader)
-                    break
-                case 5:
-                    if (!result.items) result.items = []
-                    result.items.push($any.Any.decodeDelimited(reader))
-                    break
-                case 6:
-                    if (!result.tags) result.tags = []
-                    result.tags.push($any.Any.decodeDelimited(reader))
-                    break
-                case 7:
-                    if (!result.paymentChannels) result.paymentChannels = []
-                    result.paymentChannels.push(reader.string())
-                    break
-                case 8:
-                    result.group = reader.string()
-                    break
-                case 9:
-                    result.weight = reader.int64()
-                    break
-                case 10:
-                    result.enable = reader.bool()
-                    break
-                case 11:
-                    result.startTime = $timestamp.Timestamp.decodeDelimited(reader)
-                    break
-                case 12:
-                    result.endTime = $timestamp.Timestamp.decodeDelimited(reader)
-                    break
-                case 1000:
-                    if (!result.appliedAttributes) result.appliedAttributes = []
-                    result.appliedAttributes.push(reader.string())
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): Plan {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IPlan): Plan {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("price") && properties.price != null) result.price = $money.Money.create(properties.price)
-        if(properties.hasOwnProperty("standardPrice") && properties.standardPrice != null) result.standardPrice = $money.Money.create(properties.standardPrice)
-        if(properties.hasOwnProperty("payment") && properties.payment !== undefined) result.payment = properties.payment
-        if(properties.hasOwnProperty("priceLabel") && properties.priceLabel != null) result.priceLabel = PriceLabel.create(properties.priceLabel)
-        if(properties.hasOwnProperty("items") && properties.items != null) result.items = properties.items.map(it => $any.Any.create(it))
-        if(properties.hasOwnProperty("tags") && properties.tags != null) result.tags = properties.tags.map(it => $any.Any.create(it))
-        if(properties.hasOwnProperty("paymentChannels") && properties.paymentChannels !== undefined) result.paymentChannels = properties.paymentChannels
-        if(properties.hasOwnProperty("group") && properties.group !== undefined) result.group = properties.group
-        if(properties.hasOwnProperty("weight") && properties.weight !== undefined) result.weight = properties.weight
-        if(properties.hasOwnProperty("enable") && properties.enable !== undefined) result.enable = properties.enable
-        if(properties.hasOwnProperty("startTime") && properties.startTime != null) result.startTime = $timestamp.Timestamp.create(properties.startTime)
-        if(properties.hasOwnProperty("endTime") && properties.endTime != null) result.endTime = $timestamp.Timestamp.create(properties.endTime)
-        if(properties.hasOwnProperty("appliedAttributes") && properties.appliedAttributes !== undefined) result.appliedAttributes = properties.appliedAttributes
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.Plan")
 }
-Plan.prototype.price = Plan.reflection.fieldsById[1].defaultValue
-Plan.prototype.standardPrice = Plan.reflection.fieldsById[2].defaultValue
-Plan.prototype.payment = Plan.reflection.fieldsById[3].defaultValue
-Plan.prototype.priceLabel = Plan.reflection.fieldsById[4].defaultValue
-Plan.prototype.items = Plan.reflection.fieldsById[5].defaultValue
-Plan.prototype.tags = Plan.reflection.fieldsById[6].defaultValue
-Plan.prototype.paymentChannels = Plan.reflection.fieldsById[7].defaultValue
-Plan.prototype.group = Plan.reflection.fieldsById[8].defaultValue
-Plan.prototype.weight = Plan.reflection.fieldsById[9].defaultValue
-Plan.prototype.enable = Plan.reflection.fieldsById[10].defaultValue
-Plan.prototype.startTime = Plan.reflection.fieldsById[11].defaultValue
-Plan.prototype.endTime = Plan.reflection.fieldsById[12].defaultValue
-Plan.prototype.appliedAttributes = Plan.reflection.fieldsById[1000].defaultValue
+Plan.$type.generatedObject = Plan
+Plan.prototype.price = Plan.$type.fieldsById[1].defaultValue
+Plan.prototype.standardPrice = Plan.$type.fieldsById[2].defaultValue
+Plan.prototype.payment = Plan.$type.fieldsById[3].defaultValue
+Plan.prototype.priceLabel = Plan.$type.fieldsById[4].defaultValue
+Plan.prototype.items = Plan.$type.fieldsById[5].defaultValue
+Plan.prototype.tags = Plan.$type.fieldsById[6].defaultValue
+Plan.prototype.paymentChannels = Plan.$type.fieldsById[7].defaultValue
+Plan.prototype.group = Plan.$type.fieldsById[8].defaultValue
+Plan.prototype.weight = Plan.$type.fieldsById[9].defaultValue
+Plan.prototype.enable = Plan.$type.fieldsById[10].defaultValue
+Plan.prototype.startTime = Plan.$type.fieldsById[11].defaultValue
+Plan.prototype.endTime = Plan.$type.fieldsById[12].defaultValue
+Plan.prototype.appliedAttributes = Plan.$type.fieldsById[1000].defaultValue
 
 
 /** 价格标签 */
@@ -295,56 +154,19 @@ export interface IPriceLabel {
     style?: string
 }
 
-export class PriceLabel extends $sisyphus.Message<IPriceLabel> implements IPriceLabel {
+export class PriceLabel extends $protobuf.Message<PriceLabel> implements IPriceLabel {
     tag!: string
     label!: string
     checkout!: string
     style!: string
-    get $reflection() {
-        return PriceLabel.reflection
+    get $type() {
+        return PriceLabel.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.shop.v1.PriceLabel")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): PriceLabel {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.tag = reader.string()
-                    break
-                case 2:
-                    result.label = reader.string()
-                    break
-                case 3:
-                    result.checkout = reader.string()
-                    break
-                case 4:
-                    result.style = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): PriceLabel {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IPriceLabel): PriceLabel {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("tag") && properties.tag !== undefined) result.tag = properties.tag
-        if(properties.hasOwnProperty("label") && properties.label !== undefined) result.label = properties.label
-        if(properties.hasOwnProperty("checkout") && properties.checkout !== undefined) result.checkout = properties.checkout
-        if(properties.hasOwnProperty("style") && properties.style !== undefined) result.style = properties.style
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.PriceLabel")
 }
-PriceLabel.prototype.tag = PriceLabel.reflection.fieldsById[1].defaultValue
-PriceLabel.prototype.label = PriceLabel.reflection.fieldsById[2].defaultValue
-PriceLabel.prototype.checkout = PriceLabel.reflection.fieldsById[3].defaultValue
-PriceLabel.prototype.style = PriceLabel.reflection.fieldsById[4].defaultValue
+PriceLabel.$type.generatedObject = PriceLabel
+PriceLabel.prototype.tag = PriceLabel.$type.fieldsById[1].defaultValue
+PriceLabel.prototype.label = PriceLabel.$type.fieldsById[2].defaultValue
+PriceLabel.prototype.checkout = PriceLabel.$type.fieldsById[3].defaultValue
+PriceLabel.prototype.style = PriceLabel.$type.fieldsById[4].defaultValue

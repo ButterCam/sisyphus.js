@@ -1,6 +1,5 @@
 import * as $reflection from "../../../../_reflection"
 import * as $timestamp from "../../../../google/protobuf/timestamp"
-import * as $sisyphus from "@sisyphus.js/core"
 import * as $protobuf from "protobufjs"
 
 
@@ -49,11 +48,11 @@ export interface IOwnership {
     /** 所有权 */
     ownership?: OwnershipType
     /** 所有权的可见范围 */
-    requirements?: (string[] | null)
+    requirements?: readonly string[]
     /** 所有权的有效期开始时间 */
-    startTime?: ($timestamp.ITimestamp | null)
+    startTime?: $timestamp.ITimestamp
     /** 所有权的有效期结束时间 */
-    endTime?: ($timestamp.ITimestamp | null)
+    endTime?: $timestamp.ITimestamp
     /** 所有权对于 Privilege 信息的标题重写内容 */
     overrideTitle?: string
     /** 所有权对于 Privilege 信息的图标重写内容 */
@@ -62,81 +61,27 @@ export interface IOwnership {
     overrideUri?: string
 }
 
-export class Ownership extends $sisyphus.Message<IOwnership> implements IOwnership {
+export class Ownership extends $protobuf.Message<Ownership> implements IOwnership {
     privilege!: string
     ownership!: OwnershipType
-    requirements!: (string[] | null)
-    startTime!: ($timestamp.ITimestamp | null)
-    endTime!: ($timestamp.ITimestamp | null)
+    requirements!: readonly string[]
+    startTime!: $timestamp.Timestamp
+    endTime!: $timestamp.Timestamp
     overrideTitle!: string
     overrideIconUri!: string
     overrideUri!: string
-    get $reflection() {
-        return Ownership.reflection
+    get $type() {
+        return Ownership.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.shop.v1.Ownership")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): Ownership {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.privilege = reader.string()
-                    break
-                case 2:
-                    result.ownership = reader.uint32()
-                    break
-                case 3:
-                    if (!result.requirements) result.requirements = []
-                    result.requirements.push(reader.string())
-                    break
-                case 4:
-                    result.startTime = $timestamp.Timestamp.decodeDelimited(reader)
-                    break
-                case 5:
-                    result.endTime = $timestamp.Timestamp.decodeDelimited(reader)
-                    break
-                case 6:
-                    result.overrideTitle = reader.string()
-                    break
-                case 7:
-                    result.overrideIconUri = reader.string()
-                    break
-                case 8:
-                    result.overrideUri = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): Ownership {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IOwnership): Ownership {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("privilege") && properties.privilege !== undefined) result.privilege = properties.privilege
-        if(properties.hasOwnProperty("ownership") && properties.ownership !== undefined) result.ownership = properties.ownership
-        if(properties.hasOwnProperty("requirements") && properties.requirements !== undefined) result.requirements = properties.requirements
-        if(properties.hasOwnProperty("startTime") && properties.startTime != null) result.startTime = $timestamp.Timestamp.create(properties.startTime)
-        if(properties.hasOwnProperty("endTime") && properties.endTime != null) result.endTime = $timestamp.Timestamp.create(properties.endTime)
-        if(properties.hasOwnProperty("overrideTitle") && properties.overrideTitle !== undefined) result.overrideTitle = properties.overrideTitle
-        if(properties.hasOwnProperty("overrideIconUri") && properties.overrideIconUri !== undefined) result.overrideIconUri = properties.overrideIconUri
-        if(properties.hasOwnProperty("overrideUri") && properties.overrideUri !== undefined) result.overrideUri = properties.overrideUri
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.Ownership")
 }
-Ownership.prototype.privilege = Ownership.reflection.fieldsById[1].defaultValue
-Ownership.prototype.ownership = Ownership.reflection.fieldsById[2].defaultValue
-Ownership.prototype.requirements = Ownership.reflection.fieldsById[3].defaultValue
-Ownership.prototype.startTime = Ownership.reflection.fieldsById[4].defaultValue
-Ownership.prototype.endTime = Ownership.reflection.fieldsById[5].defaultValue
-Ownership.prototype.overrideTitle = Ownership.reflection.fieldsById[6].defaultValue
-Ownership.prototype.overrideIconUri = Ownership.reflection.fieldsById[7].defaultValue
-Ownership.prototype.overrideUri = Ownership.reflection.fieldsById[8].defaultValue
+Ownership.$type.generatedObject = Ownership
+Ownership.prototype.privilege = Ownership.$type.fieldsById[1].defaultValue
+Ownership.prototype.ownership = Ownership.$type.fieldsById[2].defaultValue
+Ownership.prototype.requirements = Ownership.$type.fieldsById[3].defaultValue
+Ownership.prototype.startTime = Ownership.$type.fieldsById[4].defaultValue
+Ownership.prototype.endTime = Ownership.$type.fieldsById[5].defaultValue
+Ownership.prototype.overrideTitle = Ownership.$type.fieldsById[6].defaultValue
+Ownership.prototype.overrideIconUri = Ownership.$type.fieldsById[7].defaultValue
+Ownership.prototype.overrideUri = Ownership.$type.fieldsById[8].defaultValue

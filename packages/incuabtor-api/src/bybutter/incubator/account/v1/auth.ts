@@ -1,7 +1,6 @@
 import * as $struct from "../../../../google/protobuf/struct"
-import * as $sisyphus from "@sisyphus.js/core"
-import * as $reflection from "../../../../_reflection"
 import * as $protobuf from "protobufjs"
+import * as $reflection from "../../../../_reflection"
 import * as $incubatorProduct from "../../common/v1/incubator_product"
 import * as $timestamp from "../../../../google/protobuf/timestamp"
 
@@ -13,57 +12,23 @@ export interface IApiToken {
     /** 签署的 Token，内容为加密过的 TokenPayload。 */
     token?: string
     /** 用户当前具有的所有权限。 */
-    permissions?: ($struct.IValue[] | null)
+    permissions?: readonly $struct.IValue[]
 }
 
-export class ApiToken extends $sisyphus.Message<IApiToken> implements IApiToken {
+export class ApiToken extends $protobuf.Message<ApiToken> implements IApiToken {
     account!: string
     token!: string
-    permissions!: ($struct.IValue[] | null)
-    get $reflection() {
-        return ApiToken.reflection
+    permissions!: readonly $struct.Value[]
+    get $type() {
+        return ApiToken.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.account.v1.ApiToken")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): ApiToken {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.account = reader.string()
-                    break
-                case 2:
-                    result.token = reader.string()
-                    break
-                case 3:
-                    if (!result.permissions) result.permissions = []
-                    result.permissions.push($struct.Value.decodeDelimited(reader))
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): ApiToken {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IApiToken): ApiToken {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("account") && properties.account !== undefined) result.account = properties.account
-        if(properties.hasOwnProperty("token") && properties.token !== undefined) result.token = properties.token
-        if(properties.hasOwnProperty("permissions") && properties.permissions != null) result.permissions = properties.permissions.map(it => $struct.Value.create(it))
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.account.v1.ApiToken")
 }
-ApiToken.prototype.account = ApiToken.reflection.fieldsById[1].defaultValue
-ApiToken.prototype.token = ApiToken.reflection.fieldsById[2].defaultValue
-ApiToken.prototype.permissions = ApiToken.reflection.fieldsById[3].defaultValue
+ApiToken.$type.generatedObject = ApiToken
+ApiToken.prototype.account = ApiToken.$type.fieldsById[1].defaultValue
+ApiToken.prototype.token = ApiToken.$type.fieldsById[2].defaultValue
+ApiToken.prototype.permissions = ApiToken.$type.fieldsById[3].defaultValue
 
 
 /** 用于创建 API Token 的手机登陆凭据。 */
@@ -76,53 +41,20 @@ export interface IMobileCredential {
     code?: string
 }
 
-export class MobileCredential extends $sisyphus.Message<IMobileCredential> implements IMobileCredential {
+export class MobileCredential extends $protobuf.Message<MobileCredential> implements IMobileCredential {
     regionCode!: string
     phoneNumber!: string
     code!: string
-    get $reflection() {
-        return MobileCredential.reflection
+    get $type() {
+        return MobileCredential.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.account.v1.MobileCredential")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): MobileCredential {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.regionCode = reader.string()
-                    break
-                case 2:
-                    result.phoneNumber = reader.string()
-                    break
-                case 3:
-                    result.code = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): MobileCredential {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IMobileCredential): MobileCredential {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("regionCode") && properties.regionCode !== undefined) result.regionCode = properties.regionCode
-        if(properties.hasOwnProperty("phoneNumber") && properties.phoneNumber !== undefined) result.phoneNumber = properties.phoneNumber
-        if(properties.hasOwnProperty("code") && properties.code !== undefined) result.code = properties.code
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.account.v1.MobileCredential")
 }
-MobileCredential.prototype.regionCode = MobileCredential.reflection.fieldsById[1].defaultValue
-MobileCredential.prototype.phoneNumber = MobileCredential.reflection.fieldsById[2].defaultValue
-MobileCredential.prototype.code = MobileCredential.reflection.fieldsById[3].defaultValue
+MobileCredential.$type.generatedObject = MobileCredential
+MobileCredential.prototype.regionCode = MobileCredential.$type.fieldsById[1].defaultValue
+MobileCredential.prototype.phoneNumber = MobileCredential.$type.fieldsById[2].defaultValue
+MobileCredential.prototype.code = MobileCredential.$type.fieldsById[3].defaultValue
 
 
 /** 用于创建 API Token 的基于静默登陆时创建的认证码的登陆凭据。 */
@@ -131,41 +63,16 @@ export interface IIdentificationCredential {
     identification?: string
 }
 
-export class IdentificationCredential extends $sisyphus.Message<IIdentificationCredential> implements IIdentificationCredential {
+export class IdentificationCredential extends $protobuf.Message<IdentificationCredential> implements IIdentificationCredential {
     identification!: string
-    get $reflection() {
-        return IdentificationCredential.reflection
+    get $type() {
+        return IdentificationCredential.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.account.v1.IdentificationCredential")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): IdentificationCredential {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.identification = reader.string()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): IdentificationCredential {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IIdentificationCredential): IdentificationCredential {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("identification") && properties.identification !== undefined) result.identification = properties.identification
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.account.v1.IdentificationCredential")
 }
-IdentificationCredential.prototype.identification = IdentificationCredential.reflection.fieldsById[1].defaultValue
+IdentificationCredential.$type.generatedObject = IdentificationCredential
+IdentificationCredential.prototype.identification = IdentificationCredential.$type.fieldsById[1].defaultValue
 
 
 /** 用于创建 API Token 的基于IAP登录凭证。 */
@@ -176,47 +83,18 @@ export interface IIapCredential {
     product?: $incubatorProduct.IncubatorProduct
 }
 
-export class IapCredential extends $sisyphus.Message<IIapCredential> implements IIapCredential {
+export class IapCredential extends $protobuf.Message<IapCredential> implements IIapCredential {
     receipt!: string
     product!: $incubatorProduct.IncubatorProduct
-    get $reflection() {
-        return IapCredential.reflection
+    get $type() {
+        return IapCredential.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.account.v1.IapCredential")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): IapCredential {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.receipt = reader.string()
-                    break
-                case 2:
-                    result.product = reader.uint32()
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): IapCredential {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IIapCredential): IapCredential {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("receipt") && properties.receipt !== undefined) result.receipt = properties.receipt
-        if(properties.hasOwnProperty("product") && properties.product !== undefined) result.product = properties.product
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.account.v1.IapCredential")
 }
-IapCredential.prototype.receipt = IapCredential.reflection.fieldsById[1].defaultValue
-IapCredential.prototype.product = IapCredential.reflection.fieldsById[2].defaultValue
+IapCredential.$type.generatedObject = IapCredential
+IapCredential.prototype.receipt = IapCredential.$type.fieldsById[1].defaultValue
+IapCredential.prototype.product = IapCredential.$type.fieldsById[2].defaultValue
 
 
 /** 用于静默登陆时创建 API Token 的签名。 */
@@ -230,47 +108,18 @@ export interface ISignatureCredential {
      */
     signature?: Uint8Array
     /** 签名签署时间。 */
-    createTime?: ($timestamp.ITimestamp | null)
+    createTime?: $timestamp.ITimestamp
 }
 
-export class SignatureCredential extends $sisyphus.Message<ISignatureCredential> implements ISignatureCredential {
+export class SignatureCredential extends $protobuf.Message<SignatureCredential> implements ISignatureCredential {
     signature!: Uint8Array
-    createTime!: ($timestamp.ITimestamp | null)
-    get $reflection() {
-        return SignatureCredential.reflection
+    createTime!: $timestamp.Timestamp
+    get $type() {
+        return SignatureCredential.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".bybutter.incubator.account.v1.SignatureCredential")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): SignatureCredential {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-                case 1:
-                    result.signature = reader.bytes()
-                    break
-                case 2:
-                    result.createTime = $timestamp.Timestamp.decodeDelimited(reader)
-                    break
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): SignatureCredential {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: ISignatureCredential): SignatureCredential {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        if(properties.hasOwnProperty("signature") && properties.signature !== undefined) result.signature = properties.signature
-        if(properties.hasOwnProperty("createTime") && properties.createTime != null) result.createTime = $timestamp.Timestamp.create(properties.createTime)
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.account.v1.SignatureCredential")
 }
-SignatureCredential.prototype.signature = SignatureCredential.reflection.fieldsById[1].defaultValue
-SignatureCredential.prototype.createTime = SignatureCredential.reflection.fieldsById[2].defaultValue
+SignatureCredential.$type.generatedObject = SignatureCredential
+SignatureCredential.prototype.signature = SignatureCredential.$type.fieldsById[1].defaultValue
+SignatureCredential.prototype.createTime = SignatureCredential.$type.fieldsById[2].defaultValue

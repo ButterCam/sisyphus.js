@@ -1,8 +1,7 @@
-import * as test from "./"
-import {AuthApi} from "./bybutter/incubator/account/v1";
-import {transcoding} from "@sisyphus.js/core/lib/transcoding";
+import {transcoding} from "@sisyphus.js/core";
+import {AuthApi} from "./bybutter/incubator/account/v1/auth_api";
 
-const rpc = transcoding("http://localhost:8080", test)
+const rpc = transcoding("http://localhost:8080")
 const client = new AuthApi(rpc);
 
 (async function() {

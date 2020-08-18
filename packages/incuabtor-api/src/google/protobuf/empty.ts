@@ -1,6 +1,5 @@
 import * as $sisyphus from "@sisyphus.js/core"
 import * as $reflection from "../../_reflection"
-import * as $protobuf from "protobufjs"
 
 
 /**
@@ -17,32 +16,11 @@ import * as $protobuf from "protobufjs"
 export interface IEmpty extends $sisyphus.IEmpty {
 }
 
-export class Empty extends $sisyphus.Message<IEmpty> implements IEmpty {
-    get $reflection() {
-        return Empty.reflection
+export class Empty extends $sisyphus.Empty implements IEmpty {
+    get $type() {
+        return Empty.$type
     }
 
-    static readonly reflection = $reflection.root.lookupType(".google.protobuf.Empty")
-    static decode(reader: Uint8Array | $protobuf.Reader, length?: number): Empty {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        const end = length === undefined ? reader.len : reader.pos + length
-        const result = new this()
-        while(reader.pos < end) {
-            let tag = reader.uint32()
-            switch(tag>>>3) {
-            }
-        }
-        return result
-    }
-
-    static decodeDelimited(reader: Uint8Array | $protobuf.Reader): Empty {
-        if(!(reader instanceof $protobuf.Reader)) reader = $protobuf.Reader.create(reader)
-        return this.decode(reader, reader.uint32())
-    }
-    static create(properties?: IEmpty): Empty {
-        if(properties instanceof this) return properties
-        const result = new this()
-        if (!properties) return result
-        return result
-    }
+    static readonly $type = $reflection.root.lookupType(".google.protobuf.Empty")
 }
+Empty.$type.generatedObject = Empty
