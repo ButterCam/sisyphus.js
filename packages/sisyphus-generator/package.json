@@ -1,9 +1,9 @@
 {
   "name": "@sisyphus.js/generator",
-  "version": "0.0.0",
-  "description": "> TODO: description",
+  "version": "0.0.1",
+  "description": "Protobuf generator for sisyphus project on js platform",
   "author": "Kanro <higan@live.cn>",
-  "homepage": "",
+  "homepage": "github.com/ButterCam/sisyphus-js",
   "license": "ISC",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -19,7 +19,6 @@
   "dependencies": {
     "@sisyphus.js/core": "^0.0.0",
     "change-case": "^4.1.1",
-    "protobufjs": "^6.10.1",
-    "typescript": "^3.9.7"
+    "protobufjs": "^6.10.1"
   }
 }
