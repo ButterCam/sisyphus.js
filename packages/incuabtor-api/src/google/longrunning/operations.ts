@@ -1,8 +1,7 @@
-import * as $any from "../protobuf/any"
-import * as $status from "../rpc/status"
 import * as $protobuf from "protobufjs"
-import * as $reflection from "../../_reflection"
+import * as $status from "../rpc/status"
 import * as $sisyphus from "@sisyphus.js/core"
+import * as $reflection from "../../_reflection"
 import * as $duration from "../protobuf/duration"
 import * as $empty from "../protobuf/empty"
 
@@ -24,7 +23,7 @@ export interface IOperation {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: $any.IAny
+    metadata?: $protobuf.Message
     /**
      * If the value is `false`, it means the operation is still in progress.
      * If `true`, the operation is completed, and either `error` or `response` is
@@ -43,7 +42,7 @@ export interface IOperation {
      * is `TakeSnapshot()`, the inferred response type is
      * `TakeSnapshotResponse`.
      */
-    response?: $any.IAny
+    response?: $protobuf.Message
     /**
      * The operation result, which can be either an `error` or a valid `response`.
      * If `done` == `false`, neither `error` nor `response` is set.
@@ -52,28 +51,15 @@ export interface IOperation {
     result?: string
 }
 
-export class Operation extends $protobuf.Message<Operation> implements IOperation {
+export class Operation extends $sisyphus.Message<Operation> implements IOperation {
     name!: string
-    metadata!: $any.Any
+    metadata!: $protobuf.Message
     done!: boolean
     error!: $status.Status
-    response!: $any.Any
+    response!: $protobuf.Message
     result?: string
-
-    get $type() {
-        return Operation.$type
-    }
-
-    static readonly $type = $reflection.root.lookupType(".google.longrunning.Operation")
 }
-
-Operation.$type.generatedObject = Operation
-Object.defineProperty(Operation.prototype, "result", $sisyphus.oneOfProperty("error", "response"))
-Operation.prototype.name = Operation.$type.fieldsById[1].defaultValue
-Operation.prototype.metadata = Operation.$type.fieldsById[2].defaultValue
-Operation.prototype.done = Operation.$type.fieldsById[3].defaultValue
-Operation.prototype.error = Operation.$type.fieldsById[4].defaultValue
-Operation.prototype.response = Operation.$type.fieldsById[5].defaultValue
+$reflection.root.lookupType(".google.longrunning.Operation").messageCtor = Operation
 
 
 /** The request message for [Operations.GetOperation][google.longrunning.Operations.GetOperation]. */
@@ -82,18 +68,10 @@ export interface IGetOperationRequest {
     name?: string
 }
 
-export class GetOperationRequest extends $protobuf.Message<GetOperationRequest> implements IGetOperationRequest {
+export class GetOperationRequest extends $sisyphus.Message<GetOperationRequest> implements IGetOperationRequest {
     name!: string
-
-    get $type() {
-        return GetOperationRequest.$type
-    }
-
-    static readonly $type = $reflection.root.lookupType(".google.longrunning.GetOperationRequest")
 }
-
-GetOperationRequest.$type.generatedObject = GetOperationRequest
-GetOperationRequest.prototype.name = GetOperationRequest.$type.fieldsById[1].defaultValue
+$reflection.root.lookupType(".google.longrunning.GetOperationRequest").messageCtor = GetOperationRequest
 
 
 /** The request message for [Operations.ListOperations][google.longrunning.Operations.ListOperations]. */
@@ -108,24 +86,13 @@ export interface IListOperationsRequest {
     pageToken?: string
 }
 
-export class ListOperationsRequest extends $protobuf.Message<ListOperationsRequest> implements IListOperationsRequest {
+export class ListOperationsRequest extends $sisyphus.Message<ListOperationsRequest> implements IListOperationsRequest {
     name!: string
     filter!: string
     pageSize!: number
     pageToken!: string
-
-    get $type() {
-        return ListOperationsRequest.$type
-    }
-
-    static readonly $type = $reflection.root.lookupType(".google.longrunning.ListOperationsRequest")
 }
-
-ListOperationsRequest.$type.generatedObject = ListOperationsRequest
-ListOperationsRequest.prototype.name = ListOperationsRequest.$type.fieldsById[4].defaultValue
-ListOperationsRequest.prototype.filter = ListOperationsRequest.$type.fieldsById[1].defaultValue
-ListOperationsRequest.prototype.pageSize = ListOperationsRequest.$type.fieldsById[2].defaultValue
-ListOperationsRequest.prototype.pageToken = ListOperationsRequest.$type.fieldsById[3].defaultValue
+$reflection.root.lookupType(".google.longrunning.ListOperationsRequest").messageCtor = ListOperationsRequest
 
 
 /** The response message for [Operations.ListOperations][google.longrunning.Operations.ListOperations]. */
@@ -136,20 +103,11 @@ export interface IListOperationsResponse {
     nextPageToken?: string
 }
 
-export class ListOperationsResponse extends $protobuf.Message<ListOperationsResponse> implements IListOperationsResponse {
+export class ListOperationsResponse extends $sisyphus.Message<ListOperationsResponse> implements IListOperationsResponse {
     operations!: readonly Operation[]
     nextPageToken!: string
-
-    get $type() {
-        return ListOperationsResponse.$type
-    }
-
-    static readonly $type = $reflection.root.lookupType(".google.longrunning.ListOperationsResponse")
 }
-
-ListOperationsResponse.$type.generatedObject = ListOperationsResponse
-ListOperationsResponse.prototype.operations = ListOperationsResponse.$type.fieldsById[1].defaultValue
-ListOperationsResponse.prototype.nextPageToken = ListOperationsResponse.$type.fieldsById[2].defaultValue
+$reflection.root.lookupType(".google.longrunning.ListOperationsResponse").messageCtor = ListOperationsResponse
 
 
 /** The request message for [Operations.CancelOperation][google.longrunning.Operations.CancelOperation]. */
@@ -158,18 +116,10 @@ export interface ICancelOperationRequest {
     name?: string
 }
 
-export class CancelOperationRequest extends $protobuf.Message<CancelOperationRequest> implements ICancelOperationRequest {
+export class CancelOperationRequest extends $sisyphus.Message<CancelOperationRequest> implements ICancelOperationRequest {
     name!: string
-
-    get $type() {
-        return CancelOperationRequest.$type
-    }
-
-    static readonly $type = $reflection.root.lookupType(".google.longrunning.CancelOperationRequest")
 }
-
-CancelOperationRequest.$type.generatedObject = CancelOperationRequest
-CancelOperationRequest.prototype.name = CancelOperationRequest.$type.fieldsById[1].defaultValue
+$reflection.root.lookupType(".google.longrunning.CancelOperationRequest").messageCtor = CancelOperationRequest
 
 
 /** The request message for [Operations.DeleteOperation][google.longrunning.Operations.DeleteOperation]. */
@@ -178,18 +128,10 @@ export interface IDeleteOperationRequest {
     name?: string
 }
 
-export class DeleteOperationRequest extends $protobuf.Message<DeleteOperationRequest> implements IDeleteOperationRequest {
+export class DeleteOperationRequest extends $sisyphus.Message<DeleteOperationRequest> implements IDeleteOperationRequest {
     name!: string
-
-    get $type() {
-        return DeleteOperationRequest.$type
-    }
-
-    static readonly $type = $reflection.root.lookupType(".google.longrunning.DeleteOperationRequest")
 }
-
-DeleteOperationRequest.$type.generatedObject = DeleteOperationRequest
-DeleteOperationRequest.prototype.name = DeleteOperationRequest.$type.fieldsById[1].defaultValue
+$reflection.root.lookupType(".google.longrunning.DeleteOperationRequest").messageCtor = DeleteOperationRequest
 
 
 /** The request message for [Operations.WaitOperation][google.longrunning.Operations.WaitOperation]. */
@@ -204,27 +146,18 @@ export interface IWaitOperationRequest {
     timeout?: $duration.IDuration
 }
 
-export class WaitOperationRequest extends $protobuf.Message<WaitOperationRequest> implements IWaitOperationRequest {
+export class WaitOperationRequest extends $sisyphus.Message<WaitOperationRequest> implements IWaitOperationRequest {
     name!: string
     timeout!: $duration.Duration
-
-    get $type() {
-        return WaitOperationRequest.$type
-    }
-
-    static readonly $type = $reflection.root.lookupType(".google.longrunning.WaitOperationRequest")
 }
-
-WaitOperationRequest.$type.generatedObject = WaitOperationRequest
-WaitOperationRequest.prototype.name = WaitOperationRequest.$type.fieldsById[1].defaultValue
-WaitOperationRequest.prototype.timeout = WaitOperationRequest.$type.fieldsById[2].defaultValue
+$reflection.root.lookupType(".google.longrunning.WaitOperationRequest").messageCtor = WaitOperationRequest
 
 
 /**
  * A message representing the message types used by a long-running operation.
- *
+ * 
  * Example:
- *
+ * 
  * rpc LongRunningRecognize(LongRunningRecognizeRequest)
  * returns (google.longrunning.Operation) {
  * option (google.longrunning.operation_info) = {
@@ -238,43 +171,34 @@ export interface IOperationInfo {
      * Required. The message name of the primary return type for this
      * long-running operation.
      * This type will be used to deserialize the LRO's response.
-     *
+     * 
      * If the response is in a different package from the rpc, a fully-qualified
      * message name must be used (e.g. `google.protobuf.Struct`).
-     *
+     * 
      * Note: Altering this value constitutes a breaking change.
      */
     responseType?: string
     /**
      * Required. The message name of the metadata type for this long-running
      * operation.
-     *
+     * 
      * If the response is in a different package from the rpc, a fully-qualified
      * message name must be used (e.g. `google.protobuf.Struct`).
-     *
+     * 
      * Note: Altering this value constitutes a breaking change.
      */
     metadataType?: string
 }
 
-export class OperationInfo extends $protobuf.Message<OperationInfo> implements IOperationInfo {
+export class OperationInfo extends $sisyphus.Message<OperationInfo> implements IOperationInfo {
     responseType!: string
     metadataType!: string
-
-    get $type() {
-        return OperationInfo.$type
-    }
-
-    static readonly $type = $reflection.root.lookupType(".google.longrunning.OperationInfo")
 }
-
-OperationInfo.$type.generatedObject = OperationInfo
-OperationInfo.prototype.responseType = OperationInfo.$type.fieldsById[1].defaultValue
-OperationInfo.prototype.metadataType = OperationInfo.$type.fieldsById[2].defaultValue
+$reflection.root.lookupType(".google.longrunning.OperationInfo").messageCtor = OperationInfo
 
 /**
  * Manages long-running operations with an API service.
- *
+ * 
  * When an API method normally takes long time to complete, it can be designed
  * to return [Operation][google.longrunning.Operation] to the client, and the client can use this
  * interface to receive the real response asynchronously by polling the
@@ -287,11 +211,10 @@ export class Operations extends $sisyphus.Client {
     get $reflection() {
         return Operations.reflection
     }
-
     /**
      * Lists operations that match the specified filter in the request. If the
      * server doesn't support this method, it returns `UNIMPLEMENTED`.
-     *
+     * 
      * NOTE: the `name` binding allows API services to override the binding
      * to use different resource name schemes, such as `users/*&#47;operations`. To
      * override the binding, API services can add a binding such as
@@ -303,7 +226,6 @@ export class Operations extends $sisyphus.Client {
     async ListOperations(input: IListOperationsRequest, metadata?: { [k: string]: string }): Promise<IListOperationsResponse> {
         return await this.$call(this.$reflection.methods["ListOperations"], input, metadata)
     }
-
     /**
      * Gets the latest state of a long-running operation.  Clients can use this
      * method to poll the operation result at intervals as recommended by the API
@@ -312,7 +234,6 @@ export class Operations extends $sisyphus.Client {
     async GetOperation(input: IGetOperationRequest, metadata?: { [k: string]: string }): Promise<IOperation> {
         return await this.$call(this.$reflection.methods["GetOperation"], input, metadata)
     }
-
     /**
      * Deletes a long-running operation. This method indicates that the client is
      * no longer interested in the operation result. It does not cancel the
@@ -322,7 +243,6 @@ export class Operations extends $sisyphus.Client {
     async DeleteOperation(input: IDeleteOperationRequest, metadata?: { [k: string]: string }): Promise<$empty.IEmpty> {
         return await this.$call(this.$reflection.methods["DeleteOperation"], input, metadata)
     }
-
     /**
      * Starts asynchronous cancellation on a long-running operation.  The server
      * makes a best effort to cancel the operation, but success is not
@@ -338,7 +258,6 @@ export class Operations extends $sisyphus.Client {
     async CancelOperation(input: ICancelOperationRequest, metadata?: { [k: string]: string }): Promise<$empty.IEmpty> {
         return await this.$call(this.$reflection.methods["CancelOperation"], input, metadata)
     }
-
     /**
      * Waits for the specified long-running operation until it is done or reaches
      * at most a specified timeout, returning the latest state.  If the operation
@@ -353,8 +272,6 @@ export class Operations extends $sisyphus.Client {
     async WaitOperation(input: IWaitOperationRequest, metadata?: { [k: string]: string }): Promise<IOperation> {
         return await this.$call(this.$reflection.methods["WaitOperation"], input, metadata)
     }
-
     static readonly reflection = $reflection.root.lookupService(".google.longrunning.Operations")
 }
-
 export let operationInfo = $reflection.root.lookup(".google.longrunning.operationInfo")

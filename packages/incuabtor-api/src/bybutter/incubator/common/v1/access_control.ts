@@ -1,4 +1,4 @@
-import * as $protobuf from "protobufjs"
+import * as $sisyphus from "@sisyphus.js/core"
 import * as $reflection from "../../../../_reflection"
 
 
@@ -12,21 +12,11 @@ export interface IAccessControl {
     allowPermissions?: readonly string[]
 }
 
-export class AccessControl extends $protobuf.Message<AccessControl> implements IAccessControl {
+export class AccessControl extends $sisyphus.Message<AccessControl> implements IAccessControl {
     anonymous!: boolean
     requiredPermissions!: readonly string[]
     allowPermissions!: readonly string[]
-
-    get $type() {
-        return AccessControl.$type
-    }
-
-    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.common.v1.AccessControl")
 }
-
-AccessControl.$type.generatedObject = AccessControl
-AccessControl.prototype.anonymous = AccessControl.$type.fieldsById[1].defaultValue
-AccessControl.prototype.requiredPermissions = AccessControl.$type.fieldsById[2].defaultValue
-AccessControl.prototype.allowPermissions = AccessControl.$type.fieldsById[3].defaultValue
+$reflection.root.lookupType(".bybutter.incubator.common.v1.AccessControl").messageCtor = AccessControl
 
 export let access = $reflection.root.lookup(".bybutter.incubator.common.v1.access")

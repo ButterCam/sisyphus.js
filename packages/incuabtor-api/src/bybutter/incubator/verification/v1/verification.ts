@@ -1,4 +1,4 @@
-import * as $protobuf from "protobufjs"
+import * as $sisyphus from "@sisyphus.js/core"
 import * as $reflection from "../../../../_reflection"
 
 
@@ -10,20 +10,11 @@ export interface IPhoneTarget {
     phoneNumber?: string
 }
 
-export class PhoneTarget extends $protobuf.Message<PhoneTarget> implements IPhoneTarget {
+export class PhoneTarget extends $sisyphus.Message<PhoneTarget> implements IPhoneTarget {
     regionCode!: string
     phoneNumber!: string
-
-    get $type() {
-        return PhoneTarget.$type
-    }
-
-    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.verification.v1.PhoneTarget")
 }
-
-PhoneTarget.$type.generatedObject = PhoneTarget
-PhoneTarget.prototype.regionCode = PhoneTarget.$type.fieldsById[1].defaultValue
-PhoneTarget.prototype.phoneNumber = PhoneTarget.$type.fieldsById[2].defaultValue
+$reflection.root.lookupType(".bybutter.incubator.verification.v1.PhoneTarget").messageCtor = PhoneTarget
 
 
 /** 邮箱 */
@@ -32,18 +23,10 @@ export interface IEmailTarget {
     email?: string
 }
 
-export class EmailTarget extends $protobuf.Message<EmailTarget> implements IEmailTarget {
+export class EmailTarget extends $sisyphus.Message<EmailTarget> implements IEmailTarget {
     email!: string
-
-    get $type() {
-        return EmailTarget.$type
-    }
-
-    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.verification.v1.EmailTarget")
 }
-
-EmailTarget.$type.generatedObject = EmailTarget
-EmailTarget.prototype.email = EmailTarget.$type.fieldsById[1].defaultValue
+$reflection.root.lookupType(".bybutter.incubator.verification.v1.EmailTarget").messageCtor = EmailTarget
 
 
 /** 地区代码 */
@@ -56,19 +39,9 @@ export interface IRegionCode {
     displayRegionCode?: string
 }
 
-export class RegionCode extends $protobuf.Message<RegionCode> implements IRegionCode {
+export class RegionCode extends $sisyphus.Message<RegionCode> implements IRegionCode {
     regionCode!: string
     region!: string
     displayRegionCode!: string
-
-    get $type() {
-        return RegionCode.$type
-    }
-
-    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.verification.v1.RegionCode")
 }
-
-RegionCode.$type.generatedObject = RegionCode
-RegionCode.prototype.regionCode = RegionCode.$type.fieldsById[1].defaultValue
-RegionCode.prototype.region = RegionCode.$type.fieldsById[2].defaultValue
-RegionCode.prototype.displayRegionCode = RegionCode.$type.fieldsById[3].defaultValue
+$reflection.root.lookupType(".bybutter.incubator.verification.v1.RegionCode").messageCtor = RegionCode

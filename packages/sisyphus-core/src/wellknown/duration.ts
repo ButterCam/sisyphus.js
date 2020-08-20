@@ -1,6 +1,6 @@
-import {IConversionOptions, Long, Message} from "protobufjs";
+import {Long} from "protobufjs";
 import long from "long";
-import {longZero} from "../defaults";
+import {JsonValue, Message} from "../message";
 
 export interface IDuration {
     seconds?: Long
@@ -13,7 +13,11 @@ export class Duration extends Message<Duration> implements IDuration {
     seconds!: Long
     nanos!: number
 
-    static fromObject<T extends Message<T>>(object: any): T {
+    static create(properties: Duration | IDuration): Duration {
+        return <Duration>super.create(properties)
+    }
+
+    static fromJson(object: JsonValue): Duration {
         if (typeof object !== "string") {
             throw new Error("Duration must be a string")
         }
@@ -26,15 +30,12 @@ export class Duration extends Message<Duration> implements IDuration {
         let sign = result[1] ? "-" : ""
         let seconds = long.fromValue(`${sign}${result[2]}`)
         let nanos = Math.floor(parseFloat(`${sign}0.${result[3]}`) * 1000000000)
-        return <T>this.create({
+        return <Duration>this.create({
             seconds, nanos
         })
     }
 
-    static toObject<T extends Message<T>>(message: T, options?: IConversionOptions): any {
-        if (!(message instanceof Duration)) {
-            throw new Error("Message must be a duration")
-        }
+    static toJson(message: Duration | IDuration): JsonValue {
         let second = message.seconds ? <long.Long>message.seconds : long.ZERO
         let nanos = message.nanos ? message.nanos : 0
         nanos = nanos / 1000000000
@@ -58,6 +59,3 @@ export class Duration extends Message<Duration> implements IDuration {
         return `${second.toString()}.${nanos.toString().substring(2)}s`
     }
 }
-
-Duration.prototype.seconds = longZero
-Duration.prototype.nanos = 0

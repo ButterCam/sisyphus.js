@@ -1,5 +1,6 @@
 import * as $timestamp from "../../../../google/protobuf/timestamp"
 import * as $protobuf from "protobufjs"
+import * as $sisyphus from "@sisyphus.js/core"
 import * as $reflection from "../../../../_reflection"
 
 
@@ -35,7 +36,7 @@ export interface IEvent {
     sequenceNumber?: string
 }
 
-export class Event extends $protobuf.Message<Event> implements IEvent {
+export class Event extends $sisyphus.Message<Event> implements IEvent {
     uid!: string
     platform!: string
     sessionId!: string
@@ -48,24 +49,5 @@ export class Event extends $protobuf.Message<Event> implements IEvent {
     eventTime!: $protobuf.Long
     partitionTime!: string
     sequenceNumber!: string
-
-    get $type() {
-        return Event.$type
-    }
-
-    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.event.v1.Event")
 }
-
-Event.$type.generatedObject = Event
-Event.prototype.uid = Event.$type.fieldsById[1].defaultValue
-Event.prototype.platform = Event.$type.fieldsById[2].defaultValue
-Event.prototype.sessionId = Event.$type.fieldsById[3].defaultValue
-Event.prototype.deviceId = Event.$type.fieldsById[4].defaultValue
-Event.prototype.channel = Event.$type.fieldsById[5].defaultValue
-Event.prototype.event = Event.$type.fieldsById[6].defaultValue
-Event.prototype.eventTimestampTime = Event.$type.fieldsById[7].defaultValue
-Event.prototype.payload = Event.$type.fieldsById[8].defaultValue
-Event.prototype.extra = Event.$type.fieldsById[9].defaultValue
-Event.prototype.eventTime = Event.$type.fieldsById[10].defaultValue
-Event.prototype.partitionTime = Event.$type.fieldsById[11].defaultValue
-Event.prototype.sequenceNumber = Event.$type.fieldsById[12].defaultValue
+$reflection.root.lookupType(".bybutter.incubator.event.v1.Event").messageCtor = Event

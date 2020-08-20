@@ -10,6 +10,11 @@ export class TypeSpec implements GeneratorSpec {
     private readonly _parent: TypeSpec | FileSpec
     private readonly _reflection: Type
 
+    constructor(parent: TypeSpec | FileSpec, reflection: Type) {
+        this._parent = parent
+        this._reflection = reflection
+    }
+
     get parent(): TypeSpec | FileSpec {
         return this._parent
     }
@@ -22,9 +27,29 @@ export class TypeSpec implements GeneratorSpec {
         return parent
     }
 
-    constructor(parent: TypeSpec | FileSpec, reflection: Type) {
-        this._parent = parent
-        this._reflection = reflection
+    private get wellknown(): boolean {
+        switch (this._reflection.fullName) {
+            case ".google.protobuf.Any":
+            case ".google.protobuf.Duration":
+            case ".google.protobuf.Empty":
+            case ".google.protobuf.FieldMask":
+            case ".google.protobuf.Struct":
+            case ".google.protobuf.Value":
+            case ".google.protobuf.Timestamp":
+            case ".google.protobuf.DoubleValue":
+            case ".google.protobuf.FloatValue":
+            case ".google.protobuf.Int64Value":
+            case ".google.protobuf.UInt64Value":
+            case ".google.protobuf.Int32Value":
+            case ".google.protobuf.UInt32Value":
+            case ".google.protobuf.BoolValue":
+            case ".google.protobuf.StringValue":
+            case ".google.protobuf.BytesValue":
+            case ".google.protobuf.ListValue":
+                return true
+            default:
+                return false
+        }
     }
 
     generate(codeBuilder: CodeBuilder) {
@@ -56,6 +81,8 @@ export class TypeSpec implements GeneratorSpec {
                 case "fixed64":
                 case "sfixed64":
                     return `$${this.file.importProtobuf()}.Long`
+                case ".google.protobuf.Any":
+                    return `$${this.file.importProtobuf()}.Message`
                 default:
                     return protocol ? this.file.typename(this._reflection.root.lookupTypeOrEnum(field)) : this.file.classname(this._reflection.root.lookupTypeOrEnum(field))
             }
@@ -127,31 +154,6 @@ export class TypeSpec implements GeneratorSpec {
         return field.name
     }
 
-    private get wellknown(): boolean {
-        switch (this._reflection.fullName) {
-            case ".google.protobuf.Any":
-            case ".google.protobuf.Duration":
-            case ".google.protobuf.Empty":
-            case ".google.protobuf.FieldMask":
-            case ".google.protobuf.Struct":
-            case ".google.protobuf.Value":
-            case ".google.protobuf.Timestamp":
-            case ".google.protobuf.DoubleValue":
-            case ".google.protobuf.FloatValue":
-            case ".google.protobuf.Int64Value":
-            case ".google.protobuf.UInt64Value":
-            case ".google.protobuf.Int32Value":
-            case ".google.protobuf.UInt32Value":
-            case ".google.protobuf.BoolValue":
-            case ".google.protobuf.StringValue":
-            case ".google.protobuf.BytesValue":
-            case ".google.protobuf.ListValue":
-                return true
-            default:
-                return false
-        }
-    }
-
     private generateInterface(b: CodeBuilder) {
         if (this._reflection.comment != null) {
             b.appendLn(normalizeComment(this._reflection.comment))
@@ -185,35 +187,30 @@ export class TypeSpec implements GeneratorSpec {
     private generateClass(b: CodeBuilder) {
         if (this.wellknown) {
             b.beginBlock(`export class ${this._reflection.name} extends $${this.file.importSisyphus()}.${this._reflection.name} implements I${this._reflection.name}`)
-            b.beginBlock("get $type()")
-            b.appendLn(`return ${this._reflection.name}.$type`)
             b.endBlock()
-            b.ln()
-            b.appendLn(`static readonly $type = $${this.file.importReflection()}.root.lookupType("${this._reflection.fullName}")`)
-            b.endBlock()
-            b.appendLn(`${this._reflection.name}.$type.generatedObject = ${this._reflection.name}`)
+            b.appendLn(`$${this.file.importReflection()}.root.lookupType("${this._reflection.fullName}").messageCtor = ${this._reflection.name}`)
         } else {
-            b.beginBlock(`export class ${this._reflection.name} extends $${this.file.importProtobuf()}.Message<${this._reflection.name}> implements I${this._reflection.name}`)
+            b.beginBlock(`export class ${this._reflection.name} extends $${this.file.importSisyphus()}.Message<${this._reflection.name}> implements I${this._reflection.name}`)
             for (let field of this._reflection.fieldsArray) {
                 b.appendLn(`${this.fieldName(field)}!: ${this.tsFieldType(field)}`)
             }
             for (let oneOf of this._reflection.oneofsArray) {
                 b.appendLn(`${oneOf.name}?: string\n`)
             }
-            b.beginBlock("get $type()")
-            b.appendLn(`return ${this._reflection.name}.$type`)
+            //b.beginBlock("get $type()")
+            //b.appendLn(`return ${this._reflection.name}.$type`)
+            //b.endBlock()
+            //b.ln()
+            //b.appendLn(`static readonly $type = $${this.file.importReflection()}.root.lookupType("${this._reflection.fullName}")`)
             b.endBlock()
-            b.ln()
-            b.appendLn(`static readonly $type = $${this.file.importReflection()}.root.lookupType("${this._reflection.fullName}")`)
-            b.endBlock()
-            b.appendLn(`${this._reflection.name}.$type.generatedObject = ${this._reflection.name}`)
-            for (let oneOf of this._reflection.oneofsArray) {
-                const fields = oneOf.fieldsArray.map(field => `"${this.fieldName(field)}"`).join(", ")
-                b.appendLn(`Object.defineProperty(${this._reflection.name}.prototype, "${oneOf.name}", $${this.file.importSisyphus()}.oneOfProperty(${fields}))`)
-            }
-            for (let field of this._reflection.fieldsArray) {
-                b.appendLn(`${this._reflection.name}.prototype${safeProp(field.name)} = ${this._reflection.name}.$type.fieldsById[${field.id}].defaultValue`)
-            }
+            b.appendLn(`$${this.file.importReflection()}.root.lookupType("${this._reflection.fullName}").messageCtor = ${this._reflection.name}`)
+            //for (let oneOf of this._reflection.oneofsArray) {
+            //    const fields = oneOf.fieldsArray.map(field => `"${this.fieldName(field)}"`).join(", ")
+            //    b.appendLn(`Object.defineProperty(${this._reflection.name}.prototype, "${oneOf.name}", $${this.file.importSisyphus()}.oneOfProperty(${fields}))`)
+            //}
+            //for (let field of this._reflection.fieldsArray) {
+            //    b.appendLn(`${this._reflection.name}.prototype${safeProp(field.name)} = ${this._reflection.name}.$type.fieldsById[${field.id}].defaultValue`)
+            //}
         }
     }
 

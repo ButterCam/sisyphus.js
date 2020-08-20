@@ -1,5 +1,4 @@
-import {IConversionOptions, Message} from "protobufjs";
-import {emptyList} from "../defaults";
+import {JsonValue, Message} from "../message";
 
 export interface IFieldMask {
     /** The set of field mask paths. */
@@ -9,23 +8,23 @@ export interface IFieldMask {
 export class FieldMask extends Message<FieldMask> implements IFieldMask {
     paths!: readonly string[]
 
-    static fromObject<T extends Message<T>>(object: any): T {
+    static create(properties: FieldMask | IFieldMask): FieldMask {
+        return <FieldMask>super.create(properties)
+    }
+
+    static fromJson(object: JsonValue): FieldMask {
         if (typeof object !== "string") {
             throw new Error("Duration must be a string")
         }
 
         const paths = object.split(",").map(it => it.trim())
-        return <T>this.create({
+        return <FieldMask>this.create({
             paths
         })
     }
 
-    static toObject<T extends Message<T>>(message: T, options?: IConversionOptions): any {
-        if (!(message instanceof FieldMask)) {
-            throw new Error("Message must be a duration")
-        }
+    static toJson(message: FieldMask | IFieldMask): JsonValue {
+        if (!message.paths) return ""
         return message.paths.join(',')
     }
 }
-
-FieldMask.prototype.paths = emptyList

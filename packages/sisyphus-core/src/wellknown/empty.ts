@@ -1,4 +1,4 @@
-import {Message} from "protobufjs"
+import {Message} from "../message"
 
 export interface IEmpty {
 }

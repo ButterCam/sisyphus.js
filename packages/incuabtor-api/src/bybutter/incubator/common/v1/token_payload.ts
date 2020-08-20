@@ -3,6 +3,7 @@ import * as $timestamp from "../../../../google/protobuf/timestamp"
 import * as $struct from "../../../../google/protobuf/struct"
 import * as $clientInfo from "./client_info"
 import * as $any from "../../../../google/protobuf/any"
+import * as $sisyphus from "@sisyphus.js/core"
 import * as $reflection from "../../../../_reflection"
 
 
@@ -30,7 +31,7 @@ export interface ITokenPayload {
     metadata?: { readonly [k: string]: $any.IAny }
 }
 
-export class TokenPayload extends $protobuf.Message<TokenPayload> implements ITokenPayload {
+export class TokenPayload extends $sisyphus.Message<TokenPayload> implements ITokenPayload {
     account!: string
     generation!: $protobuf.Long
     createTime!: $timestamp.Timestamp
@@ -38,22 +39,8 @@ export class TokenPayload extends $protobuf.Message<TokenPayload> implements ITo
     permissions!: readonly $struct.Value[]
     client!: $clientInfo.ClientInfo
     metadata!: { readonly [k: string]: $any.Any }
-
-    get $type() {
-        return TokenPayload.$type
-    }
-
-    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.common.v1.TokenPayload")
 }
-
-TokenPayload.$type.generatedObject = TokenPayload
-TokenPayload.prototype.account = TokenPayload.$type.fieldsById[1].defaultValue
-TokenPayload.prototype.generation = TokenPayload.$type.fieldsById[2].defaultValue
-TokenPayload.prototype.createTime = TokenPayload.$type.fieldsById[3].defaultValue
-TokenPayload.prototype.resolved = TokenPayload.$type.fieldsById[21].defaultValue
-TokenPayload.prototype.permissions = TokenPayload.$type.fieldsById[22].defaultValue
-TokenPayload.prototype.client = TokenPayload.$type.fieldsById[23].defaultValue
-TokenPayload.prototype.metadata = TokenPayload.$type.fieldsById[24].defaultValue
+$reflection.root.lookupType(".bybutter.incubator.common.v1.TokenPayload").messageCtor = TokenPayload
 
 export namespace TokenPayload {
 

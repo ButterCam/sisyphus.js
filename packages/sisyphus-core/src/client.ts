@@ -1,4 +1,5 @@
-import {Method, Service, Message} from "protobufjs"
+import {Method, Service} from "protobufjs"
+import {Message} from "./message";
 
 export interface IRpcImpl {
     (desc: Method, message: Message, metadata?: { [k: string]: string }): Promise<Message>

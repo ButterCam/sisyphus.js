@@ -1,5 +1,5 @@
 import * as $struct from "../../../../google/protobuf/struct"
-import * as $protobuf from "protobufjs"
+import * as $sisyphus from "@sisyphus.js/core"
 import * as $reflection from "../../../../_reflection"
 
 
@@ -9,15 +9,7 @@ export interface ITransparentProductDetail {
     detail?: $struct.IValue
 }
 
-export class TransparentProductDetail extends $protobuf.Message<TransparentProductDetail> implements ITransparentProductDetail {
+export class TransparentProductDetail extends $sisyphus.Message<TransparentProductDetail> implements ITransparentProductDetail {
     detail!: $struct.Value
-
-    get $type() {
-        return TransparentProductDetail.$type
-    }
-
-    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.TransparentProductDetail")
 }
-
-TransparentProductDetail.$type.generatedObject = TransparentProductDetail
-TransparentProductDetail.prototype.detail = TransparentProductDetail.$type.fieldsById[1].defaultValue
+$reflection.root.lookupType(".bybutter.incubator.shop.v1.TransparentProductDetail").messageCtor = TransparentProductDetail

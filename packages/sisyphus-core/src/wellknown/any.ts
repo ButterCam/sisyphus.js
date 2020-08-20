@@ -1,5 +1,5 @@
-import {Message, Reader, Writer} from "protobufjs";
-import {emptyBytes} from "../defaults";
+import {Reader, Writer} from "protobufjs";
+import {JsonValue, Message, MessageConstructor} from "../message";
 
 export interface IAny {
     typeUrl?: string
@@ -10,7 +10,14 @@ export class Any extends Message<Any> implements IAny {
     typeUrl!: string
     value!: Uint8Array
 
-    static encode<T extends Message<T>>(message: (T | { [k: string]: any }), writer?: Writer): Writer {
+    static create(properties?: Message | { [k: string]: any }): Message {
+        if (properties instanceof Message) {
+            return properties
+        }
+        return super.create(properties)
+    }
+
+    static encode(message: Message | { [k: string]: any }, writer?: Writer): Writer {
         if (!(message instanceof Any) && message instanceof Message) {
             if (!writer) writer = Writer.create()
             writer.uint32(10).string(`types.bybutter.com/${message.$type.fullName.substring(1)}`)
@@ -20,7 +27,7 @@ export class Any extends Message<Any> implements IAny {
         return this.$type.encode(message, writer)
     }
 
-    static encodeDelimited<T extends Message<T>>(message: (T | { [k: string]: any }), writer?: Writer): Writer {
+    static encodeDelimited(message: Message | { [k: string]: any }, writer?: Writer): Writer {
         if (!(message instanceof Any) && message instanceof Message) {
             Any.encode(message, writer).ldelim()
         }
@@ -28,34 +35,66 @@ export class Any extends Message<Any> implements IAny {
         return this.$type.encodeDelimited(message, writer)
     }
 
-    static decode<T extends Message<T>>(reader: (Reader | Uint8Array)): T {
+    static decode(reader: (Reader | Uint8Array)): Message {
         return this.unwrap(<IAny>this.$type.decode(reader))
     }
 
-    static decodeDelimited<T extends Message<T>>(reader: (Reader | Uint8Array)): T {
+    static decodeDelimited(reader: (Reader | Uint8Array)): Message {
         return this.unwrap(<IAny>this.$type.decodeDelimited(reader))
     }
 
-    static wrap<T extends Message<T>>(value: T): Any {
-        return <Any>this.create({
+    static fromJson(object: JsonValue): Message {
+        if (typeof object !== "object" || Array.isArray(object)) {
+            throw new Error(`Only object can be convert to type '${this.$type.fullName}'.`)
+        }
+
+        const obj = <{ [k: string]: JsonValue }>object
+        const typeUrl = <string>obj["@type"]
+        const typename = `.${typeUrl.substring(typeUrl.lastIndexOf("/") + 1)}`
+        const type = this.$type.root.lookupType(typename)
+        if (!type) throw new Error(`Definition of type '${type}' can't be found in reflection.`)
+
+        if (type.fullName.startsWith(".google.protobuf.") && obj["value"] != undefined) {
+            return type.messageCtor.fromJson(obj["value"])
+        } else {
+            return type.messageCtor.fromJson(obj)
+        }
+    }
+
+    static toJson(message: Message): JsonValue {
+        if (message instanceof Any) {
+            message = this.unwrap(message)
+        }
+
+        const typeUrl = `types.bybutter.com/${message.$type.fullName.substring(1)}`
+        const result = message.$type.messageCtor.toJson(message)
+        if (typeof result !== "object") {
+            return {
+                "@type": typeUrl,
+                value: result
+            }
+        }
+        (<any>result)["@type"] = `types.bybutter.com/${message.$type.fullName.substring(1)}`
+        return result
+    }
+
+    static wrap(value: Message): Any {
+        return <Any>super.create({
             typeUrl: `types.bybutter.com/${value.$type.fullName.substring(1)}`,
             value: value.$type.encode(value).finish()
         })
     }
 
-    static unwrap<T extends Message<T>>(any: IAny): T {
+    static unwrap(any: IAny): Message {
         if (!any.typeUrl) {
-            return <T>this.create(any)
+            return this.create(any)
         }
 
         const typename = `.${any.typeUrl.substring(any.typeUrl.lastIndexOf("/") + 1)}`
         const type = this.$type.root.lookupType(typename)
         if (!type || !any.value) {
-            return <T>this.create(any)
+            return this.create(any)
         }
-        return type.generatedObject.decode(any.value)
+        return (<MessageConstructor>type.ctor).decode(any.value)
     }
 }
-
-Any.prototype.typeUrl = ""
-Any.prototype.value = emptyBytes

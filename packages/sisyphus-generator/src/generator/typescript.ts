@@ -4,28 +4,10 @@ import {CodeBuilder} from "../string";
 import {unixPath} from "../utils";
 
 export abstract class TypescriptFile {
+    importPrefix: string = ""
+    abstract readonly filename: string
     private _imports: { [k: string]: string } = {}
     private _importedName: string[] = []
-
-    importPrefix: string = ""
-
-    abstract readonly filename: string
-
-    private importName(name: string): string {
-        return this.importPrefix + name
-    }
-
-    private importPath(target: string): string {
-        const importTs = pathModule.join(pathModule.dirname(target), pathModule.basename(target, pathModule.extname(target)))
-        const currentDir = pathModule.dirname(unixPath(this.filename))
-
-        const result = pathModule.posix.relative(`/${unixPath(currentDir)}`, `/${unixPath(importTs)}`)
-        if (result.startsWith(".")) {
-            return result
-        } else {
-            return `./${result}`
-        }
-    }
 
     import(im: string, name: string): string {
         if (this._imports.hasOwnProperty(im)) {
@@ -62,6 +44,22 @@ export abstract class TypescriptFile {
             if (this._imports.hasOwnProperty(key)) {
                 b.appendLn(`import * as $${this._imports[key]} from "${key}"`)
             }
+        }
+    }
+
+    private importName(name: string): string {
+        return this.importPrefix + name
+    }
+
+    private importPath(target: string): string {
+        const importTs = pathModule.join(pathModule.dirname(target), pathModule.basename(target, pathModule.extname(target)))
+        const currentDir = pathModule.dirname(unixPath(this.filename))
+
+        const result = pathModule.posix.relative(`/${unixPath(currentDir)}`, `/${unixPath(importTs)}`)
+        if (result.startsWith(".")) {
+            return result
+        } else {
+            return `./${result}`
         }
     }
 }

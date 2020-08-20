@@ -1,6 +1,5 @@
-import * as $protobuf from "protobufjs"
-import * as $reflection from "../../../../_reflection"
 import * as $sisyphus from "@sisyphus.js/core"
+import * as $reflection from "../../../../_reflection"
 
 
 /** 账户绑定信息 */
@@ -14,24 +13,13 @@ export interface IAccountBinding {
     Target?: string
 }
 
-export class AccountBinding extends $protobuf.Message<AccountBinding> implements IAccountBinding {
+export class AccountBinding extends $sisyphus.Message<AccountBinding> implements IAccountBinding {
     account!: string
     mobile!: AccountBinding.Mobile
     identification!: AccountBinding.Identification
     Target?: string
-
-    get $type() {
-        return AccountBinding.$type
-    }
-
-    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.account.v1.AccountBinding")
 }
-
-AccountBinding.$type.generatedObject = AccountBinding
-Object.defineProperty(AccountBinding.prototype, "Target", $sisyphus.oneOfProperty("mobile", "identification"))
-AccountBinding.prototype.account = AccountBinding.$type.fieldsById[1].defaultValue
-AccountBinding.prototype.mobile = AccountBinding.$type.fieldsById[11].defaultValue
-AccountBinding.prototype.identification = AccountBinding.$type.fieldsById[12].defaultValue
+$reflection.root.lookupType(".bybutter.incubator.account.v1.AccountBinding").messageCtor = AccountBinding
 
 export namespace AccountBinding {
 
@@ -43,20 +31,11 @@ export namespace AccountBinding {
         phoneNumber?: string
     }
 
-    export class Mobile extends $protobuf.Message<Mobile> implements IMobile {
+    export class Mobile extends $sisyphus.Message<Mobile> implements IMobile {
         regionCode!: string
         phoneNumber!: string
-
-        get $type() {
-            return Mobile.$type
-        }
-
-        static readonly $type = $reflection.root.lookupType(".bybutter.incubator.account.v1.AccountBinding.Mobile")
     }
-
-    Mobile.$type.generatedObject = Mobile
-    Mobile.prototype.regionCode = Mobile.$type.fieldsById[1].defaultValue
-    Mobile.prototype.phoneNumber = Mobile.$type.fieldsById[2].defaultValue
+    $reflection.root.lookupType(".bybutter.incubator.account.v1.AccountBinding.Mobile").messageCtor = Mobile
 
 
     /** 帐号码绑定信息 */
@@ -65,16 +44,8 @@ export namespace AccountBinding {
         identification?: string
     }
 
-    export class Identification extends $protobuf.Message<Identification> implements IIdentification {
+    export class Identification extends $sisyphus.Message<Identification> implements IIdentification {
         identification!: string
-
-        get $type() {
-            return Identification.$type
-        }
-
-        static readonly $type = $reflection.root.lookupType(".bybutter.incubator.account.v1.AccountBinding.Identification")
     }
-
-    Identification.$type.generatedObject = Identification
-    Identification.prototype.identification = Identification.$type.fieldsById[1].defaultValue
+    $reflection.root.lookupType(".bybutter.incubator.account.v1.AccountBinding.Identification").messageCtor = Identification
 }

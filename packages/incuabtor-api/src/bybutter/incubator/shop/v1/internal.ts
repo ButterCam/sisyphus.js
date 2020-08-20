@@ -1,7 +1,7 @@
-import * as $protobuf from "protobufjs"
+import * as $sisyphus from "@sisyphus.js/core"
 import * as $reflection from "../../../../_reflection"
 import * as $product from "./product"
-import * as $any from "../../../../google/protobuf/any"
+import * as $protobuf from "protobufjs"
 
 
 /** Payment 的内容 */
@@ -12,20 +12,11 @@ export interface IPaymentPayload {
     planHash?: Uint8Array
 }
 
-export class PaymentPayload extends $protobuf.Message<PaymentPayload> implements IPaymentPayload {
+export class PaymentPayload extends $sisyphus.Message<PaymentPayload> implements IPaymentPayload {
     product!: string
     planHash!: Uint8Array
-
-    get $type() {
-        return PaymentPayload.$type
-    }
-
-    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.PaymentPayload")
 }
-
-PaymentPayload.$type.generatedObject = PaymentPayload
-PaymentPayload.prototype.product = PaymentPayload.$type.fieldsById[1].defaultValue
-PaymentPayload.prototype.planHash = PaymentPayload.$type.fieldsById[2].defaultValue
+$reflection.root.lookupType(".bybutter.incubator.shop.v1.PaymentPayload").messageCtor = PaymentPayload
 
 
 /** 解析完成的订单商品 */
@@ -41,24 +32,13 @@ export interface IResolvedOrderItem {
      * (-- api-linter: core::0146::any=disabled
      * aip.dev/not-precedent: 通用组件 --)
      */
-    metadata?: readonly $any.IAny[]
+    metadata?: readonly $protobuf.Message[]
 }
 
-export class ResolvedOrderItem extends $protobuf.Message<ResolvedOrderItem> implements IResolvedOrderItem {
+export class ResolvedOrderItem extends $sisyphus.Message<ResolvedOrderItem> implements IResolvedOrderItem {
     payment!: PaymentPayload
     product!: $product.Product
     plan!: $product.Plan
-    metadata!: readonly $any.Any[]
-
-    get $type() {
-        return ResolvedOrderItem.$type
-    }
-
-    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.ResolvedOrderItem")
+    metadata!: readonly $protobuf.Message[]
 }
-
-ResolvedOrderItem.$type.generatedObject = ResolvedOrderItem
-ResolvedOrderItem.prototype.payment = ResolvedOrderItem.$type.fieldsById[1].defaultValue
-ResolvedOrderItem.prototype.product = ResolvedOrderItem.$type.fieldsById[2].defaultValue
-ResolvedOrderItem.prototype.plan = ResolvedOrderItem.$type.fieldsById[3].defaultValue
-ResolvedOrderItem.prototype.metadata = ResolvedOrderItem.$type.fieldsById[4].defaultValue
+$reflection.root.lookupType(".bybutter.incubator.shop.v1.ResolvedOrderItem").messageCtor = ResolvedOrderItem

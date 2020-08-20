@@ -1,6 +1,4 @@
-import {IConversionOptions, Message} from "protobufjs";
-import {emptyList, emptyMap} from "../defaults";
-import {oneOfProperty} from "../oneof";
+import {JsonValue, Message} from "../message";
 
 export enum NullValue {
     NULL_VALUE = 0,
@@ -13,8 +11,12 @@ export interface IStruct {
 export class Struct extends Message<Struct> implements IStruct {
     fields!: { readonly [k: string]: Value }
 
-    static fromObject<T extends Message<T>>(object: any): T {
-        if (typeof object !== "object") {
+    static create(properties: Struct | IStruct): Struct {
+        return <Struct>super.create(properties)
+    }
+
+    static fromJson(object: JsonValue): Struct {
+        if (typeof object !== "object" || !Array.isArray(object)) {
             throw new Error("Duration must be a string")
         }
 
@@ -22,24 +24,20 @@ export class Struct extends Message<Struct> implements IStruct {
 
         for (let key in object) {
             if (!object.hasOwnProperty(key)) continue
-            fields[key] = Value.fromObject(object[key])
+            fields[key] = Value.fromJson(object[key])
         }
-        return <T>this.create({fields})
+        return <Struct>this.create({fields})
     }
 
-    static toObject<T extends Message<T>>(message: T, options?: IConversionOptions): any {
-        if (!(message instanceof Struct)) {
-            throw new Error("Message must be a Struct")
-        }
+    static toJson(message: Struct | IStruct): JsonValue {
         const fields: { [k: string]: any } = {}
         for (let key in message.fields) {
             if (!message.fields.hasOwnProperty(key)) continue
-            fields[key] = Value.toObject(message.fields[key])
+            fields[key] = Value.toJson(message.fields[key])
         }
+        return fields
     }
 }
-
-Struct.prototype.fields = emptyMap
 
 export interface IValue {
     nullValue?: NullValue
@@ -60,29 +58,31 @@ export class Value extends Message<Value> implements IValue {
     listValue!: (ListValue | null)
     kind!: string
 
-    static fromObject<T extends Message<T>>(object: any): T {
+    static create(properties: Value | IValue): Value {
+        return <Value>super.create(properties)
+    }
+
+    static fromJson(object: JsonValue): Value {
         switch (typeof object) {
             case "boolean":
-                return <T>this.create({boolValue: object})
+                return this.create({boolValue: object})
             case "number":
-                return <T>this.create({numberValue: object})
+                return this.create({numberValue: object})
             case "string":
-                return <T>this.create({stringValue: object})
+                return this.create({stringValue: object})
             default:
                 if (object == null) {
-                    return <T>this.create({nullValue: NullValue.NULL_VALUE})
+                    return this.create({nullValue: NullValue.NULL_VALUE})
                 }
                 if (Array.isArray(object)) {
-                    return <T>this.create({listValue: ListValue.fromObject(object)})
+                    return this.create({listValue: ListValue.fromJson(object)})
                 }
-                return <T>this.create({structValue: Struct.fromObject(object)})
+                return this.create({structValue: Struct.fromJson(object)})
         }
     }
 
-    static toObject<T extends Message<T>>(message: T, options?: IConversionOptions): any {
-        if (!(message instanceof Value)) {
-            throw new Error("Message must be a Value")
-        }
+    static toJson(message: Value | IValue): any {
+        message = <Value>this.create(message)
         switch (message.kind) {
             case "nullValue":
                 return null
@@ -93,22 +93,14 @@ export class Value extends Message<Value> implements IValue {
             case "boolValue":
                 return message.boolValue
             case "structValue":
-                return message.structValue ? Struct.toObject(message.structValue) : undefined
+                return message.structValue ? Struct.toJson(message.structValue) : undefined
             case "listValue":
-                return message.listValue ? ListValue.toObject(message.listValue) : undefined
+                return message.listValue ? ListValue.toJson(message.listValue) : undefined
             default:
                 return undefined
         }
     }
 }
-
-Object.defineProperty(Value.prototype, "kind", oneOfProperty("nullValue", "numberValue", "stringValue", "boolValue", "structValue", "listValue"))
-Value.prototype.nullValue = NullValue.NULL_VALUE
-Value.prototype.numberValue = 0
-Value.prototype.stringValue = ""
-Value.prototype.boolValue = false
-Value.prototype.structValue = null
-Value.prototype.listValue = null
 
 export interface IListValue {
     values?: readonly IValue[]
@@ -117,19 +109,23 @@ export interface IListValue {
 export class ListValue extends Message<ListValue> implements IListValue {
     values!: readonly Value[]
 
-    static fromObject<T extends Message<T>>(object: any): T {
+    static create(properties: ListValue | IListValue): ListValue {
+        return <ListValue>super.create(properties)
+    }
+
+    static fromJson(object: JsonValue): ListValue {
         if (!Array.isArray(object)) throw new Error("object must be a Array")
         const array = <any[]>object
-        const values = array.map(it => Value.fromObject(it))
-        return <T>this.create({values})
+        const values = array.map(it => Value.fromJson(it))
+        return this.create({values})
     }
 
-    static toObject<T extends Message<T>>(message: T, options?: IConversionOptions): any {
-        if (!(message instanceof ListValue)) {
-            throw new Error("Message must be a Value")
+    static toJson(message: ListValue | IListValue): JsonValue {
+        const result: JsonValue[] = []
+        if (!message.values) return result
+        for (const item of message.values) {
+            result.push(Value.toJson(item))
         }
-        return message.values.map(it => Value.toObject(it))
+        return result
     }
 }
-
-ListValue.prototype.values = emptyList

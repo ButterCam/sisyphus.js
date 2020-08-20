@@ -2,13 +2,17 @@ import {FileSpec} from "./file";
 import {GeneratorSpec} from "./generator";
 import {Enum} from "protobufjs";
 import {TypeSpec} from "./type";
-import {indentCode, normalizeComment} from "../utils";
-import {camelCase} from "change-case";
+import {normalizeComment} from "../utils";
 import {CodeBuilder} from "../string";
 
 export class EnumSpec implements GeneratorSpec {
     private readonly _parent: TypeSpec | FileSpec
     private readonly _reflection: Enum
+
+    constructor(parent: TypeSpec | FileSpec, reflection: Enum) {
+        this._parent = parent
+        this._reflection = reflection
+    }
 
     get parent(): TypeSpec | FileSpec {
         return this._parent
@@ -20,11 +24,6 @@ export class EnumSpec implements GeneratorSpec {
             parent = parent.parent
         }
         return parent
-    }
-
-    constructor(parent: TypeSpec | FileSpec, reflection: Enum) {
-        this._parent = parent
-        this._reflection = reflection
     }
 
     generate(codeBuilder: CodeBuilder) {

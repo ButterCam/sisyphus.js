@@ -1,3 +1,6 @@
+import * as protos from "./index"
+protos
+
 import {transcoding} from "@sisyphus.js/core";
 import {AuthApi} from "./bybutter/incubator/account/v1/auth_api";
 

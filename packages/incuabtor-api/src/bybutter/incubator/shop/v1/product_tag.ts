@@ -1,4 +1,4 @@
-import * as $protobuf from "protobufjs"
+import * as $sisyphus from "@sisyphus.js/core"
 import * as $reflection from "../../../../_reflection"
 
 
@@ -10,20 +10,11 @@ export interface ICommonTag {
     value?: string
 }
 
-export class CommonTag extends $protobuf.Message<CommonTag> implements ICommonTag {
+export class CommonTag extends $sisyphus.Message<CommonTag> implements ICommonTag {
     key!: string
     value!: string
-
-    get $type() {
-        return CommonTag.$type
-    }
-
-    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.CommonTag")
 }
-
-CommonTag.$type.generatedObject = CommonTag
-CommonTag.prototype.key = CommonTag.$type.fieldsById[1].defaultValue
-CommonTag.prototype.value = CommonTag.$type.fieldsById[2].defaultValue
+$reflection.root.lookupType(".bybutter.incubator.shop.v1.CommonTag").messageCtor = CommonTag
 
 
 /** 苹果 IAP 购买时的 IAP 商品 id */
@@ -32,15 +23,7 @@ export interface IAppleIapProductIdTag {
     productId?: string
 }
 
-export class AppleIapProductIdTag extends $protobuf.Message<AppleIapProductIdTag> implements IAppleIapProductIdTag {
+export class AppleIapProductIdTag extends $sisyphus.Message<AppleIapProductIdTag> implements IAppleIapProductIdTag {
     productId!: string
-
-    get $type() {
-        return AppleIapProductIdTag.$type
-    }
-
-    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.AppleIapProductIdTag")
 }
-
-AppleIapProductIdTag.$type.generatedObject = AppleIapProductIdTag
-AppleIapProductIdTag.prototype.productId = AppleIapProductIdTag.$type.fieldsById[1].defaultValue
+$reflection.root.lookupType(".bybutter.incubator.shop.v1.AppleIapProductIdTag").messageCtor = AppleIapProductIdTag

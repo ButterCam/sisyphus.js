@@ -1,7 +1,7 @@
 import * as $struct from "../../../../google/protobuf/struct"
 import * as $any from "../../../../google/protobuf/any"
 import * as $timestamp from "../../../../google/protobuf/timestamp"
-import * as $protobuf from "protobufjs"
+import * as $sisyphus from "@sisyphus.js/core"
 import * as $reflection from "../../../../_reflection"
 
 
@@ -21,21 +21,10 @@ export interface IAccount {
     createTime?: $timestamp.ITimestamp
 }
 
-export class Account extends $protobuf.Message<Account> implements IAccount {
+export class Account extends $sisyphus.Message<Account> implements IAccount {
     name!: string
     permissions!: readonly $struct.Value[]
     metadata!: { readonly [k: string]: $any.Any }
     createTime!: $timestamp.Timestamp
-
-    get $type() {
-        return Account.$type
-    }
-
-    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.common.v1.Account")
 }
-
-Account.$type.generatedObject = Account
-Account.prototype.name = Account.$type.fieldsById[1].defaultValue
-Account.prototype.permissions = Account.$type.fieldsById[2].defaultValue
-Account.prototype.metadata = Account.$type.fieldsById[3].defaultValue
-Account.prototype.createTime = Account.$type.fieldsById[4].defaultValue
+$reflection.root.lookupType(".bybutter.incubator.common.v1.Account").messageCtor = Account

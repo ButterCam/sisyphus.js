@@ -1,4 +1,4 @@
-import * as $protobuf from "protobufjs"
+import * as $sisyphus from "@sisyphus.js/core"
 import * as $reflection from "../../_reflection"
 
 
@@ -6,17 +6,9 @@ export interface IServiceMetadata {
     name?: string
 }
 
-export class ServiceMetadata extends $protobuf.Message<ServiceMetadata> implements IServiceMetadata {
+export class ServiceMetadata extends $sisyphus.Message<ServiceMetadata> implements IServiceMetadata {
     name!: string
-
-    get $type() {
-        return ServiceMetadata.$type
-    }
-
-    static readonly $type = $reflection.root.lookupType(".sisyphus.api.ServiceMetadata")
 }
-
-ServiceMetadata.$type.generatedObject = ServiceMetadata
-ServiceMetadata.prototype.name = ServiceMetadata.$type.fieldsById[1].defaultValue
+$reflection.root.lookupType(".sisyphus.api.ServiceMetadata").messageCtor = ServiceMetadata
 
 export let metadata = $reflection.root.lookup(".sisyphus.api.metadata")

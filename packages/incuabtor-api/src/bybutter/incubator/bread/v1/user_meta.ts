@@ -1,4 +1,4 @@
-import * as $protobuf from "protobufjs"
+import * as $sisyphus from "@sisyphus.js/core"
 import * as $reflection from "../../../../_reflection"
 
 
@@ -10,17 +10,8 @@ export interface IUserMetadata {
     memberships?: readonly string[]
 }
 
-export class UserMetadata extends $protobuf.Message<UserMetadata> implements IUserMetadata {
+export class UserMetadata extends $sisyphus.Message<UserMetadata> implements IUserMetadata {
     user!: string
     memberships!: readonly string[]
-
-    get $type() {
-        return UserMetadata.$type
-    }
-
-    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.UserMetadata")
 }
-
-UserMetadata.$type.generatedObject = UserMetadata
-UserMetadata.prototype.user = UserMetadata.$type.fieldsById[1].defaultValue
-UserMetadata.prototype.memberships = UserMetadata.$type.fieldsById[2].defaultValue
+$reflection.root.lookupType(".bybutter.incubator.bread.v1.UserMetadata").messageCtor = UserMetadata

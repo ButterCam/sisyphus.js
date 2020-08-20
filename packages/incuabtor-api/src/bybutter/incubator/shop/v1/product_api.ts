@@ -1,4 +1,4 @@
-import * as $protobuf from "protobufjs"
+import * as $sisyphus from "@sisyphus.js/core"
 import * as $reflection from "../../../../_reflection"
 import * as $product from "./product"
 
@@ -9,18 +9,10 @@ export interface IGetProductRequest {
     name?: string
 }
 
-export class GetProductRequest extends $protobuf.Message<GetProductRequest> implements IGetProductRequest {
+export class GetProductRequest extends $sisyphus.Message<GetProductRequest> implements IGetProductRequest {
     name!: string
-
-    get $type() {
-        return GetProductRequest.$type
-    }
-
-    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.GetProductRequest")
 }
-
-GetProductRequest.$type.generatedObject = GetProductRequest
-GetProductRequest.prototype.name = GetProductRequest.$type.fieldsById[1].defaultValue
+$reflection.root.lookupType(".bybutter.incubator.shop.v1.GetProductRequest").messageCtor = GetProductRequest
 
 
 /**
@@ -33,18 +25,10 @@ export interface IBatchGetProductsRequest {
     names?: readonly string[]
 }
 
-export class BatchGetProductsRequest extends $protobuf.Message<BatchGetProductsRequest> implements IBatchGetProductsRequest {
+export class BatchGetProductsRequest extends $sisyphus.Message<BatchGetProductsRequest> implements IBatchGetProductsRequest {
     names!: readonly string[]
-
-    get $type() {
-        return BatchGetProductsRequest.$type
-    }
-
-    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.BatchGetProductsRequest")
 }
-
-BatchGetProductsRequest.$type.generatedObject = BatchGetProductsRequest
-BatchGetProductsRequest.prototype.names = BatchGetProductsRequest.$type.fieldsById[1].defaultValue
+$reflection.root.lookupType(".bybutter.incubator.shop.v1.BatchGetProductsRequest").messageCtor = BatchGetProductsRequest
 
 
 /** 批量获取商品资源的 API 响应 */
@@ -53,18 +37,10 @@ export interface IBatchGetProductsResponse {
     products?: readonly $product.IProduct[]
 }
 
-export class BatchGetProductsResponse extends $protobuf.Message<BatchGetProductsResponse> implements IBatchGetProductsResponse {
+export class BatchGetProductsResponse extends $sisyphus.Message<BatchGetProductsResponse> implements IBatchGetProductsResponse {
     products!: readonly $product.Product[]
-
-    get $type() {
-        return BatchGetProductsResponse.$type
-    }
-
-    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.BatchGetProductsResponse")
 }
-
-BatchGetProductsResponse.$type.generatedObject = BatchGetProductsResponse
-BatchGetProductsResponse.prototype.products = BatchGetProductsResponse.$type.fieldsById[1].defaultValue
+$reflection.root.lookupType(".bybutter.incubator.shop.v1.BatchGetProductsResponse").messageCtor = BatchGetProductsResponse
 
 
 /**
@@ -83,24 +59,13 @@ export interface IListProductsRequest {
     orderBy?: string
 }
 
-export class ListProductsRequest extends $protobuf.Message<ListProductsRequest> implements IListProductsRequest {
+export class ListProductsRequest extends $sisyphus.Message<ListProductsRequest> implements IListProductsRequest {
     filter!: string
     pageSize!: number
     pageToken!: string
     orderBy!: string
-
-    get $type() {
-        return ListProductsRequest.$type
-    }
-
-    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.ListProductsRequest")
 }
-
-ListProductsRequest.$type.generatedObject = ListProductsRequest
-ListProductsRequest.prototype.filter = ListProductsRequest.$type.fieldsById[1].defaultValue
-ListProductsRequest.prototype.pageSize = ListProductsRequest.$type.fieldsById[2].defaultValue
-ListProductsRequest.prototype.pageToken = ListProductsRequest.$type.fieldsById[3].defaultValue
-ListProductsRequest.prototype.orderBy = ListProductsRequest.$type.fieldsById[4].defaultValue
+$reflection.root.lookupType(".bybutter.incubator.shop.v1.ListProductsRequest").messageCtor = ListProductsRequest
 
 
 /** 列举商品资源的 API 响应 */
@@ -111,17 +76,8 @@ export interface IListProductsResponse {
     nextPageToken?: string
 }
 
-export class ListProductsResponse extends $protobuf.Message<ListProductsResponse> implements IListProductsResponse {
+export class ListProductsResponse extends $sisyphus.Message<ListProductsResponse> implements IListProductsResponse {
     products!: readonly $product.Product[]
     nextPageToken!: string
-
-    get $type() {
-        return ListProductsResponse.$type
-    }
-
-    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.ListProductsResponse")
 }
-
-ListProductsResponse.$type.generatedObject = ListProductsResponse
-ListProductsResponse.prototype.products = ListProductsResponse.$type.fieldsById[1].defaultValue
-ListProductsResponse.prototype.nextPageToken = ListProductsResponse.$type.fieldsById[2].defaultValue
+$reflection.root.lookupType(".bybutter.incubator.shop.v1.ListProductsResponse").messageCtor = ListProductsResponse

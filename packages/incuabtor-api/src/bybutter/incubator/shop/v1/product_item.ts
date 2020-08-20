@@ -1,6 +1,6 @@
 import * as $ownership from "./ownership"
 import * as $duration from "../../../../google/protobuf/duration"
-import * as $protobuf from "protobufjs"
+import * as $sisyphus from "@sisyphus.js/core"
 import * as $reflection from "../../../../_reflection"
 
 
@@ -14,22 +14,12 @@ export interface IPrivilegeProductItem {
     duration?: $duration.IDuration
 }
 
-export class PrivilegeProductItem extends $protobuf.Message<PrivilegeProductItem> implements IPrivilegeProductItem {
+export class PrivilegeProductItem extends $sisyphus.Message<PrivilegeProductItem> implements IPrivilegeProductItem {
     privilege!: string
     ownership!: $ownership.OwnershipType
     duration!: $duration.Duration
-
-    get $type() {
-        return PrivilegeProductItem.$type
-    }
-
-    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.PrivilegeProductItem")
 }
-
-PrivilegeProductItem.$type.generatedObject = PrivilegeProductItem
-PrivilegeProductItem.prototype.privilege = PrivilegeProductItem.$type.fieldsById[1].defaultValue
-PrivilegeProductItem.prototype.ownership = PrivilegeProductItem.$type.fieldsById[3].defaultValue
-PrivilegeProductItem.prototype.duration = PrivilegeProductItem.$type.fieldsById[4].defaultValue
+$reflection.root.lookupType(".bybutter.incubator.shop.v1.PrivilegeProductItem").messageCtor = PrivilegeProductItem
 
 
 /** 实体商品内容 */
@@ -40,17 +30,8 @@ export interface IEntityProductItem {
     inventory?: number
 }
 
-export class EntityProductItem extends $protobuf.Message<EntityProductItem> implements IEntityProductItem {
+export class EntityProductItem extends $sisyphus.Message<EntityProductItem> implements IEntityProductItem {
     entity!: string
     inventory!: number
-
-    get $type() {
-        return EntityProductItem.$type
-    }
-
-    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.EntityProductItem")
 }
-
-EntityProductItem.$type.generatedObject = EntityProductItem
-EntityProductItem.prototype.entity = EntityProductItem.$type.fieldsById[1].defaultValue
-EntityProductItem.prototype.inventory = EntityProductItem.$type.fieldsById[10].defaultValue
+$reflection.root.lookupType(".bybutter.incubator.shop.v1.EntityProductItem").messageCtor = EntityProductItem

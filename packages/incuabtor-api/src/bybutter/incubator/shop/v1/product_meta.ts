@@ -1,5 +1,6 @@
 import * as $protobuf from "protobufjs"
 import * as $timestamp from "../../../../google/protobuf/timestamp"
+import * as $sisyphus from "@sisyphus.js/core"
 import * as $reflection from "../../../../_reflection"
 import * as $struct from "../../../../google/protobuf/struct"
 
@@ -27,7 +28,7 @@ export interface IProductMeta {
     endTime?: $timestamp.ITimestamp
 }
 
-export class ProductMeta extends $protobuf.Message<ProductMeta> implements IProductMeta {
+export class ProductMeta extends $sisyphus.Message<ProductMeta> implements IProductMeta {
     name!: string
     type!: string
     title!: string
@@ -36,23 +37,8 @@ export class ProductMeta extends $protobuf.Message<ProductMeta> implements IProd
     requirements!: readonly string[]
     startTime!: $timestamp.Timestamp
     endTime!: $timestamp.Timestamp
-
-    get $type() {
-        return ProductMeta.$type
-    }
-
-    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.ProductMeta")
 }
-
-ProductMeta.$type.generatedObject = ProductMeta
-ProductMeta.prototype.name = ProductMeta.$type.fieldsById[1].defaultValue
-ProductMeta.prototype.type = ProductMeta.$type.fieldsById[2].defaultValue
-ProductMeta.prototype.title = ProductMeta.$type.fieldsById[3].defaultValue
-ProductMeta.prototype.pictureUri = ProductMeta.$type.fieldsById[4].defaultValue
-ProductMeta.prototype.basePrice = ProductMeta.$type.fieldsById[5].defaultValue
-ProductMeta.prototype.requirements = ProductMeta.$type.fieldsById[6].defaultValue
-ProductMeta.prototype.startTime = ProductMeta.$type.fieldsById[7].defaultValue
-ProductMeta.prototype.endTime = ProductMeta.$type.fieldsById[8].defaultValue
+$reflection.root.lookupType(".bybutter.incubator.shop.v1.ProductMeta").messageCtor = ProductMeta
 
 
 /** 商品特性的元数据，仅包含数据库中的数据，用于后端内部使用。 */
@@ -75,7 +61,7 @@ export interface IProductAttributeMeta {
     endTime?: $timestamp.ITimestamp
 }
 
-export class ProductAttributeMeta extends $protobuf.Message<ProductAttributeMeta> implements IProductAttributeMeta {
+export class ProductAttributeMeta extends $sisyphus.Message<ProductAttributeMeta> implements IProductAttributeMeta {
     name!: string
     type!: string
     parameter!: $struct.Value
@@ -84,20 +70,5 @@ export class ProductAttributeMeta extends $protobuf.Message<ProductAttributeMeta
     requirements!: readonly string[]
     startTime!: $timestamp.Timestamp
     endTime!: $timestamp.Timestamp
-
-    get $type() {
-        return ProductAttributeMeta.$type
-    }
-
-    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.ProductAttributeMeta")
 }
-
-ProductAttributeMeta.$type.generatedObject = ProductAttributeMeta
-ProductAttributeMeta.prototype.name = ProductAttributeMeta.$type.fieldsById[1].defaultValue
-ProductAttributeMeta.prototype.type = ProductAttributeMeta.$type.fieldsById[2].defaultValue
-ProductAttributeMeta.prototype.parameter = ProductAttributeMeta.$type.fieldsById[3].defaultValue
-ProductAttributeMeta.prototype.indexedParameter1 = ProductAttributeMeta.$type.fieldsById[4].defaultValue
-ProductAttributeMeta.prototype.indexedParameter2 = ProductAttributeMeta.$type.fieldsById[5].defaultValue
-ProductAttributeMeta.prototype.requirements = ProductAttributeMeta.$type.fieldsById[6].defaultValue
-ProductAttributeMeta.prototype.startTime = ProductAttributeMeta.$type.fieldsById[7].defaultValue
-ProductAttributeMeta.prototype.endTime = ProductAttributeMeta.$type.fieldsById[8].defaultValue
+$reflection.root.lookupType(".bybutter.incubator.shop.v1.ProductAttributeMeta").messageCtor = ProductAttributeMeta

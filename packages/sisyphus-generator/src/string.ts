@@ -1,8 +1,9 @@
 import {indentCode} from "./utils";
 
 export class CodeBuilder {
-    private _content: string = ""
     private _indent: number = 0
+
+    private _content: string = ""
 
     get content(): string {
         return this._content

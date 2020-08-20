@@ -1,4 +1,5 @@
 import * as $protobuf from "protobufjs"
+import * as $sisyphus from "@sisyphus.js/core"
 import * as $reflection from "../../_reflection"
 
 
@@ -22,19 +23,9 @@ export interface IMoney {
     nanos?: number
 }
 
-export class Money extends $protobuf.Message<Money> implements IMoney {
+export class Money extends $sisyphus.Message<Money> implements IMoney {
     currencyCode!: string
     units!: $protobuf.Long
     nanos!: number
-
-    get $type() {
-        return Money.$type
-    }
-
-    static readonly $type = $reflection.root.lookupType(".google.type.Money")
 }
-
-Money.$type.generatedObject = Money
-Money.prototype.currencyCode = Money.$type.fieldsById[1].defaultValue
-Money.prototype.units = Money.$type.fieldsById[2].defaultValue
-Money.prototype.nanos = Money.$type.fieldsById[3].defaultValue
+$reflection.root.lookupType(".google.type.Money").messageCtor = Money

@@ -1,4 +1,4 @@
-import {Enum, Field, FieldBase, ReflectionObject, Root, Service, Type} from "protobufjs"
+import {Enum, Field, ReflectionObject, Root, Service, Type} from "protobufjs"
 import pathModule from "path"
 import {TypeSpec} from "./type";
 import {GeneratorSpec} from "./generator";
@@ -12,17 +12,17 @@ export class FileSpec extends TypescriptFile implements GeneratorSpec {
     private _elements: ReflectionObject[] = []
     private _root: Root
 
+    constructor(root: Root) {
+        super()
+        this._root = root
+    }
+
     get parent(): undefined {
         return undefined
     }
 
     get file(): FileSpec {
         return this
-    }
-
-    constructor(root: Root) {
-        super()
-        this._root = root
     }
 
     get filename(): string {

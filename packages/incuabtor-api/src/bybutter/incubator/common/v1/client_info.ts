@@ -1,4 +1,4 @@
-import * as $protobuf from "protobufjs"
+import * as $sisyphus from "@sisyphus.js/core"
 import * as $reflection from "../../../../_reflection"
 
 
@@ -30,7 +30,7 @@ export interface IClientInfo {
     ip?: string
 }
 
-export class ClientInfo extends $protobuf.Message<ClientInfo> implements IClientInfo {
+export class ClientInfo extends $sisyphus.Message<ClientInfo> implements IClientInfo {
     version!: string
     channel!: string
     name!: string
@@ -41,22 +41,5 @@ export class ClientInfo extends $protobuf.Message<ClientInfo> implements IClient
     languageTag!: string
     timeZone!: string
     ip!: string
-
-    get $type() {
-        return ClientInfo.$type
-    }
-
-    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.common.v1.ClientInfo")
 }
-
-ClientInfo.$type.generatedObject = ClientInfo
-ClientInfo.prototype.version = ClientInfo.$type.fieldsById[1].defaultValue
-ClientInfo.prototype.channel = ClientInfo.$type.fieldsById[2].defaultValue
-ClientInfo.prototype.name = ClientInfo.$type.fieldsById[3].defaultValue
-ClientInfo.prototype.os = ClientInfo.$type.fieldsById[4].defaultValue
-ClientInfo.prototype.osVersion = ClientInfo.$type.fieldsById[5].defaultValue
-ClientInfo.prototype.vendor = ClientInfo.$type.fieldsById[6].defaultValue
-ClientInfo.prototype.resolution = ClientInfo.$type.fieldsById[7].defaultValue
-ClientInfo.prototype.languageTag = ClientInfo.$type.fieldsById[8].defaultValue
-ClientInfo.prototype.timeZone = ClientInfo.$type.fieldsById[9].defaultValue
-ClientInfo.prototype.ip = ClientInfo.$type.fieldsById[10].defaultValue
+$reflection.root.lookupType(".bybutter.incubator.common.v1.ClientInfo").messageCtor = ClientInfo

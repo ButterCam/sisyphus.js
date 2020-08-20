@@ -1,7 +1,7 @@
 import * as $imageResource from "../../common/v1/image_resource"
 import * as $money from "../../../../google/type/money"
-import * as $any from "../../../../google/protobuf/any"
 import * as $protobuf from "protobufjs"
+import * as $sisyphus from "@sisyphus.js/core"
 import * as $reflection from "../../../../_reflection"
 import * as $timestamp from "../../../../google/protobuf/timestamp"
 
@@ -27,18 +27,18 @@ export interface IProduct {
      * (-- api-linter: core::0146::any=disabled
      * aip.dev/not-precedent: 通用组件 --)
      */
-    details?: $any.IAny
+    details?: $protobuf.Message
     /**
      * 商品标签，由使用者决定要不要处理里面相关的内容
      * (-- api-linter: core::0146::any=disabled
      * aip.dev/not-precedent: 通用组件 --)
      */
-    tags?: readonly $any.IAny[]
+    tags?: readonly $protobuf.Message[]
     /** 商品是否对当前用户可用 */
     enable?: boolean
 }
 
-export class Product extends $protobuf.Message<Product> implements IProduct {
+export class Product extends $sisyphus.Message<Product> implements IProduct {
     name!: string
     type!: string
     title!: string
@@ -46,28 +46,11 @@ export class Product extends $protobuf.Message<Product> implements IProduct {
     price!: $money.Money
     standardPrice!: $money.Money
     plans!: readonly Plan[]
-    details!: $any.Any
-    tags!: readonly $any.Any[]
+    details!: $protobuf.Message
+    tags!: readonly $protobuf.Message[]
     enable!: boolean
-
-    get $type() {
-        return Product.$type
-    }
-
-    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.Product")
 }
-
-Product.$type.generatedObject = Product
-Product.prototype.name = Product.$type.fieldsById[1].defaultValue
-Product.prototype.type = Product.$type.fieldsById[2].defaultValue
-Product.prototype.title = Product.$type.fieldsById[3].defaultValue
-Product.prototype.picture = Product.$type.fieldsById[4].defaultValue
-Product.prototype.price = Product.$type.fieldsById[5].defaultValue
-Product.prototype.standardPrice = Product.$type.fieldsById[6].defaultValue
-Product.prototype.plans = Product.$type.fieldsById[7].defaultValue
-Product.prototype.details = Product.$type.fieldsById[9].defaultValue
-Product.prototype.tags = Product.$type.fieldsById[11].defaultValue
-Product.prototype.enable = Product.$type.fieldsById[12].defaultValue
+$reflection.root.lookupType(".bybutter.incubator.shop.v1.Product").messageCtor = Product
 
 
 /** 购买计划，确定购买商品的某个具体的计划 */
@@ -85,13 +68,13 @@ export interface IPlan {
      * (-- api-linter: core::0146::any=disabled
      * aip.dev/not-precedent: 通用组件 --)
      */
-    items?: readonly $any.IAny[]
+    items?: readonly $protobuf.Message[]
     /**
      * 价格标签，由使用者决定要不要处理里面相关的内容
      * (-- api-linter: core::0146::any=disabled
      * aip.dev/not-precedent: 通用组件 --)
      */
-    tags?: readonly $any.IAny[]
+    tags?: readonly $protobuf.Message[]
     /** 支持的支付方式 */
     paymentChannels?: readonly string[]
     /** 商品组 */
@@ -108,13 +91,13 @@ export interface IPlan {
     appliedAttributes?: readonly string[]
 }
 
-export class Plan extends $protobuf.Message<Plan> implements IPlan {
+export class Plan extends $sisyphus.Message<Plan> implements IPlan {
     price!: $money.Money
     standardPrice!: $money.Money
     payment!: string
     priceLabel!: PriceLabel
-    items!: readonly $any.Any[]
-    tags!: readonly $any.Any[]
+    items!: readonly $protobuf.Message[]
+    tags!: readonly $protobuf.Message[]
     paymentChannels!: readonly string[]
     group!: string
     weight!: $protobuf.Long
@@ -122,28 +105,8 @@ export class Plan extends $protobuf.Message<Plan> implements IPlan {
     startTime!: $timestamp.Timestamp
     endTime!: $timestamp.Timestamp
     appliedAttributes!: readonly string[]
-
-    get $type() {
-        return Plan.$type
-    }
-
-    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.Plan")
 }
-
-Plan.$type.generatedObject = Plan
-Plan.prototype.price = Plan.$type.fieldsById[1].defaultValue
-Plan.prototype.standardPrice = Plan.$type.fieldsById[2].defaultValue
-Plan.prototype.payment = Plan.$type.fieldsById[3].defaultValue
-Plan.prototype.priceLabel = Plan.$type.fieldsById[4].defaultValue
-Plan.prototype.items = Plan.$type.fieldsById[5].defaultValue
-Plan.prototype.tags = Plan.$type.fieldsById[6].defaultValue
-Plan.prototype.paymentChannels = Plan.$type.fieldsById[7].defaultValue
-Plan.prototype.group = Plan.$type.fieldsById[8].defaultValue
-Plan.prototype.weight = Plan.$type.fieldsById[9].defaultValue
-Plan.prototype.enable = Plan.$type.fieldsById[10].defaultValue
-Plan.prototype.startTime = Plan.$type.fieldsById[11].defaultValue
-Plan.prototype.endTime = Plan.$type.fieldsById[12].defaultValue
-Plan.prototype.appliedAttributes = Plan.$type.fieldsById[1000].defaultValue
+$reflection.root.lookupType(".bybutter.incubator.shop.v1.Plan").messageCtor = Plan
 
 
 /** 价格标签 */
@@ -158,21 +121,10 @@ export interface IPriceLabel {
     style?: string
 }
 
-export class PriceLabel extends $protobuf.Message<PriceLabel> implements IPriceLabel {
+export class PriceLabel extends $sisyphus.Message<PriceLabel> implements IPriceLabel {
     tag!: string
     label!: string
     checkout!: string
     style!: string
-
-    get $type() {
-        return PriceLabel.$type
-    }
-
-    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.PriceLabel")
 }
-
-PriceLabel.$type.generatedObject = PriceLabel
-PriceLabel.prototype.tag = PriceLabel.$type.fieldsById[1].defaultValue
-PriceLabel.prototype.label = PriceLabel.$type.fieldsById[2].defaultValue
-PriceLabel.prototype.checkout = PriceLabel.$type.fieldsById[3].defaultValue
-PriceLabel.prototype.style = PriceLabel.$type.fieldsById[4].defaultValue
+$reflection.root.lookupType(".bybutter.incubator.shop.v1.PriceLabel").messageCtor = PriceLabel

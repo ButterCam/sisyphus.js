@@ -1,4 +1,4 @@
-import * as $protobuf from "protobufjs"
+import * as $sisyphus from "@sisyphus.js/core"
 import * as $reflection from "../../../../_reflection"
 
 
@@ -8,15 +8,7 @@ export interface IUser {
     name?: string
 }
 
-export class User extends $protobuf.Message<User> implements IUser {
+export class User extends $sisyphus.Message<User> implements IUser {
     name!: string
-
-    get $type() {
-        return User.$type
-    }
-
-    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.User")
 }
-
-User.$type.generatedObject = User
-User.prototype.name = User.$type.fieldsById[1].defaultValue
+$reflection.root.lookupType(".bybutter.incubator.bread.v1.User").messageCtor = User

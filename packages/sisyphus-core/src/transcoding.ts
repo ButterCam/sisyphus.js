@@ -1,6 +1,8 @@
 import {IRpcImpl} from "./client"
-import {Message, Method} from "protobufjs"
+import {Method} from "protobufjs"
 import axios, {AxiosRequestConfig, AxiosResponse} from "axios"
+import {Message} from "./message";
+import {GrpcStatusError} from "./error";
 
 interface IHttpOption {
     "(google.api.http).selector": string
@@ -81,14 +83,13 @@ export let transcoding = function (host: string, metadata ?: { [k: string]: stri
             request.url = fillUrl((<any>rule)[rule.pattern], message)
         }
 
-        if (desc.resolvedRequestType?.generatedObject == null) {
+        if (desc.resolvedRequestType?.messageCtor == null || desc.resolvedResponseType?.messageCtor == null) {
             throw Error("Reflection info missed.")
         }
-        message = desc.resolvedRequestType.generatedObject.create(message)
 
         switch (rule.body) {
             case "*":
-                request.data = desc.resolvedRequestType.generatedObject.encode(message).finish()
+                request.data = desc.resolvedRequestType.messageCtor.encode(message).finish()
                 break
             case null:
             case undefined:
@@ -97,7 +98,7 @@ export let transcoding = function (host: string, metadata ?: { [k: string]: stri
             default:
                 request.data = (<any>message)[rule.body]
                 if (request.data instanceof Message) {
-                    request.data = request.data.$type.generatedObject.encode(message).finish()
+                    request.data = request.data.$type.messageCtor.encode(message).finish()
                 } else {
                     request.data = `${request.data}`
                 }
@@ -109,14 +110,12 @@ export let transcoding = function (host: string, metadata ?: { [k: string]: stri
             await interceptor(response)
         }
 
+        const enc = new TextEncoder()
         if (response.status < 300) {
-            if (desc.resolvedResponseType?.generatedObject == null) {
-                throw Error("Reflection info missed.")
-            }
-            const enc = new TextEncoder()
-            return desc.resolvedResponseType.generatedObject.decode(enc.encode(response.data))
+            return desc.resolvedResponseType.messageCtor.decode(enc.encode(response.data))
         } else {
-            throw new Error("")
+            const status: any = desc.root.lookupType(".google.rpc.Status").messageCtor.decode(enc.encode(response.data))
+            throw new GrpcStatusError(status.code, status.message, status.details)
         }
     }
 }

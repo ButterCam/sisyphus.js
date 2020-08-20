@@ -1,6 +1,6 @@
 import * as $reflection from "../../../../_reflection"
 import * as $timestamp from "../../../../google/protobuf/timestamp"
-import * as $protobuf from "protobufjs"
+import * as $sisyphus from "@sisyphus.js/core"
 
 
 /** Privilege 使用权限 */
@@ -61,7 +61,7 @@ export interface IOwnership {
     overrideUri?: string
 }
 
-export class Ownership extends $protobuf.Message<Ownership> implements IOwnership {
+export class Ownership extends $sisyphus.Message<Ownership> implements IOwnership {
     privilege!: string
     ownership!: OwnershipType
     requirements!: readonly string[]
@@ -70,20 +70,5 @@ export class Ownership extends $protobuf.Message<Ownership> implements IOwnershi
     overrideTitle!: string
     overrideIconUri!: string
     overrideUri!: string
-
-    get $type() {
-        return Ownership.$type
-    }
-
-    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.Ownership")
 }
-
-Ownership.$type.generatedObject = Ownership
-Ownership.prototype.privilege = Ownership.$type.fieldsById[1].defaultValue
-Ownership.prototype.ownership = Ownership.$type.fieldsById[2].defaultValue
-Ownership.prototype.requirements = Ownership.$type.fieldsById[3].defaultValue
-Ownership.prototype.startTime = Ownership.$type.fieldsById[4].defaultValue
-Ownership.prototype.endTime = Ownership.$type.fieldsById[5].defaultValue
-Ownership.prototype.overrideTitle = Ownership.$type.fieldsById[6].defaultValue
-Ownership.prototype.overrideIconUri = Ownership.$type.fieldsById[7].defaultValue
-Ownership.prototype.overrideUri = Ownership.$type.fieldsById[8].defaultValue
+$reflection.root.lookupType(".bybutter.incubator.shop.v1.Ownership").messageCtor = Ownership

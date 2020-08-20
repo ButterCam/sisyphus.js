@@ -7,7 +7,17 @@ import {normalizeComment} from "../utils";
 export class ServiceSpec implements GeneratorSpec {
     private readonly _parent: FileSpec
     private readonly _reflection: Service
+
+    constructor(parent: FileSpec, reflection: Service) {
+        this._parent = parent
+        this._reflection = reflection
+    }
+
     private _content: string[] = []
+
+    get content(): readonly string[] {
+        return this._content
+    }
 
     get parent(): FileSpec {
         return this._parent
@@ -15,15 +25,6 @@ export class ServiceSpec implements GeneratorSpec {
 
     get file(): FileSpec {
         return this._parent
-    }
-
-    get content(): readonly string[] {
-        return this._content
-    }
-
-    constructor(parent: FileSpec, reflection: Service) {
-        this._parent = parent
-        this._reflection = reflection
     }
 
     generate(b: CodeBuilder) {

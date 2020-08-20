@@ -1,5 +1,5 @@
-import * as $any from "../protobuf/any"
 import * as $protobuf from "protobufjs"
+import * as $sisyphus from "@sisyphus.js/core"
 import * as $reflection from "../../_reflection"
 
 
@@ -8,7 +8,7 @@ import * as $reflection from "../../_reflection"
  * different programming environments, including REST APIs and RPC APIs. It is
  * used by [gRPC](https://github.com/grpc). Each `Status` message contains
  * three pieces of data: error code, error message, and error details.
- *
+ * 
  * You can find out more about this error model and how to work with it in the
  * [API Design Guide](https://cloud.google.com/apis/design/errors).
  */
@@ -25,22 +25,12 @@ export interface IStatus {
      * A list of messages that carry the error details.  There is a common set of
      * message types for APIs to use.
      */
-    details?: readonly $any.IAny[]
+    details?: readonly $protobuf.Message[]
 }
 
-export class Status extends $protobuf.Message<Status> implements IStatus {
+export class Status extends $sisyphus.Message<Status> implements IStatus {
     code!: number
     message!: string
-    details!: readonly $any.Any[]
-
-    get $type() {
-        return Status.$type
-    }
-
-    static readonly $type = $reflection.root.lookupType(".google.rpc.Status")
+    details!: readonly $protobuf.Message[]
 }
-
-Status.$type.generatedObject = Status
-Status.prototype.code = Status.$type.fieldsById[1].defaultValue
-Status.prototype.message = Status.$type.fieldsById[2].defaultValue
-Status.prototype.details = Status.$type.fieldsById[3].defaultValue
+$reflection.root.lookupType(".google.rpc.Status").messageCtor = Status

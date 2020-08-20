@@ -1,5 +1,5 @@
 import * as $reflection from "../../../../_reflection"
-import * as $protobuf from "protobufjs"
+import * as $sisyphus from "@sisyphus.js/core"
 import * as $duration from "../../../../google/protobuf/duration"
 
 
@@ -37,15 +37,9 @@ export namespace DictationState {
 export interface IDictationOperationMetadata {
 }
 
-export class DictationOperationMetadata extends $protobuf.Message<DictationOperationMetadata> implements IDictationOperationMetadata {
-    get $type() {
-        return DictationOperationMetadata.$type
-    }
-
-    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.DictationOperationMetadata")
+export class DictationOperationMetadata extends $sisyphus.Message<DictationOperationMetadata> implements IDictationOperationMetadata {
 }
-
-DictationOperationMetadata.$type.generatedObject = DictationOperationMetadata
+$reflection.root.lookupType(".bybutter.incubator.bread.v1.DictationOperationMetadata").messageCtor = DictationOperationMetadata
 
 
 /** 语音识别任务 */
@@ -66,7 +60,7 @@ export interface IDictationTask {
     vendor?: DictationVendor
 }
 
-export class DictationTask extends $protobuf.Message<DictationTask> implements IDictationTask {
+export class DictationTask extends $sisyphus.Message<DictationTask> implements IDictationTask {
     name!: string
     audioFileKey!: string
     audioFileUri!: string
@@ -74,22 +68,8 @@ export class DictationTask extends $protobuf.Message<DictationTask> implements I
     sentences!: readonly DictationSentence[]
     state!: DictationState
     vendor!: DictationVendor
-
-    get $type() {
-        return DictationTask.$type
-    }
-
-    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.DictationTask")
 }
-
-DictationTask.$type.generatedObject = DictationTask
-DictationTask.prototype.name = DictationTask.$type.fieldsById[1].defaultValue
-DictationTask.prototype.audioFileKey = DictationTask.$type.fieldsById[2].defaultValue
-DictationTask.prototype.audioFileUri = DictationTask.$type.fieldsById[3].defaultValue
-DictationTask.prototype.audioDuration = DictationTask.$type.fieldsById[4].defaultValue
-DictationTask.prototype.sentences = DictationTask.$type.fieldsById[5].defaultValue
-DictationTask.prototype.state = DictationTask.$type.fieldsById[6].defaultValue
-DictationTask.prototype.vendor = DictationTask.$type.fieldsById[7].defaultValue
+$reflection.root.lookupType(".bybutter.incubator.bread.v1.DictationTask").messageCtor = DictationTask
 
 
 /** 语音识别出的句子 */
@@ -104,24 +84,13 @@ export interface IDictationSentence {
     words?: readonly IDictationWord[]
 }
 
-export class DictationSentence extends $protobuf.Message<DictationSentence> implements IDictationSentence {
+export class DictationSentence extends $sisyphus.Message<DictationSentence> implements IDictationSentence {
     beginOffset!: $duration.Duration
     endOffset!: $duration.Duration
     content!: string
     words!: readonly DictationWord[]
-
-    get $type() {
-        return DictationSentence.$type
-    }
-
-    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.DictationSentence")
 }
-
-DictationSentence.$type.generatedObject = DictationSentence
-DictationSentence.prototype.beginOffset = DictationSentence.$type.fieldsById[1].defaultValue
-DictationSentence.prototype.endOffset = DictationSentence.$type.fieldsById[2].defaultValue
-DictationSentence.prototype.content = DictationSentence.$type.fieldsById[3].defaultValue
-DictationSentence.prototype.words = DictationSentence.$type.fieldsById[4].defaultValue
+$reflection.root.lookupType(".bybutter.incubator.bread.v1.DictationSentence").messageCtor = DictationSentence
 
 
 /** 语音识别的词 */
@@ -136,24 +105,13 @@ export interface IDictationWord {
     type?: DictationWord.Type
 }
 
-export class DictationWord extends $protobuf.Message<DictationWord> implements IDictationWord {
+export class DictationWord extends $sisyphus.Message<DictationWord> implements IDictationWord {
     beginOffset!: $duration.Duration
     endOffset!: $duration.Duration
     content!: string
     type!: DictationWord.Type
-
-    get $type() {
-        return DictationWord.$type
-    }
-
-    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.bread.v1.DictationWord")
 }
-
-DictationWord.$type.generatedObject = DictationWord
-DictationWord.prototype.beginOffset = DictationWord.$type.fieldsById[1].defaultValue
-DictationWord.prototype.endOffset = DictationWord.$type.fieldsById[2].defaultValue
-DictationWord.prototype.content = DictationWord.$type.fieldsById[3].defaultValue
-DictationWord.prototype.type = DictationWord.$type.fieldsById[4].defaultValue
+$reflection.root.lookupType(".bybutter.incubator.bread.v1.DictationWord").messageCtor = DictationWord
 
 export namespace DictationWord {
 

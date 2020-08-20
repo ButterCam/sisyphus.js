@@ -1,6 +1,6 @@
 import * as $money from "../../../../google/type/money"
-import * as $any from "../../../../google/protobuf/any"
 import * as $protobuf from "protobufjs"
+import * as $sisyphus from "@sisyphus.js/core"
 import * as $reflection from "../../../../_reflection"
 import * as $product from "./product"
 
@@ -24,33 +24,19 @@ export interface IOrder {
      * (-- api-linter: core::0146::any=disabled
      * aip.dev/not-precedent: 通用组件 --)
      */
-    metadata?: readonly $any.IAny[]
+    metadata?: readonly $protobuf.Message[]
 }
 
-export class Order extends $protobuf.Message<Order> implements IOrder {
+export class Order extends $sisyphus.Message<Order> implements IOrder {
     name!: string
     items!: readonly Order.Item[]
     charge!: Order.Charge
     status!: Order.State
     price!: $money.Money
     standardPrice!: $money.Money
-    metadata!: readonly $any.Any[]
-
-    get $type() {
-        return Order.$type
-    }
-
-    static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.Order")
+    metadata!: readonly $protobuf.Message[]
 }
-
-Order.$type.generatedObject = Order
-Order.prototype.name = Order.$type.fieldsById[1].defaultValue
-Order.prototype.items = Order.$type.fieldsById[2].defaultValue
-Order.prototype.charge = Order.$type.fieldsById[3].defaultValue
-Order.prototype.status = Order.$type.fieldsById[4].defaultValue
-Order.prototype.price = Order.$type.fieldsById[5].defaultValue
-Order.prototype.standardPrice = Order.$type.fieldsById[6].defaultValue
-Order.prototype.metadata = Order.$type.fieldsById[7].defaultValue
+$reflection.root.lookupType(".bybutter.incubator.shop.v1.Order").messageCtor = Order
 
 export namespace Order {
 
@@ -87,27 +73,16 @@ export namespace Order {
          * (-- api-linter: core::0146::any=disabled
          * aip.dev/not-precedent: 通用组件 --)
          */
-        metadata?: readonly $any.IAny[]
+        metadata?: readonly $protobuf.Message[]
     }
 
-    export class Item extends $protobuf.Message<Item> implements IItem {
+    export class Item extends $sisyphus.Message<Item> implements IItem {
         name!: string
         payment!: string
         product!: $product.Product
-        metadata!: readonly $any.Any[]
-
-        get $type() {
-            return Item.$type
-        }
-
-        static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.Order.Item")
+        metadata!: readonly $protobuf.Message[]
     }
-
-    Item.$type.generatedObject = Item
-    Item.prototype.name = Item.$type.fieldsById[1].defaultValue
-    Item.prototype.payment = Item.$type.fieldsById[2].defaultValue
-    Item.prototype.product = Item.$type.fieldsById[3].defaultValue
-    Item.prototype.metadata = Item.$type.fieldsById[4].defaultValue
+    $reflection.root.lookupType(".bybutter.incubator.shop.v1.Order.Item").messageCtor = Item
 
 
     /** 订单的支付相关信息 */
@@ -120,20 +95,10 @@ export namespace Order {
         paymentChannel?: string
     }
 
-    export class Charge extends $protobuf.Message<Charge> implements ICharge {
+    export class Charge extends $sisyphus.Message<Charge> implements ICharge {
         id!: string
         data!: string
         paymentChannel!: string
-
-        get $type() {
-            return Charge.$type
-        }
-
-        static readonly $type = $reflection.root.lookupType(".bybutter.incubator.shop.v1.Order.Charge")
     }
-
-    Charge.$type.generatedObject = Charge
-    Charge.prototype.id = Charge.$type.fieldsById[1].defaultValue
-    Charge.prototype.data = Charge.$type.fieldsById[2].defaultValue
-    Charge.prototype.paymentChannel = Charge.$type.fieldsById[3].defaultValue
+    $reflection.root.lookupType(".bybutter.incubator.shop.v1.Order.Charge").messageCtor = Charge
 }
