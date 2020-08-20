@@ -20,5 +20,8 @@
     "@sisyphus.js/core": "^0.0.0",
     "change-case": "^4.1.1",
     "protobufjs": "^6.10.1"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
