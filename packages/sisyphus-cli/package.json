@@ -1,6 +1,6 @@
 {
   "name": "@sisyphus.js/cli",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "Protobuf generator cli for sisyphus project",
   "author": "Kanro <higan@live.cn>",
   "homepage": "",

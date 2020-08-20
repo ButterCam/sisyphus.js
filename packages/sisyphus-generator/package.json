@@ -1,6 +1,6 @@
 {
   "name": "@sisyphus.js/generator",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "Protobuf generator for sisyphus project on js platform",
   "author": "Kanro <higan@live.cn>",
   "homepage": "github.com/ButterCam/sisyphus-js",
