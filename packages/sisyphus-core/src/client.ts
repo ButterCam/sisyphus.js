@@ -6,7 +6,8 @@ export interface IRpcImpl {
 }
 
 export abstract class Client {
-    abstract readonly $reflection: Service
+    static readonly $service: Service
+    abstract readonly $service: Service
     private readonly $impl: IRpcImpl
 
     constructor(impl: IRpcImpl) {

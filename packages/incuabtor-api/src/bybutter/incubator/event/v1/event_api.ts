@@ -24,12 +24,12 @@ $reflection.root.lookupType(".bybutter.incubator.event.v1.RecordEventResponse").
 
 /** Event Api */
 export class EventApi extends $sisyphus.Client {
-    get $reflection() {
-        return EventApi.reflection
+    get $service() {
+        return EventApi.$service
     }
     /** 记录日志 */
-    async RecordEvent(input: IRecordEventRequest, metadata?: { [k: string]: string }): Promise<IRecordEventResponse> {
-        return await this.$call(this.$reflection.methods["RecordEvent"], input, metadata)
+    async RecordEvent(input: IRecordEventRequest, metadata?: { [k: string]: string }): Promise<RecordEventResponse> {
+        return await this.$call(this.$service.methods["RecordEvent"], input, metadata)
     }
-    static readonly reflection = $reflection.root.lookupService(".bybutter.incubator.event.v1.EventApi")
+    static readonly $service = $reflection.root.lookupService(".bybutter.incubator.event.v1.EventApi")
 }

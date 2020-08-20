@@ -32,20 +32,20 @@ export class ServiceSpec implements GeneratorSpec {
             b.appendLn(normalizeComment(this._reflection.comment))
         }
         b.beginBlock(`export class ${this._reflection.name} extends $${this.file.importSisyphus()}.Client`)
-        b.beginBlock("get $reflection()")
-        b.appendLn(`return ${this._reflection.name}.reflection`)
+        b.beginBlock("get $service()")
+        b.appendLn(`return ${this._reflection.name}.$service`)
         b.endBlock()
 
         for (let method of this._reflection.methodsArray) {
             if (method.comment != null) {
                 b.appendLn(normalizeComment(method.comment))
             }
-            b.beginBlock(`async ${method.name}(input: ${this.file.typename(<any>method.resolvedRequestType)}, metadata?: { [k: string]: string }): Promise<${this.file.typename(<any>method.resolvedResponseType)}>`)
-            b.appendLn(`return await this.$call(this.$reflection.methods["${method.name}"], input, metadata)`)
+            b.beginBlock(`async ${method.name}(input: ${this.file.typename(<any>method.resolvedRequestType)}, metadata?: { [k: string]: string }): Promise<${this.file.classname(<any>method.resolvedResponseType)}>`)
+            b.appendLn(`return await this.$call(this.$service.methods["${method.name}"], input, metadata)`)
             b.endBlock()
         }
 
-        b.appendLn(`static readonly reflection = $${this.file.importReflection()}.root.lookupService("${this._reflection.fullName}")`)
+        b.appendLn(`static readonly $service = $${this.file.importReflection()}.root.lookupService("${this._reflection.fullName}")`)
         b.endBlock()
     }
 }

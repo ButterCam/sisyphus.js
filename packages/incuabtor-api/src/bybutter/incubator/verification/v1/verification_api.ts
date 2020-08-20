@@ -112,20 +112,20 @@ $reflection.root.lookupType(".bybutter.incubator.verification.v1.ListRegionCodeR
 
 /** 验证Api */
 export class VerificationApi extends $sisyphus.Client {
-    get $reflection() {
-        return VerificationApi.reflection
+    get $service() {
+        return VerificationApi.$service
     }
     /** 发送手机验证码 */
-    async SendVerificationCode(input: ISendVerificationCodeRequest, metadata?: { [k: string]: string }): Promise<ISendVerificationCodeResponse> {
-        return await this.$call(this.$reflection.methods["SendVerificationCode"], input, metadata)
+    async SendVerificationCode(input: ISendVerificationCodeRequest, metadata?: { [k: string]: string }): Promise<SendVerificationCodeResponse> {
+        return await this.$call(this.$service.methods["SendVerificationCode"], input, metadata)
     }
     /** 验证手机验证码 */
-    async VerifyVerificationCode(input: IVerifyVerificationCodeRequest, metadata?: { [k: string]: string }): Promise<IVerifyVerificationCodeResponse> {
-        return await this.$call(this.$reflection.methods["VerifyVerificationCode"], input, metadata)
+    async VerifyVerificationCode(input: IVerifyVerificationCodeRequest, metadata?: { [k: string]: string }): Promise<VerifyVerificationCodeResponse> {
+        return await this.$call(this.$service.methods["VerifyVerificationCode"], input, metadata)
     }
     /** 列举地区代码 */
-    async ListRegionCode(input: IListRegionCodeRequest, metadata?: { [k: string]: string }): Promise<IListRegionCodeResponse> {
-        return await this.$call(this.$reflection.methods["ListRegionCode"], input, metadata)
+    async ListRegionCode(input: IListRegionCodeRequest, metadata?: { [k: string]: string }): Promise<ListRegionCodeResponse> {
+        return await this.$call(this.$service.methods["ListRegionCode"], input, metadata)
     }
-    static readonly reflection = $reflection.root.lookupService(".bybutter.incubator.verification.v1.VerificationApi")
+    static readonly $service = $reflection.root.lookupService(".bybutter.incubator.verification.v1.VerificationApi")
 }

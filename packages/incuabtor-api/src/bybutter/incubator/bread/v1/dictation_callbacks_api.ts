@@ -17,16 +17,16 @@ $reflection.root.lookupType(".bybutter.incubator.bread.v1.InvokeDictationCallbac
 
 /** 语音识别回调 API */
 export class DictationCallbacksApi extends $sisyphus.Client {
-    get $reflection() {
-        return DictationCallbacksApi.reflection
+    get $service() {
+        return DictationCallbacksApi.$service
     }
     /**
      * 阿里回调
      * (-- api-linter: core::0136::http-body=disabled
      * aip.dev/not-precedent: 第三方的模型结构，我们这边无法进行 Proto 建模. --)
      */
-    async InvokeDictationAliCallback(input: IInvokeDictationCallbackRequest, metadata?: { [k: string]: string }): Promise<$empty.IEmpty> {
-        return await this.$call(this.$reflection.methods["InvokeDictationAliCallback"], input, metadata)
+    async InvokeDictationAliCallback(input: IInvokeDictationCallbackRequest, metadata?: { [k: string]: string }): Promise<$empty.Empty> {
+        return await this.$call(this.$service.methods["InvokeDictationAliCallback"], input, metadata)
     }
-    static readonly reflection = $reflection.root.lookupService(".bybutter.incubator.bread.v1.DictationCallbacksApi")
+    static readonly $service = $reflection.root.lookupService(".bybutter.incubator.bread.v1.DictationCallbacksApi")
 }

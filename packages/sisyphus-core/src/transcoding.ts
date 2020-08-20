@@ -44,7 +44,7 @@ function fillUrl(url: string, message: any): string {
 export let transcoding = function (host: string, metadata ?: { [k: string]: string }, interceptor?: (resp: AxiosResponse) => Promise<void>): IRpcImpl {
     metadata = {...metadata, Accept: "application/x-protobuf", "Content-Type": "application/x-protobuf"}
 
-    return async function (desc: Method, message: Message, meta?: { [k: string]: string }): Promise<Message> {
+    return async function (desc: Method, message: Message | { [k: string]: any }, meta?: { [k: string]: string }): Promise<Message> {
         const option = <IHttpOption>desc.options
         if (!option) throw new Error(`Transcoding not support for '${desc.fullName}', 'http' option required.`)
         const rule: IHttpRule = {

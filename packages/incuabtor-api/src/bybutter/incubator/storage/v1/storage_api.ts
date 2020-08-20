@@ -38,12 +38,12 @@ $reflection.root.lookupType(".bybutter.incubator.storage.v1.GenerateOssTokenResp
 
 /** 存储Api */
 export class StorageApi extends $sisyphus.Client {
-    get $reflection() {
-        return StorageApi.reflection
+    get $service() {
+        return StorageApi.$service
     }
     /** 获取Oss token */
-    async GenerateOssToken(input: IGenerateOssTokenRequest, metadata?: { [k: string]: string }): Promise<IGenerateOssTokenResponse> {
-        return await this.$call(this.$reflection.methods["GenerateOssToken"], input, metadata)
+    async GenerateOssToken(input: IGenerateOssTokenRequest, metadata?: { [k: string]: string }): Promise<GenerateOssTokenResponse> {
+        return await this.$call(this.$service.methods["GenerateOssToken"], input, metadata)
     }
-    static readonly reflection = $reflection.root.lookupService(".bybutter.incubator.storage.v1.StorageApi")
+    static readonly $service = $reflection.root.lookupService(".bybutter.incubator.storage.v1.StorageApi")
 }

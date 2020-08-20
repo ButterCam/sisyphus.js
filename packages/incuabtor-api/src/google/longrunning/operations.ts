@@ -208,8 +208,8 @@ $reflection.root.lookupType(".google.longrunning.OperationInfo").messageCtor = O
  * so developers can have a consistent client experience.
  */
 export class Operations extends $sisyphus.Client {
-    get $reflection() {
-        return Operations.reflection
+    get $service() {
+        return Operations.$service
     }
     /**
      * Lists operations that match the specified filter in the request. If the
@@ -223,16 +223,16 @@ export class Operations extends $sisyphus.Client {
      * collection id, however overriding users must ensure the name binding
      * is the parent resource, without the operations collection id.
      */
-    async ListOperations(input: IListOperationsRequest, metadata?: { [k: string]: string }): Promise<IListOperationsResponse> {
-        return await this.$call(this.$reflection.methods["ListOperations"], input, metadata)
+    async ListOperations(input: IListOperationsRequest, metadata?: { [k: string]: string }): Promise<ListOperationsResponse> {
+        return await this.$call(this.$service.methods["ListOperations"], input, metadata)
     }
     /**
      * Gets the latest state of a long-running operation.  Clients can use this
      * method to poll the operation result at intervals as recommended by the API
      * service.
      */
-    async GetOperation(input: IGetOperationRequest, metadata?: { [k: string]: string }): Promise<IOperation> {
-        return await this.$call(this.$reflection.methods["GetOperation"], input, metadata)
+    async GetOperation(input: IGetOperationRequest, metadata?: { [k: string]: string }): Promise<Operation> {
+        return await this.$call(this.$service.methods["GetOperation"], input, metadata)
     }
     /**
      * Deletes a long-running operation. This method indicates that the client is
@@ -240,8 +240,8 @@ export class Operations extends $sisyphus.Client {
      * operation. If the server doesn't support this method, it returns
      * `google.rpc.Code.UNIMPLEMENTED`.
      */
-    async DeleteOperation(input: IDeleteOperationRequest, metadata?: { [k: string]: string }): Promise<$empty.IEmpty> {
-        return await this.$call(this.$reflection.methods["DeleteOperation"], input, metadata)
+    async DeleteOperation(input: IDeleteOperationRequest, metadata?: { [k: string]: string }): Promise<$empty.Empty> {
+        return await this.$call(this.$service.methods["DeleteOperation"], input, metadata)
     }
     /**
      * Starts asynchronous cancellation on a long-running operation.  The server
@@ -255,8 +255,8 @@ export class Operations extends $sisyphus.Client {
      * an [Operation.error][google.longrunning.Operation.error] value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
      * corresponding to `Code.CANCELLED`.
      */
-    async CancelOperation(input: ICancelOperationRequest, metadata?: { [k: string]: string }): Promise<$empty.IEmpty> {
-        return await this.$call(this.$reflection.methods["CancelOperation"], input, metadata)
+    async CancelOperation(input: ICancelOperationRequest, metadata?: { [k: string]: string }): Promise<$empty.Empty> {
+        return await this.$call(this.$service.methods["CancelOperation"], input, metadata)
     }
     /**
      * Waits for the specified long-running operation until it is done or reaches
@@ -269,9 +269,9 @@ export class Operations extends $sisyphus.Client {
      * state before the specified timeout (including immediately), meaning even an
      * immediate response is no guarantee that the operation is done.
      */
-    async WaitOperation(input: IWaitOperationRequest, metadata?: { [k: string]: string }): Promise<IOperation> {
-        return await this.$call(this.$reflection.methods["WaitOperation"], input, metadata)
+    async WaitOperation(input: IWaitOperationRequest, metadata?: { [k: string]: string }): Promise<Operation> {
+        return await this.$call(this.$service.methods["WaitOperation"], input, metadata)
     }
-    static readonly reflection = $reflection.root.lookupService(".google.longrunning.Operations")
+    static readonly $service = $reflection.root.lookupService(".google.longrunning.Operations")
 }
 export let operationInfo = $reflection.root.lookup(".google.longrunning.operationInfo")

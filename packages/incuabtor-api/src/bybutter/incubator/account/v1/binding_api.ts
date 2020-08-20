@@ -75,16 +75,16 @@ $reflection.root.lookupType(".bybutter.incubator.account.v1.ChangeBindingRespons
 
 /** 账户绑定相关的 API */
 export class BindingApi extends $sisyphus.Client {
-    get $reflection() {
-        return BindingApi.reflection
+    get $service() {
+        return BindingApi.$service
     }
     /** 获取用户的所有绑定信息。 */
-    async ListBindings(input: IListBindingsRequest, metadata?: { [k: string]: string }): Promise<IListBindingsResponse> {
-        return await this.$call(this.$reflection.methods["ListBindings"], input, metadata)
+    async ListBindings(input: IListBindingsRequest, metadata?: { [k: string]: string }): Promise<ListBindingsResponse> {
+        return await this.$call(this.$service.methods["ListBindings"], input, metadata)
     }
     /** 修改用户的绑定信息 */
-    async ChangeBinding(input: IChangeBindingRequest, metadata?: { [k: string]: string }): Promise<IChangeBindingResponse> {
-        return await this.$call(this.$reflection.methods["ChangeBinding"], input, metadata)
+    async ChangeBinding(input: IChangeBindingRequest, metadata?: { [k: string]: string }): Promise<ChangeBindingResponse> {
+        return await this.$call(this.$service.methods["ChangeBinding"], input, metadata)
     }
-    static readonly reflection = $reflection.root.lookupService(".bybutter.incubator.account.v1.BindingApi")
+    static readonly $service = $reflection.root.lookupService(".bybutter.incubator.account.v1.BindingApi")
 }
