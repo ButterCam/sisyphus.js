@@ -1,6 +1,6 @@
 {
   "name": "@sisyphus.js/core",
-  "version": "0.0.1-alpha.1",
+  "version": "0.0.1-alpha.2",
   "description": "Protobuf runtime for sisyphus project on js platform",
   "author": "Kanro <higan@live.cn>",
   "homepage": "",
