@@ -108,6 +108,7 @@ export let transcoding = function (host: string, metadata ?: { [k: string]: stri
 
         if (request.data) {
             request.headers["Content-Type"] = "application/x-protobuf"
+            request.headers["Content-Length"] = request.data.length
         }
 
         let response = await axios.request(request)

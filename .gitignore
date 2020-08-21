@@ -21,3 +21,4 @@ jspm_packages
 
 # IDEA
 .idea/
+*.iml
