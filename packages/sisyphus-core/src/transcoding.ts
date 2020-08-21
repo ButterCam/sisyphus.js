@@ -38,11 +38,11 @@ interface ICustomHttpPattern {
 }
 
 function fillUrl(url: string, message: any): string {
-    return url.replace(/{([a-zA-Z0-9_]+)(?:=[^}]+)?}/g, (substring, args) => `${message[args[0]]}`)
+    return url.replace(/{([a-zA-Z0-9_]+)(?:=[^}]+)?}/g, (substring, g1) => `${message[g1]}`)
 }
 
 export let transcoding = function (host: string, metadata ?: { [k: string]: string }, interceptor?: (resp: AxiosResponse) => Promise<void>): IRpcImpl {
-    metadata = {...metadata, Accept: "application/x-protobuf", "Content-Type": "application/x-protobuf"}
+    metadata = {...metadata, Accept: "application/x-protobuf"}
 
     return async function (desc: Method, message: Message | { [k: string]: any }, meta?: { [k: string]: string }): Promise<Message> {
         const option = <IHttpOption>desc.options
@@ -69,7 +69,8 @@ export let transcoding = function (host: string, metadata ?: { [k: string]: stri
 
         const request: AxiosRequestConfig = {
             baseURL: host,
-            headers: {...metadata, ...meta}
+            headers: {...metadata, ...meta},
+            responseType: "arraybuffer"
         }
 
         if (rule.pattern == undefined) {
@@ -105,16 +106,19 @@ export let transcoding = function (host: string, metadata ?: { [k: string]: stri
                 break
         }
 
+        if (request.data) {
+            request.headers["Content-Type"] = "application/x-protobuf"
+        }
+
         let response = await axios.request(request)
         if (interceptor) {
             await interceptor(response)
         }
 
-        const enc = new TextEncoder()
         if (response.status < 300) {
-            return desc.resolvedResponseType.messageCtor.decode(enc.encode(response.data))
+            return desc.resolvedResponseType.messageCtor.decode(response.data)
         } else {
-            const status: any = desc.root.lookupType(".google.rpc.Status").messageCtor.decode(enc.encode(response.data))
+            const status: any = desc.root.lookupType(".google.rpc.Status").messageCtor.decode(response.data)
             throw new GrpcStatusError(status.code, status.message, status.details)
         }
     }
