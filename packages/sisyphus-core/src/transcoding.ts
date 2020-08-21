@@ -70,7 +70,7 @@ export let transcoding = function (host: string, metadata ?: { [k: string]: stri
         const request: AxiosRequestConfig = {
             baseURL: host,
             headers: {...metadata, ...meta},
-            responseType: "arraybuffer"
+            responseType: "arraybuffer",
         }
 
         if (rule.pattern == undefined) {
@@ -108,7 +108,7 @@ export let transcoding = function (host: string, metadata ?: { [k: string]: stri
 
         if (request.data) {
             request.headers["Content-Type"] = "application/x-protobuf"
-            request.headers["Content-Length"] = request.data.length
+            request.data = request.data.slice(0, request.data.length).buffer
         }
 
         let response = await axios.request(request)
@@ -117,9 +117,9 @@ export let transcoding = function (host: string, metadata ?: { [k: string]: stri
         }
 
         if (response.status < 300) {
-            return desc.resolvedResponseType.messageCtor.decode(response.data)
+            return desc.resolvedResponseType.messageCtor.decode(new Uint8Array(response.data))
         } else {
-            const status: any = desc.root.lookupType(".google.rpc.Status").messageCtor.decode(response.data)
+            const status: any = desc.root.lookupType(".google.rpc.Status").messageCtor.decode(new Uint8Array(response.data))
             throw new GrpcStatusError(status.code, status.message, status.details)
         }
     }
