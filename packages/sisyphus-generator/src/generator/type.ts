@@ -108,45 +108,6 @@ export class TypeSpec implements GeneratorSpec {
         return this.fieldType(field, protocol)
     }
 
-    private fieldDefaultValue(field: FieldBase): string {
-        if (field.map && field instanceof MapField) return `$${this.file.importSisyphus()}.emptyMap`
-        if (field.repeated) return `$${this.file.importSisyphus()}.emptyList`
-        if (field.resolvedType instanceof Type) return ""
-        if (field.resolvedType instanceof Enum) {
-            if (!field.resolvedType.valuesById[0]) {
-                return "undefined"
-            } else {
-                return `${this.file.typename(field.resolvedType)}.${field.resolvedType.valuesById[0]}`
-            }
-        }
-
-        switch (field.type) {
-            case "string":
-                return "\"\""
-            case "bytes":
-                return `$${this.file.importSisyphus()}.emptyBytes`
-            case "bool":
-                return "false"
-            case "double":
-            case "float":
-            case "int32":
-            case "uint32":
-            case "sint32":
-            case "fixed32":
-            case "sfixed32":
-                return "0"
-            case "int64":
-            case "sint64":
-            case "sfixed64":
-                return `$${this.file.importSisyphus()}.Long.ZERO`
-            case "uint64":
-            case "fixed64":
-                return `$${this.file.importSisyphus()}.Long.UZERO`
-            default:
-                return ""
-        }
-    }
-
     private fieldName(field: Field): string {
         if (field.name.startsWith(".")) {
             return `"${field.name}"`
@@ -197,20 +158,29 @@ export class TypeSpec implements GeneratorSpec {
             for (let oneOf of this._reflection.oneofsArray) {
                 b.appendLn(`${oneOf.name}?: string\n`)
             }
-            //b.beginBlock("get $type()")
-            //b.appendLn(`return ${this._reflection.name}.$type`)
-            //b.endBlock()
-            //b.ln()
-            //b.appendLn(`static readonly $type = $${this.file.importReflection()}.root.lookupType("${this._reflection.fullName}")`)
+            b.beginBlock(`static create(properties?: I${this._reflection.name}): ${this._reflection.name}`)
+            b.appendLn(`return <any>super.create(properties)`)
+            b.endBlock()
+            b.beginBlock(`static encode(message?: I${this._reflection.name}, writer?: $${this.file.importProtobuf()}.Writer): $${this.file.importProtobuf()}.Writer`)
+            b.appendLn(`return super.encode(<any>message, writer)`)
+            b.endBlock()
+            b.beginBlock(`static encodeDelimited(message?: I${this._reflection.name}, writer?: $${this.file.importProtobuf()}.Writer): $${this.file.importProtobuf()}.Writer`)
+            b.appendLn(`return super.encodeDelimited(<any>message, writer)`)
+            b.endBlock()
+            b.beginBlock(`static decode(reader?: ($${this.file.importProtobuf()}.Reader | Uint8Array), length?: number): ${this._reflection.name}`)
+            b.appendLn(`return <any>super.decode(reader, length)`)
+            b.endBlock()
+            b.beginBlock(`static decodeDelimited(reader?: ($${this.file.importProtobuf()}.Reader | Uint8Array)): ${this._reflection.name}`)
+            b.appendLn(`return <any>super.decodeDelimited(reader)`)
+            b.endBlock()
+            b.beginBlock(`static fromJson(object?: $${this.file.importSisyphus()}.JsonValue): ${this._reflection.name}`)
+            b.appendLn(`return <any>super.fromJson(object)`)
+            b.endBlock()
+            b.beginBlock(`static toJson(message?: I${this._reflection.name}): $${this.file.importSisyphus()}.JsonValue`)
+            b.appendLn(`return super.toJson(<any>message)`)
+            b.endBlock()
             b.endBlock()
             b.appendLn(`$${this.file.importReflection()}.root.lookupType("${this._reflection.fullName}").messageCtor = ${this._reflection.name}`)
-            //for (let oneOf of this._reflection.oneofsArray) {
-            //    const fields = oneOf.fieldsArray.map(field => `"${this.fieldName(field)}"`).join(", ")
-            //    b.appendLn(`Object.defineProperty(${this._reflection.name}.prototype, "${oneOf.name}", $${this.file.importSisyphus()}.oneOfProperty(${fields}))`)
-            //}
-            //for (let field of this._reflection.fieldsArray) {
-            //    b.appendLn(`${this._reflection.name}.prototype${safeProp(field.name)} = ${this._reflection.name}.$type.fieldsById[${field.id}].defaultValue`)
-            //}
         }
     }
 
@@ -230,102 +200,6 @@ export class TypeSpec implements GeneratorSpec {
                 type.generate(b)
             }
         }
-        b.endBlock()
-    }
-
-    private generateDecoder(b: CodeBuilder) {
-        b.beginBlock(`static decode(reader: Uint8Array | $${this.file.importProtobuf()}.Reader, length?: number): ${this._reflection.name}`)
-        b.appendLn(`if(!(reader instanceof $${this.file.importProtobuf()}.Reader)) reader = $${this.file.importProtobuf()}.Reader.create(reader)`)
-        b.appendLn(`const end = length === undefined ? reader.len : reader.pos + length`)
-        b.appendLn(`const result = new this()`)
-        for (let field of this._reflection.fieldsArray) {
-            if (field.map) {
-                b.appendLn(`let key: any, value: any`)
-                break
-            }
-        }
-        b.beginBlock("while(reader.pos < end)")
-        b.appendLn("let tag = reader.uint32()")
-        b.beginBlock(`switch(tag>>>3)`)
-
-        for (let field of this._reflection.fieldsArray) {
-            const fieldRef = `result${util.safeProp(field.name)}`
-            b.appendLn(`case ${field.id}:`).indent()
-            if (field.map) {
-                b.appendLn(`if (!${fieldRef}) ${fieldRef} = {};`)
-                if (field.resolvedType != null) {
-                    b.appendLn(`[key, value] = $${this.file.importSisyphus()}.readMapEntry(this.reflection.fields["${field.name}"], reader, ${this.file.classname(field.resolvedType)})`)
-                } else {
-                    b.appendLn(`[key, value] = $${this.file.importSisyphus()}.readMapEntry(this.reflection.fields["${field.name}"], reader)`)
-                }
-                b.appendLn(`${fieldRef}[key] = value`)
-            } else if (field.repeated) {
-                b.appendLn(`if (!${fieldRef}) ${fieldRef} = []`)
-                if (field.resolvedType != null) {
-                    if (field.resolvedType instanceof Type) {
-                        b.appendLn(`${fieldRef}.push(${this.file.classname(field.resolvedType)}.decodeDelimited(reader))`)
-                    } else {
-                        b.appendLn(`${fieldRef}.push(reader.uint32())`)
-                    }
-                } else {
-                    b.appendLn(`${fieldRef}.push(reader.${field.type}())`)
-                }
-            } else if (field.resolvedType != null) {
-                if (field.resolvedType instanceof Type) {
-                    b.appendLn(`${fieldRef} = ${this.file.classname(field.resolvedType)}.decodeDelimited(reader)`)
-                } else {
-                    b.appendLn(`${fieldRef} = reader.uint32()`)
-                }
-            } else {
-                b.appendLn(`${fieldRef} = reader.${field.type}()`)
-            }
-            b.appendLn("break").deindent()
-        }
-        b.endBlock()
-        b.endBlock()
-        b.appendLn("return result")
-        b.endBlock()
-        b.ln()
-        b.beginBlock(`static decodeDelimited(reader: Uint8Array | $${this.file.importProtobuf()}.Reader): ${this._reflection.name}`)
-        b.appendLn(`if(!(reader instanceof $${this.file.importProtobuf()}.Reader)) reader = $${this.file.importProtobuf()}.Reader.create(reader)`)
-        b.appendLn(`return this.decode(reader, reader.uint32())`)
-        b.endBlock()
-    }
-
-    private generateCreate(b: CodeBuilder) {
-        b.beginBlock(`static create(properties?: I${this._reflection.name}): ${this._reflection.name}`)
-        b.appendLn(`if(properties instanceof this) return properties`)
-        b.appendLn(`const result = new this()`)
-        b.appendLn(`if (!properties) return result`)
-        for (let field of this._reflection.fieldsArray) {
-            if (field.map) {
-                b.beginBlock(`if(properties.hasOwnProperty("${field.name}") && properties${safeProp(field.name)} != null)`)
-                b.appendLn(`result${safeProp(field.name)} = {}`)
-                if (field.resolvedType != null && field.resolvedType instanceof Type) {
-                    b.appendLn(`for (let key in properties${safeProp(field.name)}) result${safeProp(field.name)}[key] = ${this.file.classname(field.resolvedType)}.create(properties${safeProp(field.name)}[key])`)
-                } else {
-                    b.appendLn(`for (let key in properties${safeProp(field.name)}) result${safeProp(field.name)}[key] = properties${safeProp(field.name)}[key]`)
-                }
-                b.endBlock()
-                break
-            }
-            if (field.resolvedType != null && field.resolvedType instanceof Type) {
-                if (field.repeated) {
-                    b.appendLn(`if(properties.hasOwnProperty("${field.name}") && properties${safeProp(field.name)} != null) result${safeProp(field.name)} = properties${safeProp(field.name)}.map(it => ${this.file.classname(field.resolvedType)}.create(it))`)
-                } else {
-                    b.appendLn(`if(properties.hasOwnProperty("${field.name}") && properties${safeProp(field.name)} != null) result${safeProp(field.name)} = ${this.file.classname(field.resolvedType)}.create(properties${safeProp(field.name)})`)
-                }
-            } else {
-                b.appendLn(`if(properties.hasOwnProperty("${field.name}") && properties${safeProp(field.name)} !== undefined) result${safeProp(field.name)} = properties${safeProp(field.name)}`)
-            }
-        }
-        b.appendLn(`return result`)
-        b.endBlock()
-    }
-
-    private generateFromJson(b: CodeBuilder) {
-        b.beginBlock(`static fromJson(json: any): ${this._reflection.name}`)
-
         b.endBlock()
     }
 }

@@ -19,3 +19,10 @@ export async function main(args: string[]): Promise<number> {
     await generator.generate(program.output, ...program.args)
     return 0
 }
+
+main(process.argv).then(ret => {
+    process.exit(ret);
+}).catch(err => {
+    console.error(err)
+    process.exit(1);
+})

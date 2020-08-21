@@ -1,8 +1,8 @@
-import {IRpcImpl} from "./client"
+import {IRpcImpl} from "../client"
 import {Method} from "protobufjs"
 import axios, {AxiosRequestConfig, AxiosResponse} from "axios"
-import {Message} from "./message";
-import {GrpcStatusError} from "./error";
+import {Message} from "../message";
+import {GrpcStatusError} from "../error";
 
 interface IHttpOption {
     "(google.api.http).selector": string

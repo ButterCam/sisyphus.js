@@ -87,6 +87,7 @@ root.resolveAll()\n`)
                         case reflectionObject instanceof Type:
                         case reflectionObject instanceof Service:
                         case reflectionObject instanceof Enum:
+                        case reflectionObject instanceof Field:
                             if (reflectionObject.filename != null) {
                                 const moduleName = pathModule.basename(reflectionObject.filename, pathModule.extname(reflectionObject.filename))
                                 if (modules.indexOf(moduleName) < 0) {
