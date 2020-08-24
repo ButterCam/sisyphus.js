@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import {program} from "commander"
 import {GeneratorContext} from "@sisyphus.js/generator"
 
