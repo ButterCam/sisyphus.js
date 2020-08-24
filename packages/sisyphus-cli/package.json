@@ -1,6 +1,6 @@
 {
   "name": "@sisyphus.js/cli",
-  "version": "0.0.1-alpha.4",
+  "version": "0.0.1-alpha.5",
   "description": "Protobuf generator cli for sisyphus project",
   "author": "Kanro <higan@live.cn>",
   "homepage": "",
@@ -21,7 +21,7 @@
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "dependencies": {
-    "@sisyphus.js/generator": "^0.0.1-alpha.3",
+    "@sisyphus.js/generator": "^0.0.1-alpha.5",
     "commander": "^6.0.0"
   },
   "devDependencies": {
