@@ -1,6 +1,6 @@
 {
   "name": "@sisyphus.js/generator",
-  "version": "0.0.1-alpha.2",
+  "version": "0.0.1-alpha.3",
   "description": "Protobuf generator for sisyphus project on js platform",
   "author": "Kanro <higan@live.cn>",
   "homepage": "github.com/ButterCam/sisyphus-js",
@@ -18,7 +18,7 @@
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "dependencies": {
-    "@sisyphus.js/core": "^0.0.1-alpha.2",
+    "@sisyphus.js/core": "^0.0.1-alpha.3",
     "change-case": "^4.1.1",
     "protobufjs": "^6.10.1"
   },
