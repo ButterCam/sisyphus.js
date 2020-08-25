@@ -53,11 +53,10 @@ export class GeneratorContext {
         this._root.resolveAll()
         this.register(this._root)
 
-        await writeToFile(outDir, "reflection.json", JSON.stringify(this._root.toJSON()))
-        await writeToFile(outDir, "_reflection.ts", `import reflectionJson from "./reflection.json"
-import {Root} from "protobufjs"
+        await writeToFile(outDir, "_reflection.ts", `import {Root} from "protobufjs"
 
-export let root = Root.fromJSON(reflectionJson)
+const json: any = ${JSON.stringify(this._root.toJSON())}
+export let root = Root.fromJSON(json)
 root.resolveAll()\n`)
 
         await this.generateIndex(outDir)

@@ -1,41 +1,9 @@
-import {IRpcImpl} from "../client"
+import {IRpcImpl} from "./client"
 import {Method} from "protobufjs"
 import axios, {AxiosRequestConfig, AxiosResponse} from "axios"
-import {Message} from "../message";
-import {GrpcStatusError} from "../error";
-
-interface IHttpOption {
-    "(google.api.http).selector": string
-    "(google.api.http).get"?: string
-    "(google.api.http).put"?: string
-    "(google.api.http).post"?: string
-    "(google.api.http).delete"?: string
-    "(google.api.http).patch"?: string
-    "(google.api.http).custom"?: (ICustomHttpPattern | null)
-    "(google.api.http).body"?: string
-    "(google.api.http).responseBody"?: string
-    "(google.api.http).additionalBindings"?: (IHttpRule[] | null)
-    "(google.api.http).pattern"?: string
-}
-
-interface IHttpRule {
-    selector: string
-    get?: string
-    put?: string
-    post?: string
-    delete?: string
-    patch?: string
-    custom?: (ICustomHttpPattern | null)
-    body?: string
-    responseBody?: string
-    additionalBindings?: (IHttpRule[] | null)
-    pattern?: string
-}
-
-interface ICustomHttpPattern {
-    kind?: string
-    path?: string
-}
+import {Message} from "./message";
+import {GrpcStatusError} from "./error";
+import {exportHttpRule, IHttpRule} from "./transcoding";
 
 function fillUrl(url: string, message: any): string {
     return url.replace(/{([a-zA-Z0-9_]+)(?:=[^}]+)?}/g, (substring, g1) => `${message[g1]}`)
@@ -45,27 +13,8 @@ export let transcoding = function (host: string, metadata ?: { [k: string]: stri
     metadata = {...metadata, Accept: "application/x-protobuf"}
 
     return async function (desc: Method, message: Message | { [k: string]: any }, meta?: { [k: string]: string }): Promise<Message> {
-        const option = <IHttpOption>desc.options
-        if (!option) throw new Error(`Transcoding not support for '${desc.fullName}', 'http' option required.`)
-        const rule: IHttpRule = {
-            selector: option["(google.api.http).selector"],
-            get: option["(google.api.http).get"],
-            put: option["(google.api.http).put"],
-            post: option["(google.api.http).post"],
-            delete: option["(google.api.http).delete"],
-            patch: option["(google.api.http).patch"],
-            custom: option["(google.api.http).custom"],
-            body: option["(google.api.http).body"],
-            responseBody: option["(google.api.http).responseBody"],
-            additionalBindings: option["(google.api.http).additionalBindings"],
-            pattern: option["(google.api.http).pattern"],
-        }
-
-        for (const string of ["get", "put", "post", "delete", "patch", "custom"]) {
-            if ((<any>rule)[string]) {
-                rule.pattern = string
-            }
-        }
+        const rule: IHttpRule = exportHttpRule(desc.options)
+        if (!rule.pattern) throw new Error(`Transcoding not support for '${desc.fullName}', 'http' option required.`)
 
         const request: AxiosRequestConfig = {
             baseURL: host,
@@ -73,9 +22,6 @@ export let transcoding = function (host: string, metadata ?: { [k: string]: stri
             responseType: "arraybuffer",
         }
 
-        if (rule.pattern == undefined) {
-            throw new Error(`Transcoding rule must have pattern.`)
-        }
         if (rule.pattern == "custom") {
             request.method = <any>rule.custom?.kind
             request.url = fillUrl(<any>rule.custom?.path, message)
