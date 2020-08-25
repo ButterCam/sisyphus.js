@@ -1,14 +1,12 @@
 # Sisyphus for JavaScript/TypeScript
 
-Sisyphus.JS is the way how we connect with our Sisyphus backend services. It uses the [HTTP and gRPC Transcoding](https://aip.bybutter.com/127) to call gRPC APIs.
+Sisyphus.JS is the way how we connect with our Sisyphus backend services. It uses [HTTP and gRPC Transcoding](https://aip.bybutter.com/127) to call gRPC APIs.
 
 ## 🚀 Quick Start
 
 ### 1. Installation
 
-Install `@sisyphus.js/cli` , TypeScript for code generation.
-
- `@sisyphus.js/core` for runtime support.
+Install `@sisyphus.js/cli` and `TypeScript` for code generation, `@sisyphus.js/core` for runtime support.
 
 Choose one of `axios` or `umi-request` as http request implementation.
 
@@ -63,7 +61,7 @@ message EchoResponse {
 
 
 
-Write generate command in `package.json`.
+Write generation command in `package.json`.
 
 ```json
 {
@@ -80,15 +78,15 @@ Write generate command in `package.json`.
 }
 ```
 
-Run `npm run protogen` to generate and compile codes.
+Run `npm run protogen` to generate and compile code.
 
 ### 3. Usage
 
 ```typescript
 import * as protos from "./index"
-protos // REQUIRED! it will initiaize all generated codes, you must import the index.ts at least once.
+protos // REQUIRED! it will initiaize all generated code. You must import the index.ts at least once.
 
-import {transcoding} from "@sisyphus.js/core/lib/axios" // Use the axios as the http request lib
+import {transcoding} from "@sisyphus.js/core/lib/axios" // Use axios as http request lib
 import {EchoApi} from "./sisyphus/example/v1"
 
 const rpc = transcoding("http://localhost:8080") // create transcoding rpc implementation
@@ -109,7 +107,7 @@ main()
 
 ### Metadata/Request Header
 
-Metadata is useful for authorization in gRPC, Sisyphus.JS also support it both of global usage and call usage.
+Metadata is useful for authorization in gRPC. Sisyphus.JS also supports metadata both for global usage and call usage.
 
 ```typescript
 const rpc = transcoding("http://localhost:8080", { "My-Header": "Header Value" }) // global metadata
@@ -122,11 +120,11 @@ await echoApi.Echo({
 
 ### Interface and Class
 
-`@sisyphus.js/cli`  will generate interface and class for one message, all input of Sisyphus.JS API can accept both of  Interface/Class, and all output of Sisyphus.JS API will be Class Message.
+`@sisyphus.js/cli`  will generate interface and class for one message. All Sisyphus.JS APIs can accept both interface and class as input. And all output of Sisyphus.JS API will be class messages.
 
 ### Well-known types
 
-Sisyphus.JS support all well-known types like the `google.protobuf.Any`, `google.protobuf.Timestamp` etc...
+Sisyphus.JS support all well-known types such as `google.protobuf.Any`, `google.protobuf.Timestamp` and so on.
 
 ```protobuf
 package sisyphus.example.v1;
@@ -144,7 +142,7 @@ message AnyTest {
 }
 ```
 
-Sisyphus.JS generate field which is `google.protobuf.Any` type as base class `Message`, like below.
+`google.protobuf.Any` will be transformed into `Message` type while Sisyphus.JS generates fields as in the case below.
 
 ```typescript
 import {Message} from "@sisyphus/core"
@@ -163,4 +161,4 @@ console.log(AnyTest.toJson(anyTest))
 // { "message": { "@type": "types.bybutter.com/sisyphus.example.v1.SimpleMessage", "message": "test" }, "messages": [{ "@type": "types.bybutter.com/sisyphus.example.v1.SimpleMessage", "message": "test1" }, { "@type": "types.bybutter.com/sisyphus.example.v1.SimpleMessage", "message": "test2" }]}
 ```
 
-Sisyphus.JS will auto unwrap and wrap `Any` and `Message Type` in Json encoding/decoding and Protobuf encoding/decoding.
+Sisyphus.JS will auto unwrap and wrap `Any` and `Message` type in JSON encoding/decoding and Protobuf encoding/decoding.
