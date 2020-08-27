@@ -22,3 +22,6 @@ jspm_packages
 # IDEA
 .idea/
 *.iml
+
+# Test project
+packages/test/
