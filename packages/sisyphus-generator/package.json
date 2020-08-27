@@ -1,0 +1,28 @@
+{
+  "name": "@sisyphus.js/generator",
+  "version": "0.0.1-alpha.7",
+  "description": "Protobuf generator for sisyphus project on js platform",
+  "author": "Kanro <higan@live.cn>",
+  "homepage": "github.com/ButterCam/sisyphus-js",
+  "license": "ISC",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib",
+    "src"
+  ],
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "dependencies": {
+    "@sisyphus.js/core": "^0.0.1-alpha.7",
+    "change-case": "^4.1.1",
+    "protobufjs": "^6.10.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

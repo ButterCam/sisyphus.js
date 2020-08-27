@@ -1,0 +1,30 @@
+{
+  "name": "@sisyphus.js/core",
+  "version": "0.0.1-alpha.7",
+  "description": "Protobuf runtime for sisyphus project on js platform",
+  "author": "Kanro <higan@live.cn>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib",
+    "src"
+  ],
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "devDependencies": {
+    "axios": "^0.19.2",
+    "umi-request": "^1.3.5"
+  },
+  "dependencies": {
+    "protobufjs": "^6.10.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
