@@ -16,15 +16,15 @@ export class Struct extends Message<Struct> implements IStruct {
     }
 
     static fromJson(object: JsonValue): Struct {
-        if (typeof object !== "object" || !Array.isArray(object)) {
-            throw new Error("Duration must be a string")
+        if (typeof object !== "object" || Array.isArray(object)) {
+            throw new Error("Struct must be a object")
         }
 
         const fields: { [k: string]: Value } = {}
 
         for (let key in object) {
             if (!object.hasOwnProperty(key)) continue
-            fields[key] = Value.fromJson(object[key])
+            fields[key] = Value.fromJson((<any>object)[key])
         }
         return <Struct>this.create({fields})
     }

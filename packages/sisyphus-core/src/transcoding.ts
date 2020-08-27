@@ -1,3 +1,8 @@
+import {Message, MessageConstructor} from "./message"
+import {IRpcImpl} from "./client"
+import {Method, Type} from "protobufjs"
+import {GrpcStatusError} from "./error";
+
 export interface IHttpRule {
     selector: string
     get?: string
@@ -37,4 +42,142 @@ export function exportHttpRule(options: any): IHttpRule {
     }
 
     return result
+}
+
+export interface IHttpRequest {
+    url: string,
+    method: string,
+    params: { [k: string]: any },
+    body: ArrayBuffer | any,
+    bodyType: BodyType
+    headers: { [k: string]: string }
+}
+
+export interface IHttpResponse {
+    status: number,
+    headers: { [k: string]: string },
+    body: ArrayBuffer | any
+}
+
+export interface IHttpImpl {
+    (request: IHttpRequest): Promise<IHttpResponse>
+}
+
+export type BodyType = "protobuf" | "json"
+
+function getField(message: any, field: string | string[]): any {
+    if (typeof field === "string") {
+        return getField(message, field.split("."))
+    }
+
+    for (let string of field) {
+        message = message[string]
+    }
+    return message
+}
+
+function getFieldInfo(type: Type, field: string | string[]): Type {
+    if (typeof field === "string") {
+        return getFieldInfo(type, field.split("."))
+    }
+
+    for (let string of field) {
+        type = <any>type.fields[string].resolvedType
+    }
+    return type
+}
+
+export function fillUrl(url: string, message: any): string {
+    return url.replace(/{([a-zA-Z0-9_]+)(?:=[^}]+)?}/g, (substring, g1) => `${getField(message, g1)}`)
+}
+
+export function transcoding(http: IHttpImpl, bodyType: BodyType, metadata: { [k: string]: string } = {}, interceptor?: (req: IHttpRequest, res: IHttpResponse) => Promise<void>): IRpcImpl {
+    return async function (desc: Method, message: Message | { [k: string]: any }, meta?: { [k: string]: string }): Promise<Message> {
+        const rule: IHttpRule = exportHttpRule(desc.options)
+        if (!rule.pattern) throw new Error(`Transcoding not support for '${desc.fullName}', 'http' option required.`)
+
+        if (desc.resolvedRequestType?.messageCtor == null || desc.resolvedResponseType?.messageCtor == null) {
+            throw Error("Reflection info missed.")
+        }
+
+        let method: string,
+            url: string,
+            data,
+            params: { [k: string]: any } = {},
+            messageCtor: MessageConstructor | null = null,
+            headers: { [k: string]: string } = {...metadata, ...meta}
+
+        if (rule.pattern == "custom") {
+            method = <any>rule.custom?.kind
+            url = fillUrl(<any>rule.custom?.path, message)
+        } else {
+            method = <any>rule.pattern
+            url = fillUrl((<any>rule)[rule.pattern], message)
+        }
+
+        headers["Accept"] = bodyType == "protobuf" ? "application/x-protobuf" : "application/json"
+
+        switch (rule.body) {
+            case "*":
+                data = message
+                messageCtor = desc.resolvedRequestType.messageCtor
+                break
+            case null:
+            case undefined:
+            case "":
+                break
+            default:
+                data = getField(message, rule.body)
+                if (data && data instanceof Message) {
+                    messageCtor = getFieldInfo(desc.resolvedRequestType.messageCtor.$type, rule.body).messageCtor
+                }
+                break
+        }
+
+        if (data) {
+            if (messageCtor) {
+                if (bodyType == "protobuf") {
+                    data = messageCtor.encode(data).finish()
+                    data = data.slice(0, data.length).buffer
+                    headers["Content-Type"] = "application/x-protobuf"
+                } else {
+                    data = messageCtor.toJson(data)
+                    headers["Content-Type"] = "application/json"
+                }
+            } else {
+                headers["Content-Type"] = "application/json"
+            }
+        }
+
+        if (rule.body != "*") {
+            for (let key in message) {
+                if (message.hasOwnProperty(key) && key != rule.body) {
+                    params[key] = (<any>message)[key]
+                }
+            }
+        }
+
+        const request: IHttpRequest = {
+            url, headers, bodyType, params, method,
+            body: data
+        }
+
+        const response = await http(request)
+
+        if (response.status < 300) {
+            if (request.bodyType == "protobuf") {
+                return desc.resolvedResponseType.messageCtor.decode(<any>response.body)
+            } else {
+                return desc.resolvedResponseType.messageCtor.fromJson(<any>response.body)
+            }
+        } else {
+            let status: any
+            if (request.bodyType == "protobuf") {
+                status = desc.root.lookupType(".google.rpc.Status").messageCtor.decode(<any>response.body)
+            } else {
+                status = desc.root.lookupType(".google.rpc.Status").messageCtor.fromJson(<any>response.body)
+            }
+            throw new GrpcStatusError(status.code, status.message, status.details)
+        }
+    }
 }
