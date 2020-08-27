@@ -23,6 +23,7 @@ export function umi(host: string): IHttpImpl {
             responseType: request.bodyType == "protobuf" ? (isBrowser ? "arrayBuffer" : <any>"buffer") : "json",
             method: <any>request.method,
             params: request.params,
+            data: request.body,
             getResponse: true
         }
 

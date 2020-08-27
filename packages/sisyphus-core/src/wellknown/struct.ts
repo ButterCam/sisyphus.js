@@ -24,7 +24,7 @@ export class Struct extends Message<Struct> implements IStruct {
 
         for (let key in object) {
             if (!object.hasOwnProperty(key)) continue
-            fields[key] = Value.fromJson((<any>object)[key])
+            fields[key] = <Value>this.$type.root.lookupType(".google.protobuf.Value").messageCtor.fromJson((<any>object)[key])
         }
         return <Struct>this.create({fields})
     }
@@ -75,9 +75,9 @@ export class Value extends Message<Value> implements IValue {
                     return this.create({nullValue: NullValue.NULL_VALUE})
                 }
                 if (Array.isArray(object)) {
-                    return this.create({listValue: ListValue.fromJson(object)})
+                    return this.create({listValue: <ListValue>this.$type.root.lookupType(".google.protobuf.ListValue").messageCtor.fromJson(object)})
                 }
-                return this.create({structValue: Struct.fromJson(object)})
+                return this.create({structValue: <Struct>this.$type.root.lookupType(".google.protobuf.Struct").messageCtor.fromJson(object)})
         }
     }
 
@@ -116,7 +116,7 @@ export class ListValue extends Message<ListValue> implements IListValue {
     static fromJson(object: JsonValue): ListValue {
         if (!Array.isArray(object)) throw new Error("object must be a Array")
         const array = <any[]>object
-        const values = array.map(it => Value.fromJson(it))
+        const values = array.map(it => <Value>this.$type.root.lookupType(".google.protobuf.Value").messageCtor.fromJson(it))
         return this.create({values})
     }
 

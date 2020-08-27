@@ -18,7 +18,7 @@ export class DoubleValue extends Message<DoubleValue> implements IDoubleValue {
         if (typeof object !== "number") {
             throw new Error("object must be a number")
         }
-        return DoubleValue.create({value: object})
+        return this.create({value: object})
     }
 
     static toJson(message: DoubleValue | IDoubleValue): JsonValue {
@@ -41,7 +41,7 @@ export class FloatValue extends Message<FloatValue> implements IFloatValue {
         if (typeof object !== "number") {
             throw new Error("object must be a number")
         }
-        return FloatValue.create({value: object})
+        return this.create({value: object})
     }
 
     static toJson(message: FloatValue | IFloatValue): JsonValue {
@@ -64,7 +64,7 @@ export class Int64Value extends Message<Int64Value> implements IInt64Value {
         if (long.isLong(object)) {
             throw new Error("object must be a long")
         }
-        return Int64Value.create({value: <Long>object})
+        return this.create({value: <Long>object})
     }
 
     static toJson(message: Int64Value | IInt64Value): JsonValue {
@@ -87,7 +87,7 @@ export class UInt64Value extends Message<UInt64Value> implements IUInt64Value {
         if (long.isLong(object)) {
             throw new Error("object must be a long")
         }
-        return UInt64Value.create({value: <Long>object})
+        return this.create({value: <Long>object})
     }
 
     static toJson(message: UInt64Value | IUInt64Value): JsonValue {
@@ -110,7 +110,7 @@ export class Int32Value extends Message<Int32Value> implements IInt32Value {
         if (typeof object !== "number") {
             throw new Error("object must be a number")
         }
-        return Int32Value.create({value: object})
+        return this.create({value: object})
     }
 
     static toJson(message: Int32Value | IInt32Value): JsonValue {
@@ -133,7 +133,7 @@ export class UInt32Value extends Message<UInt32Value> implements IUInt32Value {
         if (typeof object !== "number") {
             throw new Error("object must be a number")
         }
-        return UInt32Value.create({value: object})
+        return this.create({value: object})
     }
 
     static toJson(message: UInt32Value | IUInt32Value): JsonValue {
@@ -156,7 +156,7 @@ export class BoolValue extends Message<BoolValue> implements IBoolValue {
         if (typeof object !== "boolean") {
             throw new Error("object must be a boolean")
         }
-        return BoolValue.create({value: object})
+        return this.create({value: object})
     }
 
     static toJson(message: BoolValue | IBoolValue): JsonValue {
@@ -179,7 +179,7 @@ export class StringValue extends Message<StringValue> implements IStringValue {
         if (typeof object !== "string") {
             throw new Error("object must be a string")
         }
-        return StringValue.create({value: object})
+        return this.create({value: object})
     }
 
     static toJson(message: StringValue | IStringValue): JsonValue {
@@ -204,7 +204,7 @@ export class BytesValue extends Message<BytesValue> implements IBytesValue {
         }
         const buffer = new Uint8Array(0)
         base64.decode(object, buffer, 0)
-        return BytesValue.create({value: buffer})
+        return this.create({value: buffer})
     }
 
     static toJson(message: BytesValue | IBytesValue): JsonValue {

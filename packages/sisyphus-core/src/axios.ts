@@ -18,7 +18,8 @@ export function axios(host: string): IHttpImpl {
             responseType: request.bodyType == "protobuf" ? "arraybuffer" : "json",
             method: <any>request.method,
             params: request.params,
-            url: request.url
+            url: request.url,
+            data: request.body
         }
 
         try {

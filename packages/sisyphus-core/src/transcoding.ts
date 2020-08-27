@@ -48,7 +48,7 @@ export interface IHttpRequest {
     url: string,
     method: string,
     params: { [k: string]: any },
-    body: ArrayBuffer | any,
+    body?: ArrayBuffer | any,
     bodyType: BodyType
     headers: { [k: string]: string }
 }
