@@ -1,6 +1,13 @@
 import {IRpcImpl} from "./client"
 import u, {RequestOptionsWithResponse, RequestResponse} from "umi-request"
-import {BodyType, IHttpImpl, IHttpRequest, IHttpResponse, transcoding as baseTranscoding} from "./transcoding";
+import {
+    BodyType,
+    IHttpImpl,
+    IHttpRequest,
+    IHttpResponse,
+    serializeParam,
+    transcoding as baseTranscoding
+} from "./transcoding";
 
 function convertResponse(response: RequestResponse): IHttpResponse {
     const headers: { [k: string]: string } = {}
@@ -23,6 +30,7 @@ export function umi(host: string): IHttpImpl {
             responseType: request.bodyType == "protobuf" ? (isBrowser ? "arrayBuffer" : <any>"buffer") : "json",
             method: <any>request.method,
             params: request.params,
+            paramsSerializer: serializeParam,
             data: request.body,
             getResponse: true
         }
