@@ -1,5 +1,5 @@
 import {Message, MessageConstructor} from "./message"
-import {IRpcImpl} from "./client"
+import {IRpcConfig, IRpcImpl} from "./client"
 import {Method, Type} from "protobufjs"
 import {GrpcStatusError} from "./error";
 
@@ -63,6 +63,10 @@ export interface IHttpImpl {
     (request: IHttpRequest): Promise<IHttpResponse>
 }
 
+export interface ITranscodingConfig extends IRpcConfig {
+    bodyType: (desc: Method, message: any) => Promise<BodyType>
+}
+
 export type BodyType = "protobuf" | "json"
 
 function getField(message: any, field: string | string[]): any {
@@ -91,7 +95,7 @@ export function fillUrl(url: string, message: any): string {
     return url.replace(/{([a-zA-Z0-9_]+)(?:=[^}]+)?}/g, (substring, g1) => `${getField(message, g1)}`)
 }
 
-export function transcoding(http: IHttpImpl, bodyType: BodyType, metadata: { [k: string]: string } = {}, interceptor?: (req: IHttpRequest, res: IHttpResponse) => Promise<void>): IRpcImpl {
+export function transcoding(http: IHttpImpl, config?: ITranscodingConfig): IRpcImpl {
     return async function (desc: Method, message: Message | { [k: string]: any }, meta?: { [k: string]: string }): Promise<Message> {
         const rule: IHttpRule = exportHttpRule(desc.options)
         if (!rule.pattern) throw new Error(`Transcoding not support for '${desc.fullName}', 'http' option required.`)
@@ -99,6 +103,9 @@ export function transcoding(http: IHttpImpl, bodyType: BodyType, metadata: { [k:
         if (desc.resolvedRequestType?.messageCtor == null || desc.resolvedResponseType?.messageCtor == null) {
             throw Error("Reflection info missed.")
         }
+
+        const metadata = config?.metadataProvider ? await config.metadataProvider(desc, message) : undefined
+        const bodyType = config?.bodyType ? await config.bodyType(desc, message) : "protobuf"
 
         let method: string,
             url: string,
@@ -164,6 +171,10 @@ export function transcoding(http: IHttpImpl, bodyType: BodyType, metadata: { [k:
 
         const response = await http(request)
 
+        if (config?.metadataHandler) {
+            await config.metadataHandler(desc, response.headers)
+        }
+
         if (response.status < 300) {
             if (request.bodyType == "protobuf") {
                 return desc.resolvedResponseType.messageCtor.decode(<any>response.body)
@@ -177,7 +188,11 @@ export function transcoding(http: IHttpImpl, bodyType: BodyType, metadata: { [k:
             } else {
                 status = desc.root.lookupType(".google.rpc.Status").messageCtor.fromJson(<any>response.body)
             }
-            throw new GrpcStatusError(status.code, status.message, status.details)
+            const error = new GrpcStatusError(status.code, status.message, status.details)
+            if (config?.errorHandler) {
+                return await config.errorHandler(desc, error)
+            }
+            throw error
         }
     }
 }
