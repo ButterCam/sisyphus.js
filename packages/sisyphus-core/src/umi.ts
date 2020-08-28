@@ -1,10 +1,10 @@
 import {IRpcImpl} from "./client"
 import u, {RequestOptionsWithResponse, RequestResponse} from "umi-request"
 import {
-    BodyType,
     IHttpImpl,
     IHttpRequest,
     IHttpResponse,
+    ITranscodingConfig,
     serializeParam,
     transcoding as baseTranscoding
 } from "./transcoding";
@@ -48,6 +48,6 @@ export function umi(host: string): IHttpImpl {
     }
 }
 
-export let transcoding = function (host: string, bodyType: BodyType, metadata: { [k: string]: string } = {}, interceptor?: (req: IHttpRequest, res: IHttpResponse) => Promise<void>): IRpcImpl {
-    return baseTranscoding(umi(host), bodyType, metadata, interceptor)
+export let transcoding = function (host: string, config?: ITranscodingConfig): IRpcImpl {
+    return baseTranscoding(umi(host), config)
 }

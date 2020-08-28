@@ -1,10 +1,10 @@
 import {IRpcImpl} from "./client"
 import ax, {AxiosRequestConfig, AxiosResponse} from "axios"
 import {
-    BodyType,
     IHttpImpl,
     IHttpRequest,
     IHttpResponse,
+    ITranscodingConfig,
     serializeParam,
     transcoding as baseTranscoding
 } from "./transcoding"
@@ -43,6 +43,6 @@ export function axios(host: string): IHttpImpl {
     }
 }
 
-export let transcoding = function (host: string, bodyType: BodyType, metadata: { [k: string]: string } = {}, interceptor?: (req: IHttpRequest, res: IHttpResponse) => Promise<void>): IRpcImpl {
-    return baseTranscoding(axios(host), bodyType, metadata, interceptor)
+export let transcoding = function (host: string, config?: ITranscodingConfig): IRpcImpl {
+    return baseTranscoding(axios(host), config)
 }
