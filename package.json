@@ -2,6 +2,11 @@
   "name": "root",
   "private": true,
   "devDependencies": {
-    "lerna": "^3.22.1"
+    "lerna": "^3.22.1",
+    "typescript": "^4.0.2"
+  },
+  "scripts": {
+    "prepare": "lerna bootstrap --hoist && lerna run build",
+    "publish": "lerna publish from-package --yes"
   }
 }
