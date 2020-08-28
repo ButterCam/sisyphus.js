@@ -1,10 +1,13 @@
 {
   "name": "@sisyphus.js/core",
-  "version": "0.0.1-alpha.7",
+  "version": "0.0.1-alpha.8",
   "description": "Protobuf runtime for sisyphus project on js platform",
   "author": "Kanro <higan@live.cn>",
-  "homepage": "",
-  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ButterCam/sisyphus-js/issues"
+  },
+  "homepage": "https://github.com/ButterCam/sisyphus-js",
+  "license": "MIT",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "directories": {

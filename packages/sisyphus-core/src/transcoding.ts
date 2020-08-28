@@ -181,3 +181,33 @@ export function transcoding(http: IHttpImpl, bodyType: BodyType, metadata: { [k:
         }
     }
 }
+
+export function serializeParam(params: any, prefix ?: string): string {
+    if (!params) return ''
+    if (typeof params !== "object") return ''
+
+    const result: string[] = []
+
+    for (let key in params) {
+        if (params.hasOwnProperty(key)) {
+            let value = params[key]
+            if (!value) continue
+
+            if (!Array.isArray(value)) {
+                if (typeof value === "object") {
+                    result.push(serializeParam(value, key))
+                    continue
+                }
+                value = [value]
+            }
+
+            if (prefix) {
+                result.push(`${prefix}.${key}=${value.join(",")}`)
+            } else {
+                result.push(`${key}=${value.join(",")}`)
+            }
+        }
+    }
+
+    return result.join("&")
+}

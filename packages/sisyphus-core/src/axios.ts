@@ -1,6 +1,13 @@
 import {IRpcImpl} from "./client"
 import ax, {AxiosRequestConfig, AxiosResponse} from "axios"
-import {BodyType, IHttpImpl, IHttpRequest, IHttpResponse, transcoding as baseTranscoding} from "./transcoding";
+import {
+    BodyType,
+    IHttpImpl,
+    IHttpRequest,
+    IHttpResponse,
+    serializeParam,
+    transcoding as baseTranscoding
+} from "./transcoding"
 
 function convertResponse(response: AxiosResponse): IHttpResponse {
     return {
@@ -18,6 +25,7 @@ export function axios(host: string): IHttpImpl {
             responseType: request.bodyType == "protobuf" ? "arraybuffer" : "json",
             method: <any>request.method,
             params: request.params,
+            paramsSerializer: serializeParam,
             url: request.url,
             data: request.body
         }
