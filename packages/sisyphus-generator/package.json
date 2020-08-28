@@ -18,7 +18,7 @@
     "src"
   ],
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "build": "tsc"
   },
   "dependencies": {
     "@sisyphus.js/core": "^0.0.1-alpha.8",
