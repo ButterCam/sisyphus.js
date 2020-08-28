@@ -3,8 +3,11 @@
   "version": "0.0.1-alpha.7",
   "description": "Protobuf generator for sisyphus project on js platform",
   "author": "Kanro <higan@live.cn>",
-  "homepage": "github.com/ButterCam/sisyphus-js",
-  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ButterCam/sisyphus-js/issues"
+  },
+  "homepage": "https://github.com/ButterCam/sisyphus-js",
+  "license": "MIT",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "directories": {
