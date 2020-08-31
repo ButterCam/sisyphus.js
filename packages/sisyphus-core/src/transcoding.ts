@@ -216,10 +216,12 @@ export function serializeParam(params: any, prefix ?: string): string {
                 value = [value]
             }
 
-            if (prefix) {
-                result.push(`${prefix}.${key}=${value.join(",")}`)
-            } else {
-                result.push(`${key}=${value.join(",")}`)
+            for (const item of value) {
+                if (prefix) {
+                    result.push(`${prefix}.${key}=${item}`)
+                } else {
+                    result.push(`${key}=${item}`)
+                }
             }
         }
     }
