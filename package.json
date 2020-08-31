@@ -7,7 +7,6 @@
   },
   "scripts": {
     "prepare": "lerna bootstrap --hoist && lerna run build",
-    "publish": "lerna publish from-package --yes",
-    "publish-gpr": "lerna publish from-package --yes --registry https://npm.pkg.github.com/"
+    "publish": "lerna publish from-package --yes"
   }
 }
