@@ -1,5 +1,7 @@
 # Sisyphus for JavaScript/TypeScript
 
+[![](https://img.shields.io/npm/v/@sisyphus.js/core)](https://www.npmjs.com/package/@sisyphus.js/core) ![](https://img.shields.io/librariesio/release/npm/@sisyphus.js/core)
+
 Sisyphus.JS is the way how we connect with our Sisyphus backend services. It uses [HTTP and gRPC Transcoding](https://aip.bybutter.com/127) to call gRPC APIs.
 
 ## 🚀 Quick Start
