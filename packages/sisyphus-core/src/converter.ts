@@ -183,6 +183,9 @@ export function toJson(field: MapField | Field | Type | Enum | string, value: an
         case "sint64":
         case "fixed64":
         case "sfixed64":
+            if (long.isLong(value)) {
+                return value.toNumber()
+            }
             return value
     }
 }

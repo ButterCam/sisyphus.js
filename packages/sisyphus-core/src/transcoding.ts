@@ -80,19 +80,21 @@ function getField(message: any, field: string | string[]): any {
     return message
 }
 
-function getFieldInfo(type: Type, field: string | string[]): Type {
+function getFieldInfo(type: Type, field: string | string[]): Type | null {
     if (typeof field === "string") {
         return getFieldInfo(type, field.split("."))
     }
 
     for (let string of field) {
         type = <any>type.fields[string].resolvedType
+        if (!type) return null
     }
+
     return type
 }
 
 export function fillUrl(url: string, message: any): string {
-    return url.replace(/{([a-zA-Z0-9_]+)(?:=[^}]+)?}/g, (substring, g1) => `${getField(message, g1)}`)
+    return url.replace(/{([a-zA-Z0-9_.]+)(?:=[^}]+)?}/g, (substring, g1) => `${getField(message, g1)}`)
 }
 
 export function transcoding(http: IHttpImpl, config?: ITranscodingConfig): IRpcImpl {
@@ -135,8 +137,9 @@ export function transcoding(http: IHttpImpl, config?: ITranscodingConfig): IRpcI
                 break
             default:
                 data = getField(message, rule.body)
-                if (data && data instanceof Message) {
-                    messageCtor = getFieldInfo(desc.resolvedRequestType.messageCtor.$type, rule.body).messageCtor
+                let type = getFieldInfo(desc.resolvedRequestType.messageCtor.$type, rule.body)
+                if (data && type) {
+                    messageCtor = type.messageCtor
                 }
                 break
         }
