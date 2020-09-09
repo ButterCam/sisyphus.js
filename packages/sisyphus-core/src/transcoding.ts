@@ -1,6 +1,6 @@
 import {Message, MessageConstructor} from "./message"
 import {IRpcConfig, IRpcImpl} from "./client"
-import {Method, Type} from "protobufjs"
+import {Method, Type, util} from "protobufjs"
 import {GrpcStatusError} from "./error";
 
 export interface IHttpRule {
@@ -75,7 +75,7 @@ function getField(message: any, field: string | string[]): any {
     }
 
     for (let string of field) {
-        message = message[string]
+        message = message[util.camelCase(string)]
     }
     return message
 }
@@ -86,7 +86,7 @@ function getFieldInfo(type: Type, field: string | string[]): Type | null {
     }
 
     for (let string of field) {
-        type = <any>type.fields[string].resolvedType
+        type = <any>type.fields[util.camelCase(string)].resolvedType
         if (!type) return null
     }
 

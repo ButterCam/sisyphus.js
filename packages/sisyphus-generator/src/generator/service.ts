@@ -40,7 +40,7 @@ export class ServiceSpec implements GeneratorSpec {
             if (method.comment != null) {
                 b.appendLn(normalizeComment(method.comment))
             }
-            b.beginBlock(`async ${method.name}(input: ${this.file.typename(<any>method.resolvedRequestType)}, metadata?: { [k: string]: string }): Promise<${this.file.classname(<any>method.resolvedResponseType)}>`)
+            b.beginBlock(`${method.name} = async (input: ${this.file.typename(<any>method.resolvedRequestType)}, metadata?: { [k: string]: string }): Promise<${this.file.classname(<any>method.resolvedResponseType)}> =>`)
             b.appendLn(`return await this.$call(this.$service.methods["${method.name}"], input, metadata)`)
             b.endBlock()
         }
