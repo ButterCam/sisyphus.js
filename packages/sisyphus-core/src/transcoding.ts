@@ -159,11 +159,13 @@ export function transcoding(http: IHttpImpl, config?: ITranscodingConfig): IRpcI
             }
         }
 
-        if (rule.body != "*") {
+        const requestBodyField = rule.body ? util.camelCase(rule.body.split(".")[0]) : ""
+        if (requestBodyField != "*") {
             for (let key in message) {
-                if (message.hasOwnProperty(key) && key != rule.body) {
-                    params[key] = (<any>message)[key]
-                }
+                if (!message.hasOwnProperty(key)) continue
+                if (key == requestBodyField) continue
+
+                params[key] = (<any>message)[key]
             }
         }
 

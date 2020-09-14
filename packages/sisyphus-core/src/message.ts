@@ -135,10 +135,12 @@ export class Message<T extends object = object> {
         const result: any = new this()
         for (let key in object) {
             if (!object.hasOwnProperty(key)) continue
-            let field = this.$type.fields[key]
+            const field = this.$type.fields[key]
             if (!field) continue
+            const value = (<any>object)[key]
+            if (value === undefined) continue
 
-            (<any>result)[key] = fromJson(field, (<any>object)[key])
+            (<any>result)[key] = fromJson(field, value)
         }
         return result
     }
@@ -147,10 +149,12 @@ export class Message<T extends object = object> {
         const result: JsonValue = {}
         for (let key in message) {
             if (!message.hasOwnProperty(key)) continue
-            let field = this.$type.fields[key]
+            const field = this.$type.fields[key]
             if (!field) continue
+            const value = (<any>message)[key]
+            if (value === undefined) continue
 
-            result[key] = toJson(field, (<any>message)[key])
+            result[key] = toJson(field, value)
         }
         return result
     }
