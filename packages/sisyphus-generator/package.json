@@ -1,6 +1,6 @@
 {
   "name": "@sisyphus.js/generator",
-  "version": "0.0.1-alpha.11",
+  "version": "0.0.1-alpha.12",
   "description": "Protobuf generator for sisyphus project on js platform",
   "author": "Kanro <higan@live.cn>",
   "bugs": {
@@ -21,7 +21,7 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@sisyphus.js/core": "^0.0.1-alpha.11",
+    "@sisyphus.js/core": "^0.0.1-alpha.12",
     "change-case": "^4.1.1",
     "protobufjs": "^6.10.1"
   },
