@@ -21,7 +21,7 @@
     "build": "tsc"
   },
   "devDependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "umi-request": "^1.3.5"
   },
   "dependencies": {
