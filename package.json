@@ -7,6 +7,6 @@
   },
   "scripts": {
     "prepare": "lerna bootstrap --hoist && lerna run build",
-    "publish": "lerna publish from-package --yes"
+    "publish": "lerna publish from-package --yes --no-verify-access"
   }
 }
