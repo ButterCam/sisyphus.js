@@ -74,8 +74,10 @@ export class Any extends Message<Any> implements IAny {
                 value: result
             }
         }
-        (<any>result)["@type"] = `types.bybutter.com/${message.$type.fullName.substring(1)}`
-        return result
+        return {
+            "@type": typeUrl,
+            ...result
+        }
     }
 
     static wrap(value: Message): Any {
