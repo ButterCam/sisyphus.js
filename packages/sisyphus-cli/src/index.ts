@@ -11,13 +11,13 @@ export async function main(args: string[]): Promise<number> {
     program.option('-I --path <path>', "include paths.", collect, [])
     program.requiredOption('-O --output <output>', "output dir.")
         .parse(args)
-
-    let generator = new GeneratorContext()
-
-    for (let path of program.path) {
-        generator.include(path)
+    const generator = new GeneratorContext()
+    const { path, output } = program.opts()
+    for (const item of path) {
+        generator.include(item)
     }
-    await generator.generate(program.output, ...program.args)
+    await generator.generate(output, ...program.args)
+
     return 0
 }
 
