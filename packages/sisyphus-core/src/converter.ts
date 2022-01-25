@@ -82,6 +82,20 @@ export function normalizeField(field: MapField | Field | Type | Enum | string, v
     }
 }
 
+function enumValue(definition: Enum, value: any): string {
+    if(typeof value === "string") {
+        return value
+    }
+    return definition.valuesById[value]
+}
+
+function enumId(definition: Enum, value: any): number {
+    if(typeof value === "number") {
+        return value
+    }
+    return definition.values[value]
+}
+
 export function fromJson(field: MapField | Field | Type | Enum | string, value: any): any {
     if (field instanceof MapField) {
         const result: any = {}
@@ -91,7 +105,7 @@ export function fromJson(field: MapField | Field | Type | Enum | string, value: 
             if (field.resolvedType instanceof Type) {
                 result[key] = field.resolvedType.messageCtor.fromJson(value[key])
             } else if (field.resolvedType instanceof Enum) {
-                result[key] = field.resolvedType.values[value[key]]
+                result[key] = enumId(field.resolvedType, value[key])
             } else {
                 result[key] = fromJson(field.type, value[key])
             }
@@ -107,7 +121,7 @@ export function fromJson(field: MapField | Field | Type | Enum | string, value: 
         if (field.resolvedType instanceof Type) {
             return field.resolvedType.messageCtor.fromJson(value)
         } else if (field.resolvedType instanceof Enum) {
-            return field.resolvedType.values[value]
+            return enumId(field.resolvedType, value)
         } else {
             return fromJson(field.type, value)
         }
@@ -118,7 +132,7 @@ export function fromJson(field: MapField | Field | Type | Enum | string, value: 
     }
 
     if (field instanceof Enum) {
-        return field.values[value]
+        return enumId(field, value)
     }
 
     return normalizeField(field, value)
@@ -133,7 +147,7 @@ export function toJson(field: MapField | Field | Type | Enum | string, value: an
             if (field.resolvedType instanceof Type) {
                 result[key] = field.resolvedType.messageCtor.toJson(value[key])
             } else if (field.resolvedType instanceof Enum) {
-                result[key] = field.resolvedType.valuesById[value[key]]
+                result[key] = enumValue(field.resolvedType, value[key])
             } else {
                 result[key] = toJson(field.type, value[key])
             }
@@ -149,7 +163,7 @@ export function toJson(field: MapField | Field | Type | Enum | string, value: an
         if (field.resolvedType instanceof Type) {
             return field.resolvedType.messageCtor.toJson(value)
         } else if (field.resolvedType instanceof Enum) {
-            return field.resolvedType.valuesById[value]
+            return enumValue(field.resolvedType, value)
         } else {
             return toJson(field.type, value)
         }
@@ -160,7 +174,7 @@ export function toJson(field: MapField | Field | Type | Enum | string, value: an
     }
 
     if (field instanceof Enum) {
-        return field.valuesById[value]
+        return enumValue(field, value)
     }
 
     switch (field) {
