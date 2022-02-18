@@ -223,7 +223,7 @@ export function serializeParam(params: any, prefix ?: string): string {
 
             for (const item of value) {
                 if (prefix) {
-                    result.push(`${prefix}.${key}=${item}`)
+                    result.push(`${prefix}.${key}=${encodeURIComponent('' + item)}`)
                 } else {
                     result.push(`${key}=${item}`)
                 }
