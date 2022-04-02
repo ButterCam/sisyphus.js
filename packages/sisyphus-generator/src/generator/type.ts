@@ -82,7 +82,7 @@ export class TypeSpec implements GeneratorSpec {
                 case "sfixed64":
                     return `$${this.file.importProtobuf()}.Long`
                 case ".google.protobuf.Any":
-                    return `$${this.file.importProtobuf()}.Message`
+                    return `$${this.file.importSisyphus()}.Message`
                 default:
                     return protocol ? this.file.typename(this._reflection.root.lookupTypeOrEnum(field)) : this.file.classname(this._reflection.root.lookupTypeOrEnum(field))
             }
