@@ -1,6 +1,6 @@
 {
   "name": "@sisyphus.js/cli",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Protobuf generator cli for sisyphus project",
   "author": "Kanro <higan@live.cn>",
   "bugs": {
@@ -24,7 +24,7 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@sisyphus.js/generator": "^0.0.5",
+    "@sisyphus.js/core": "^0.0.6",
     "commander": "^8.3.0"
   },
   "devDependencies": {
