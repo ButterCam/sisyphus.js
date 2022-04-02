@@ -24,7 +24,7 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@sisyphus.js/core": "^0.0.6",
+    "@sisyphus.js/generator": "^0.0.6",
     "commander": "^8.3.0"
   },
   "devDependencies": {
