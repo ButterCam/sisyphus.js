@@ -21,7 +21,7 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@sisyphus.js/core": "^0.0.3",
+    "@sisyphus.js/core": "^0.0.5",
     "change-case": "^4.1.1",
     "protobufjs": "^6.10.1"
   },
