@@ -52,7 +52,7 @@ export function normalizeField(field: MapField | Field | Type | Enum | string, v
             return `${value}`
         case "bytes":
             if (typeof value === "string") {
-                const result = new Uint8Array(0)
+                const result = new Uint8Array(Math.ceil(value.length / 4.0) * 3)
                 util.base64.decode(value, result, 0)
                 return result
             }

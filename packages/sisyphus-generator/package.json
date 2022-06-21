@@ -1,6 +1,6 @@
 {
   "name": "@sisyphus.js/generator",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Protobuf generator for sisyphus project on js platform",
   "author": "Kanro <higan@live.cn>",
   "bugs": {
