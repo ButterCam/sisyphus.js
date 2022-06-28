@@ -1,0 +1,45 @@
+{
+  "name": "@sisyphus.js/transport-aip",
+  "version": "2.0.0",
+  "description": "gRPC transport based on AIP spec(gRPC to HTTP/Json Transcoding).",
+  "main": "lib/index.js",
+  "scripts": {
+    "clean": "tsc --build --clean",
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "mocha"
+  },
+  "files": [
+    "lib",
+    "src"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ButterCam/sisyphus-js.git"
+  },
+  "keywords": [
+    "sisyphus",
+    "protobuf",
+    "grpc",
+    "protoc"
+  ],
+  "author": "higan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ButterCam/sisyphus-js/issues"
+  },
+  "homepage": "https://github.com/ButterCam/sisyphus-js#readme",
+  "dependencies": {
+    "@sisyphus.js/google": "^2.0.0",
+    "@sisyphus.js/runtime": "^2.0.0"
+  },
+  "directories": {
+    "lib": "lib",
+    "proto": "proto"
+  },
+  "protobuf": {
+    "plugins": [
+      "core"
+    ]
+  }
+}

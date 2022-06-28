@@ -1,0 +1,40 @@
+{
+  "name": "@sisyphus.js/protoc",
+  "version": "2.0.0",
+  "description": "Install protoc for current platform.",
+  "main": "lib/index.js",
+  "bin": {
+    "protoc": "lib/protoc.bin.js"
+  },
+  "scripts": {
+    "clean": "tsc --build --clean",
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ButterCam/sisyphus-js.git"
+  },
+  "keywords": [
+    "sisyphus",
+    "protobuf",
+    "grpc",
+    "protoc"
+  ],
+  "author": "higan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ButterCam/sisyphus-js/issues"
+  },
+  "homepage": "https://github.com/ButterCam/sisyphus-js#readme",
+  "devDependencies": {
+    "@types/adm-zip": "^0.4.34",
+    "@types/node": "^17.0.14",
+    "@types/npmlog": "^4.1.4"
+  },
+  "dependencies": {
+    "adm-zip": "^0.5.9",
+    "npmlog": "^6.0.2"
+  }
+}

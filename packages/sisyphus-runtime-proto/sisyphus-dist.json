@@ -1,0 +1,16 @@
+{
+  "version": "1.0",
+  "generatedFiles": [
+    "google/protobuf/any.proto.ts",
+    "google/protobuf/source_context.proto.ts",
+    "google/protobuf/type.proto.ts",
+    "google/protobuf/api.proto.ts",
+    "google/protobuf/descriptor.proto.ts",
+    "google/protobuf/duration.proto.ts",
+    "google/protobuf/empty.proto.ts",
+    "google/protobuf/field_mask.proto.ts",
+    "google/protobuf/struct.proto.ts",
+    "google/protobuf/timestamp.proto.ts",
+    "google/protobuf/wrappers.proto.ts"
+  ]
+}

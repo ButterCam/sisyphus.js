@@ -1,0 +1,38 @@
+{
+  "name": "@sisyphus.js/cli",
+  "version": "2.0.0",
+  "description": "Protoc cli for sisyphus project on js platform",
+  "bin": {
+    "sisygen": "lib/index.js"
+  },
+  "scripts": {
+    "clean": "tsc --build --clean",
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ButterCam/sisyphus-js.git"
+  },
+  "keywords": [
+    "sisyphus",
+    "protobuf",
+    "grpc",
+    "protoc"
+  ],
+  "author": "higan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ButterCam/sisyphus-js/issues"
+  },
+  "homepage": "https://github.com/ButterCam/sisyphus-js#readme",
+  "dependencies": {
+    "@sisyphus.js/compiler": "^2.0.0",
+    "@sisyphus.js/protoc": "^2.0.0",
+    "@sisyphus.js/runtime": "^2.0.0",
+    "@sisyphus.js/runtime.proto": "^2.0.0",
+    "commander": "^9.3.0",
+    "npmlog": "^6.0.2"
+  }
+}

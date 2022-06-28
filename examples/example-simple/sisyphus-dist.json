@@ -1,0 +1,23 @@
+{
+  "version": "1.0",
+  "generatedFiles": [
+    "google/showcase/v1beta1/compliance.aip.ts",
+    "google/showcase/v1beta1/echo.aip.ts",
+    "google/showcase/v1beta1/identity.aip.ts",
+    "google/showcase/v1beta1/messaging.aip.ts",
+    "google/showcase/v1beta1/sequence.aip.ts",
+    "google/showcase/v1beta1/testing.aip.ts",
+    "google/showcase/v1beta1/compliance.proto.ts",
+    "google/showcase/v1beta1/echo.proto.ts",
+    "google/showcase/v1beta1/identity.proto.ts",
+    "google/showcase/v1beta1/messaging.proto.ts",
+    "google/showcase/v1beta1/sequence.proto.ts",
+    "google/showcase/v1beta1/testing.proto.ts",
+    "google/showcase/v1beta1/compliance.ts",
+    "google/showcase/v1beta1/echo.ts",
+    "google/showcase/v1beta1/identity.ts",
+    "google/showcase/v1beta1/messaging.ts",
+    "google/showcase/v1beta1/sequence.ts",
+    "google/showcase/v1beta1/testing.ts"
+  ]
+}

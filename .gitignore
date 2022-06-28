@@ -1,0 +1,37 @@
+# Logs
+logs
+log
+*.log
+npm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+
+# Dependency directories
+node_modules
+jspm_packages
+
+# Optional npm cache directory
+.npm
+
+# Compiled result
+**/lib/**
+**/dist/**
+
+# Generated result
+**/generated/**
+
+# IDEA
+.idea/
+*.iml
+
+# Test project
+packages/test/
+
+# Installed protoc binary
+packages/sisyphus-protoc/installed
+
+# Test
+.nyc_output

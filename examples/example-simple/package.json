@@ -1,0 +1,49 @@
+{
+  "name": "@sisyphus.js/example-simple",
+  "version": "2.0.0",
+  "description": "Example project using sisyphus.js",
+  "main": "dist/index.js",
+  "scripts": {
+    "clean": "tsc --build --clean",
+    "build": "tsc -b -v",
+    "watch": "tsc -w",
+    "protoc": "sisygen -O ./generated -x ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ButterCam/sisyphus-js.git"
+  },
+  "keywords": [
+    "sisyphus",
+    "protobuf",
+    "grpc",
+    "protoc"
+  ],
+  "author": "higan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ButterCam/sisyphus-js/issues"
+  },
+  "homepage": "https://github.com/ButterCam/sisyphus-js#readme",
+  "devDependencies": {
+    "@sisyphus.js/cli": "^2.0.0"
+  },
+  "dependencies": {
+    "@sisyphus.js/runtime": "^2.0.0",
+    "@sisyphus.js/runtime.proto": "^2.0.0",
+    "@sisyphus.js/google": "^2.0.0",
+    "@sisyphus.js/google.proto": "^2.0.0",
+    "@sisyphus.js/transport-aip": "^2.0.0"
+  },
+  "directories": {
+    "proto": "proto"
+  },
+  "protobuf": {
+    "plugins": [
+      "core",
+      "proto",
+      "aip"
+    ]
+  },
+  "private": true
+}

@@ -1,0 +1,8 @@
+import './google/api/annotations.proto'
+import './google/api/client.proto'
+import './google/api/field_behavior.proto'
+import './google/api/resource.proto'
+import './google/api/routing.proto'
+import './google/api/visibility.proto'
+import './google/cloud/extended_operations.proto'
+import './google/longrunning/operations.proto'
