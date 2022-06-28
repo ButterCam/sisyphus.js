@@ -7,9 +7,9 @@ export interface Rpc {
 }
 
 export interface TranscodingListener {
-    onRequest(method: MethodDescriptor, input: any, request: Request): Promise<Request>
+    onRequest?: (method: MethodDescriptor, input: any, request: Request) => Promise<Request>
 
-    onResponse(method: MethodDescriptor, request: Request, response: Response): Promise<void>
+    onResponse?: (method: MethodDescriptor, request: Request, response: Response) => Promise<void>
 }
 
 export class StatusError extends Error {
@@ -27,7 +27,7 @@ export class StatusError extends Error {
     }
 }
 
-export function transcoding(host: string, config: TranscodingListener): Rpc {
+export function transcoding(host: string, config?: TranscodingListener): Rpc {
     return async function (method: MethodDescriptor, input: any): Promise<any> {
         let rawInput = input
         input = {...input}
@@ -86,9 +86,14 @@ export function transcoding(host: string, config: TranscodingListener): Rpc {
             path = `${path}?${query}`
         }
 
-        const request = await config.onRequest(method, rawInput, new Request(host + path, requestInfo))
+        let request = new Request(host + path, requestInfo)
+        if (config?.onRequest !== undefined) {
+            request = await config.onRequest(method, rawInput, request)
+        }
         const response = await fetch(request)
-        await config.onResponse(method, request, response)
+        if (config?.onResponse !== undefined) {
+            await config.onResponse(method, request, response)
+        }
 
         if (response.ok) {
             return await response.json()

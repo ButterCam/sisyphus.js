@@ -25,7 +25,6 @@ export async function main(args: string[]): Promise<number> {
     const packageInfo = (await readConfigJson<PackageJson>(path.join(__dirname, '../package.json')))!
     program.version(packageInfo.version)
     program.requiredOption('-O --output <output>', 'Folder to output ts files.')
-    program.option('-x --include-json-output <json>', 'Folder to output the include json.')
         .parse(args)
     program.opts()
 

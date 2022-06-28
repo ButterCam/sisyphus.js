@@ -7,7 +7,7 @@
     "clean": "tsc --build --clean",
     "build": "tsc",
     "watch": "tsc -w",
-    "protoc": "sisygen -O ./src -x .",
+    "protoc": "sisygen -O ./src",
     "test": "mocha"
   },
   "files": [

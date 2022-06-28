@@ -7,7 +7,7 @@
     "clean": "tsc --build --clean",
     "build": "tsc -b -v",
     "watch": "tsc -w",
-    "protoc": "sisygen -O ./generated -x ."
+    "protoc": "sisygen -O ./generated"
   },
   "repository": {
     "type": "git",
