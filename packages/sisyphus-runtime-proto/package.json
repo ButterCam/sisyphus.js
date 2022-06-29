@@ -17,6 +17,9 @@
     "type": "git",
     "url": "git+https://github.com/ButterCam/sisyphus-js.git"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "keywords": [
     "sisyphus",
     "protobuf",
