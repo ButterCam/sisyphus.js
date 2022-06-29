@@ -15,7 +15,6 @@
     "clean": "lerna run clean",
     "build": "lerna bootstrap --hoist && lerna run clean && lerna run build",
     "publish": "lerna publish from-package --yes --no-verify-access",
-    "tsc": "lerna run clean && lerna run build",
     "watch": "lerna run --stream --no-sort --concurrency 9999 watch",
     "test": "lerna run test"
   }
