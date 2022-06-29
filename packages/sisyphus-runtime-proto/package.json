@@ -7,8 +7,7 @@
     "clean": "tsc --build --clean",
     "build": "tsc",
     "watch": "tsc -w",
-    "test": "mocha",
-    "protoc": "sisygen -O src -x ."
+    "test": "mocha"
   },
   "files": [
     "lib",
@@ -31,7 +30,6 @@
   },
   "homepage": "https://github.com/ButterCam/sisyphus-js#readme",
   "devDependencies": {
-    "@sisyphus.js/cli": "^2.0.0"
   },
   "dependencies": {
     "@sisyphus.js/runtime": "^2.0.0"
