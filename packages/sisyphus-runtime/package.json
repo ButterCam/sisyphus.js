@@ -12,7 +12,8 @@
   "files": [
     "lib",
     "src",
-    "proto"
+    "proto",
+    "sisyphus-dist.json"
   ],
   "repository": {
     "type": "git",
