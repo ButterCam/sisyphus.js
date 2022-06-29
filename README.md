@@ -22,7 +22,7 @@ npm i @sisyphus.js/cli typescript --save-dev
 
 ### 2. 生成代码
 
-将需要编译的 .proto 文件放入项目下的 proto 文件夹中（也可以通过 `package.json` 的 `directories` 属性自动定义 ）
+将需要编译的 .proto 文件放入项目下的 proto 文件夹中（也可以通过 `package.json` 的 `directories` 属性自定义 ）
 
 ```json
 {
