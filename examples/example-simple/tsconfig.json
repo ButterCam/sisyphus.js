@@ -1,12 +1,9 @@
 {
-  "files": [],
-  // this root tsconfig just exists to compose sub-projects
-  "references": [
-    {
-      "path": "./src"
-    },
-    {
-      "path": "./generated"
-    }
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "lib"
+  },
+  "include": [
+    "src"
   ]
 }

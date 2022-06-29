@@ -8,8 +8,7 @@
   "scripts": {
     "clean": "tsc --build --clean",
     "build": "tsc",
-    "watch": "tsc -w",
-    "test": "mocha"
+    "watch": "tsc -w"
   },
   "repository": {
     "type": "git",

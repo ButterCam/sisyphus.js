@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "clean": "tsc --build --clean",
-    "build": "tsc -b -v",
+    "build": "tsc",
     "watch": "tsc -w",
     "protoc": "sisygen -O ./generated"
   },
@@ -26,13 +26,13 @@
   },
   "homepage": "https://github.com/ButterCam/sisyphus-js#readme",
   "devDependencies": {
-    "@sisyphus.js/cli": "^2.0.0"
+    "@sisyphus.js/cli": "^2.0.0",
+    "@sisyphus.js/google.proto": "^2.0.0",
+    "@sisyphus.js/runtime.proto": "^2.0.0"
   },
   "dependencies": {
     "@sisyphus.js/runtime": "^2.0.0",
-    "@sisyphus.js/runtime.proto": "^2.0.0",
     "@sisyphus.js/google": "^2.0.0",
-    "@sisyphus.js/google.proto": "^2.0.0",
     "@sisyphus.js/transport-aip": "^2.0.0"
   },
   "directories": {
