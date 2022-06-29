@@ -28,10 +28,9 @@ export async function discoverPluginsInModule(packageInfo: PackageJson, paths: s
                 queue.push(dep)
                 continue
             }
-            if(info.main !== undefined) {
+            if (info.main !== undefined) {
                 require(modulePath)
             }
-            await discoverPluginsInModule(info, [path.join(modulePath, 'node_modules')].concat(paths))
         }
         devDeps = queue
         queue = []
