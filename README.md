@@ -1,5 +1,7 @@
 # 为 JavaScript/TypeScript 打造的 Sisyphus
 
+[![](https://img.shields.io/npm/v/@sisyphus.js/runtime)](https://www.npmjs.com/package/@sisyphus.js/runtime)
+
 **sisyphus.js** 是专为 JavaScript/TypeScript 编写的 Protobuf 运行时，专为减少生成代码的大小而优化，即便如此，仍然可以在 sisyphus.js 获得不打折扣的 Protobuf 体验。
 
 当采用 [HTTP 与 gRPC 转码](https://aip.bybutter.com/127) 标准时，由于 **sisyphus.js**
@@ -50,12 +52,14 @@ sisyphus.js 内置三个编译插件：
 
 - core 用于生成基础的 Protobuf 消息实体访问 Json 接口，需要添加 `@sisyphus.js/runtime` 运行时依赖。
 - proto 用于生成支持 Protobuf 二进制格式的代码，需要添加 `@sisyphus.js/runtime.proto` 运行时依赖。
-- aip 用于生成基于 HTTP 与 gRPC 转码标准的客户端，需要添加 `@sisyphus.js/transport-aip` 运行时依赖。
+- aip 用于生成基于 HTTP 与 gRPC 转码标准的客户端，需要添加 `@sisyphus.js/transport-aip`，`@sisyphus.js/google`
+  运行时依赖，额外需要添加 `@sisyphus.js/google.proto` 作为编译时的依赖（devDependencies）。
 
 安装生成的代码所需的运行时。
 
 ```shell
-npm i @sisyphus.js/runtime @sisyphus.js/transport-aip --save
+npm i @sisyphus.js/runtime @sisyphus.js/google @sisyphus.js/transport-aip --save
+npm i @sisyphus.js/google.proto --save-dev
 ```
 
 使用 npm run 来编译 proto 文件。

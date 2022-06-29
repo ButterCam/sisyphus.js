@@ -9,36 +9,50 @@ declare module '@sisyphus.js/google/lib/google/longrunning/operations' {
     }
 }
 
-Operations.aipDescriptor =  {
+export * from '@sisyphus.js/google/lib/google/longrunning/operations'
+
+Operations.aipDescriptor = {
     name: 'Operations',
 
     methods: {
         listOperations: {
-            name: 'ListOperations', 
-            i: '.google.longrunning.ListOperationsRequest', 
-            o: '.google.longrunning.ListOperationsResponse', 
-            options: {}
+            name: 'ListOperations',
+            i: '.google.longrunning.ListOperationsRequest',
+            o: '.google.longrunning.ListOperationsResponse',
+            options: {
+                http: {get: '/v1/{name=operations}'},
+                methodSignature: ['name,filter']
+            }
         },
 
         getOperation: {
-            name: 'GetOperation', 
-            i: '.google.longrunning.GetOperationRequest', 
-            o: '.google.longrunning.Operation', 
-            options: {}
+            name: 'GetOperation',
+            i: '.google.longrunning.GetOperationRequest',
+            o: '.google.longrunning.Operation',
+            options: {
+                http: {get: '/v1/{name=operations/**}'},
+                methodSignature: ['name']
+            }
         },
 
         deleteOperation: {
-            name: 'DeleteOperation', 
-            i: '.google.longrunning.DeleteOperationRequest', 
-            o: '.google.protobuf.Empty', 
-            options: {}
+            name: 'DeleteOperation',
+            i: '.google.longrunning.DeleteOperationRequest',
+            o: '.google.protobuf.Empty',
+            options: {
+                http: {delete: '/v1/{name=operations/**}'},
+                methodSignature: ['name']
+            }
         },
 
         cancelOperation: {
-            name: 'CancelOperation', 
-            i: '.google.longrunning.CancelOperationRequest', 
-            o: '.google.protobuf.Empty', 
-            options: {}
+            name: 'CancelOperation',
+            i: '.google.longrunning.CancelOperationRequest',
+            o: '.google.protobuf.Empty',
+            options: {
+                http: {post: '/v1/{name=operations/**}:cancel', body: '*'},
+                methodSignature: ['name']
+            }
         },
 
         waitOperation: {
