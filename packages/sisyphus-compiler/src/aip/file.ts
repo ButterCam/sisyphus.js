@@ -43,6 +43,8 @@ generate<FileAipGeneratingState>('file:aip', it => {
     }
     builder.endBlock()
 
+    builder.normalize().appendLn(`export * from '${coreModule}'`)
+
     for (let service of it.descriptor.services) {
         advance<ServiceAipImplGeneratingState>({
             kind: 'service:aip:impl', parent: it, descriptor: service, target: builder
