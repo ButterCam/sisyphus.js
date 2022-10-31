@@ -15,6 +15,7 @@ jobs:
         with:
           node-version: 16
           registry-url: 'https://registry.npmjs.org'
+      - run: npm config ls
       - run: npm ci
       - run: npm run build
       - run: npm run test
