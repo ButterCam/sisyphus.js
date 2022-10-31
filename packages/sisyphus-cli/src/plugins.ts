@@ -29,7 +29,11 @@ export async function discoverPluginsInModule(packageInfo: PackageJson, paths: s
                 continue
             }
             if (info.main !== undefined) {
-                require(modulePath)
+                try {
+                    require(modulePath)
+                } catch (e) {
+                    log.warn('cli', `Skip import module ${modulePath} due to error: ${e}.`)
+                }
             }
         }
         devDeps = queue

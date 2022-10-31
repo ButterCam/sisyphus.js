@@ -35,6 +35,6 @@
     "@sisyphus.js/runtime": "^2.0.3",
     "@sisyphus.js/runtime.proto": "^2.0.3",
     "commander": "^9.3.0",
-    "npmlog": "^6.0.2"
+    "npmlog": "^7.0.1"
   }
 }
