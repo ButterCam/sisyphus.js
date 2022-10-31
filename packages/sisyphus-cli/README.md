@@ -72,7 +72,7 @@ proto 之间的依赖是非常常见的，多数的 TypeScript/JavaScript 实现
 
 `sisygen` 采用 `sisyphus-dist.json` 文件来编排依赖与依赖中已经生成好的代码，这意味着可以将生成的代码推送到 npm 仓库中，并在后续复用这些代码。
 
-`sisygen` 会发现所有 dependencies 中符合 sisyphus.js 工程结构的包，并将 proto 文件加入编译时依赖，另外如果包还包含默认导入（`package.json` 中拥有 man 字段），sisygen
+`sisygen` 会发现所有 dependencies 中符合 sisyphus.js 工程结构的包，并将 proto 文件加入编译时依赖，另外如果包还包含默认导入（`package.json` 中拥有 main 字段），sisygen
 会自动导入此包，这一般用于有拓展字段定义的包，可以将拓展定义导出到 index.js 中，并被 sisyphus.js 编译器使用。
 
 ```json

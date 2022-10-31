@@ -2,7 +2,6 @@
   "name": "@sisyphus.js/google.aip",
   "version": "2.0.3",
   "description": "Precompiled google common aip clients by sisyphus protobuf compiler",
-  "main": "lib/index.js",
   "scripts": {
     "clean": "tsc --build --clean",
     "build": "tsc",
