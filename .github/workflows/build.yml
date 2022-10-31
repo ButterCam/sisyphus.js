@@ -17,5 +17,11 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - run: npm config ls
       - run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
       - run: npm run build
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
       - run: npm run test
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
