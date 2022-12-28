@@ -16,6 +16,7 @@
     "build": "lerna bootstrap --hoist && lerna run clean && lerna run build",
     "publish": "lerna publish from-package --yes --no-verify-access",
     "watch": "lerna run --stream --no-sort --concurrency 9999 watch",
-    "test": "lerna run test"
+    "test": "lerna run test",
+    "version": "lerna version --no-git-tag-version"
   }
 }
