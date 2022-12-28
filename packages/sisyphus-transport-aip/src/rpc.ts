@@ -28,6 +28,7 @@ export class StatusError extends Error {
 }
 
 export function transcoding(host: string, config?: TranscodingListener): Rpc {
+    host = host.replace(/\/+$/, '')
     return async function (method: MethodDescriptor, input: any): Promise<any> {
         let rawInput = input
         input = {...input}

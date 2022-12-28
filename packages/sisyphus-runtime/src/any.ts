@@ -8,6 +8,8 @@ declare module './google/protobuf/any' {
         function isAny(object: any): boolean
 
         function typeOf(object: any): string
+
+        function typeUrl(type: string): string
     }
 }
 
@@ -20,6 +22,9 @@ Any.isAny = function (object: any): boolean {
 Any.typeOf = function typeOf(object: any): string {
     if (!Any.isAny(object)) throw new Error(`Object must contains '@type' type info.`)
     const type: string = object['@type']
+    return type.substring(type.lastIndexOf('/') + 1)
+}
 
-    return type.substring(type.lastIndexOf('/'))
+Any.typeUrl = function typeUrl(type: string): string {
+    return `type.butterapis.com/${type}`
 }

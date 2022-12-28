@@ -1,6 +1,6 @@
 {
   "name": "@sisyphus.js/runtime",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "Protobuf lite runtime for sisyphus project on js platform, only support JSON format.",
   "main": "lib/index.js",
   "scripts": {

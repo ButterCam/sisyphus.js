@@ -46,7 +46,7 @@ function downloadRedirected(uri: string, redirects: string[] = []): Promise<Inco
     if (redirects.indexOf(uri) >= 0) throw new Error(`Redirect looped.\n${redirects.join('\n')}\n${uri}`)
 
     return new Promise((res, rej) => {
-        requireHttp(url).get(url, (response: IncomingMessage) => {
+        requireHttp(url).get(uri, (response: IncomingMessage) => {
             if (!response.statusCode) return rej(new Error(`Download ${uri} failed.`))
 
             if (response.statusCode >= 400) return rej(new Error(`Download ${uri} failed(${response.statusCode}).`))
@@ -81,7 +81,7 @@ export function getRedirectLocation(uri: string): Promise<string> {
     const url = new URL(uri)
 
     return new Promise((res, rej) => {
-        requireHttp(url).get(url, (response: IncomingMessage) => {
+        requireHttp(url).get(uri, (response: IncomingMessage) => {
             if (!response.statusCode) return rej(new Error(`GET ${uri} failed.`))
 
             if (response.statusCode >= 400) return rej(new Error(`GET ${uri} failed(${response.statusCode}).`))
