@@ -1,6 +1,6 @@
 {
   "name": "@sisyphus.js/example-simple",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "Example project using sisyphus.js",
   "main": "dist/index.js",
   "scripts": {
@@ -26,14 +26,14 @@
   },
   "homepage": "https://github.com/ButterCam/sisyphus-js#readme",
   "devDependencies": {
-    "@sisyphus.js/cli": "^2.0.5",
-    "@sisyphus.js/google.proto": "^2.0.5",
-    "@sisyphus.js/runtime.proto": "^2.0.5"
+    "@sisyphus.js/cli": "^2.0.6",
+    "@sisyphus.js/google.proto": "^2.0.6",
+    "@sisyphus.js/runtime.proto": "^2.0.6"
   },
   "dependencies": {
-    "@sisyphus.js/google": "^2.0.5",
-    "@sisyphus.js/runtime": "^2.0.5",
-    "@sisyphus.js/transport-aip": "^2.0.5"
+    "@sisyphus.js/google": "^2.0.6",
+    "@sisyphus.js/runtime": "^2.0.6",
+    "@sisyphus.js/transport-aip": "^2.0.6"
   },
   "directories": {
     "proto": "proto"
