@@ -151,12 +151,21 @@ function fillUrl(url: string, message: any): string {
 }
 
 function getFieldAndDelete(message: any, field: string): any {
-    const value = message[camelize(field)]
-    message[field] = undefined
+    const camelizeField = camelize(field)
+    const fields = camelizeField.split('.')
+
+    let value = message
+    for (let field of fields) {
+        const current = value[field]
+        if (field === fields[fields.length - 1]) {
+            value[field] = undefined
+        }
+        value = current
+    }
     return value
 }
 
 function camelize(str: string) {
-    str = str.replace(/[-_\s.]+(.)?/g, (_, c) => c ? c.toUpperCase() : '')
+    str = str.replace(/[-_\s]+(.)?/g, (_, c) => c ? c.toUpperCase() : '')
     return str.substring(0, 1).toLowerCase() + str.substring(1)
 }
