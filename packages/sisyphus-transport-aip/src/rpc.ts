@@ -97,6 +97,12 @@ export function transcoding(host: string, config?: TranscodingListener): Rpc {
         }
 
         if (response.ok) {
+            if (response.status === 204) {
+                return {}
+            }
+            if (parseInt(response.headers.get('content-length') || '0') === 0) {
+                return {}
+            }
             return await response.json()
         } else {
             const status = await response.json()
