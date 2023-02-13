@@ -1,6 +1,6 @@
 {
   "name": "@sisyphus.js/google.aip",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "description": "Precompiled google common aip clients by sisyphus protobuf compiler",
   "scripts": {
     "clean": "tsc --build --clean",
@@ -33,12 +33,12 @@
   },
   "homepage": "https://github.com/ButterCam/sisyphus-js#readme",
   "devDependencies": {
-    "@sisyphus.js/cli": "^2.0.6",
-    "@sisyphus.js/google.proto": "^2.0.6"
+    "@sisyphus.js/cli": "^2.0.7",
+    "@sisyphus.js/google.proto": "^2.0.7"
   },
   "dependencies": {
-    "@sisyphus.js/google": "^2.0.6",
-    "@sisyphus.js/transport-aip": "^2.0.6"
+    "@sisyphus.js/google": "^2.0.7",
+    "@sisyphus.js/transport-aip": "^2.0.7"
   },
   "directories": {
     "lib": "lib"
