@@ -1,6 +1,6 @@
 {
   "name": "@sisyphus.js/compiler",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "description": "Precompiled google common protos by sisyphus protobuf compiler",
   "main": "lib/index.js",
   "sisyphus": {
@@ -35,6 +35,6 @@
   },
   "homepage": "https://github.com/ButterCam/sisyphus-js#readme",
   "dependencies": {
-    "@sisyphus.js/protoc": "^2.0.7"
+    "@sisyphus.js/protoc": "^2.0.8"
   }
 }
