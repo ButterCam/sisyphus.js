@@ -1,6 +1,6 @@
 {
   "name": "@sisyphus.js/cli",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "description": "Protoc cli for sisyphus project on js platform",
   "bin": {
     "sisygen": "lib/index.js"
@@ -30,10 +30,10 @@
   },
   "homepage": "https://github.com/ButterCam/sisyphus-js#readme",
   "dependencies": {
-    "@sisyphus.js/compiler": "^2.0.7",
-    "@sisyphus.js/protoc": "^2.0.7",
-    "@sisyphus.js/runtime": "^2.0.7",
-    "@sisyphus.js/runtime.proto": "^2.0.7",
+    "@sisyphus.js/compiler": "^2.0.8",
+    "@sisyphus.js/protoc": "^2.0.8",
+    "@sisyphus.js/runtime": "^2.0.8",
+    "@sisyphus.js/runtime.proto": "^2.0.8",
     "commander": "^10.0.0",
     "npmlog": "^7.0.1"
   }

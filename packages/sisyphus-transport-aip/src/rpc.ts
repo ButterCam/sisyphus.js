@@ -100,10 +100,13 @@ export function transcoding(host: string, config?: TranscodingListener): Rpc {
             if (response.status === 204) {
                 return {}
             }
-            if (parseInt(response.headers.get('content-length') || '0') === 0) {
+            if (response.headers.get('content-length') === '0') {
                 return {}
             }
-            return await response.json()
+            if (response.headers.get('content-type')?.startsWith('application/json')) {
+                return await response.json()
+            }
+            return {}
         } else {
             const status = await response.json()
             throw new StatusError(status, method, request, response)
