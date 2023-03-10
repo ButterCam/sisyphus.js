@@ -93,7 +93,7 @@ export class SimpleImportManager implements ImportManager {
 
     private importPath(lib: string): string {
         if (lib.startsWith('/')) {
-            lib = path.relative(path.dirname(this._current), lib)
+            lib = path.posix.relative(path.posix.dirname(this._current), lib)
             if (!lib.startsWith('.')) {
                 lib = './' + lib
             }

@@ -42,7 +42,7 @@ export interface Property {
     name?: string
 
     /**  The type of this property. */
-    type?: Property.PropertyType
+    type?: Property.PropertyType | (keyof typeof Property.PropertyType)
 
     /**  The description of the property */
     description?: string
@@ -54,19 +54,19 @@ export namespace Property {
     /**  Supported data type of the property values */
     export enum PropertyType {
         /**  The type is unspecified, and will result in an error. */
-        UNSPECIFIED = 'UNSPECIFIED',
+        UNSPECIFIED = 0,
 
         /**  The type is `int64`. */
-        INT64 = 'INT64',
+        INT64 = 1,
 
         /**  The type is `bool`. */
-        BOOL = 'BOOL',
+        BOOL = 2,
 
         /**  The type is `string`. */
-        STRING = 'STRING',
+        STRING = 3,
 
         /**  The type is 'double'. */
-        DOUBLE = 'DOUBLE',
+        DOUBLE = 4,
     }
 
     export namespace PropertyType {

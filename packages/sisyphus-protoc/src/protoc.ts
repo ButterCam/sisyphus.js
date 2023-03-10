@@ -5,7 +5,14 @@ import fs from 'fs/promises'
 import log from 'npmlog'
 import * as os from 'os'
 import path from 'path'
-import {download, generateReleaseName, getProtobufVersionConfig, getRedirectLocation, installedDirectory} from './util'
+import {
+    download,
+    generateProtocName,
+    generateReleaseName,
+    getProtobufVersionConfig,
+    getRedirectLocation,
+    installedDirectory
+} from './util'
 
 export default async function protoc(...args: string[]): Promise<number | null> {
     const version = await getProtobufVersionConfig(process.cwd())
@@ -32,7 +39,7 @@ async function ensureProtoc(version: string | undefined | null): Promise<string>
 
     const releaseName = generateReleaseName(os.platform(), os.arch(), version)
     const releasePath = path.join(installedDirectory, releaseName)
-    const protocPath = path.join(releasePath, 'bin', 'protoc')
+    const protocPath = path.join(releasePath, 'bin', generateProtocName(os.platform()))
 
     try {
         await fs.access(protocPath, constants.X_OK)

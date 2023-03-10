@@ -2,7 +2,7 @@ import {EnumGeneratingState, EnumValueGeneratingState} from './state'
 
 generate<EnumGeneratingState>('enum', it => {
     const builder = it.target
-    it.generatedElements ++
+    it.generatedElements++
 
     builder.normalize().lineComment(...it.descriptor.comments())
     builder.normalize().document(it.descriptor.document())
@@ -25,11 +25,11 @@ generate<EnumGeneratingState>('enum', it => {
 
 generate<EnumValueGeneratingState>('enumValue', it => {
     const builder = it.target
-    it.generatedElements ++
+    it.generatedElements++
 
     builder.normalize().lineComment(...it.descriptor.comments())
     builder.normalize().document(it.descriptor.document())
-    builder.append(`${it.descriptor.simpleName()} = '${it.descriptor.name()}',`)
+    builder.append(`${it.descriptor.name()} = ${it.descriptor.number()},`)
     builder.trailingComment(it.descriptor.trailingComment())
     builder.ln()
 })

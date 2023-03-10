@@ -1,4 +1,11 @@
-import {AuthProvider, AuthRequirement, Authentication, AuthenticationRule, JwtLocation, OAuthRequirements} from '@sisyphus.js/google/lib/google/api/auth'
+import {
+    Authentication,
+    AuthenticationRule,
+    AuthProvider,
+    AuthRequirement,
+    JwtLocation,
+    OAuthRequirements
+} from '@sisyphus.js/google/lib/google/api/auth'
 import {MessageDescriptor} from '@sisyphus.js/runtime.proto'
 import {binaryifyFun, parseFun} from '@sisyphus.js/runtime.proto/lib/message'
 

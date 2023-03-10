@@ -1,5 +1,5 @@
 import {Operations} from '@sisyphus.js/google/lib/google/longrunning/operations'
-import {Rpc, ServiceDescriptor, aipClient} from '@sisyphus.js/transport-aip'
+import {aipClient, Rpc, ServiceDescriptor} from '@sisyphus.js/transport-aip'
 
 declare module '@sisyphus.js/google/lib/google/longrunning/operations' {
     namespace Operations {
@@ -19,40 +19,28 @@ Operations.aipDescriptor = {
             name: 'ListOperations',
             i: '.google.longrunning.ListOperationsRequest',
             o: '.google.longrunning.ListOperationsResponse',
-            options: {
-                http: {get: '/v1/{name=operations}'},
-                methodSignature: ['name,filter']
-            }
+            options: {}
         },
 
         getOperation: {
             name: 'GetOperation',
             i: '.google.longrunning.GetOperationRequest',
             o: '.google.longrunning.Operation',
-            options: {
-                http: {get: '/v1/{name=operations/**}'},
-                methodSignature: ['name']
-            }
+            options: {}
         },
 
         deleteOperation: {
             name: 'DeleteOperation',
             i: '.google.longrunning.DeleteOperationRequest',
             o: '.google.protobuf.Empty',
-            options: {
-                http: {delete: '/v1/{name=operations/**}'},
-                methodSignature: ['name']
-            }
+            options: {}
         },
 
         cancelOperation: {
             name: 'CancelOperation',
             i: '.google.longrunning.CancelOperationRequest',
             o: '.google.protobuf.Empty',
-            options: {
-                http: {post: '/v1/{name=operations/**}:cancel', body: '*'},
-                methodSignature: ['name']
-            }
+            options: {}
         },
 
         waitOperation: {

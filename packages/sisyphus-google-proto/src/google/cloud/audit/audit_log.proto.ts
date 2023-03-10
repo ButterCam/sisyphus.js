@@ -1,10 +1,17 @@
-import {AttributeContext} from '../../rpc/context/attribute_context.proto'
-import {Status} from '../../rpc/status.proto'
-import {AuditLog, AuthenticationInfo, AuthorizationInfo, RequestMetadata, ResourceLocation, ServiceAccountDelegationInfo} from '@sisyphus.js/google/lib/google/cloud/audit/audit_log'
+import {
+    AuditLog,
+    AuthenticationInfo,
+    AuthorizationInfo,
+    RequestMetadata,
+    ResourceLocation,
+    ServiceAccountDelegationInfo
+} from '@sisyphus.js/google/lib/google/cloud/audit/audit_log'
 import {MessageDescriptor} from '@sisyphus.js/runtime.proto'
 import {Any} from '@sisyphus.js/runtime.proto/lib/google/protobuf/any.proto'
 import {Struct} from '@sisyphus.js/runtime.proto/lib/google/protobuf/struct.proto'
 import {binaryifyFun, parseFun} from '@sisyphus.js/runtime.proto/lib/message'
+import {AttributeContext} from '../../rpc/context/attribute_context.proto'
+import {Status} from '../../rpc/status.proto'
 
 declare module '@sisyphus.js/google/lib/google/cloud/audit/audit_log' {
     namespace AuditLog {

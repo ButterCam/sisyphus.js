@@ -1,9 +1,18 @@
-import {Status} from '../rpc/status.proto'
-import {CancelOperationRequest, DeleteOperationRequest, GetOperationRequest, ListOperationsRequest, ListOperationsResponse, Operation, OperationInfo, WaitOperationRequest} from '@sisyphus.js/google/lib/google/longrunning/operations'
+import {
+    CancelOperationRequest,
+    DeleteOperationRequest,
+    GetOperationRequest,
+    ListOperationsRequest,
+    ListOperationsResponse,
+    Operation,
+    OperationInfo,
+    WaitOperationRequest
+} from '@sisyphus.js/google/lib/google/longrunning/operations'
 import {MessageDescriptor} from '@sisyphus.js/runtime.proto'
 import {Any} from '@sisyphus.js/runtime.proto/lib/google/protobuf/any.proto'
 import {Duration} from '@sisyphus.js/runtime.proto/lib/google/protobuf/duration.proto'
 import {binaryifyFun, parseFun} from '@sisyphus.js/runtime.proto/lib/message'
+import {Status} from '../rpc/status.proto'
 
 declare module '@sisyphus.js/google/lib/google/longrunning/operations' {
     namespace Operation {

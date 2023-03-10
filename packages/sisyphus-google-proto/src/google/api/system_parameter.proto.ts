@@ -1,4 +1,8 @@
-import {SystemParameter, SystemParameterRule, SystemParameters} from '@sisyphus.js/google/lib/google/api/system_parameter'
+import {
+    SystemParameter,
+    SystemParameterRule,
+    SystemParameters
+} from '@sisyphus.js/google/lib/google/api/system_parameter'
 import {MessageDescriptor} from '@sisyphus.js/runtime.proto'
 import {binaryifyFun, parseFun} from '@sisyphus.js/runtime.proto/lib/message'
 

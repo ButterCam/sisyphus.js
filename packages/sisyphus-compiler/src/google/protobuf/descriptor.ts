@@ -133,13 +133,13 @@ export interface FieldDescriptorProto {
 
     number?: number
 
-    label?: FieldDescriptorProto.Label
+    label?: FieldDescriptorProto.Label | (keyof typeof FieldDescriptorProto.Label)
 
     /**
      *  If type_name is set, this need not be set.  If both this and type_name
      *  are set, this must be one of TYPE_ENUM, TYPE_MESSAGE or TYPE_GROUP.
      */
-    type?: FieldDescriptorProto.Type
+    type?: FieldDescriptorProto.Type | (keyof typeof FieldDescriptorProto.Type)
 
     /**
      *  For message and enum types, this is the name of the type.  If the name
@@ -214,31 +214,31 @@ export namespace FieldDescriptorProto {
          *  0 is reserved for errors.
          *  Order is weird for historical reasons.
          */
-        DOUBLE = 'TYPE_DOUBLE',
+        TYPE_DOUBLE = 1,
 
-        FLOAT = 'TYPE_FLOAT',
+        TYPE_FLOAT = 2,
 
         /**
          *  Not ZigZag encoded.  Negative numbers take 10 bytes.  Use TYPE_SINT64 if
          *  negative values are likely.
          */
-        INT64 = 'TYPE_INT64',
+        TYPE_INT64 = 3,
 
-        UINT64 = 'TYPE_UINT64',
+        TYPE_UINT64 = 4,
 
         /**
          *  Not ZigZag encoded.  Negative numbers take 10 bytes.  Use TYPE_SINT32 if
          *  negative values are likely.
          */
-        INT32 = 'TYPE_INT32',
+        TYPE_INT32 = 5,
 
-        FIXED64 = 'TYPE_FIXED64',
+        TYPE_FIXED64 = 6,
 
-        FIXED32 = 'TYPE_FIXED32',
+        TYPE_FIXED32 = 7,
 
-        BOOL = 'TYPE_BOOL',
+        TYPE_BOOL = 8,
 
-        STRING = 'TYPE_STRING',
+        TYPE_STRING = 9,
 
         /**
          *  Tag-delimited aggregate.
@@ -246,24 +246,24 @@ export namespace FieldDescriptorProto {
          *  implementations should still be able to parse the group wire format and
          *  treat group fields as unknown fields.
          */
-        GROUP = 'TYPE_GROUP',
+        TYPE_GROUP = 10,
 
-        MESSAGE = 'TYPE_MESSAGE', // Length-delimited aggregate.
+        TYPE_MESSAGE = 11, // Length-delimited aggregate.
 
         /**  New in version 2. */
-        BYTES = 'TYPE_BYTES',
+        TYPE_BYTES = 12,
 
-        UINT32 = 'TYPE_UINT32',
+        TYPE_UINT32 = 13,
 
-        ENUM = 'TYPE_ENUM',
+        TYPE_ENUM = 14,
 
-        SFIXED32 = 'TYPE_SFIXED32',
+        TYPE_SFIXED32 = 15,
 
-        SFIXED64 = 'TYPE_SFIXED64',
+        TYPE_SFIXED64 = 16,
 
-        SINT32 = 'TYPE_SINT32', // Uses ZigZag encoding.
+        TYPE_SINT32 = 17, // Uses ZigZag encoding.
 
-        SINT64 = 'TYPE_SINT64', // Uses ZigZag encoding.
+        TYPE_SINT64 = 18, // Uses ZigZag encoding.
     }
 
     export namespace Type {
@@ -272,11 +272,11 @@ export namespace FieldDescriptorProto {
 
     export enum Label {
         /**  0 is reserved for errors */
-        OPTIONAL = 'LABEL_OPTIONAL',
+        LABEL_OPTIONAL = 1,
 
-        REQUIRED = 'LABEL_REQUIRED',
+        LABEL_REQUIRED = 2,
 
-        REPEATED = 'LABEL_REPEATED',
+        LABEL_REPEATED = 3,
     }
 
     export namespace Label {
@@ -396,7 +396,7 @@ export namespace MethodDescriptorProto {
 //  Each of the definitions above may have "options" attached.  These are
 //  just annotations which may cause code to be generated slightly differently
 //  or may contain hints for code that manipulates protocol messages.
-// 
+//
 //  Clients may define custom options as extensions of the *Options messages.
 //  These extensions may not yet be known at parsing time, so the parser cannot
 //  store the values in them.  Instead it stores them in a field in the *Options
@@ -404,7 +404,7 @@ export namespace MethodDescriptorProto {
 //  across all *Options messages. We then use this field to populate the
 //  extensions when we build a descriptor, at which point all protos have been
 //  parsed and so all extensions are known.
-// 
+//
 //  Extension numbers for custom options may be chosen as follows:
 //  * For options which will only be used within a single application or
 //    organization, or for experimental options, use field numbers 50000
@@ -463,7 +463,7 @@ export interface FileOptions {
      */
     javaStringCheckUtf8?: boolean
 
-    optimizeFor?: FileOptions.OptimizeMode
+    optimizeFor?: FileOptions.OptimizeMode | (keyof typeof FileOptions.OptimizeMode)
 
     /**
      *  Sets the Go package where structs generated from this .proto will be
@@ -564,12 +564,12 @@ export namespace FileOptions {
 
     /**  Generated classes can be optimized for speed or code size. */
     export enum OptimizeMode {
-        SPEED = 'SPEED', // Generate complete code for parsing, serialization,
+        SPEED = 1, // Generate complete code for parsing, serialization,
 
         /**  etc. */
-        CODE_SIZE = 'CODE_SIZE', // Use ReflectionOps to implement these methods.
+        CODE_SIZE = 2, // Use ReflectionOps to implement these methods.
 
-        LITE_RUNTIME = 'LITE_RUNTIME', // Generate code using MessageLite and the lite runtime.
+        LITE_RUNTIME = 3, // Generate code using MessageLite and the lite runtime.
     }
 
     export namespace OptimizeMode {
@@ -655,7 +655,7 @@ export interface FieldOptions {
      *  options below.  This option is not yet implemented in the open source
      *  release -- sorry, we'll try to include it in a future version!
      */
-    ctype?: FieldOptions.CType
+    ctype?: FieldOptions.CType | (keyof typeof FieldOptions.CType)
 
     /**
      *  The packed option can be enabled for repeated primitive fields to enable
@@ -679,7 +679,7 @@ export interface FieldOptions {
      *  This option is an enum to permit additional types to be added, e.g.
      *  goog.math.Integer.
      */
-    jstype?: FieldOptions.JSType
+    jstype?: FieldOptions.JSType | (keyof typeof FieldOptions.JSType)
 
     /**
      *  Should this field be parsed lazily?  Lazy applies only to message-type
@@ -746,11 +746,11 @@ export namespace FieldOptions {
 
     export enum CType {
         /**  Default mode. */
-        STRING = 'STRING',
+        STRING = 0,
 
-        CORD = 'CORD',
+        CORD = 1,
 
-        STRING_PIECE = 'STRING_PIECE',
+        STRING_PIECE = 2,
     }
 
     export namespace CType {
@@ -759,13 +759,13 @@ export namespace FieldOptions {
 
     export enum JSType {
         /**  Use the default type. */
-        NORMAL = 'JS_NORMAL',
+        JS_NORMAL = 0,
 
         /**  Use JavaScript strings. */
-        STRING = 'JS_STRING',
+        JS_STRING = 1,
 
         /**  Use JavaScript numbers. */
-        NUMBER = 'JS_NUMBER',
+        JS_NUMBER = 2,
     }
 
     export namespace JSType {
@@ -858,7 +858,7 @@ export interface MethodOptions {
      */
     deprecated?: boolean
 
-    idempotencyLevel?: MethodOptions.IdempotencyLevel
+    idempotencyLevel?: MethodOptions.IdempotencyLevel | (keyof typeof MethodOptions.IdempotencyLevel)
 
     /**  The parser stores options it doesn't recognize here. See above. */
     uninterpretedOption?: UninterpretedOption[]
@@ -873,11 +873,11 @@ export namespace MethodOptions {
      *  methods, and PUT verb for idempotent methods instead of the default POST.
      */
     export enum IdempotencyLevel {
-        IDEMPOTENCY_UNKNOWN = 'IDEMPOTENCY_UNKNOWN',
+        IDEMPOTENCY_UNKNOWN = 0,
 
-        NO_SIDE_EFFECTS = 'NO_SIDE_EFFECTS', // implies idempotent
+        NO_SIDE_EFFECTS = 1, // implies idempotent
 
-        IDEMPOTENT = 'IDEMPOTENT', // idempotent, but may have side effects
+        IDEMPOTENT = 2, // idempotent, but may have side effects
     }
 
     export namespace IdempotencyLevel {

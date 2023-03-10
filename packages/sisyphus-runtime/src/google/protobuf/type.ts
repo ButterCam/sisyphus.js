@@ -19,7 +19,7 @@ export interface Type {
     sourceContext?: SourceContext
 
     /**  The source syntax. */
-    syntax?: Syntax
+    syntax?: Syntax | (keyof typeof Syntax)
 }
 
 export namespace Type {
@@ -29,10 +29,10 @@ export namespace Type {
 /**  A single field of a message type. */
 export interface Field {
     /**  The field type. */
-    kind?: Field.Kind
+    kind?: Field.Kind | (keyof typeof Field.Kind)
 
     /**  The field cardinality. */
-    cardinality?: Field.Cardinality
+    cardinality?: Field.Cardinality | (keyof typeof Field.Cardinality)
 
     /**  The field number. */
     number?: number
@@ -71,61 +71,61 @@ export namespace Field {
     /**  Basic field types. */
     export enum Kind {
         /**  Field type unknown. */
-        TYPE_UNKNOWN = 'TYPE_UNKNOWN',
+        TYPE_UNKNOWN = 0,
 
         /**  Field type double. */
-        TYPE_DOUBLE = 'TYPE_DOUBLE',
+        TYPE_DOUBLE = 1,
 
         /**  Field type float. */
-        TYPE_FLOAT = 'TYPE_FLOAT',
+        TYPE_FLOAT = 2,
 
         /**  Field type int64. */
-        TYPE_INT64 = 'TYPE_INT64',
+        TYPE_INT64 = 3,
 
         /**  Field type uint64. */
-        TYPE_UINT64 = 'TYPE_UINT64',
+        TYPE_UINT64 = 4,
 
         /**  Field type int32. */
-        TYPE_INT32 = 'TYPE_INT32',
+        TYPE_INT32 = 5,
 
         /**  Field type fixed64. */
-        TYPE_FIXED64 = 'TYPE_FIXED64',
+        TYPE_FIXED64 = 6,
 
         /**  Field type fixed32. */
-        TYPE_FIXED32 = 'TYPE_FIXED32',
+        TYPE_FIXED32 = 7,
 
         /**  Field type bool. */
-        TYPE_BOOL = 'TYPE_BOOL',
+        TYPE_BOOL = 8,
 
         /**  Field type string. */
-        TYPE_STRING = 'TYPE_STRING',
+        TYPE_STRING = 9,
 
         /**  Field type group. Proto2 syntax only, and deprecated. */
-        TYPE_GROUP = 'TYPE_GROUP',
+        TYPE_GROUP = 10,
 
         /**  Field type message. */
-        TYPE_MESSAGE = 'TYPE_MESSAGE',
+        TYPE_MESSAGE = 11,
 
         /**  Field type bytes. */
-        TYPE_BYTES = 'TYPE_BYTES',
+        TYPE_BYTES = 12,
 
         /**  Field type uint32. */
-        TYPE_UINT32 = 'TYPE_UINT32',
+        TYPE_UINT32 = 13,
 
         /**  Field type enum. */
-        TYPE_ENUM = 'TYPE_ENUM',
+        TYPE_ENUM = 14,
 
         /**  Field type sfixed32. */
-        TYPE_SFIXED32 = 'TYPE_SFIXED32',
+        TYPE_SFIXED32 = 15,
 
         /**  Field type sfixed64. */
-        TYPE_SFIXED64 = 'TYPE_SFIXED64',
+        TYPE_SFIXED64 = 16,
 
         /**  Field type sint32. */
-        TYPE_SINT32 = 'TYPE_SINT32',
+        TYPE_SINT32 = 17,
 
         /**  Field type sint64. */
-        TYPE_SINT64 = 'TYPE_SINT64',
+        TYPE_SINT64 = 18,
     }
 
     export namespace Kind {
@@ -135,16 +135,16 @@ export namespace Field {
     /**  Whether a field is optional, required, or repeated. */
     export enum Cardinality {
         /**  For fields with unknown cardinality. */
-        UNKNOWN = 'CARDINALITY_UNKNOWN',
+        CARDINALITY_UNKNOWN = 0,
 
         /**  For optional fields. */
-        OPTIONAL = 'CARDINALITY_OPTIONAL',
+        CARDINALITY_OPTIONAL = 1,
 
         /**  For required fields. Proto2 syntax only. */
-        REQUIRED = 'CARDINALITY_REQUIRED',
+        CARDINALITY_REQUIRED = 2,
 
         /**  For repeated fields. */
-        REPEATED = 'CARDINALITY_REPEATED',
+        CARDINALITY_REPEATED = 3,
     }
 
     export namespace Cardinality {
@@ -167,7 +167,7 @@ export interface Enum {
     sourceContext?: SourceContext
 
     /**  The source syntax. */
-    syntax?: Syntax
+    syntax?: Syntax | (keyof typeof Syntax)
 }
 
 export namespace Enum {
@@ -219,10 +219,10 @@ export namespace Option {
 /**  The syntax in which a protocol buffer element is defined. */
 export enum Syntax {
     /**  Syntax `proto2`. */
-    PROTO2 = 'SYNTAX_PROTO2',
+    SYNTAX_PROTO2 = 0,
 
     /**  Syntax `proto3`. */
-    PROTO3 = 'SYNTAX_PROTO3',
+    SYNTAX_PROTO3 = 1,
 }
 
 export namespace Syntax {

@@ -1,7 +1,7 @@
-import {LabelDescriptor} from './label.proto'
 import {LogDescriptor} from '@sisyphus.js/google/lib/google/api/log'
 import {MessageDescriptor} from '@sisyphus.js/runtime.proto'
 import {binaryifyFun, parseFun} from '@sisyphus.js/runtime.proto/lib/message'
+import {LabelDescriptor} from './label.proto'
 
 declare module '@sisyphus.js/google/lib/google/api/log' {
     namespace LogDescriptor {

@@ -4,13 +4,13 @@
  */
 export enum LaunchStage {
     /**  Do not use this default value. */
-    UNSPECIFIED = 'LAUNCH_STAGE_UNSPECIFIED',
+    LAUNCH_STAGE_UNSPECIFIED = 0,
 
     /**  The feature is not yet implemented. Users can not use it. */
-    UNIMPLEMENTED = 'UNIMPLEMENTED',
+    UNIMPLEMENTED = 6,
 
     /**  Prelaunch features are hidden from users and are only visible internally. */
-    PRELAUNCH = 'PRELAUNCH',
+    PRELAUNCH = 7,
 
     /**
      *  Early Access features are limited to a closed group of testers. To use
@@ -19,7 +19,7 @@ export enum LaunchStage {
      *  be unstable, changed in backward-incompatible ways, and are not
      *  guaranteed to be released.
      */
-    EARLY_ACCESS = 'EARLY_ACCESS',
+    EARLY_ACCESS = 1,
 
     /**
      *  Alpha is a limited availability test for releases before they are cleared
@@ -32,7 +32,7 @@ export enum LaunchStage {
      *  test environments or for limited-use tests -- just like they would in
      *  normal production cases.
      */
-    ALPHA = 'ALPHA',
+    ALPHA = 2,
 
     /**
      *  Beta is the point at which we are ready to open a release for any
@@ -41,13 +41,13 @@ export enum LaunchStage {
      *  may have some open outstanding issues. Beta releases are suitable for
      *  limited production use cases.
      */
-    BETA = 'BETA',
+    BETA = 3,
 
     /**
      *  GA features are open to all developers and are considered stable and
      *  fully qualified for production use.
      */
-    GA = 'GA',
+    GA = 4,
 
     /**
      *  Deprecated features are scheduled to be shut down and removed. For more
@@ -56,7 +56,7 @@ export enum LaunchStage {
      *  and the [Google Cloud Platform Subject to the Deprecation
      *  Policy](https://cloud.google.com/terms/deprecation) documentation.
      */
-    DEPRECATED = 'DEPRECATED',
+    DEPRECATED = 5,
 }
 
 export namespace LaunchStage {

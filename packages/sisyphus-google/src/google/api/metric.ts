@@ -1,6 +1,6 @@
+import {Duration} from '@sisyphus.js/runtime/lib/google/protobuf/duration'
 import {LabelDescriptor} from './label'
 import {LaunchStage} from './launch_stage'
-import {Duration} from '@sisyphus.js/runtime/lib/google/protobuf/duration'
 
 /**
  *  Defines a metric type and its schema. Once a metric descriptor is created,
@@ -16,7 +16,7 @@ export interface MetricDescriptor {
      *  URL-encoded. All user-defined metric types have the DNS name
      *  `custom.googleapis.com` or `external.googleapis.com`. Metric types should
      *  use a natural hierarchical grouping. For example:
-     * 
+     *
      *      "custom.googleapis.com/invoice/paid/amount"
      *      "external.googleapis.com/prometheus/up"
      *      "appengine.googleapis.com/http/server/response_latencies"
@@ -37,40 +37,40 @@ export interface MetricDescriptor {
      *  Whether the metric records instantaneous values, changes to a value, etc.
      *  Some combinations of `metric_kind` and `value_type` might not be supported.
      */
-    metricKind?: MetricDescriptor.MetricKind
+    metricKind?: MetricDescriptor.MetricKind | (keyof typeof MetricDescriptor.MetricKind)
 
     /**
      *  Whether the measurement is an integer, a floating-point number, etc.
      *  Some combinations of `metric_kind` and `value_type` might not be supported.
      */
-    valueType?: MetricDescriptor.ValueType
+    valueType?: MetricDescriptor.ValueType | (keyof typeof MetricDescriptor.ValueType)
 
     /**
      *  The units in which the metric value is reported. It is only applicable
      *  if the `value_type` is `INT64`, `DOUBLE`, or `DISTRIBUTION`. The `unit`
      *  defines the representation of the stored metric values.
-     * 
+     *
      *  Different systems might scale the values to be more easily displayed (so a
      *  value of `0.02kBy` _might_ be displayed as `20By`, and a value of
      *  `3523kBy` _might_ be displayed as `3.5MBy`). However, if the `unit` is
      *  `kBy`, then the value of the metric is always in thousands of bytes, no
      *  matter how it might be displayed.
-     * 
+     *
      *  If you want a custom metric to record the exact number of CPU-seconds used
      *  by a job, you can create an `INT64 CUMULATIVE` metric whose `unit` is
      *  `s{CPU}` (or equivalently `1s{CPU}` or just `s`). If the job uses 12,005
      *  CPU-seconds, then the value is written as `12005`.
-     * 
+     *
      *  Alternatively, if you want a custom metric to record data in a more
      *  granular way, you can create a `DOUBLE CUMULATIVE` metric whose `unit` is
      *  `ks{CPU}`, and then write the value `12.005` (which is `12005/1000`),
      *  or use `Kis{CPU}` and write `11.723` (which is `12005/1024`).
-     * 
+     *
      *  The supported units are a subset of [The Unified Code for Units of
      *  Measure](https://unitsofmeasure.org/ucum.html) standard:
-     * 
+     *
      *  **Basic units (UNIT)**
-     * 
+     *
      *  * `bit`   bit
      *  * `By`    byte
      *  * `s`     second
@@ -78,9 +78,9 @@ export interface MetricDescriptor {
      *  * `h`     hour
      *  * `d`     day
      *  * `1`     dimensionless
-     * 
+     *
      *  **Prefixes (PREFIX)**
-     * 
+     *
      *  * `k`     kilo    (10^3)
      *  * `M`     mega    (10^6)
      *  * `G`     giga    (10^9)
@@ -89,7 +89,7 @@ export interface MetricDescriptor {
      *  * `E`     exa     (10^18)
      *  * `Z`     zetta   (10^21)
      *  * `Y`     yotta   (10^24)
-     * 
+     *
      *  * `m`     milli   (10^-3)
      *  * `u`     micro   (10^-6)
      *  * `n`     nano    (10^-9)
@@ -98,37 +98,37 @@ export interface MetricDescriptor {
      *  * `a`     atto    (10^-18)
      *  * `z`     zepto   (10^-21)
      *  * `y`     yocto   (10^-24)
-     * 
+     *
      *  * `Ki`    kibi    (2^10)
      *  * `Mi`    mebi    (2^20)
      *  * `Gi`    gibi    (2^30)
      *  * `Ti`    tebi    (2^40)
      *  * `Pi`    pebi    (2^50)
-     * 
+     *
      *  **Grammar**
-     * 
+     *
      *  The grammar also includes these connectors:
-     * 
+     *
      *  * `/`    division or ratio (as an infix operator). For examples,
      *           `kBy/{email}` or `MiBy/10ms` (although you should almost never
      *           have `/s` in a metric `unit`; rates should always be computed at
      *           query time from the underlying cumulative or delta value).
      *  * `.`    multiplication or composition (as an infix operator). For
      *           examples, `GBy.d` or `k{watt}.h`.
-     * 
+     *
      *  The grammar for a unit is as follows:
-     * 
+     *
      *      Expression = Component { "." Component } { "/" Component } ;
-     * 
+     *
      *      Component = ( [ PREFIX ] UNIT | "%" ) [ Annotation ]
      *                | Annotation
      *                | "1"
      *                ;
-     * 
+     *
      *      Annotation = "{" NAME "}" ;
-     * 
+     *
      *  Notes:
-     * 
+     *
      *  * `Annotation` is just a comment if it follows a `UNIT`. If the annotation
      *     is used alone, then the unit is equivalent to `1`. For examples,
      *     `{request}/s == 1/s`, `By{transmitted}/s == By/s`.
@@ -166,7 +166,7 @@ export interface MetricDescriptor {
     metadata?: MetricDescriptor.MetricDescriptorMetadata
 
     /**  Optional. The launch stage of the metric definition. */
-    launchStage?: LaunchStage
+    launchStage?: LaunchStage | (keyof typeof LaunchStage)
 
     /**
      *  Read-only. If present, then a [time
@@ -184,7 +184,7 @@ export namespace MetricDescriptor {
     /**  Additional annotations that can be used to guide the usage of a metric. */
     export interface MetricDescriptorMetadata {
         /**  Deprecated. Must use the [MetricDescriptor.launch_stage][google.api.MetricDescriptor.launch_stage] instead. */
-        launchStage?: LaunchStage
+        launchStage?: LaunchStage | (keyof typeof LaunchStage)
 
         /**
          *  The sampling period of metric data points. For metrics which are written
@@ -213,13 +213,13 @@ export namespace MetricDescriptor {
      */
     export enum MetricKind {
         /**  Do not use this default value. */
-        UNSPECIFIED = 'METRIC_KIND_UNSPECIFIED',
+        METRIC_KIND_UNSPECIFIED = 0,
 
         /**  An instantaneous measurement of a value. */
-        GAUGE = 'GAUGE',
+        GAUGE = 1,
 
         /**  The change in a value during a time interval. */
-        DELTA = 'DELTA',
+        DELTA = 2,
 
         /**
          *  A value accumulated over a time interval.  Cumulative
@@ -228,7 +228,7 @@ export namespace MetricDescriptor {
          *  value to zero and sets a new start time for the following
          *  points.
          */
-        CUMULATIVE = 'CUMULATIVE',
+        CUMULATIVE = 3,
     }
 
     export namespace MetricKind {
@@ -238,31 +238,31 @@ export namespace MetricDescriptor {
     /**  The value type of a metric. */
     export enum ValueType {
         /**  Do not use this default value. */
-        UNSPECIFIED = 'VALUE_TYPE_UNSPECIFIED',
+        VALUE_TYPE_UNSPECIFIED = 0,
 
         /**
          *  The value is a boolean.
          *  This value type can be used only if the metric kind is `GAUGE`.
          */
-        BOOL = 'BOOL',
+        BOOL = 1,
 
         /**  The value is a signed 64-bit integer. */
-        INT64 = 'INT64',
+        INT64 = 2,
 
         /**  The value is a double precision floating point number. */
-        DOUBLE = 'DOUBLE',
+        DOUBLE = 3,
 
         /**
          *  The value is a text string.
          *  This value type can be used only if the metric kind is `GAUGE`.
          */
-        STRING = 'STRING',
+        STRING = 4,
 
         /**  The value is a [`Distribution`][google.api.Distribution]. */
-        DISTRIBUTION = 'DISTRIBUTION',
+        DISTRIBUTION = 5,
 
         /**  The value is money. */
-        MONEY = 'MONEY',
+        MONEY = 6,
     }
 
     export namespace ValueType {

@@ -124,7 +124,7 @@ export async function main(args: string[]): Promise<number> {
     advance<FilesGeneratingState>({
         kind: 'files',
         parent: undefined,
-        descriptor: new FileDescSet(fileDescSet),
+        descriptor: new FileDescSet(<any>fileDescSet),
         target: files,
         src: targetProtos,
         lib: generatedModules

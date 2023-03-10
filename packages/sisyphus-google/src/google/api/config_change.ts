@@ -33,7 +33,7 @@ export interface ConfigChange {
     newValue?: string
 
     /**  The type for this change, either ADDED, REMOVED, or MODIFIED. */
-    changeType?: ChangeType
+    changeType?: ChangeType | (keyof typeof ChangeType)
 
     /**
      *  Collection of advice provided for this change, useful for determining the
@@ -68,25 +68,25 @@ export namespace Advice {
  */
 export enum ChangeType {
     /**  No value was provided. */
-    UNSPECIFIED = 'CHANGE_TYPE_UNSPECIFIED',
+    CHANGE_TYPE_UNSPECIFIED = 0,
 
     /**
      *  The changed object exists in the 'new' service configuration, but not
      *  in the 'old' service configuration.
      */
-    ADDED = 'ADDED',
+    ADDED = 1,
 
     /**
      *  The changed object exists in the 'old' service configuration, but not
      *  in the 'new' service configuration.
      */
-    REMOVED = 'REMOVED',
+    REMOVED = 2,
 
     /**
      *  The changed object exists in both service configurations, but its value
      *  is different.
      */
-    MODIFIED = 'MODIFIED',
+    MODIFIED = 3,
 }
 
 export namespace ChangeType {

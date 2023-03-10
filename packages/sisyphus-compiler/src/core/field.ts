@@ -1,9 +1,9 @@
 import {CodeBuilder} from '../code-builder'
-import {ExtensionDescriptor, FieldDescriptor, MessageDescriptor} from '../descriptor'
+import {EnumDescriptor, ExtensionDescriptor, FieldDescriptor, MessageDescriptor} from '../descriptor'
 import {ExtensionGeneratingState, FieldGeneratingState, OneofGeneratingState} from './state'
 
 generate<FieldGeneratingState>('field', it => {
-    it.generatedElements ++
+    it.generatedElements++
     const builder = it.target
 
     builder.normalize().lineComment(...it.descriptor.comments())
@@ -35,7 +35,7 @@ generate<OneofGeneratingState>('oneof', it => {
 })
 
 generate<ExtensionGeneratingState>('extension', it => {
-    it.generatedElements ++
+    it.generatedElements++
     const builder = it.target
 
     builder.normalize().lineComment(...it.descriptor.comments())
@@ -76,7 +76,7 @@ function type(builder: CodeBuilder, field: FieldDescriptor | ExtensionDescriptor
             break
         // case 'TYPE_GROUP':
         case 'TYPE_MESSAGE':
-        case 'TYPE_ENUM':
+        case 'TYPE_ENUM': {
             const wellknown = wellknownType(builder, field.descriptor.typeName ?? '', protobuf)
             if (wellknown !== null) {
                 return wellknown
@@ -87,7 +87,11 @@ function type(builder: CodeBuilder, field: FieldDescriptor | ExtensionDescriptor
                 return mapType(builder, target)
             const importName = builder.importManager.import(lib, target.importName())
             result = target.fullImportName(importName)
+            if (target instanceof EnumDescriptor) {
+                result = `${result} | (keyof typeof ${result})`
+            }
             break
+        }
         default:
             throw new Error(`Unsupported field type '${field.descriptor.type}'`)
     }

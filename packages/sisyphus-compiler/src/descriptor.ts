@@ -705,24 +705,24 @@ function arrayEquals(a: any[], b: any[]): boolean {
 }
 
 function fieldPacked(syntax: string | undefined, descriptor: Google.FieldDescriptorProto) {
-    if (descriptor.label != Google.FieldDescriptorProto.Label.REPEATED) return undefined
+    if (descriptor.label != 'LABEL_REPEATED') return undefined
     let defaultPacked = false
     if (syntax == 'proto3') {
         switch (descriptor.type) {
-            case Google.FieldDescriptorProto.Type.BOOL:
-            case Google.FieldDescriptorProto.Type.UINT32:
-            case Google.FieldDescriptorProto.Type.UINT64:
-            case Google.FieldDescriptorProto.Type.INT32:
-            case Google.FieldDescriptorProto.Type.INT64:
-            case Google.FieldDescriptorProto.Type.SINT32:
-            case Google.FieldDescriptorProto.Type.SINT64:
-            case Google.FieldDescriptorProto.Type.DOUBLE:
-            case Google.FieldDescriptorProto.Type.FLOAT:
-            case Google.FieldDescriptorProto.Type.FIXED32:
-            case Google.FieldDescriptorProto.Type.FIXED64:
-            case Google.FieldDescriptorProto.Type.SFIXED32:
-            case Google.FieldDescriptorProto.Type.SFIXED64:
-            case Google.FieldDescriptorProto.Type.ENUM:
+            case 'TYPE_BOOL':
+            case 'TYPE_UINT32':
+            case 'TYPE_UINT64':
+            case 'TYPE_INT32':
+            case 'TYPE_INT64':
+            case 'TYPE_SINT32':
+            case 'TYPE_SINT64':
+            case 'TYPE_DOUBLE':
+            case 'TYPE_FLOAT':
+            case 'TYPE_FIXED32':
+            case 'TYPE_FIXED64':
+            case 'TYPE_SFIXED32':
+            case 'TYPE_SFIXED64':
+            case 'TYPE_ENUM':
                 defaultPacked = true
                 break
         }

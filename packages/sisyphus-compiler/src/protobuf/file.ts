@@ -22,14 +22,10 @@ generate<FilesGeneratingState>('files', it => {
         })
         if (elements > 0) {
             it.target.push({
-                name: file.tsFile('aip'),
+                name: file.tsFile('proto'),
                 content: builder.build()
             })
         }
-        it.target.push({
-            name: file.tsFile('proto'),
-            content: builder.build()
-        })
     }
 })
 

@@ -1,3 +1,9 @@
+import {Service} from '@sisyphus.js/google/lib/google/api/service'
+import {MessageDescriptor} from '@sisyphus.js/runtime.proto'
+import {Api} from '@sisyphus.js/runtime.proto/lib/google/protobuf/api.proto'
+import {Enum, Type} from '@sisyphus.js/runtime.proto/lib/google/protobuf/type.proto'
+import {UInt32Value} from '@sisyphus.js/runtime.proto/lib/google/protobuf/wrappers.proto'
+import {binaryifyFun, parseFun} from '@sisyphus.js/runtime.proto/lib/message'
 import {Authentication} from './auth.proto'
 import {Backend} from './backend.proto'
 import {Billing} from './billing.proto'
@@ -15,12 +21,6 @@ import {Quota} from './quota.proto'
 import {SourceInfo} from './source_info.proto'
 import {SystemParameters} from './system_parameter.proto'
 import {Usage} from './usage.proto'
-import {Service} from '@sisyphus.js/google/lib/google/api/service'
-import {MessageDescriptor} from '@sisyphus.js/runtime.proto'
-import {Api} from '@sisyphus.js/runtime.proto/lib/google/protobuf/api.proto'
-import {Enum, Type} from '@sisyphus.js/runtime.proto/lib/google/protobuf/type.proto'
-import {UInt32Value} from '@sisyphus.js/runtime.proto/lib/google/protobuf/wrappers.proto'
-import {binaryifyFun, parseFun} from '@sisyphus.js/runtime.proto/lib/message'
 
 declare module '@sisyphus.js/google/lib/google/api/service' {
     namespace Service {

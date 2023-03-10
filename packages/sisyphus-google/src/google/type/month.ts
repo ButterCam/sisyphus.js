@@ -1,43 +1,43 @@
 /**  Represents a month in the Gregorian calendar. */
 export enum Month {
     /**  The unspecified month. */
-    UNSPECIFIED = 'MONTH_UNSPECIFIED',
+    MONTH_UNSPECIFIED = 0,
 
     /**  The month of January. */
-    JANUARY = 'JANUARY',
+    JANUARY = 1,
 
     /**  The month of February. */
-    FEBRUARY = 'FEBRUARY',
+    FEBRUARY = 2,
 
     /**  The month of March. */
-    MARCH = 'MARCH',
+    MARCH = 3,
 
     /**  The month of April. */
-    APRIL = 'APRIL',
+    APRIL = 4,
 
     /**  The month of May. */
-    MAY = 'MAY',
+    MAY = 5,
 
     /**  The month of June. */
-    JUNE = 'JUNE',
+    JUNE = 6,
 
     /**  The month of July. */
-    JULY = 'JULY',
+    JULY = 7,
 
     /**  The month of August. */
-    AUGUST = 'AUGUST',
+    AUGUST = 8,
 
     /**  The month of September. */
-    SEPTEMBER = 'SEPTEMBER',
+    SEPTEMBER = 9,
 
     /**  The month of October. */
-    OCTOBER = 'OCTOBER',
+    OCTOBER = 10,
 
     /**  The month of November. */
-    NOVEMBER = 'NOVEMBER',
+    NOVEMBER = 11,
 
     /**  The month of December. */
-    DECEMBER = 'DECEMBER',
+    DECEMBER = 12,
 }
 
 export namespace Month {

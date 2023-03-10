@@ -1,6 +1,28 @@
+import {
+    DescriptorProto,
+    EnumDescriptorProto,
+    EnumOptions,
+    EnumValueDescriptorProto,
+    EnumValueOptions,
+    ExtensionRangeOptions,
+    FieldDescriptorProto,
+    FieldOptions,
+    FileDescriptorProto,
+    FileDescriptorSet,
+    FileOptions,
+    GeneratedCodeInfo,
+    MessageOptions,
+    MethodDescriptorProto,
+    MethodOptions,
+    OneofDescriptorProto,
+    OneofOptions,
+    ServiceDescriptorProto,
+    ServiceOptions,
+    SourceCodeInfo,
+    UninterpretedOption
+} from '@sisyphus.js/runtime/lib/google/protobuf/descriptor'
 import {binaryifyFun, parseFun} from '../../message'
 import {EnumDescriptor, MessageDescriptor} from '../../reflection'
-import {DescriptorProto, EnumDescriptorProto, EnumOptions, EnumValueDescriptorProto, EnumValueOptions, ExtensionRangeOptions, FieldDescriptorProto, FieldOptions, FileDescriptorProto, FileDescriptorSet, FileOptions, GeneratedCodeInfo, MessageOptions, MethodDescriptorProto, MethodOptions, OneofDescriptorProto, OneofOptions, ServiceDescriptorProto, ServiceOptions, SourceCodeInfo, UninterpretedOption} from '@sisyphus.js/runtime/lib/google/protobuf/descriptor'
 
 declare module '@sisyphus.js/runtime/lib/google/protobuf/descriptor' {
     namespace FileDescriptorSet {
@@ -25,6 +47,7 @@ declare module '@sisyphus.js/runtime/lib/google/protobuf/descriptor' {
         function binaryify(v: DescriptorProto): Uint8Array
 
         function parse(buffer: Uint8Array): DescriptorProto
+
         namespace ExtensionRange {
             let descriptor: MessageDescriptor<ExtensionRange>
 
@@ -80,6 +103,7 @@ declare module '@sisyphus.js/runtime/lib/google/protobuf/descriptor' {
         function binaryify(v: EnumDescriptorProto): Uint8Array
 
         function parse(buffer: Uint8Array): EnumDescriptorProto
+
         namespace EnumReservedRange {
             let descriptor: MessageDescriptor<EnumReservedRange>
 
@@ -199,6 +223,7 @@ declare module '@sisyphus.js/runtime/lib/google/protobuf/descriptor' {
         function binaryify(v: UninterpretedOption): Uint8Array
 
         function parse(buffer: Uint8Array): UninterpretedOption
+
         namespace NamePart {
             let descriptor: MessageDescriptor<NamePart>
 
@@ -214,6 +239,7 @@ declare module '@sisyphus.js/runtime/lib/google/protobuf/descriptor' {
         function binaryify(v: SourceCodeInfo): Uint8Array
 
         function parse(buffer: Uint8Array): SourceCodeInfo
+
         namespace Location {
             let descriptor: MessageDescriptor<Location>
 
@@ -229,6 +255,7 @@ declare module '@sisyphus.js/runtime/lib/google/protobuf/descriptor' {
         function binaryify(v: GeneratedCodeInfo): Uint8Array
 
         function parse(buffer: Uint8Array): GeneratedCodeInfo
+
         namespace Annotation {
             let descriptor: MessageDescriptor<Annotation>
 

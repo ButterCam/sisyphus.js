@@ -21,12 +21,11 @@ generate<FileHeaderGeneratingState<''>>('file:header', it => {
         }
         return [lib, name]
     }
-
-    return true
 })
 
 generate<MessageGeneratingState>('message', it => {
-    if (it.descriptor.fullname() != 'google.protobuf.Any') return false
+    if (it.descriptor.fullname() != 'google.protobuf.Any') return
+    it.generatedElements++
     const builder = it.target
 
     builder.normalize().lineComment(...it.descriptor.comments())
@@ -38,11 +37,12 @@ generate<MessageGeneratingState>('message', it => {
     builder.beginBlock(`export namespace ${it.descriptor.interfaceName()}`)
     builder.normalize().appendLn(`export const name = '${it.descriptor.fullname()}'`)
     builder.endBlock()
-    return true
+    it.continue = false
 })
 
 generate<MessageGeneratingState>('message', it => {
-    if (it.descriptor.fullname() != 'google.protobuf.Duration') return false
+    if (it.descriptor.fullname() != 'google.protobuf.Duration') return
+    it.generatedElements++
     const builder = it.target
 
     builder.normalize().lineComment(...it.descriptor.comments())
@@ -53,11 +53,12 @@ generate<MessageGeneratingState>('message', it => {
     builder.normalize().beginBlock(`export namespace ${it.descriptor.interfaceName()}`)
     builder.normalize().appendLn(`export const name = '${it.descriptor.fullname()}'`)
     builder.endBlock()
-    return true
+    it.continue = false
 })
 
 generate<MessageGeneratingState>('message', it => {
-    if (it.descriptor.fullname() != 'google.protobuf.Empty') return false
+    if (it.descriptor.fullname() != 'google.protobuf.Empty') return
+    it.generatedElements++
     const builder = it.target
 
     builder.normalize().lineComment(...it.descriptor.comments())
@@ -67,11 +68,12 @@ generate<MessageGeneratingState>('message', it => {
     builder.normalize().beginBlock(`export namespace ${it.descriptor.interfaceName()}`)
     builder.normalize().appendLn(`export const name = '${it.descriptor.fullname()}'`)
     builder.endBlock()
-    return true
+    it.continue = false
 })
 
 generate<MessageGeneratingState>('message', it => {
-    if (it.descriptor.fullname() != 'google.protobuf.FieldMask') return false
+    if (it.descriptor.fullname() != 'google.protobuf.FieldMask') return
+    it.generatedElements++
     const builder = it.target
 
     builder.normalize().lineComment(...it.descriptor.comments())
@@ -82,11 +84,12 @@ generate<MessageGeneratingState>('message', it => {
     builder.normalize().beginBlock(`export namespace ${it.descriptor.interfaceName()}`)
     builder.normalize().appendLn(`export const name = '${it.descriptor.fullname()}'`)
     builder.endBlock()
-    return true
+    it.continue = false
 })
 
 generate<MessageGeneratingState>('message', it => {
-    if (it.descriptor.fullname() != 'google.protobuf.Struct') return false
+    if (it.descriptor.fullname() != 'google.protobuf.Struct') return
+    it.generatedElements++
     const builder = it.target
 
     builder.normalize().lineComment(...it.descriptor.comments())
@@ -96,11 +99,12 @@ generate<MessageGeneratingState>('message', it => {
     builder.normalize().beginBlock(`export namespace ${it.descriptor.interfaceName()}`)
     builder.normalize().appendLn(`export const name = '${it.descriptor.fullname()}'`)
     builder.endBlock()
-    return true
+    it.continue = false
 })
 
 generate<MessageGeneratingState>('message', it => {
-    if (it.descriptor.fullname() != 'google.protobuf.Value') return false
+    if (it.descriptor.fullname() != 'google.protobuf.Value') return
+    it.generatedElements++
     const builder = it.target
 
     builder.normalize().lineComment(...it.descriptor.comments())
@@ -110,11 +114,12 @@ generate<MessageGeneratingState>('message', it => {
     builder.normalize().beginBlock(`export namespace ${it.descriptor.interfaceName()}`)
     builder.normalize().appendLn(`export const name = '${it.descriptor.fullname()}'`)
     builder.endBlock()
-    return true
+    it.continue = false
 })
 
 generate<MessageGeneratingState>('message', it => {
-    if (it.descriptor.fullname() != 'google.protobuf.ListValue') return false
+    if (it.descriptor.fullname() != 'google.protobuf.ListValue') return
+    it.generatedElements++
     const builder = it.target
 
     builder.normalize().lineComment(...it.descriptor.comments())
@@ -124,11 +129,12 @@ generate<MessageGeneratingState>('message', it => {
     builder.normalize().beginBlock(`export namespace ${it.descriptor.interfaceName()}`)
     builder.normalize().appendLn(`export const name = '${it.descriptor.fullname()}'`)
     builder.endBlock()
-    return true
+    it.continue = false
 })
 
 generate<EnumGeneratingState>('enum', it => {
-    if (it.descriptor.fullname() != 'google.protobuf.NullValue') return false
+    if (it.descriptor.fullname() != 'google.protobuf.NullValue') return
+    it.generatedElements++
     const builder = it.target
 
     builder.normalize().lineComment(...it.descriptor.comments())
@@ -138,12 +144,13 @@ generate<EnumGeneratingState>('enum', it => {
     builder.normalize().beginBlock(`export namespace ${it.descriptor.enumName()}`)
     builder.normalize().appendLn(`export const name = '${it.descriptor.fullname()}'`)
     builder.endBlock()
-    return true
+    it.continue = false
 })
 
 
 generate<MessageGeneratingState>('message', it => {
-    if (it.descriptor.fullname() != 'google.protobuf.Timestamp') return false
+    if (it.descriptor.fullname() != 'google.protobuf.Timestamp') return
+    it.generatedElements++
     const builder = it.target
 
     builder.normalize().lineComment(...it.descriptor.comments())
@@ -153,11 +160,12 @@ generate<MessageGeneratingState>('message', it => {
     builder.normalize().beginBlock(`export namespace ${it.descriptor.interfaceName()}`)
     builder.normalize().appendLn(`export const name = '${it.descriptor.fullname()}'`)
     builder.endBlock()
-    return true
+    it.continue = false
 })
 
 generate<MessageGeneratingState>('message', it => {
-    if (it.descriptor.fullname() != 'google.protobuf.DoubleValue') return false
+    if (it.descriptor.fullname() != 'google.protobuf.DoubleValue') return
+    it.generatedElements++
     const builder = it.target
 
     builder.normalize().lineComment(...it.descriptor.comments())
@@ -167,11 +175,12 @@ generate<MessageGeneratingState>('message', it => {
     builder.normalize().beginBlock(`export namespace ${it.descriptor.interfaceName()}`)
     builder.normalize().appendLn(`export const name = '${it.descriptor.fullname()}'`)
     builder.endBlock()
-    return true
+    it.continue = false
 })
 
 generate<MessageGeneratingState>('message', it => {
-    if (it.descriptor.fullname() != 'google.protobuf.FloatValue') return false
+    if (it.descriptor.fullname() != 'google.protobuf.FloatValue') return
+    it.generatedElements++
     const builder = it.target
 
     builder.normalize().lineComment(...it.descriptor.comments())
@@ -181,11 +190,12 @@ generate<MessageGeneratingState>('message', it => {
     builder.normalize().beginBlock(`export namespace ${it.descriptor.interfaceName()}`)
     builder.normalize().appendLn(`export const name = '${it.descriptor.fullname()}'`)
     builder.endBlock()
-    return true
+    it.continue = false
 })
 
 generate<MessageGeneratingState>('message', it => {
-    if (it.descriptor.fullname() != 'google.protobuf.Int64Value') return false
+    if (it.descriptor.fullname() != 'google.protobuf.Int64Value') return
+    it.generatedElements++
     const builder = it.target
 
     builder.normalize().lineComment(...it.descriptor.comments())
@@ -196,11 +206,12 @@ generate<MessageGeneratingState>('message', it => {
     builder.normalize().beginBlock(`export namespace ${it.descriptor.interfaceName()}`)
     builder.normalize().appendLn(`export const name = '${it.descriptor.fullname()}'`)
     builder.endBlock()
-    return true
+    it.continue = false
 })
 
 generate<MessageGeneratingState>('message', it => {
-    if (it.descriptor.fullname() != 'google.protobuf.UInt64Value') return false
+    if (it.descriptor.fullname() != 'google.protobuf.UInt64Value') return
+    it.generatedElements++
     const builder = it.target
 
     builder.normalize().lineComment(...it.descriptor.comments())
@@ -211,11 +222,12 @@ generate<MessageGeneratingState>('message', it => {
     builder.normalize().beginBlock(`export namespace ${it.descriptor.interfaceName()}`)
     builder.normalize().appendLn(`export const name = '${it.descriptor.fullname()}'`)
     builder.endBlock()
-    return true
+    it.continue = false
 })
 
 generate<MessageGeneratingState>('message', it => {
-    if (it.descriptor.fullname() != 'google.protobuf.Int32Value') return false
+    if (it.descriptor.fullname() != 'google.protobuf.Int32Value') return
+    it.generatedElements++
     const builder = it.target
 
     builder.normalize().lineComment(...it.descriptor.comments())
@@ -225,11 +237,12 @@ generate<MessageGeneratingState>('message', it => {
     builder.normalize().beginBlock(`export namespace ${it.descriptor.interfaceName()}`)
     builder.normalize().appendLn(`export const name = '${it.descriptor.fullname()}'`)
     builder.endBlock()
-    return true
+    it.continue = false
 })
 
 generate<MessageGeneratingState>('message', it => {
-    if (it.descriptor.fullname() != 'google.protobuf.UInt32Value') return false
+    if (it.descriptor.fullname() != 'google.protobuf.UInt32Value') return
+    it.generatedElements++
     const builder = it.target
 
     builder.normalize().lineComment(...it.descriptor.comments())
@@ -239,11 +252,12 @@ generate<MessageGeneratingState>('message', it => {
     builder.normalize().beginBlock(`export namespace ${it.descriptor.interfaceName()}`)
     builder.normalize().appendLn(`export const name = '${it.descriptor.fullname()}'`)
     builder.endBlock()
-    return true
+    it.continue = false
 })
 
 generate<MessageGeneratingState>('message', it => {
-    if (it.descriptor.fullname() != 'google.protobuf.BoolValue') return false
+    if (it.descriptor.fullname() != 'google.protobuf.BoolValue') return
+    it.generatedElements++
     const builder = it.target
 
     builder.normalize().lineComment(...it.descriptor.comments())
@@ -253,11 +267,12 @@ generate<MessageGeneratingState>('message', it => {
     builder.normalize().beginBlock(`export namespace ${it.descriptor.interfaceName()}`)
     builder.normalize().appendLn(`export const name = '${it.descriptor.fullname()}'`)
     builder.endBlock()
-    return true
+    it.continue = false
 })
 
 generate<MessageGeneratingState>('message', it => {
-    if (it.descriptor.fullname() != 'google.protobuf.StringValue') return false
+    if (it.descriptor.fullname() != 'google.protobuf.StringValue') return
+    it.generatedElements++
     const builder = it.target
 
     builder.normalize().lineComment(...it.descriptor.comments())
@@ -267,11 +282,12 @@ generate<MessageGeneratingState>('message', it => {
     builder.normalize().beginBlock(`export namespace ${it.descriptor.interfaceName()}`)
     builder.normalize().appendLn(`export const name = '${it.descriptor.fullname()}'`)
     builder.endBlock()
-    return true
+    it.continue = false
 })
 
 generate<MessageGeneratingState>('message', it => {
-    if (it.descriptor.fullname() != 'google.protobuf.BytesValue') return false
+    if (it.descriptor.fullname() != 'google.protobuf.BytesValue') return
+    it.generatedElements++
     const builder = it.target
 
     builder.normalize().lineComment(...it.descriptor.comments())
@@ -281,5 +297,5 @@ generate<MessageGeneratingState>('message', it => {
     builder.normalize().beginBlock(`export namespace ${it.descriptor.interfaceName()}`)
     builder.normalize().appendLn(`export const name = '${it.descriptor.fullname()}'`)
     builder.endBlock()
-    return true
+    it.continue = false
 })

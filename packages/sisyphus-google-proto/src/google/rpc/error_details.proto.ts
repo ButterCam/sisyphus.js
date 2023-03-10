@@ -1,4 +1,15 @@
-import {BadRequest, DebugInfo, ErrorInfo, Help, LocalizedMessage, PreconditionFailure, QuotaFailure, RequestInfo, ResourceInfo, RetryInfo} from '@sisyphus.js/google/lib/google/rpc/error_details'
+import {
+    BadRequest,
+    DebugInfo,
+    ErrorInfo,
+    Help,
+    LocalizedMessage,
+    PreconditionFailure,
+    QuotaFailure,
+    RequestInfo,
+    ResourceInfo,
+    RetryInfo
+} from '@sisyphus.js/google/lib/google/rpc/error_details'
 import {MessageDescriptor} from '@sisyphus.js/runtime.proto'
 import {Duration} from '@sisyphus.js/runtime.proto/lib/google/protobuf/duration.proto'
 import {binaryifyFun, parseFun} from '@sisyphus.js/runtime.proto/lib/message'

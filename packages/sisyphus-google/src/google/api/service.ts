@@ -1,3 +1,6 @@
+import {Api} from '@sisyphus.js/runtime/lib/google/protobuf/api'
+import {Enum, Type} from '@sisyphus.js/runtime/lib/google/protobuf/type'
+import {UInt32Value} from '@sisyphus.js/runtime/lib/google/protobuf/wrappers'
 import {Authentication} from './auth'
 import {Backend} from './backend'
 import {Billing} from './billing'
@@ -15,9 +18,6 @@ import {Quota} from './quota'
 import {SourceInfo} from './source_info'
 import {SystemParameters} from './system_parameter'
 import {Usage} from './usage'
-import {Api} from '@sisyphus.js/runtime/lib/google/protobuf/api'
-import {Enum, Type} from '@sisyphus.js/runtime/lib/google/protobuf/type'
-import {UInt32Value} from '@sisyphus.js/runtime/lib/google/protobuf/wrappers'
 
 /**
  *  `Service` is the root object of Google service configuration schema. It
@@ -25,9 +25,9 @@ import {UInt32Value} from '@sisyphus.js/runtime/lib/google/protobuf/wrappers'
  *  title, and delegates other aspects to sub-sections. Each sub-section is
  *  either a proto message or a repeated proto message that configures a
  *  specific aspect, such as auth. See each proto message definition for details.
- * 
+ *
  *  Example:
- * 
+ *
  *      type: google.api.Service
  *      name: calendar.googleapis.com
  *      title: Google Calendar API
@@ -81,7 +81,7 @@ export interface Service {
      *  automatically included.  Messages which are not referenced but
      *  shall be included, such as types used by the `google.protobuf.Any` type,
      *  should be listed here by name. Example:
-     * 
+     *
      *      types:
      *      - name: google.protobuf.Int32
      */
@@ -92,7 +92,7 @@ export interface Service {
      *  referenced directly or indirectly by the `apis` are automatically
      *  included.  Enums which are not referenced but shall be included
      *  should be listed here by name. Example:
-     * 
+     *
      *      enums:
      *      - name: google.someapi.v1.SomeEnum
      */
@@ -158,7 +158,7 @@ export interface Service {
 
     /**
      *  Obsolete. Do not use.
-     * 
+     *
      *  This field has no semantic meaning. The service config compiler always
      *  sets this field to `3`.
      */
