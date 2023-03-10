@@ -58,7 +58,7 @@ export interface Api {
     mixins?: Mixin[]
 
     /**  The source syntax of the service. */
-    syntax?: Syntax
+    syntax?: Syntax | (keyof typeof Syntax)
 }
 
 export namespace Api {
@@ -86,7 +86,7 @@ export interface Method {
     options?: Option[]
 
     /**  The source syntax of this method. */
-    syntax?: Syntax
+    syntax?: Syntax | (keyof typeof Syntax)
 }
 
 export namespace Method {

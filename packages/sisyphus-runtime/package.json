@@ -1,13 +1,14 @@
 {
   "name": "@sisyphus.js/runtime",
-  "version": "2.0.8",
+  "version": "2.1.0",
   "description": "Protobuf lite runtime for sisyphus project on js platform, only support JSON format.",
   "main": "lib/index.js",
   "scripts": {
     "clean": "tsc --build --clean",
     "build": "tsc",
     "watch": "tsc -w",
-    "test": "mocha"
+    "test": "mocha",
+    "protoc": "sisygen -O ./src"
   },
   "files": [
     "lib",

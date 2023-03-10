@@ -1,8 +1,8 @@
-import {Status} from '../rpc/status'
 import {Any} from '@sisyphus.js/runtime/lib/google/protobuf/any'
 import '@sisyphus.js/runtime/lib/google/protobuf/descriptor'
 import {Duration} from '@sisyphus.js/runtime/lib/google/protobuf/duration'
 import {Empty} from '@sisyphus.js/runtime/lib/google/protobuf/empty'
+import {Status} from '../rpc/status'
 
 /**
  *  Manages long-running operations with an API service.

@@ -4,7 +4,7 @@ export interface LabelDescriptor {
     key?: string
 
     /**  The type of data that can be assigned to the label. */
-    valueType?: LabelDescriptor.ValueType
+    valueType?: LabelDescriptor.ValueType | (keyof typeof LabelDescriptor.ValueType)
 
     /**  A human-readable description for the label. */
     description?: string
@@ -16,13 +16,13 @@ export namespace LabelDescriptor {
     /**  Value types that can be used as label values. */
     export enum ValueType {
         /**  A variable-length string. This is the default. */
-        STRING = 'STRING',
+        STRING = 0,
 
         /**  Boolean; true or false. */
-        BOOL = 'BOOL',
+        BOOL = 1,
 
         /**  A 64-bit signed integer. */
-        INT64 = 'INT64',
+        INT64 = 2,
     }
 
     export namespace ValueType {

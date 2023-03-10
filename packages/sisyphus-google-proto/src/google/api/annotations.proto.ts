@@ -1,6 +1,6 @@
-import {HttpRule} from './http.proto'
 import '@sisyphus.js/google/lib/google/api/annotations'
 import '@sisyphus.js/runtime.proto'
+import {HttpRule} from './http.proto'
 
 declare module '@sisyphus.js/google/lib/google/api/annotations' {
 }

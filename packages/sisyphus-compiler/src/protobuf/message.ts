@@ -1,7 +1,6 @@
 import util from 'util'
 import {CodeBuilder} from '../code-builder'
 import {ExtensionDescriptor, FieldDescriptor, MessageDescriptor} from '../descriptor'
-import {FieldDescriptorProto} from '../google/protobuf/descriptor'
 import {
     ExtensionProtobufGeneratingState,
     FieldProtobufDescriptorGeneratingState,
@@ -12,6 +11,7 @@ import {
 generate<MessageProtobufGeneratingState>('message:proto', it => {
     if (it.descriptor.mapEntry()) return
     const builder = it.target
+    it.generatedElements++
 
     builder.beginBlock(`namespace ${it.descriptor.interfaceName()}`)
 
@@ -37,6 +37,8 @@ generate<MessageProtobufGeneratingState>('message:proto', it => {
 
 generate<MessageProtobufImplGeneratingState>('message:proto:impl', it => {
     if (it.descriptor.mapEntry()) return
+    it.generatedElements++
+
     const builder = it.target
     let importName = builder.importManager.import(`/${it.descriptor.file().tsModulePath()}`, it.descriptor.importName())
     builder.normalize().beginBlock(`${it.descriptor.fullImportName(importName)}.descriptor = protobufDefinition({`)
@@ -99,7 +101,7 @@ generate<MessageProtobufImplGeneratingState>('message:proto:impl', it => {
 
 generate<FieldProtobufDescriptorGeneratingState>('field:proto:descriptor', it => {
     const builder = it.target
-//    fields: [{kind: 'message', name: 'values', num: 1, type: () => Value.descriptor, repeat: true}]
+    it.generatedElements++
 
     const kind = fieldKind(it.descriptor)
     builder.append(`{kind: '${kind}', name: '${it.descriptor.name()}', num: ${it.descriptor.descriptor.number}, `)
@@ -138,6 +140,7 @@ generate<FieldProtobufDescriptorGeneratingState>('field:proto:descriptor', it =>
 
 generate<ExtensionProtobufGeneratingState>('extension:proto', it => {
     const builder = it.target
+    it.generatedElements++
 
     builder.importManager.import('@sisyphus.js/runtime.proto')
 
@@ -153,14 +156,14 @@ generate<ExtensionProtobufGeneratingState>('extension:proto', it => {
 
 function fieldKind(desc: FieldDescriptor | ExtensionDescriptor): string {
     switch (desc.descriptor.type) {
-        case FieldDescriptorProto.Type.MESSAGE:
+        case 'TYPE_MESSAGE':
             const type = desc.root().lookup(desc.descriptor.typeName ?? '')
             if (type instanceof MessageDescriptor && type.mapEntry()) {
                 return 'map'
             } else {
                 return 'message'
             }
-        case FieldDescriptorProto.Type.ENUM:
+        case 'TYPE_ENUM':
             return 'enum'
         default:
             return 'scalar'
@@ -169,38 +172,38 @@ function fieldKind(desc: FieldDescriptor | ExtensionDescriptor): string {
 
 function type(builder: CodeBuilder, field: FieldDescriptor | ExtensionDescriptor): string {
     switch (field.descriptor.type) {
-        case FieldDescriptorProto.Type.DOUBLE:
+        case 'TYPE_DOUBLE':
             return `1 /* DOUBLE */`
-        case FieldDescriptorProto.Type.FLOAT:
+        case 'TYPE_FLOAT':
             return `2 /* FLOAT */`
-        case FieldDescriptorProto.Type.INT32:
+        case 'TYPE_INT32':
             return `5 /* INT32 */`
-        case FieldDescriptorProto.Type.SINT32:
+        case 'TYPE_SINT32':
             return `17 /* SINT32 */`
-        case FieldDescriptorProto.Type.UINT32:
+        case 'TYPE_UINT32':
             return `13 /* UINT32 */`
-        case FieldDescriptorProto.Type.FIXED32:
+        case 'TYPE_FIXED32':
             return `7 /* FIXED32 */`
-        case FieldDescriptorProto.Type.SFIXED32:
+        case 'TYPE_SFIXED32':
             return `15 /* SFIXED32 */`
-        case FieldDescriptorProto.Type.INT64:
+        case 'TYPE_INT64':
             return `3 /* INT64 */`
-        case FieldDescriptorProto.Type.UINT64:
+        case 'TYPE_UINT64':
             return `4 /* UINT64 */`
-        case FieldDescriptorProto.Type.SINT64:
+        case 'TYPE_SINT64':
             return `18 /* SINT64 */`
-        case FieldDescriptorProto.Type.FIXED64:
+        case 'TYPE_FIXED64':
             return `6 /* FIXED64 */`
-        case FieldDescriptorProto.Type.SFIXED64:
+        case 'TYPE_SFIXED64':
             return `16 /* SFIXED64 */`
-        case FieldDescriptorProto.Type.BOOL:
+        case 'TYPE_BOOL':
             return `8 /* BOOL */`
-        case FieldDescriptorProto.Type.BYTES:
+        case 'TYPE_BYTES':
             return `12 /* BYTES */`
-        case FieldDescriptorProto.Type.STRING:
+        case 'TYPE_STRING':
             return `9 /* STRING */`
-        case FieldDescriptorProto.Type.MESSAGE:
-        case FieldDescriptorProto.Type.ENUM:
+        case 'TYPE_MESSAGE':
+        case 'TYPE_ENUM':
             const [lib, target] =
                 field.file().import(field.descriptor.typeName ?? '', 'proto')
             const importName = builder.importManager.import(lib, target.importName())

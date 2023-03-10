@@ -1,8 +1,8 @@
-import {AttributeContext} from '../../rpc/context/attribute_context'
-import {Status} from '../../rpc/status'
 import {long} from '@sisyphus.js/runtime'
 import {Any} from '@sisyphus.js/runtime/lib/google/protobuf/any'
 import {Struct} from '@sisyphus.js/runtime/lib/google/protobuf/struct'
+import {AttributeContext} from '../../rpc/context/attribute_context'
+import {Status} from '../../rpc/status'
 
 /**  Common audit log format for Google Cloud Platform API operations. */
 export interface AuditLog {

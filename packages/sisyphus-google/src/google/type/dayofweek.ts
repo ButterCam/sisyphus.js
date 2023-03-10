@@ -1,28 +1,28 @@
 /**  Represents a day of the week. */
 export enum DayOfWeek {
     /**  The day of the week is unspecified. */
-    UNSPECIFIED = 'DAY_OF_WEEK_UNSPECIFIED',
+    DAY_OF_WEEK_UNSPECIFIED = 0,
 
     /**  Monday */
-    MONDAY = 'MONDAY',
+    MONDAY = 1,
 
     /**  Tuesday */
-    TUESDAY = 'TUESDAY',
+    TUESDAY = 2,
 
     /**  Wednesday */
-    WEDNESDAY = 'WEDNESDAY',
+    WEDNESDAY = 3,
 
     /**  Thursday */
-    THURSDAY = 'THURSDAY',
+    THURSDAY = 4,
 
     /**  Friday */
-    FRIDAY = 'FRIDAY',
+    FRIDAY = 5,
 
     /**  Saturday */
-    SATURDAY = 'SATURDAY',
+    SATURDAY = 6,
 
     /**  Sunday */
-    SUNDAY = 'SUNDAY',
+    SUNDAY = 7,
 }
 
 export namespace DayOfWeek {

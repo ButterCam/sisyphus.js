@@ -40,6 +40,13 @@ export function generateReleaseName(platform: NodeJS.Platform, arch: string, ver
     return `protoc-${version}-${build}`
 }
 
+export function generateProtocName(platform: NodeJS.Platform): string {
+    if (platform === 'win32') {
+        return 'protoc.exe'
+    }
+    return 'protoc'
+}
+
 function downloadRedirected(uri: string, redirects: string[] = []): Promise<IncomingMessage> {
     const url = new URL(uri)
 

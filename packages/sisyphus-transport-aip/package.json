@@ -1,6 +1,6 @@
 {
   "name": "@sisyphus.js/transport-aip",
-  "version": "2.0.8",
+  "version": "2.1.0",
   "description": "gRPC transport based on AIP spec(gRPC to HTTP/Json Transcoding).",
   "main": "lib/index.js",
   "scripts": {
@@ -32,8 +32,8 @@
   },
   "homepage": "https://github.com/ButterCam/sisyphus-js#readme",
   "dependencies": {
-    "@sisyphus.js/google": "^2.0.8",
-    "@sisyphus.js/runtime": "^2.0.8"
+    "@sisyphus.js/google": "^2.1.0",
+    "@sisyphus.js/runtime": "^2.1.0"
   },
   "directories": {
     "lib": "lib",

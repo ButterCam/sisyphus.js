@@ -1,9 +1,13 @@
-import {LabelDescriptor} from './label.proto'
-import {LaunchStage} from './launch_stage.proto'
-import {MonitoredResource, MonitoredResourceDescriptor, MonitoredResourceMetadata} from '@sisyphus.js/google/lib/google/api/monitored_resource'
+import {
+    MonitoredResource,
+    MonitoredResourceDescriptor,
+    MonitoredResourceMetadata
+} from '@sisyphus.js/google/lib/google/api/monitored_resource'
 import {MessageDescriptor} from '@sisyphus.js/runtime.proto'
 import {Struct} from '@sisyphus.js/runtime.proto/lib/google/protobuf/struct.proto'
 import {binaryifyFun, parseFun} from '@sisyphus.js/runtime.proto/lib/message'
+import {LabelDescriptor} from './label.proto'
+import {LaunchStage} from './launch_stage.proto'
 
 declare module '@sisyphus.js/google/lib/google/api/monitored_resource' {
     namespace MonitoredResourceDescriptor {

@@ -6,6 +6,7 @@ import {
 
 generate<EnumProtobufGeneratingState>('enum:proto', it => {
     const builder = it.target
+    it.generatedElements++
 
     builder.normalize().beginBlock(`namespace ${it.descriptor.enumName()}`)
 
@@ -16,6 +17,7 @@ generate<EnumProtobufGeneratingState>('enum:proto', it => {
 
 generate<EnumProtobufImplGeneratingState>('enum:proto:impl', it => {
     const builder = it.target
+    it.generatedElements++
 
     let importName = builder.importManager.import(`/${it.descriptor.file().tsModulePath()}`, it.descriptor.importName())
     builder.normalize().beginBlock(`${it.descriptor.fullImportName(importName)}.descriptor =`)
@@ -40,6 +42,7 @@ generate<EnumProtobufImplGeneratingState>('enum:proto:impl', it => {
 
 generate<EnumValueProtobufDescriptorGeneratingState>('enumValue:proto:descriptor', it => {
     const builder = it.target
+    it.generatedElements++
 
     builder.normalize().appendLn(`${it.descriptor.number()}: '${it.descriptor.name()}',`)
     builder.normalize().appendLn(`${it.descriptor.name()}: ${it.descriptor.number()},`)

@@ -41,190 +41,207 @@ generate<FileHeaderGeneratingState<'proto'>>('file:header', it => {
         return [lib, name]
     }
 
-    return true
+    it.continue = false
 })
 
 generate<MessageProtobufDescriptorGeneratingState>('message:proto:desc', it => {
-    if (it.descriptor.fullname() != 'google.protobuf.Any') return false
+    if (it.descriptor.fullname() != 'google.protobuf.Any') return
+    it.generatedElements++
     const builder = it.target.normalize()
     importFromWellknown(builder, 'any', 'write')
     importFromWellknown(builder, 'any', 'read')
     builder.ln()
-    return true
+    it.continue = false
 })
 
 generate<MessageProtobufDescriptorGeneratingState>('message:proto:desc', it => {
-    if (it.descriptor.fullname() != 'google.protobuf.Duration') return false
+    if (it.descriptor.fullname() != 'google.protobuf.Duration') return
+    it.generatedElements++
     const builder = it.target.normalize()
     importFromWellknown(builder, 'duration', 'write')
     importFromWellknown(builder, 'duration', 'read')
     importFromWellknown(builder, 'duration', 'box')
     importFromWellknown(builder, 'duration', 'unbox')
     builder.ln()
-    return true
+    it.continue = false
 })
 
 generate<MessageProtobufDescriptorGeneratingState>('message:proto:desc', it => {
-    if (it.descriptor.fullname() != 'google.protobuf.Empty') return false
+    if (it.descriptor.fullname() != 'google.protobuf.Empty') return
+    it.generatedElements++
     const builder = it.target.normalize()
     importFromWellknown(builder, 'empty', 'write')
     importFromWellknown(builder, 'empty', 'read')
     builder.ln()
-    return true
+    it.continue = false
 })
 
 generate<MessageProtobufDescriptorGeneratingState>('message:proto:desc', it => {
-    if (it.descriptor.fullname() != 'google.protobuf.FieldMask') return false
+    if (it.descriptor.fullname() != 'google.protobuf.FieldMask') return
+    it.generatedElements++
     const builder = it.target.normalize()
     importFromWellknown(builder, 'field-mask', 'write')
     importFromWellknown(builder, 'field-mask', 'read')
     importFromWellknown(builder, 'field-mask', 'box')
     importFromWellknown(builder, 'field-mask', 'unbox')
     builder.ln()
-    return true
+    it.continue = false
 })
 
 generate<MessageProtobufDescriptorGeneratingState>('message:proto:desc', it => {
-    if (it.descriptor.fullname() != 'google.protobuf.Struct') return false
+    if (it.descriptor.fullname() != 'google.protobuf.Struct') return
+    it.generatedElements++
     const builder = it.target.normalize()
-    importFromWellknown(builder, 'struct', 'write','writeStruct')
+    importFromWellknown(builder, 'struct', 'write', 'writeStruct')
     importFromWellknown(builder, 'struct', 'read', 'readStruct')
-    importFromWellknown(builder, 'struct', 'box','boxStruct')
+    importFromWellknown(builder, 'struct', 'box', 'boxStruct')
     importFromWellknown(builder, 'struct', 'unbox', 'unboxStruct')
     builder.ln()
-    return true
+    it.continue = false
 })
 
 generate<MessageProtobufDescriptorGeneratingState>('message:proto:desc', it => {
-    if (it.descriptor.fullname() != 'google.protobuf.Value') return false
+    if (it.descriptor.fullname() != 'google.protobuf.Value') return
+    it.generatedElements++
     const builder = it.target.normalize()
-    importFromWellknown(builder, 'struct', 'write','writeValue')
+    importFromWellknown(builder, 'struct', 'write', 'writeValue')
     importFromWellknown(builder, 'struct', 'read', 'readValue')
-    importFromWellknown(builder, 'struct', 'box','boxValue')
+    importFromWellknown(builder, 'struct', 'box', 'boxValue')
     importFromWellknown(builder, 'struct', 'unbox', 'unboxValue')
     builder.ln()
-    return true
+    it.continue = false
 })
 
 generate<MessageProtobufDescriptorGeneratingState>('message:proto:desc', it => {
-    if (it.descriptor.fullname() != 'google.protobuf.ListValue') return false
+    if (it.descriptor.fullname() != 'google.protobuf.ListValue') return
+    it.generatedElements++
     const builder = it.target.normalize()
     importFromWellknown(builder, 'struct', 'write', 'writeListValue')
     importFromWellknown(builder, 'struct', 'read', 'readListValue')
     importFromWellknown(builder, 'struct', 'box', 'boxListValue')
     importFromWellknown(builder, 'struct', 'unbox', 'unboxListValue')
     builder.ln()
-    return true
+    it.continue = false
 })
 
 generate<MessageProtobufDescriptorGeneratingState>('message:proto:desc', it => {
-    if (it.descriptor.fullname() != 'google.protobuf.Timestamp') return false
+    if (it.descriptor.fullname() != 'google.protobuf.Timestamp') return
+    it.generatedElements++
     const builder = it.target.normalize()
     importFromWellknown(builder, 'timestamp', 'write')
     importFromWellknown(builder, 'timestamp', 'read')
     importFromWellknown(builder, 'timestamp', 'box')
     importFromWellknown(builder, 'timestamp', 'unbox')
     builder.ln()
-    return true
+    it.continue = false
 })
 
 generate<MessageProtobufDescriptorGeneratingState>('message:proto:desc', it => {
-    if (it.descriptor.fullname() != 'google.protobuf.DoubleValue') return false
+    if (it.descriptor.fullname() != 'google.protobuf.DoubleValue') return
+    it.generatedElements++
     const builder = it.target.normalize()
     importFromWellknown(builder, 'wrappers', 'write', 'writeDoubleValue')
     importFromWellknown(builder, 'wrappers', 'read', 'readDoubleValue')
     importFromWellknown(builder, 'wrappers', 'box', 'boxDoubleValue')
     importFromWellknown(builder, 'wrappers', 'unbox', 'unboxDoubleValue')
     builder.ln()
-    return true
+    it.continue = false
 })
 
 generate<MessageProtobufDescriptorGeneratingState>('message:proto:desc', it => {
-    if (it.descriptor.fullname() != 'google.protobuf.FloatValue') return false
+    if (it.descriptor.fullname() != 'google.protobuf.FloatValue') return
+    it.generatedElements++
     const builder = it.target.normalize()
     importFromWellknown(builder, 'wrappers', 'write', 'writeFloatValue')
     importFromWellknown(builder, 'wrappers', 'read', 'readFloatValue')
     importFromWellknown(builder, 'wrappers', 'box', 'boxFloatValue')
     importFromWellknown(builder, 'wrappers', 'unbox', 'unboxFloatValue')
     builder.ln()
-    return true
+    it.continue = false
 })
 
 generate<MessageProtobufDescriptorGeneratingState>('message:proto:desc', it => {
-    if (it.descriptor.fullname() != 'google.protobuf.Int32Value') return false
+    if (it.descriptor.fullname() != 'google.protobuf.Int32Value') return
+    it.generatedElements++
     const builder = it.target.normalize()
     importFromWellknown(builder, 'wrappers', 'write', 'writeInt32Value')
     importFromWellknown(builder, 'wrappers', 'read', 'readInt32Value')
     importFromWellknown(builder, 'wrappers', 'box', 'boxInt32Value')
     importFromWellknown(builder, 'wrappers', 'unbox', 'unboxInt32Value')
     builder.ln()
-    return true
+    it.continue = false
 })
 
 generate<MessageProtobufDescriptorGeneratingState>('message:proto:desc', it => {
-    if (it.descriptor.fullname() != 'google.protobuf.UInt32Value') return false
+    if (it.descriptor.fullname() != 'google.protobuf.UInt32Value') return
+    it.generatedElements++
     const builder = it.target.normalize()
     importFromWellknown(builder, 'wrappers', 'write', 'writeUInt32Value')
     importFromWellknown(builder, 'wrappers', 'read', 'readUInt32Value')
     importFromWellknown(builder, 'wrappers', 'box', 'boxUInt32Value')
     importFromWellknown(builder, 'wrappers', 'unbox', 'unboxUInt32Value')
     builder.ln()
-    return true
+    it.continue = false
 })
 
 generate<MessageProtobufDescriptorGeneratingState>('message:proto:desc', it => {
-    if (it.descriptor.fullname() != 'google.protobuf.Int64Value') return false
+    if (it.descriptor.fullname() != 'google.protobuf.Int64Value') return
+    it.generatedElements++
     const builder = it.target.normalize()
     importFromWellknown(builder, 'wrappers', 'write', 'writeInt64Value')
     importFromWellknown(builder, 'wrappers', 'read', 'readInt64Value')
     importFromWellknown(builder, 'wrappers', 'box', 'boxInt64Value')
     importFromWellknown(builder, 'wrappers', 'unbox', 'unboxInt64Value')
     builder.ln()
-    return true
+    it.continue = false
 })
 
 generate<MessageProtobufDescriptorGeneratingState>('message:proto:desc', it => {
-    if (it.descriptor.fullname() != 'google.protobuf.UInt64Value') return false
+    if (it.descriptor.fullname() != 'google.protobuf.UInt64Value') return
+    it.generatedElements++
     const builder = it.target.normalize()
     importFromWellknown(builder, 'wrappers', 'write', 'writeUInt64Value')
     importFromWellknown(builder, 'wrappers', 'read', 'readUInt64Value')
     importFromWellknown(builder, 'wrappers', 'box', 'boxUInt64Value')
     importFromWellknown(builder, 'wrappers', 'unbox', 'unboxUInt64Value')
     builder.ln()
-    return true
+    it.continue = false
 })
 
 generate<MessageProtobufDescriptorGeneratingState>('message:proto:desc', it => {
-    if (it.descriptor.fullname() != 'google.protobuf.BoolValue') return false
+    if (it.descriptor.fullname() != 'google.protobuf.BoolValue') return
+    it.generatedElements++
     const builder = it.target.normalize()
     importFromWellknown(builder, 'wrappers', 'write', 'writeBoolValue')
     importFromWellknown(builder, 'wrappers', 'read', 'readBoolValue')
     importFromWellknown(builder, 'wrappers', 'box', 'boxBoolValue')
     importFromWellknown(builder, 'wrappers', 'unbox', 'unboxBoolValue')
     builder.ln()
-    return true
+    it.continue = false
 })
 
 generate<MessageProtobufDescriptorGeneratingState>('message:proto:desc', it => {
-    if (it.descriptor.fullname() != 'google.protobuf.StringValue') return false
+    if (it.descriptor.fullname() != 'google.protobuf.StringValue') return
+    it.generatedElements++
     const builder = it.target.normalize()
     importFromWellknown(builder, 'wrappers', 'write', 'writeStringValue')
     importFromWellknown(builder, 'wrappers', 'read', 'readStringValue')
     importFromWellknown(builder, 'wrappers', 'box', 'boxStringValue')
     importFromWellknown(builder, 'wrappers', 'unbox', 'unboxStringValue')
     builder.ln()
-    return true
+    it.continue = false
 })
 
 generate<MessageProtobufDescriptorGeneratingState>('message:proto:desc', it => {
-    if (it.descriptor.fullname() != 'google.protobuf.BytesValue') return false
+    if (it.descriptor.fullname() != 'google.protobuf.BytesValue') return
+    it.generatedElements++
     const builder = it.target.normalize()
     importFromWellknown(builder, 'wrappers', 'write', 'writeBytesValue')
     importFromWellknown(builder, 'wrappers', 'read', 'readBytesValue')
     importFromWellknown(builder, 'wrappers', 'box', 'boxBytesValue')
     importFromWellknown(builder, 'wrappers', 'unbox', 'unboxBytesValue')
     builder.ln()
-    return true
+    it.continue = false
 })
 
 function importFromWellknown(builder: CodeBuilder, module: string, name: string, impl?: string) {

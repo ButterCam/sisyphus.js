@@ -1,5 +1,4 @@
 import {CodeBuilder} from '../code-builder'
-import {FileGeneratingState} from '../core/state'
 import {FileDescriptor, MethodDescriptor, ServiceDescriptor} from '../descriptor'
 import {GeneratingState} from '../generator'
 import {FilesGeneratingState} from '../state'

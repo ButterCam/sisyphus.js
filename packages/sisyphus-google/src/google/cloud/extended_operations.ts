@@ -8,13 +8,13 @@ import '@sisyphus.js/runtime/lib/google/protobuf/descriptor'
  */
 export enum OperationResponseMapping {
     /**  Do not use. */
-    UNDEFINED = 'UNDEFINED',
+    UNDEFINED = 0,
 
     /**
      *  A field in an API-specific (custom) Operation object which carries the same
      *  meaning as google.longrunning.Operation.name.
      */
-    NAME = 'NAME',
+    NAME = 1,
 
     /**
      *  A field in an API-specific (custom) Operation object which carries the same
@@ -24,19 +24,19 @@ export enum OperationResponseMapping {
      *  boolean, then it should follow the same semantics as Operation.done.
      *  Otherwise, a non-empty value should be treated as `Operation.done == true`.
      */
-    STATUS = 'STATUS',
+    STATUS = 2,
 
     /**
      *  A field in an API-specific (custom) Operation object which carries the same
      *  meaning as google.longrunning.Operation.error.code.
      */
-    ERROR_CODE = 'ERROR_CODE',
+    ERROR_CODE = 3,
 
     /**
      *  A field in an API-specific (custom) Operation object which carries the same
      *  meaning as google.longrunning.Operation.error.message.
      */
-    ERROR_MESSAGE = 'ERROR_MESSAGE',
+    ERROR_MESSAGE = 4,
 }
 
 export namespace OperationResponseMapping {
@@ -50,7 +50,7 @@ declare module '@sisyphus.js/runtime/lib/google/protobuf/descriptor' {
          *  their standard counterparts in google.longrunning.Operation. See
          *  OperationResponseMapping enum definition.
          */
-        operationField: OperationResponseMapping
+        operationField: OperationResponseMapping | (keyof typeof OperationResponseMapping)
 
         /**
          *  A field annotation that maps fields in the initial request message

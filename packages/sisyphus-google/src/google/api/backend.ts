@@ -63,7 +63,7 @@ export interface BackendRule {
      */
     operationDeadline?: number
 
-    pathTranslation?: BackendRule.PathTranslation
+    pathTranslation?: BackendRule.PathTranslation | (keyof typeof BackendRule.PathTranslation)
 
     /**
      *  The JWT audience is used when generating a JWT ID token for the backend.
@@ -119,7 +119,7 @@ export namespace BackendRule {
      *  unspecified.
      */
     export enum PathTranslation {
-        UNSPECIFIED = 'PATH_TRANSLATION_UNSPECIFIED',
+        PATH_TRANSLATION_UNSPECIFIED = 0,
 
         /**
          *  Use the backend address as-is, with no modification to the path. If the
@@ -127,7 +127,7 @@ export namespace BackendRule {
          *  appended to the query string. If a query string parameter and a URL
          *  pattern variable have the same name, this may result in duplicate keys in
          *  the query string.
-         * 
+         *
          *  # Examples
          * 
          *  Given the following operation config:
@@ -137,39 +137,39 @@ export namespace BackendRule {
          * 
          *  Requests to the following request paths will call the backend at the
          *  translated path:
-         * 
+         *
          *      Request path: /api/company/widgetworks/user/johndoe
          *      Translated:
          *      https://example.cloudfunctions.net/getUser?cid=widgetworks&uid=johndoe
-         * 
+         *
          *      Request path: /api/company/widgetworks/user/johndoe?timezone=EST
          *      Translated:
          *      https://example.cloudfunctions.net/getUser?timezone=EST&cid=widgetworks&uid=johndoe
          */
-        CONSTANT_ADDRESS = 'CONSTANT_ADDRESS',
+        CONSTANT_ADDRESS = 1,
 
         /**
          *  The request path will be appended to the backend address.
-         * 
+         *
          *  # Examples
-         * 
+         *
          *  Given the following operation config:
-         * 
+         *
          *      Method path:        /api/company/{cid}/user/{uid}
          *      Backend address:    https://example.appspot.com
          * 
          *  Requests to the following request paths will call the backend at the
          *  translated path:
-         * 
+         *
          *      Request path: /api/company/widgetworks/user/johndoe
          *      Translated:
          *      https://example.appspot.com/api/company/widgetworks/user/johndoe
-         * 
+         *
          *      Request path: /api/company/widgetworks/user/johndoe?timezone=EST
          *      Translated:
          *      https://example.appspot.com/api/company/widgetworks/user/johndoe?timezone=EST
          */
-        APPEND_PATH_TO_ADDRESS = 'APPEND_PATH_TO_ADDRESS',
+        APPEND_PATH_TO_ADDRESS = 2,
     }
 
     export namespace PathTranslation {

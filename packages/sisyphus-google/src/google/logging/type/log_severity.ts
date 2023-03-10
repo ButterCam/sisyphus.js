@@ -17,34 +17,34 @@
  */
 export enum LogSeverity {
     /**  (0) The log entry has no assigned severity level. */
-    DEFAULT = 'DEFAULT',
+    DEFAULT = 0,
 
     /**  (100) Debug or trace information. */
-    DEBUG = 'DEBUG',
+    DEBUG = 100,
 
     /**  (200) Routine information, such as ongoing status or performance. */
-    INFO = 'INFO',
+    INFO = 200,
 
     /**
      *  (300) Normal but significant events, such as start up, shut down, or
      *  a configuration change.
      */
-    NOTICE = 'NOTICE',
+    NOTICE = 300,
 
     /**  (400) Warning events might cause problems. */
-    WARNING = 'WARNING',
+    WARNING = 400,
 
     /**  (500) Error events are likely to cause problems. */
-    ERROR = 'ERROR',
+    ERROR = 500,
 
     /**  (600) Critical events cause more severe problems or outages. */
-    CRITICAL = 'CRITICAL',
+    CRITICAL = 600,
 
     /**  (700) A person must take an action immediately. */
-    ALERT = 'ALERT',
+    ALERT = 700,
 
     /**  (800) One or more systems are unusable. */
-    EMERGENCY = 'EMERGENCY',
+    EMERGENCY = 800,
 }
 
 export namespace LogSeverity {

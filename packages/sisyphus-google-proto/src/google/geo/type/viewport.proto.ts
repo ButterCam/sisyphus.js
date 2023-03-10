@@ -1,7 +1,7 @@
-import {LatLng} from '../../type/latlng.proto'
 import {Viewport} from '@sisyphus.js/google/lib/google/geo/type/viewport'
 import {MessageDescriptor} from '@sisyphus.js/runtime.proto'
 import {binaryifyFun, parseFun} from '@sisyphus.js/runtime.proto/lib/message'
+import {LatLng} from '../../type/latlng.proto'
 
 declare module '@sisyphus.js/google/lib/google/geo/type/viewport' {
     namespace Viewport {

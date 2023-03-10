@@ -10,6 +10,7 @@ export * from './timestamp'
 export * from './google/protobuf/type'
 export * from './google/protobuf/wrappers'
 
+export * from './enum'
 export * from './base64'
 export * from './int64'
 export * from './long'

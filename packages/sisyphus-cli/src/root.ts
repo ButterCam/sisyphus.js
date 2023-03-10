@@ -35,7 +35,7 @@ async function discoverGeneratedModuleInPackage(packageInfo: PackageJson, dir: s
     for (let file of sisyphusDist.generatedFiles) {
         const moduleName = tsModuleName(file)
         if (moduleName == undefined) return
-        generatedModules['/' + moduleName] = path.join(packageInfo.name, packageInfo.directories?.lib ?? 'lib', moduleName)
+        generatedModules['/' + moduleName] = path.posix.join(packageInfo.name, packageInfo.directories?.lib ?? 'lib', moduleName)
     }
 
     return packageInfo

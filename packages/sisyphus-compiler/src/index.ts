@@ -25,7 +25,7 @@ global.advance = function <T extends GeneratingState<string, any, any, any>>(ini
         if (generator.kind !== state.kind) continue
         generator.generate(state)
         if (!state.continue) {
-            return state.generatedElements
+            break
         }
     }
 

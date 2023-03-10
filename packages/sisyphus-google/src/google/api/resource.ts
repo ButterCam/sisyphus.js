@@ -110,7 +110,7 @@ export interface ResourceDescriptor {
      *        };
      *      }
      */
-    history?: ResourceDescriptor.History
+    history?: ResourceDescriptor.History | (keyof typeof ResourceDescriptor.History)
 
     /**
      *  The plural name used in the resource name and permission names, such as
@@ -136,7 +136,7 @@ export interface ResourceDescriptor {
      *  These indicate that a resource is expected to conform to a given
      *  style. See the specific style flags for additional information.
      */
-    style?: ResourceDescriptor.Style[]
+    style?: ResourceDescriptor.Style | (keyof typeof ResourceDescriptor.Style)[]
 }
 
 export namespace ResourceDescriptor {
@@ -148,20 +148,20 @@ export namespace ResourceDescriptor {
      */
     export enum History {
         /**  The "unset" value. */
-        UNSPECIFIED = 'HISTORY_UNSPECIFIED',
+        HISTORY_UNSPECIFIED = 0,
 
         /**
          *  The resource originally had one pattern and launched as such, and
          *  additional patterns were added later.
          */
-        ORIGINALLY_SINGLE_PATTERN = 'ORIGINALLY_SINGLE_PATTERN',
+        ORIGINALLY_SINGLE_PATTERN = 1,
 
         /**
          *  The resource has one pattern, but the API owner expects to add more
          *  later. (This is the inverse of ORIGINALLY_SINGLE_PATTERN, and prevents
          *  that from being necessary once there are multiple patterns.)
          */
-        FUTURE_MULTI_PATTERN = 'FUTURE_MULTI_PATTERN',
+        FUTURE_MULTI_PATTERN = 2,
     }
 
     export namespace History {
@@ -171,19 +171,19 @@ export namespace ResourceDescriptor {
     /**  A flag representing a specific style that a resource claims to conform to. */
     export enum Style {
         /**  The unspecified value. Do not use. */
-        UNSPECIFIED = 'STYLE_UNSPECIFIED',
+        STYLE_UNSPECIFIED = 0,
 
         /**
          *  This resource is intended to be "declarative-friendly".
-         * 
+         *
          *  Declarative-friendly resources must be more strictly consistent, and
          *  setting this to true communicates to tools that this resource should
          *  adhere to declarative-friendly expectations.
-         * 
+         *
          *  Note: This is used by the API linter (linter.aip.dev) to enable
          *  additional checks.
          */
-        DECLARATIVE_FRIENDLY = 'DECLARATIVE_FRIENDLY',
+        DECLARATIVE_FRIENDLY = 1,
     }
 
     export namespace Style {
