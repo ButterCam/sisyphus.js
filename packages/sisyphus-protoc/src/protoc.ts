@@ -1,5 +1,5 @@
 import zip from 'adm-zip'
-import {spawn} from 'child_process'
+import {exec, spawn} from 'child_process'
 import {constants, existsSync} from 'fs'
 import fs from 'fs/promises'
 import log from 'npmlog'
@@ -33,6 +33,14 @@ export default async function protoc(...args: string[]): Promise<number | null> 
 }
 
 async function ensureProtoc(version: string | undefined | null): Promise<string> {
+    if (version == null) {
+        version = await resolveLocalProtoc()
+        if (version) {
+            log.info('protoc', `Use installed protoc ${version}.`)
+            return 'protoc'
+        }
+    }
+
     if (version === 'latest' || version == null) {
         version = await resolveLatestProtoc()
     }
@@ -65,6 +73,18 @@ async function ensureProtoc(version: string | undefined | null): Promise<string>
     await fs.chmod(protocPath, 0o755)
 
     return protocPath
+}
+
+async function resolveLocalProtoc(): Promise<string | null> {
+    return new Promise((res, rej) => {
+        exec("protoc --version", (error, stdout, _) => {
+            if (error) {
+                res(null)
+            } else {
+                res(stdout.trim())
+            }
+        })
+    })
 }
 
 async function resolveLatestProtoc(): Promise<string> {
