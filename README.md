@@ -65,7 +65,7 @@ npm i @sisyphus.js/google.proto --save-dev
 使用 npm run 来编译 proto 文件。
 
 ```shell
-npm run protoc
+npm run node-protoc
 ```
 
 ### 3. 访问 Protobuf 消息实体
