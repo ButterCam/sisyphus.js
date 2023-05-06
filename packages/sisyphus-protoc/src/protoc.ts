@@ -75,7 +75,7 @@ async function ensureProtoc(version: string | undefined | null): Promise<string>
     return protocPath
 }
 
-async function resolveLocalProtoc(): Promise<string | null> {
+function resolveLocalProtoc(): Promise<string | null> {
     return new Promise((res, rej) => {
         exec("protoc --version", (error, stdout, _) => {
             if (error) {
