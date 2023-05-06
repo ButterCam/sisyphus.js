@@ -1,10 +1,10 @@
 {
   "name": "@sisyphus.js/protoc",
-  "version": "2.1.5",
+  "version": "2.1.6",
   "description": "Install protoc for current platform.",
   "main": "lib/index.js",
   "bin": {
-    "protoc": "lib/protoc.bin.js"
+    "node-protoc": "lib/protoc.bin.js"
   },
   "scripts": {
     "clean": "tsc --build --clean",
