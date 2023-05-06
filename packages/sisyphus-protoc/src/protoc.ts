@@ -18,7 +18,7 @@ export default async function protoc(...args: string[]): Promise<number | null> 
     const version = await getProtobufVersionConfig(process.cwd())
     const protoc = await ensureProtoc(version)
 
-    return new Promise((res, rej) => {
+    return await new Promise((res, rej) => {
         const child = spawn(protoc, args, {
             stdio: 'inherit',
             shell: false
