@@ -1,5 +1,4 @@
 import '@sisyphus.js/google/lib/google/api/annotations'
-import {MethodOptions} from '@sisyphus.js/runtime'
 
 export interface ServiceDescriptor {
     readonly name: string
