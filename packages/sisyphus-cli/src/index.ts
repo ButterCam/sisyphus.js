@@ -84,6 +84,10 @@ export async function main(args: string[]): Promise<number> {
         ...targetProtos
     ]
 
+    if (packageInfo.protobuf?.version) {
+        protocArgs.unshift("--version", packageInfo.protobuf.version)
+    }
+
     log.info('cli', `Run protoc ${protocArgs.join(' ')}`)
 
     const result = await protoc(...protocArgs)
