@@ -1,5 +1,5 @@
 import zip from 'adm-zip'
-import {exec, spawn} from 'child_process'
+import {spawn} from 'child_process'
 import {constants, existsSync} from 'fs'
 import fs from 'fs/promises'
 import log from 'npmlog'
@@ -34,11 +34,9 @@ export default async function protoc(...args: string[]): Promise<number | null> 
 
 async function ensureProtoc(version: string | undefined | null): Promise<string> {
     if (version == null) {
-        version = await resolveLocalProtoc()
-        if (version) {
-            log.info('protoc', `Use installed protoc ${version}.`)
-            return 'protoc'
-        }
+        const localProtoc = resolveLocalProtoc()
+        log.info('protoc', `Use local protoc ${localProtoc}.`)
+        return localProtoc
     }
 
     if (version === 'latest' || version == null) {
@@ -75,16 +73,26 @@ async function ensureProtoc(version: string | undefined | null): Promise<string>
     return protocPath
 }
 
-function resolveLocalProtoc(): Promise<string | null> {
-    return new Promise((res, rej) => {
-        exec("protoc --version", (error, stdout, _) => {
-            if (error) {
-                res(null)
-            } else {
-                res(stdout.trim())
+function resolveLocalProtoc(): string {
+    let executable = 'linux/x32/protoc'
+    switch (process.platform) {
+        case 'linux':
+            if (process.arch === 'x64') {
+                executable = 'linux/x64/protoc'
             }
-        })
-    })
+            break
+        case 'darwin':
+            executable = 'osx/protoc'
+            break
+        case 'win32':
+            if (process.arch === 'x64') {
+                executable = 'windows/x64/protoc.exe'
+            } else {
+                executable = 'windows/x32/protoc.exe'
+            }
+            break
+    }
+    return path.join(__dirname, '../bin', executable)
 }
 
 async function resolveLatestProtoc(): Promise<string> {

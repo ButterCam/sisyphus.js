@@ -20,6 +20,8 @@ export interface ProtobufConfig {
      * The packages name of source protos to compile in deps.
      */
     packages: string[]
+
+    version: string
 }
 
 export interface DirectoryConfig {
