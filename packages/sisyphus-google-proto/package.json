@@ -1,6 +1,6 @@
 {
   "name": "@sisyphus.js/google.proto",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "Precompiled google common protos with full protobuf by sisyphus protobuf compiler",
   "main": "lib/index.js",
   "scripts": {
@@ -34,12 +34,12 @@
   },
   "homepage": "https://github.com/ButterCam/sisyphus-js#readme",
   "devDependencies": {
-    "@sisyphus.js/cli": "^2.2.0"
+    "@sisyphus.js/cli": "^2.3.0"
   },
   "dependencies": {
-    "@sisyphus.js/google": "^2.2.0",
-    "@sisyphus.js/runtime": "^2.2.0",
-    "@sisyphus.js/runtime.proto": "^2.2.0"
+    "@sisyphus.js/google": "^2.3.0",
+    "@sisyphus.js/runtime": "^2.3.0",
+    "@sisyphus.js/runtime.proto": "^2.3.0"
   },
   "directories": {
     "lib": "lib"

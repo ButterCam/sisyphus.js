@@ -1,6 +1,6 @@
 {
   "name": "@sisyphus.js/runtime.proto",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "Protobuf full runtime for sisyphus project on js platform, support protobuf binary format.",
   "main": "lib/index.js",
   "scripts": {
@@ -35,7 +35,7 @@
   },
   "homepage": "https://github.com/ButterCam/sisyphus-js#readme",
   "dependencies": {
-    "@sisyphus.js/runtime": "^2.2.0"
+    "@sisyphus.js/runtime": "^2.3.0"
   },
   "directories": {
     "lib": "lib"

@@ -1,6 +1,6 @@
 {
   "name": "@sisyphus.js/protoc",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "Install protoc for current platform.",
   "main": "lib/index.js",
   "bin": {
